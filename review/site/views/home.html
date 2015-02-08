@@ -1,0 +1,19 @@
+<div id="heroBanner" image-loader rotate-images>
+	<img ng-repeat="image in hero.content.images | orderBy:'order'" ng-src="{{image.url}}" ng-class="{showing: activeBanner == $index, last: lastBanner == $index}" precision-image aspect-ratio="{{image.aspectRatio}}">
+	<h1>Zago</h1>
+	<p ng-bind-html="hero.content.banner_caption"></p>
+</div>
+
+<div id="homeBlurb">
+	<div ng-bind-html="blurb.body"></div>
+	<nav id="sectionNav">
+		<ul>
+			<li ng-repeat="section in sections | orderBy:'order'" ng-click="anchorTo(section.content.caption.firstWord())" ng-class="{active: isActive == section.content.caption.firstWord()}">{{section.content.caption.firstWord()}}</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+
+<div id="homeSections">
+	<section id="{{section.content.caption.firstWord()}}" ng-repeat="section in sections | orderBy:'order'" home-sections></section>
+</div>

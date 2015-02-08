@@ -1,14 +1,22 @@
 <nav id="projectNav">
 	<ul>
-		<li ng-click="viewProject(nextProject.id)">
-			<div class="navTitle">
-				<h5>{{nextProject.content.client}}</h5>
-			</div>
+		<li>
+			<a ui-sref="projects">
+				<div class="navButton project-back"></div>
+				<div class="navTitle">All Projects</div>
+			</a>
 		</li>
-		<li ng-click="viewProject(prevProject.id)">
-			<div class="navTitle">
-				<h5>{{prevProject.content.client}}</h5>
-			</div>
+		<li>
+			<a href="projects/{{nextProject.id}}">
+				<div class="navButton project-next"></div>
+				<div class="navTitle" ng-bind-html="nextProject.content.name"></div>
+			</a>
+		</li>
+		<li>
+			<a href="projects/{{prevProject.id}}">
+				<div class="navButton project-prev"></div>
+				<div class="navTitle" ng-bind-html="prevProject.content.name"></div>	
+			</a>
 		</li>
 	</ul>
 </nav>

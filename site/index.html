@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Language" content="en_US">
     <!-- ******************************************* -->
     <base href="/" > <!-- Allows for Angular deep-linking -->
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>Zago | Under Construction</title>
     <link rel="icon" type="image/png" href="images/favicon.ico">
     <link rel="stylesheet" href="css/style.css" />
@@ -17,6 +17,7 @@
     <script src="js/mobile-detect.min.js"></script> <!-- library to detect whether "true" mobile/touch device -->
     <script src="js/mobile-detect-modernizr.js"></script> <!-- modernizr & mobile-detect integration -->
     <script src="js/modernizr-script.js"></script> <!-- Custom modernizr code logic -->
+    <script src="js/ios-orientationchange-fix.js"></script> <!-- Fix zooming issues with older iOS devices -->
     <script type="text/javascript" src="js/overthrow.min.js"></script> <!-- Mobile touch scrolling plugin -->
     <script src="js/jquery-1.8.3.min.js"></script>
     <!-- Application Files -->
@@ -60,15 +61,17 @@
 
         <footer id="footer" ng-class="{homePage: pageView == 'homePage', lovePage: pageView == 'lovePage'}">
             <section class="collaboration">
-                <p>Let's work together. Come have coffee & say ciao.</p>
-                <p><a href="mailto:info@zagollc.com">info@zagollc.com</a>.</p>
+                <p>Let's work together.</p>
+                <p>Come have coffee & say ciao.</p>
+                <a href="mailto:info@zagollc.com">info@zagollc.com</a>
             </section>
             <section class="intern">
-                <p>We take interns in NYC for
-                3 to 6 month engagements.<br>Inquire at </p>
-                <a href="mailto:intern@zagollc.com">intern@zagollc.com</a>
+                <p class="footerCiaoline">Say ciao at <a href="mailto:info@zagollc.com">info@zagollc.com</a></p>
+                <p>We take interns in NYC for</p>
+                <p>3 to 6 month engagements.</p>
+                <p>Inquire at <a href="mailto:intern@zagollc.com">intern@zagollc.com</a></p>
             </section>
-            <div office-list></div>
+            <div class="officeListing" office-list></div>
             <section class="social" social-buttons></section>
         </footer>
 
@@ -79,7 +82,7 @@
             <button type="button" ng-click="hideSplash()">Full Site</button> 
         </div> -->
 
-        <!-- <div id="cssTest">
+        <div id="cssTest">
             <p class="cssvwunit">No vw units</p>
 
             <p class="mobilegradea">No mobile grade a</p>
@@ -87,7 +90,7 @@
             <p class="overthrow-enabled">No overthrow-enabled</p>
             <p class="cssvhunit">No vh units</p>
             <p class="localstorage">No localStorage</p>
-        </div> -->
+        </div>
 
     </div>
 

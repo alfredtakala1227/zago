@@ -96,11 +96,11 @@ $menuButtonColors: $blue, $yellow, $pink, $green;
 }
 
 @mixin keyframes($name) {
-	@-webkit-keyframes $name { @content; }
-	@-moz-keyframes $name { @content; }
-	@-ms-keyframes $name { @content; }
-	@-o-keyframes $name { @content; }
-	@keyframes $name { @content; }
+	@-webkit-keyframes #{$name} { @content; }
+	@-moz-keyframes #{$name} { @content; }
+	@-ms-keyframes #{$name} { @content; }
+	@-o-keyframes #{$name} { @content; }
+	@keyframes #{$name} { @content; }
 }
 
 @mixin columns($count : 0, $gap : 0px, $rule : 0) {
