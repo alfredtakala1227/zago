@@ -1,0 +1,17 @@
+<div class="bannerWrapper">
+	<div class="imgWrapper" image-loader>
+		<img ng-src="{{section.content.url}}" precision-image aspect-ratio="{{section.content.aspectRatio}}">
+	</div>
+	<div class="captionWrapper">
+		<p><span class="color" ng-class="caption.color">{{caption.first}}</span></p>
+		<p>{{caption.last}}</p>
+	</div>
+</div>
+<div class="sectionWrapper">
+	<div class="padder left">
+		<h1>{{section.title}}</h1>
+	</div>
+	<div class="padder">
+		<div class="sectionText" ng-bind-html="section.body"></div>
+	</div>
+</div>

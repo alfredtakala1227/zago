@@ -5,6 +5,11 @@
 /* Mixins
 /*************************************************/
 /*************************************************/
+html, body, #container, #pageContent {
+  height: initial;
+  min-height: initial;
+}
+
 .buttonWrapper {
   top: 78%;
 }
@@ -33,9 +38,16 @@ nav#mainNav #menuWrapper {
     padding-top: 20em;
   }
 }
+nav#projectNav {
+  top: 50%;
+}
 
 #splash {
   min-height: 100em;
+}
+
+#heroBanner {
+  height: 100em;
 }
 
 #homeSections section .bannerWrapper {
@@ -48,4 +60,15 @@ nav#mainNav #menuWrapper {
   #homeSections section .bannerWrapper {
     height: 50em;
   }
+}
+
+#projectLayout .featuredImage {
+  height: 500px;
+}
+#projectLayout.caseStudy .featuredImage {
+  height: 500px;
+}
+
+#projectImages section .imageWrapper .imageBox {
+  height: 50em;
 }

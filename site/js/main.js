@@ -34,37 +34,50 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         .state('home', { 
             url: '/',
             templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            controller: 'HomeCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('projects', { 
             url: '/projects',
             templateUrl: 'partials/projects.html',
-            controller: 'ProjectsCtrl'
+            controller: 'ProjectsCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('project', {
             url: '/projects/:project',
             templateUrl: 'partials/project.html',
-            controller: 'ProjectDetailCtrl'
+            controller: 'ProjectDetailCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('team', { 
             url: '/team',
             templateUrl: 'partials/team.html',
-            controller: 'TeamCtrl'
+            controller: 'TeamCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('love', { 
             url: '/zagolovesyou',
             templateUrl: 'partials/love.html',
-            controller: 'LoveCtrl'
-        })
-        .state('error', { 
-            url: '/error',
-            templateUrl: 'partials/error.html',
-            controller: 'ErrorCtrl'
+            controller: 'LoveCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('legacy', { 
             url: '/legacy',
             templateUrl: 'partials/legacy.html',
-            controller: 'LegacyCtrl'
+            controller: 'LegacyCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         });
 
         $locationProvider.html5Mode(true);
@@ -73,33 +86,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on('$stateChangeStart', function(event, to, toParams, from, fromParams){
-
-
-        
-        // If the Site Data is missing, stop navigation and retreive data
-        // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
-        //////////////////////////////////////////////////////////////////////////
-        var newTimestamp = new Date().getTime();
-        // Set Time of User Entry (default to 24hr reset)
-        Storage.dailyTimestamp = (Storage.dailyTimestamp && Storage.dailyTimestamp > (newTimestamp - 86400000)) ? Storage.dailyTimestamp : newTimestamp;
-        // If the Storage Site object is empty or older than X, reload Wordpress data tree (default to 1hr reset)
-        if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - 3600000)) {
-            event.preventDefault();
-            SiteLoader.getRawData().then(function(data){
-                var site, posts;
-                // If object returned is some fucked up IE shit (ie String), parse it
-                site = data.responseText || data.data;
-                if (typeof site == 'string') { site = JSON.parse(site); }
-                // Get & Store Posts Tree
-                posts = SiteLoader.getPosts(site);
-                Storage.site = JSON.stringify(posts);
-                Storage.dataTimestamp = newTimestamp;
-                $rootScope.site = posts;
-
-                // Continue to Destination
-                $state.go(to.name, toParams);
-            });
-        }
 
         // Remove page-specific event listeners
         Functions.removeListeners();
@@ -296,7 +282,10 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
 
                         if (post.terms.category[0].slug == 'project') {
 
+                            temp.title = ternValue(post.acf.title);
+
                             temp.content = {
+                                'name' : ternValue(post.title),
                                 'case_study' : post.acf.case_study,
                                 'client' : ternValue(post.acf.client),
                                 'services' : ternValue(splitCSV(post.acf.services)),
@@ -363,6 +352,8 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
                                 }
                             };
 
+                            console.log(post);
+
                             tree.team.images.push(temp.content.featured_image);
                             temp.content.funny_picture ? tree.team.images.push(temp.content.funny_picture) : '';
                             
@@ -418,298 +409,7 @@ app.factory('Styling', function(){
     }
 });
 
-app.factory("Preloader", function( $q, $rootScope, $timeout, Storage ) {
-
-    //////////////////////////////////////////////////////////////////////
-    // Custom function to preload array of images [internet find]
-    //////////////////////////////////////////////////////////////////////
-
-    Preloader.preload = function( images ) {
-        return;  // @LOADER
-        // Track whether css transition timing has had chance to finish
-        //////////////////////////////////////////////////////////////////////
-        var transitionComplete = false;
-        var transitionTiming = 750; // CSS transition timing (500ms)
-        $timeout(function(){ transitionComplete = true; }, transitionTiming);
-
-        function checkTransition(wasSuccessful) {
-            if (transitionComplete) { 
-                $rootScope.isLoading = false;
-                $rootScope.isSuccessful = wasSuccessful;
-                $rootScope.$emit('$viewContentLoaded');
-
-            } else { $timeout(function(){ checkTransition(wasSuccessful); }, 50); }
-        };
-
-        if (images.length) {
-            // I keep track of the state of the loading images.
-            $rootScope.isLoading = true;
-            $rootScope.isSuccessful = false;
-            $rootScope.percentLoaded = 0;
-            console.log('Preloading Images');
-
-            // Preload the images; then, update display when returned.
-            // Trigger Angular's onload/compile event upon completion ($emit -> $viewContentLoaded)
-            this.preloadImages( images ).then(
-                function handleResolve( imageLocations ) {
-
-                    // Loading was successful.
-                    checkTransition(true);
-
-                    console.log('Preloading Complete');
-                },
-                function handleReject( imageLocation ) {
-
-                    // Loading failed on at least one image.
-                    checkTransition(false);
-
-                    console.log('Preloading Rejected');
-
-                },
-                function handleNotify( event ) {
-
-                    $rootScope.percentLoaded = event.percent;
-
-                    console.info( "Percent loaded:", event.percent );
-
-                }
-            );
-        }
-
-    };
-
-    // I manage the preloading of image objects. Accepts an array of image URLs.
-    function Preloader( imageLocations ) {
-
-        // I am the image SRC values to preload.
-        this.imageLocations = imageLocations;
-
-        // As the images load, we'll need to keep track of the load/error
-        // counts when announing the progress on the loading.
-        this.imageCount = this.imageLocations.length;
-        this.loadCount = 0;
-        this.errorCount = 0;
-
-        // I am the possible states that the preloader can be in.
-        this.states = {
-            PENDING: 1,
-            LOADING: 2,
-            RESOLVED: 3,
-            REJECTED: 4
-        };
-
-        // I keep track of the current state of the preloader.
-        this.state = this.states.PENDING;
-
-        // When loading the images, a promise will be returned to indicate
-        // when the loading has completed (and / or progressed).
-        this.deferred = $q.defer();
-        this.promise = this.deferred.promise;
-
-    }
-
-
-    // ---
-    // STATIC METHODS.
-    // ---
-
-
-    // I reload the given images [Array] and return a promise. The promise
-    // will be resolved with the array of image locations.
-    Preloader.preloadImages = function( imageLocations ) {
-
-        var preloader = new Preloader( imageLocations );
-
-        return( preloader.load() );
-
-    };
-
-
-    // ---
-    // INSTANCE METHODS.
-    // ---
-
-
-    Preloader.prototype = {
-
-        // Best practice for "instnceof" operator.
-        constructor: Preloader,
-
-
-        // ---
-        // PUBLIC METHODS.
-        // ---
-
-
-        // I determine if the preloader has started loading images yet.
-        isInitiated: function isInitiated() {
-
-            return( this.state !== this.states.PENDING );
-
-        },
-
-
-        // I determine if the preloader has failed to load all of the images.
-        isRejected: function isRejected() {
-
-            return( this.state === this.states.REJECTED );
-
-        },
-
-
-        // I determine if the preloader has successfully loaded all of the images.
-        isResolved: function isResolved() {
-
-            return( this.state === this.states.RESOLVED );
-
-        },
-
-
-        // I initiate the preload of the images. Returns a promise.
-        load: function load() {
-
-            // If the images are already loading, return the existing promise.
-            if ( this.isInitiated() ) {
-
-                return( this.promise );
-
-            }
-
-            this.state = this.states.LOADING;
-
-            for ( var i = 0 ; i < this.imageCount ; i++ ) {
-
-                this.loadImageLocation( this.imageLocations[ i ] );
-
-            }
-
-            // Return the deferred promise for the load event.
-            return( this.promise );
-
-        },
-
-
-        // ---
-        // PRIVATE METHODS.
-        // ---
-
-
-        // I handle the load-failure of the given image location.
-        handleImageError: function handleImageError( imageLocation ) {
-
-            this.errorCount++;
-
-            // If the preload action has already failed, ignore further action.
-            if ( this.isRejected() ) {
-
-                return;
-
-            }
-
-            this.state = this.states.REJECTED;
-
-            this.deferred.reject( imageLocation );
-
-        },
-
-
-        // I handle the load-success of the given image location.
-        handleImageLoad: function handleImageLoad( imageLocation ) {
-
-            this.loadCount++;
-
-            // If the preload action has already failed, ignore further action.
-            if ( this.isRejected() ) {
-
-                return;
-
-            }
-
-            // Notify the progress of the overall deferred. This is different
-            // than Resolving the deferred - you can call notify many times
-            // before the ultimate resolution (or rejection) of the deferred.
-            this.deferred.notify({
-                percent: Math.ceil( this.loadCount / this.imageCount * 100 ),
-                imageLocation: imageLocation
-            });
-
-            // If all of the images have loaded, we can resolve the deferred
-            // value that we returned to the calling context.
-            if ( this.loadCount === this.imageCount ) {
-
-                this.state = this.states.RESOLVED;
-
-                this.deferred.resolve( this.imageLocations );
-
-            }
-
-        },
-
-
-        // I load the given image location and then wire the load / error
-        // events back into the preloader instance.
-        // --
-        // NOTE: The load/error events trigger a $digest.
-        loadImageLocation: function loadImageLocation( imageLocation ) {
-
-            var preloader = this;
-
-            // When it comes to creating the image object, it is critical that
-            // we bind the event handlers BEFORE we actually set the image
-            // source. Failure to do so will prevent the events from proper
-            // triggering in some browsers.
-            var image = $( new Image() )
-                .load(
-                    function( event ) {
-
-                        // Since the load event is asynchronous, we have to
-                        // tell AngularJS that something changed.
-                        $rootScope.$apply(
-                            function() {
-
-                                preloader.handleImageLoad( event.target.src );
-
-                                // Clean up object reference to help with the
-                                // garbage collection in the closure.
-                                preloader = image = event = null;
-
-                            }
-                        );
-
-                    }
-                )
-                .error(
-                    function( event ) {
-
-                        // Since the load event is asynchronous, we have to
-                        // tell AngularJS that something changed.
-                        $rootScope.$apply(
-                            function() {
-
-                                preloader.handleImageError( event.target.src );
-
-                                // Clean up object reference to help with the
-                                // garbage collection in the closure.
-                                preloader = image = event = null;
-
-                            }
-                        );
-
-                    }
-                )
-                .prop( "src", imageLocation )
-            ;
-
-        }
-
-    };
-
-
-    // Return the factory instance.
-    return( Preloader );
-});
-
-app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $document, $timeout ) {
+app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $timeout ) {
     
     //////////////////////////////////////////////////////////////////////
     // Methods, Properties and Values Used/Shared throughout entire site
@@ -744,10 +444,8 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
 
     $rootScope.$on('$viewContentLoaded', function(){
         // Checks to see that image preloading isn't still processing
-        if (!$rootScope.isLoading) {
-            dom = getDOM();
-            checkPrompt();
-        }
+        dom = getDOM();
+        checkPrompt();
     });
 
     // Helper Functions
@@ -825,15 +523,6 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
             dom.menuBtn.style.display = 'none';
             dom.prompt.style.display = 'none';
             dom.footer.style.display = 'none';
-            },
-
-        'preloadImages' : function(posts, src) {
-                // @BUG this function is only half-way thought out
-                if (posts.images && !preloadedImages[src]) {
-                    // Preload Images if first time, mark preloaded in local array
-                    Preloader.preload(posts.images);
-                    preloadedImages[src] = true;
-                }
             },
 
         'route' : function(route, turnOff, params) {
@@ -1083,6 +772,7 @@ app.directive('grid', function($compile) {
                     view = 'team';
                     break;
             }
+
             // Send to format function and append to element
             element.html(getTemplate(data));
             // Compile for Angular functionality
@@ -1127,15 +817,19 @@ app.directive('grid', function($compile) {
                 imgWrap.setAttribute('class', 'imgWrapper');
                 // Create Img Element
                 var img = document.createElement('img');
-                img.setAttribute('ng-src', data.content.featured_image.url || data.content.featured_image); // @todo fix projects bug
-                // Check and Add class for portrait images
-                img.setAttribute('precision-image', true);
-                if (data.content.featured_image.aspectRatio) { img.setAttribute('aspect-ratio', data.content.featured_image.aspectRatio); }
-                if (data.content.featured_image.position) { 
-                    var classes = data.content.featured_image.position;
-                    for (var pos = 0; classes.length > pos; pos++) {
-                        img.classList.add(classes[pos]);
-                    };
+
+                if (data.content.featured_image) {
+                    console.log(data.content.featured_image);
+                    img.setAttribute('ng-src', (data.content.featured_image.url || data.content.featured_image)); // @todo fix projects bug
+                    // Check and Add class for portrait images
+                    img.setAttribute('precision-image', true);
+                    if (data.content.featured_image.aspectRatio) { img.setAttribute('aspect-ratio', data.content.featured_image.aspectRatio); }
+                    if (data.content.featured_image.position) { 
+                        var classes = data.content.featured_image.position;
+                        for (var pos = 0; classes.length > pos; pos++) {
+                            img.classList.add(classes[pos]);
+                        };
+                    }
                 }
 
                 imgWrap.appendChild(img);
@@ -1151,15 +845,15 @@ app.directive('grid', function($compile) {
                 ovrly.setAttribute('class', 'overlay');
                 // Create Title Elements
                 var h2 = document.createElement('h2');
-                h2.innerHTML = data.title;
                 var h3 = document.createElement('h3');
                 var h3Text;
 
                 if (view === 'projects') {
-                    h3Text = data.content.client;
+                    h2.innerHTML = data.title;
+                    h3Text = data.content.name;
                     imgWrap.appendChild(ovrly); }
                 else if (view === 'team') {
-
+                    h2.innerHTML = data.title;
                     h3Text =  data.content.position;
 
                     if (data.content.accounts && data.content.accounts.length) {
@@ -1227,6 +921,7 @@ app.directive('grid', function($compile) {
 
             var grid, wrapper;
             var allProjects = document.createElement('div');
+            allProjects.setAttribute('class', 'gridBox')
             // Iterate thru tree, format template
             for (var i = 0; data.length > i; i++) {
                 // Create new project section module
@@ -1296,16 +991,16 @@ app.directive('officeList', function() {
 
         scope.offices = [
             {
-                'location': 'New York',
-                'address'    : '392 Broadway, 2nd Floor',
-                'region'  : 'New York, NY 10013',
-                'phone'   : '+1 212 219 1606'
-            },
-            {
                 'location': 'Rio de Janeiro',
                 'address'    : 'R Benjamim Batista, 153',
                 'region'  : 'Rio de Janeiro, RJ 22461-120',
                 'phone'   : '+55 21 3627 7529'
+            },
+            {
+                'location': 'New York',
+                'address'    : '392 Broadway, 2nd Floor',
+                'region'  : 'New York, NY 10013',
+                'phone'   : '+1 212 219 1606'
             },
             {
                 'location': 'Geneva',
@@ -1508,11 +1203,10 @@ app.directive('rotateImages', function($interval){
             // If img is last in array, set NEXT to first image, else set to next image in array
             $scope.lastBanner = $scope.activeBanner;
             $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
-            console.log($scope.activeBanner);
         };
 
         var timer;
-        var waitTiming = 4000; // how long each slide remains active
+        var waitTiming = 5000; // how long each slide remains active
         $scope.setTimer = function(){
             $scope.activeBanner = 0;
             $scope.lastBanner;
@@ -1542,7 +1236,7 @@ app.directive('rotateImages', function($interval){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.controller('AppCtrl', function($scope, $rootScope, $timeout, Functions, Storage){
+var AppCtrl = app.controller('AppCtrl', function($scope, $rootScope, $timeout, Functions, Storage){
 
     // App-general Functions
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1576,12 +1270,42 @@ app.controller('AppCtrl', function($scope, $rootScope, $timeout, Functions, Stor
 
 });
 
-app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Functions, Preloader, Storage){
+AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage){
+    var defer = $q.defer();
+    // If the Site Data is missing, stop navigation and retreive data
+    // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
+    //////////////////////////////////////////////////////////////////////////
+    var newTimestamp = new Date().getTime();
+    // Set Time of User Entry (default to 24hr reset)
+    Storage.dailyTimestamp = (Storage.dailyTimestamp && Storage.dailyTimestamp > (newTimestamp - 86400000)) ? Storage.dailyTimestamp : newTimestamp;
+    // If the Storage Site object is empty or older than X, reload Wordpress data tree (default to 1hr reset)
+    if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - 3600000)) {
+        SiteLoader.getRawData().then(function(data){
+            var site, posts;
+            // If object returned is some fucked up IE shit (ie String), parse it
+            site = data.responseText || data.data;
+            if (typeof site == 'string') { site = JSON.parse(site); }
+            // Get & Store Posts Tree
+            posts = SiteLoader.getPosts(site);
+            Storage.site = JSON.stringify(posts);
+            Storage.dataTimestamp = newTimestamp;
+            $rootScope.site = posts;
+            defer.resolve();
+        });
+    } else { $rootScope.site = JSON.parse(Storage.site); defer.resolve(); }
+
+    return defer.promise;
+
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Functions, Storage){
 
     $rootScope.pageView = "homePage";
     $scope.setPageTitle();
 
-    var posts = JSON.parse(Storage.site).home;
+    var posts = $rootScope.site.home;
     $scope.hero = posts.banners[0];
     $scope.blurb = posts.blurb[0];
     $scope.sections = posts.sections;
@@ -1652,12 +1376,12 @@ app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Fun
 
 });
 
-app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Preloader, Styling){
+app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Styling){
 
     $rootScope.pageView = "projectsOverviewPage";
     $scope.setPageTitle('Projects');
 
-    var posts = JSON.parse(Storage.site).project;
+    var posts = $rootScope.site.project;
     $scope.blurb = posts.blurb[0];
     $scope.projects = posts.projects;
 
@@ -1673,11 +1397,11 @@ app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Preloader, 
 
 });
 
-app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, Storage, Preloader){
+app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, Storage){
 
     $rootScope.pageView = "projectPage";
 
-    var posts = JSON.parse(Storage.site).project;
+    var posts = $rootScope.site.project;
 
     // Get CURRENT, NEXT & PERVIOUS project IDs based on SITE TREE position (Project Sub-Nav)
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1754,12 +1478,12 @@ app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, S
 
 });
 
-app.controller('TeamCtrl', function($scope, $rootScope, Functions, Preloader, Storage){
+app.controller('TeamCtrl', function($scope, $rootScope, Functions, Storage){
 
     $rootScope.pageView = "teamPage";
     $scope.setPageTitle('The Team');
 
-    var posts = JSON.parse(Storage.site).team;
+    var posts = $rootScope.site.team;
     $scope.blurb = posts.blurb[0];
     $scope.members = posts.members.shuffle();
 
@@ -1768,10 +1492,6 @@ app.controller('TeamCtrl', function($scope, $rootScope, Functions, Preloader, St
 app.controller('LoveCtrl', function($scope, $rootScope){
 
     $rootScope.pageView = "lovePage";
-
-});
-
-app.controller('ErrorCtrl', function($scope, $rootScope, $state, Storage){
 
 });
 

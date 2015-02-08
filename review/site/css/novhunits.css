@@ -1,0 +1,51 @@
+/*************************************************/
+/* Colors
+/*************************************************/
+/*************************************************/
+/* Mixins
+/*************************************************/
+/*************************************************/
+.buttonWrapper {
+  top: 78%;
+}
+
+nav#mainNav #menuWrapper {
+  height: auto;
+  padding: 150px 0 25em;
+}
+@media (max-height: 400px) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 30em;
+  }
+}
+@media (max-height: tiny) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 30em;
+  }
+}
+@media (min-width: 640px) {
+  nav#mainNav #menuWrapper {
+    padding-top: 15em;
+  }
+}
+@media (min-width: 992px) {
+  nav#mainNav #menuWrapper {
+    padding-top: 20em;
+  }
+}
+
+#splash {
+  min-height: 100em;
+}
+
+#homeSections section .bannerWrapper {
+  height: 40em;
+}
+#homeSections section .bannerWrapper .imgWrapper img {
+  height: 40em;
+}
+@media (min-width: 640px) {
+  #homeSections section .bannerWrapper {
+    height: 50em;
+  }
+}
