@@ -34,37 +34,50 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         .state('home', { 
             url: '/',
             templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            controller: 'HomeCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('projects', { 
             url: '/projects',
             templateUrl: 'partials/projects.html',
-            controller: 'ProjectsCtrl'
+            controller: 'ProjectsCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('project', {
             url: '/projects/:project',
             templateUrl: 'partials/project.html',
-            controller: 'ProjectDetailCtrl'
+            controller: 'ProjectDetailCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('team', { 
             url: '/team',
             templateUrl: 'partials/team.html',
-            controller: 'TeamCtrl'
+            controller: 'TeamCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('love', { 
             url: '/zagolovesyou',
             templateUrl: 'partials/love.html',
-            controller: 'LoveCtrl'
-        })
-        .state('error', { 
-            url: '/error',
-            templateUrl: 'partials/error.html',
-            controller: 'ErrorCtrl'
+            controller: 'LoveCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         })
         .state('legacy', { 
             url: '/legacy',
             templateUrl: 'partials/legacy.html',
-            controller: 'LegacyCtrl'
+            controller: 'LegacyCtrl',
+            resolve: {
+                SiteLoader: AppCtrl.SiteLoader
+            }
         });
 
         $locationProvider.html5Mode(true);
@@ -74,46 +87,14 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on('$stateChangeStart', function(event, to, toParams, from, fromParams){
 
-        $rootScope.isRouting = true;
-        
-        // If the Site Data is missing, stop navigation and retreive data
-        // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
-        //////////////////////////////////////////////////////////////////////////
-        var newTimestamp = new Date().getTime();
-        // Set Time of User Entry (default to 24hr reset)
-        Storage.dailyTimestamp = (Storage.dailyTimestamp && Storage.dailyTimestamp > (newTimestamp - 86400000)) ? Storage.dailyTimestamp : newTimestamp;
-        // If the Storage Site object is empty or older than X, reload Wordpress data tree (default to 1hr reset)
-        if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - 3600000)) {
-            event.preventDefault();
-            SiteLoader.getRawData().then(function(data){
-                var site, posts;
-                // If object returned is some fucked up IE shit (ie String), parse it
-                site = data.responseText || data.data;
-                if (typeof site == 'string') { site = JSON.parse(site); }
-                // Get & Store Posts Tree
-                posts = SiteLoader.getPosts(site);
-                Storage.site = JSON.stringify(posts);
-                Storage.dataTimestamp = newTimestamp;
-                $rootScope.site = posts;
-
-                // Continue to Destination
-                $state.go(to.name, toParams);
-            });
-        }
-
         // Remove page-specific event listeners
         Functions.removeListeners();
         
     });
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
-        
-        $rootScope.isRouting = false;
 
-        // Add/Remove page class to footer element
-        document.getElementsByTagName('footer')[0].className = '';
-        if (to.name == 'home') { document.getElementsByTagName('footer')[0].classList.add('homePage'); }
-        if (to.name == 'love') { document.getElementsByTagName('footer')[0].classList.add('lovePage'); }
+
     });
 });
 
@@ -133,7 +114,7 @@ app.factory('Storage', function(){
         return {}; }
 });
 
-app.factory('SiteLoader', function($http, $q){
+app.factory('SiteLoader', function($http, $q, $rootScope){
 
     // Wordpress API call for site post data
     var reqUrl = 'http://admin.zagollc.com/wp-json/posts?filter[posts_per_page]=1000';
@@ -148,6 +129,9 @@ app.factory('SiteLoader', function($http, $q){
     return {
         // Call for Site Data, when a promise
         'getRawData' : function(){
+
+            // $rootScope.isLoading = true; // @LOADER
+
             var deferred = $q.defer();
             // If some fucked up IE feature exists, use it
             if(window.XDomainRequest){
@@ -170,7 +154,6 @@ app.factory('SiteLoader', function($http, $q){
         // Parse raw site data into data tree to be used with App
         'getPosts' : function(rawData){
 
-            console.log('Parse data:');
             console.log(rawData);
 
             function ternValue(object, i) {
@@ -184,8 +167,20 @@ app.factory('SiteLoader', function($http, $q){
             function splitCSV(str) {
                 // Remove whitespace and split by ','
                 var arr = str.replace(/, /g,',').split(",");
+
+                // Remove empty pieces
+                for(var i = arr.length; i >= 0; i--) {
+                    if(arr[i] === ""){
+                        arr.splice(i, 1);
+                    }
+                }
+
                 return arr;
             };
+
+            function aspectRatio(width, height){
+                return (height / width);
+            }
 
             // Structure Site Posts object 
             function postTree(Site){
@@ -224,7 +219,7 @@ app.factory('SiteLoader', function($http, $q){
                             'id' : post.ID,
                             'title' : ternValue(post.title),
                             'order' : ternValue(post.acf.arrangement),
-                            'body' : ternValue(post.acf.content),
+                            'body' : post.acf.content ? post.acf.content : post.content,
                             'content' : { }
                         };
                         
@@ -243,8 +238,11 @@ app.factory('SiteLoader', function($http, $q){
                                 var obj = {
                                     'url' : post.acf.banner_images[h].image.url,
                                     'alt' : ternValue(post.acf.banner_images[h].alt),
-                                    'order' : ternValue(post.acf.banner_images[h].arrangement)
+                                    'order' : ternValue(post.acf.banner_images[h].arrangement),
+                                    'position' : ternValue(post.acf.banner_images[h].positioning),
+                                    'aspectRatio' : aspectRatio(post.acf.banner_images[h].image.width, post.acf.banner_images[h].image.height)
                                 }
+
                                 temp.content.images.push(obj);
                                 tree.home.images.push(obj.url);
                             }
@@ -255,10 +253,12 @@ app.factory('SiteLoader', function($http, $q){
 
                         if (post.terms.category[0].slug == 'home-section' && tree.home.sections.length < 4) {
                             temp.content = {
-                                'image_id' : ternValue(post.acf.banner_image.id),
-                                'image_alt' : ternValue(post.acf.banner_image.alt),
-                                'image_url': ternValue(post.acf.banner_image.url),
-                                'image_caption' : ternValue(post.acf.banner_caption)
+                                'id' : ternValue(post.acf.banner_image.id),
+                                'alt' : ternValue(post.acf.banner_image.alt),
+                                'url': ternValue(post.acf.banner_image.url),
+                                'caption' : ternValue(post.acf.banner_caption),
+                                'position' : ternValue(post.acf.positioning),
+                                'aspectRatio' : aspectRatio(post.acf.banner_image.width, post.acf.banner_image.height)
                             };
 
                             tree.home.images.push(temp.content.image_url);
@@ -282,30 +282,30 @@ app.factory('SiteLoader', function($http, $q){
 
                         if (post.terms.category[0].slug == 'project') {
 
+                            temp.title = ternValue(post.acf.title);
+
                             temp.content = {
+                                'name' : ternValue(post.title),
                                 'case_study' : post.acf.case_study,
                                 'client' : ternValue(post.acf.client),
-                                'services' : ternValue(post.acf.services),
-                                'project' : ternValue(post.acf.project),
+                                'services' : ternValue(splitCSV(post.acf.services)),
+                                'project' : ternValue(splitCSV(post.acf.project)),
+                                'other_details' : ternValue(post.acf.other_details),
                                 'project_url' : ternValue(post.acf.project_url),
-                                'featured_image' : (post.acf.featured_image && !post.acf.case_study) ? post.acf.featured_image.url : (post.acf.images[0].image.url || null),
-                                'related_projects' : ternValue(post.acf.related_projects),
+                                'social_media' : ternValue(post.acf.social_media),
                                 'read_about' : ternValue(post.acf.read_about),
-                                'other_details' : [],
-                                'social_media' : [],
+                                'related_projects' : ternValue(post.acf.related_projects),
+                                'featured_image' : {},
+                                'image_sections' : [],
                                 'images' : []
                             };
 
-                            // Extract Social Media information
-                            for (var s = 0; post.acf.social_media.length > s; s++) {
-                                temp.content.social_media.push({
-                                    'account' : ternValue(post.acf.social_media[s].account),
-                                    'url' : ternValue(post.acf.social_media[s].url)
-                                });
-                            };
+                            for ( var q = 0; temp.content.other_details.length > q; q++){
+                                temp.content.other_details[q].details = splitCSV(temp.content.other_details[q].details);
+                            }
 
-                            // Get project images outside of repeater array (if case study IS selected)
-                            if (post.acf.images && post.acf.case_study == true) {
+                            // Get project images outside of repeater array                       
+                            if (post.acf.images && post.acf.images.length) {
                                 for (var d = 0; post.acf.images.length > d; d++) {
                                     var obj = {
                                         'url' : post.acf.images[d].image.url,
@@ -313,47 +313,20 @@ app.factory('SiteLoader', function($http, $q){
                                         'label' : post.acf.images[d].label,
                                         'order' : post.acf.images[d].arrangement,
                                         'half' : post.acf.images[d].half,
+                                        'position' : ternValue(post.acf.images[d].positioning),
+                                        'aspectRatio' : aspectRatio(post.acf.images[d].image.width, post.acf.images[d].image.height)
                                     };
 
-                                    // Check if object exists in tree already
-                                    for (image in temp.content.images) {
-                                        if (image.url == obj.url && image.order == obj.order) {
-                                            var urlExists = true;
-                                            break;
-                                    }   }
+                                    // Skip first image (featured image)
+                                    if (d > 0) { temp.content.image_sections.push(obj); }
+                                    else { temp.content.featured_image = obj; }
 
-                                    // If new image obj, add to tree
-                                    if (!urlExists) { temp.content.images.push(obj); }
-                                    
+                                    temp.content.images.push(obj);
                                 }
                             }
 
-                            // Get project images from featured image (if case study NOT selected)
-                            if (post.acf.featured_image && temp.content.case_study == false) {
-                                var obj = {
-                                    'url' : post.acf.featured_image.url,
-                                    'alt' : post.acf.featured_image.alt,
-                                    'label' : 'Featured Image',
-                                    'order' : 1,
-                                    'half' : false,
-                                };
-
-                                temp.content.images.push(obj);
-                            }
-
-                            // Extract extra project details
-                            if (post.acf.other_details && post.acf.other_details.length) {
-                                for (var det = 0; post.acf.other_details.length > det; det++) {
-                                    temp.content.other_details.push({
-                                        'title' : post.acf.other_details[det].title,
-                                        'detail' : post.acf.other_details[det].details
-                                    });
-                                };
-                            }
-
-                            tree.project.images.push(temp.content.featured_image);
+                            tree.project.images.push(temp.content.featured_image.url);
                             tree.project.projects.push(temp);
-
                             // Sort projects object via arrangement parameter
                             tree.project.projects.sort(sorter);
 
@@ -370,10 +343,16 @@ app.factory('SiteLoader', function($http, $q){
                         if (post.terms.category[0].slug == 'team-member') {
                             temp.content = {
                                 'position' : ternValue(post.acf.position),
-                                'linkedin_url' : ternValue(post.acf.linkedin_url),
+                                'accounts' : ternValue(post.acf.accounts),
                                 'featured_image' : (post.acf.profile_picture && post.acf.profile_picture.url) ? post.acf.profile_picture.url : null,
-                                'funny_picture' : (post.acf.funny_picture && post.acf.funny_picture.url) ? post.acf.funny_picture.url : null
+                                'funny_picture' : (post.acf.funny_picture && post.acf.funny_picture.url) ? post.acf.funny_picture.url : null,
+                                'images' : {
+                                    'featured' : post.acf.profile_picture,
+                                    'funny'    : post.acf.funny_picture
+                                }
                             };
+
+                            console.log(post);
 
                             tree.team.images.push(temp.content.featured_image);
                             temp.content.funny_picture ? tree.team.images.push(temp.content.funny_picture) : '';
@@ -392,7 +371,7 @@ app.factory('SiteLoader', function($http, $q){
                     var details = [];
                     // For each Related Project of currently selected project
                     for (var p = 0; related.length > p; p++) {
-                        // Loop thru each project and find ID match
+                        // Loop thru each project again and find ID match
                         for (var r = 0; projects.length > r; r++) {
                             if (related[p] == projects[r].id) {
                                 var obj = {
@@ -402,15 +381,19 @@ app.factory('SiteLoader', function($http, $q){
                                     'image' : projects[r].content.featured_image
                                 };
                                 details.push(obj);
-                                break; } } }
+                                projects[o].content.images.push(obj.image.url);
+                                break;
+                    }   }   }
                     // Assign/Push new Related Pojects obj into tree
                     projects[o].content.related_projects = details;
                 }
-
+                console.log(tree);
                 return tree;
             };
 
-            return postTree(rawData); }
+            $rootScope.isLoading = false;
+            return postTree(rawData);
+        }
     }
 });
 
@@ -426,284 +409,7 @@ app.factory('Styling', function(){
     }
 });
 
-app.factory("Preloader", function( $q, $rootScope, Storage ) {
-
-    //////////////////////////////////////////////////////////////////////
-    // Custom function to preload array of images [internet find]
-    //////////////////////////////////////////////////////////////////////
-
-    Preloader.preload = function( images ) {
-        if (images.length) {
-            // I keep track of the state of the loading images.
-            $rootScope.isLoading = true;
-            $rootScope.isSuccessful = false;
-            $rootScope.percentLoaded = 0;
-            console.log('Preloading Images');
-
-            // Preload the images; then, update display when returned.
-            // Trigger Angular's onload/compile event upon completion ($emit -> $viewContentLoaded)
-            this.preloadImages( images ).then(
-                function handleResolve( imageLocations ) {
-
-                    // Loading was successful.
-                    $rootScope.isLoading = false;
-                    $rootScope.isSuccessful = true;
-                    $rootScope.$emit('$viewContentLoaded');
-
-                    console.log('Preloading Complete');
-                },
-                function handleReject( imageLocation ) {
-
-                    // Loading failed on at least one image.
-                    $rootScope.isLoading = false;
-                    $rootScope.isSuccessful = false;
-                    $rootScope.$emit('$viewContentLoaded');
-
-                },
-                function handleNotify( event ) {
-
-                    $rootScope.percentLoaded = event.percent;
-
-                    console.info( "Percent loaded:", event.percent );
-
-                }
-            );
-        }
-
-    };
-
-    // I manage the preloading of image objects. Accepts an array of image URLs.
-    function Preloader( imageLocations ) {
-
-        // I am the image SRC values to preload.
-        this.imageLocations = imageLocations;
-
-        // As the images load, we'll need to keep track of the load/error
-        // counts when announing the progress on the loading.
-        this.imageCount = this.imageLocations.length;
-        this.loadCount = 0;
-        this.errorCount = 0;
-
-        // I am the possible states that the preloader can be in.
-        this.states = {
-            PENDING: 1,
-            LOADING: 2,
-            RESOLVED: 3,
-            REJECTED: 4
-        };
-
-        // I keep track of the current state of the preloader.
-        this.state = this.states.PENDING;
-
-        // When loading the images, a promise will be returned to indicate
-        // when the loading has completed (and / or progressed).
-        this.deferred = $q.defer();
-        this.promise = this.deferred.promise;
-
-    }
-
-
-    // ---
-    // STATIC METHODS.
-    // ---
-
-
-    // I reload the given images [Array] and return a promise. The promise
-    // will be resolved with the array of image locations.
-    Preloader.preloadImages = function( imageLocations ) {
-
-        var preloader = new Preloader( imageLocations );
-
-        return( preloader.load() );
-
-    };
-
-
-    // ---
-    // INSTANCE METHODS.
-    // ---
-
-
-    Preloader.prototype = {
-
-        // Best practice for "instnceof" operator.
-        constructor: Preloader,
-
-
-        // ---
-        // PUBLIC METHODS.
-        // ---
-
-
-        // I determine if the preloader has started loading images yet.
-        isInitiated: function isInitiated() {
-
-            return( this.state !== this.states.PENDING );
-
-        },
-
-
-        // I determine if the preloader has failed to load all of the images.
-        isRejected: function isRejected() {
-
-            return( this.state === this.states.REJECTED );
-
-        },
-
-
-        // I determine if the preloader has successfully loaded all of the images.
-        isResolved: function isResolved() {
-
-            return( this.state === this.states.RESOLVED );
-
-        },
-
-
-        // I initiate the preload of the images. Returns a promise.
-        load: function load() {
-
-            // If the images are already loading, return the existing promise.
-            if ( this.isInitiated() ) {
-
-                return( this.promise );
-
-            }
-
-            this.state = this.states.LOADING;
-
-            for ( var i = 0 ; i < this.imageCount ; i++ ) {
-
-                this.loadImageLocation( this.imageLocations[ i ] );
-
-            }
-
-            // Return the deferred promise for the load event.
-            return( this.promise );
-
-        },
-
-
-        // ---
-        // PRIVATE METHODS.
-        // ---
-
-
-        // I handle the load-failure of the given image location.
-        handleImageError: function handleImageError( imageLocation ) {
-
-            this.errorCount++;
-
-            // If the preload action has already failed, ignore further action.
-            if ( this.isRejected() ) {
-
-                return;
-
-            }
-
-            this.state = this.states.REJECTED;
-
-            this.deferred.reject( imageLocation );
-
-        },
-
-
-        // I handle the load-success of the given image location.
-        handleImageLoad: function handleImageLoad( imageLocation ) {
-
-            this.loadCount++;
-
-            // If the preload action has already failed, ignore further action.
-            if ( this.isRejected() ) {
-
-                return;
-
-            }
-
-            // Notify the progress of the overall deferred. This is different
-            // than Resolving the deferred - you can call notify many times
-            // before the ultimate resolution (or rejection) of the deferred.
-            this.deferred.notify({
-                percent: Math.ceil( this.loadCount / this.imageCount * 100 ),
-                imageLocation: imageLocation
-            });
-
-            // If all of the images have loaded, we can resolve the deferred
-            // value that we returned to the calling context.
-            if ( this.loadCount === this.imageCount ) {
-
-                this.state = this.states.RESOLVED;
-
-                this.deferred.resolve( this.imageLocations );
-
-            }
-
-        },
-
-
-        // I load the given image location and then wire the load / error
-        // events back into the preloader instance.
-        // --
-        // NOTE: The load/error events trigger a $digest.
-        loadImageLocation: function loadImageLocation( imageLocation ) {
-
-            var preloader = this;
-
-            // When it comes to creating the image object, it is critical that
-            // we bind the event handlers BEFORE we actually set the image
-            // source. Failure to do so will prevent the events from proper
-            // triggering in some browsers.
-            var image = $( new Image() )
-                .load(
-                    function( event ) {
-
-                        // Since the load event is asynchronous, we have to
-                        // tell AngularJS that something changed.
-                        $rootScope.$apply(
-                            function() {
-
-                                preloader.handleImageLoad( event.target.src );
-
-                                // Clean up object reference to help with the
-                                // garbage collection in the closure.
-                                preloader = image = event = null;
-
-                            }
-                        );
-
-                    }
-                )
-                .error(
-                    function( event ) {
-
-                        // Since the load event is asynchronous, we have to
-                        // tell AngularJS that something changed.
-                        $rootScope.$apply(
-                            function() {
-
-                                preloader.handleImageError( event.target.src );
-
-                                // Clean up object reference to help with the
-                                // garbage collection in the closure.
-                                preloader = image = event = null;
-
-                            }
-                        );
-
-                    }
-                )
-                .prop( "src", imageLocation )
-            ;
-
-        }
-
-    };
-
-
-    // Return the factory instance.
-    return( Preloader );
-});
-
-app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $document, $timeout ) {
+app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $timeout ) {
     
     //////////////////////////////////////////////////////////////////////
     // Methods, Properties and Values Used/Shared throughout entire site
@@ -712,8 +418,8 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
 
     // Data Elements
     ////////////////////////////////////////////////////////////////
-    var eventListeners = []; // Store page-specific eventListeners for removal in stateChange
-    var preloadedImages = []; // Store preloaded pageView src's so image loading isn't repeated
+    var eventListeners = []; // Stor
+    var preloadedImages = []; // Store preloaded pageView src's so image loading isn't repeatede page-specific eventListeners for removal in stateChange
 
     // DOM Elements
     ////////////////////////////////////////////////////////////////
@@ -738,10 +444,8 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
 
     $rootScope.$on('$viewContentLoaded', function(){
         // Checks to see that image preloading isn't still processing
-        if (!$rootScope.isLoading) {
-            dom = getDOM();
-            checkPrompt();
-        }
+        dom = getDOM();
+        checkPrompt();
     });
 
     // Helper Functions
@@ -780,20 +484,20 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
     };
 
     // AAAAARRRRRRGHGHGHGHGGHGH
-    // @BUG
-    function disableScroll(set){
-        if (set) {
-            dom.body.classList.add('hidden');
-            dom.body.addEventListener('touchmove', prevent, true);
-            // dom.mainNav.addEventListener('touchmove', stopProp);
-            $(dom.body).css('height', window.innerHeight+'px');
-        } else {
-            dom.body.classList.remove('hidden');
-            dom.body.removeEventListener('touchmove', prevent, true);
-            // dom.mainNav.removeEventListener('touchmove', stopProp);
-            $(dom.body).css('height', '');
-        }
-    };
+    // // @BUG
+    // function disableScroll(set){
+    //     if (set) {
+    //         dom.body.classList.add('hidden');
+    //         dom.body.addEventListener('touchmove', prevent, true);
+    //         // dom.mainNav.addEventListener('touchmove', stopProp);
+    //         $(dom.body).css('height', window.innerHeight+'px');
+    //     } else {
+    //         dom.body.classList.remove('hidden');
+    //         dom.body.removeEventListener('touchmove', prevent, true);
+    //         // dom.mainNav.removeEventListener('touchmove', stopProp);
+    //         $(dom.body).css('height', '');
+    //     }
+    // };
 
     // Object Menthods
     ////////////////////////////////////////////////////////////////
@@ -805,7 +509,7 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
 
         'reloadSite' : reloadSite,
 
-        'disableScroll' : disableScroll,
+        // 'disableScroll' : disableScroll,
 
         'anchorTo' : function(anchor) {
                 var elem = document.getElementById(anchor);
@@ -821,16 +525,8 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
             dom.footer.style.display = 'none';
             },
 
-        'preloadImages' : function(posts, src) {
-                // @BUG this function is only half-way thought out
-                if (posts.images && !preloadedImages[src]) {
-                    // Preload Images if first time, mark preloaded in local array
-                    Preloader.preload(posts.images);
-                    preloadedImages[src] = true;
-                }
-            },
-
         'route' : function(route, turnOff, params) {
+
                 var params = params || {};
                 var menuOpen = dom.mainNav.classList.contains('menu-open');
                 this.toggleMenu(turnOff);
@@ -862,6 +558,13 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
                     'func': func,
                     'bub' : bub
                 });
+            },
+
+        'setPageTitle' : function(str) {
+                var headTitle = document.getElementsByTagName('title')[0];
+                str = str ? (' | ' + str) : '';
+                str = ' | Under Construction';
+                headTitle.innerHTML = 'Zago' + str;
             },
 
         'showScroll' : function() {
@@ -911,7 +614,6 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
                         dom.menuBtn.classList.remove('menu-open');
                         dom.content.classList.remove('menu-open');
                         dom.content.removeEventListener('click', close, true); // (bug) Doesn't remove until content area is actually clicked
-                        disableScroll(); console.log('toggle menu close');
                
                 };
 
@@ -921,7 +623,6 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
                         dom.menuBtn.classList.add('menu-open');
                         dom.content.classList.add('menu-open');
                         dom.content.addEventListener('click', close, true);
-                        disableScroll(true); console.log('toggle menu open');
 
                         // If first time user opens menu, hide menuPrompt
                         if (!Storage.prompted) {
@@ -956,182 +657,329 @@ app.factory("Functions", function( $q, $rootScope, $state, Preloader, Storage, $
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+// app.directive('grid', function($compile, $http, $templateCache) {
+
+    //     function newDiv(classes) {
+    //         var elem = document.createElement('div');
+    //         elem.setAttribute('class', classes || '');
+
+    //         return elem;
+    //     };
+
+    //     var getTemplate = function(contentType) {
+    //         var baseUrl = '../pieces/';
+    //         var templateMap = {
+    //             members: 'team_section.html',
+    //             projects: 'project_section.html'
+    //         };
+
+    //         var templateUrl = baseUrl + templateMap[contentType];
+    //         var templateLoader = $http.get(templateUrl, {cache: $templateCache});
+
+    //         return templateLoader;
+
+    //     }
+
+    //     var linker = function(scope, element, attrs) {
+
+    //         function parseSections(sections, template){
+
+    //             var wrapper = newDiv('directiveElement');
+    //             var i, gridWrapper, gridSection, section;
+
+    //             for(i = 0; sections.length > i; i++ ) {
+
+    //                 section = newDiv('ngTemplate '+i); // dummy for sections[i] (ngTemplate)
+
+    //                 // for Every 3 sections (or the first) create a new .grid div
+    //                 if (i % 3 == 0) {  
+    //                     gridSection = newDiv('grid');
+    //                     // If its a new set of 6 (or the first)
+    //                     if (i % 6 == 0) { 
+    //                         // create new .gridWrapper and set .grid to .gridLeft
+    //                         gridWrapper = newDiv('gridWrapper');
+    //                         wrapper.appendChild(gridWrapper);
+    //                         gridSection.classList.add('gridLeft');
+    //                     // if its the second set of 3, just set .grid to .gridRight
+    //                     } else { gridSection.classList.add('gridRight'); }
+
+    //                     gridWrapper.appendChild(gridSection);
+    //                 }
+
+    //                 // Populate/link template data and append to wrap system
+    //                 gridSection.appendChild(section);  
+    //             };
+
+    //             return wrapper;
+
+    //         };
+
+    //         // Retieve gridType and scope[sections] from element data attribute
+    //         var gridType = element[0].dataset.grid;
+    //         var sections = scope.$parent[gridType];
+    //         var loader = getTemplate(gridType);
+
+    //         var promise = loader.success(function(html) {
+    //                     element.html(html);
+    //             }).then(function (response) {
+                    
+    //                 console.log(element);
+    //                 element.replaceWith($compile(element.html())(scope));
+    //                 console.log(element);
+    //             });
+
+    //         // var promise = loader.success(function(html) {
+    //         //         element.html(parseSections(sections, html, scope));
+    //         //     }).then(function (response) {
+                    
+    //         //         console.log(element);
+    //         //         element.replaceWith($compile(element.html())(scope));
+    //         //         console.log(element);
+    //         //     });
+    //     };
+
+    //     return {
+    //         restrict: "E",
+    //         link: linker,
+
+    //         scope: {
+    //             content:'='
+    //         }
+    //     };
+
+
+    // });
+
+
+
 app.directive('grid', function($compile) {
 
-    // This is a really horrible directive to dynamically load the 6-box grid that's
-    // used on the projects overview and team page. I could not figure out how to use
-    // a modulo repeater function with an Angular template to dynamically produce the grid. This
-    // was the best i could come up with at the time. It works, but it's ugly and i don't
-    // like it.
+        // @BUG This is a really horrible directive to dynamically load the 6-box grid that's
+        // used on the projects overview and team page. I could not figure out how to use
+        // a modulo repeater function with an Angular template to dynamically produce the grid. This
+        // was the best i could come up with at the time. It works, but it's ugly and i don't
+        // like it.
 
-    var data, view;
-    var linker = function(scope, element, attrs) {
-        switch(scope.$parent.pageView) {
-            case 'projectsOverviewPage':
-                data = scope.$parent.projects;
-                view = 'projects';
-                break;
-            case 'teamPage':
-                data = scope.$parent.members;
-                view = 'team';
-                break;
-        }
-        // Send to format function and append to element
-        element.html(getTemplate(data));
-        // Compile for Angular functionality
-        $compile(element.contents())(scope);
-        addEventListeners(scope);
-    }
-
-    var getTemplate = function(data){
-        // Template strings
-        var newWrapper = function(){
-            var temp = document.createElement('div');
-            switch(view) {
-                case 'projects':
-                    temp.setAttribute('class', 'gridWrapper projectWrapper');
+        var data, view;
+        var linker = function(scope, element, attrs) {
+            switch(scope.$parent.pageView) {
+                case 'projectsOverviewPage':
+                    data = scope.$parent.projects;
+                    view = 'projects';
                     break;
-                case 'team':
-                    temp.setAttribute('class', 'gridWrapper teamWrapper');
+                case 'teamPage':
+                    data = scope.$parent.members;
+                    view = 'team';
                     break;
             }
 
-            return temp;
+            // Send to format function and append to element
+            element.html(getTemplate(data));
+            // Compile for Angular functionality
+            $compile(element.contents())(scope);
+            addEventListeners(scope);
         }
 
-        var newGrid = function(i){
-            var grid = document.createElement('div');
-            grid.setAttribute('class', 'grid');
-
-            // Assign left or right depending on which group of 3
-            if (i % 6 == 0) { grid.classList.add('gridLeft') }
-            else { grid.classList.add('gridRight') }
-
-            return grid;
-        }
-
-        var newSection = function(data){
-
-            // Create Section element
-            var sec = document.createElement('section');
-            sec.setAttribute('data-id', data.id);
-            // Create wrapper element for img & overlay
-            var imgWrap = document.createElement('div');
-            imgWrap.setAttribute('class', 'imgWrapper');
-            // Create Img Element
-            var img = document.createElement('img');
-            img.setAttribute('ng-src', data.content.featured_image); // @todo fix projects bug
-            imgWrap.appendChild(img);
-            if (data.content.funny_picture) {
-                var img2 = document.createElement('img');
-                img2.setAttribute('ng-src', data.content.funny_picture);
-                imgWrap.appendChild(img2);
-            }
-            // Create Overlay
-            var ovrly = document.createElement('div');
-            ovrly.setAttribute('class', 'overlay');
-            // Create Title Elements
-            var h2 = document.createElement('h2');
-            h2.innerHTML = data.title;
-            var h3 = document.createElement('h3');
-            var h3Text;
-            switch(view) {
-                case 'projects':
-                    h3Text = data.content.client;
-                    imgWrap.appendChild(ovrly);
-                    break;
-                case 'team':
-                    h3Text =  data.content.position;
-                    if (data.content.linkedin_url) {
-                        var anchorWrap = document.createElement('div');
-                        anchorWrap.setAttribute('class', 'anchorWrapper');
-                        var anchor = document.createElement('a');
-                        anchor.setAttribute('href', data.content.linkedin_url);
-                        anchor.setAttribute('target', '_blank');
-                        anchorWrap.appendChild(anchor);
-                        imgWrap.appendChild(anchorWrap);
-                    }
-                    break;
-            }
-
-            h3.innerHTML = h3Text;
-
-            // Append Section Elements together
-            sec.appendChild(imgWrap);
-            sec.appendChild(h2);
-            sec.appendChild(h3);
-
-            return sec;
-        }
-
-
-        var grid, wrapper;
-        var allProjects = document.createElement('div');
-        // Iterate thru tree, format template
-        for (var i = 0; data.length > i; i++) {
-            // Create new project section module
-            var proj = newSection(data[i]);
-
-            // Create grid if first of a new group of 3
-            if (i % 3 == 0) {
-                // if already inside of a grid
-                if (grid) { wrapper.appendChild(grid); }
-                // Finsih last grid, create new one
-                grid = newGrid(i);
-                // Create wrapper if first of a new group of 6
-                if (i % 6 == 0) {
-                    // if already inside of a wrapper
-                    if (wrapper) { allProjects.appendChild(wrapper); }
-                    wrapper = newWrapper(); 
+        var getTemplate = function(data){
+            // Template strings
+            var newWrapper = function(){
+                var temp = document.createElement('div');
+                switch(view) {
+                    case 'projects':
+                        temp.setAttribute('class', 'gridWrapper projectWrapper');
+                        break;
+                    case 'team':
+                        temp.setAttribute('class', 'gridWrapper teamWrapper');
+                        break;
                 }
+
+                return temp;
             }
 
-            // Attach section to grid if no new wrappers or grid are created
-            grid.appendChild(proj);
+            var newGrid = function(i){
+                var grid = document.createElement('div');
+                grid.setAttribute('class', 'grid');
 
-            // Attach grid to wrapper if final loop iteration
-            if (i == (data.length - 1)) {
-                wrapper.appendChild(grid);
-                allProjects.appendChild(wrapper);
+                // Assign left or right depending on which group of 3
+                if (i % 6 == 0) { grid.classList.add('gridLeft') }
+                else { grid.classList.add('gridRight') }
+
+                return grid;
             }
+
+            var newSection = function(data){
+                console.log(data);
+                // Create Section element
+                var sec = document.createElement('section');
+                sec.setAttribute('data-id', data.id);
+                // Create wrapper element for img & overlay
+                var imgWrap = document.createElement('div');
+                imgWrap.setAttribute('class', 'imgWrapper');
+                // Create Img Element
+                var img = document.createElement('img');
+
+                if (data.content.featured_image) {
+                    console.log(data.content.featured_image);
+                    img.setAttribute('ng-src', (data.content.featured_image.url || data.content.featured_image)); // @todo fix projects bug
+                    // Check and Add class for portrait images
+                    img.setAttribute('precision-image', true);
+                    if (data.content.featured_image.aspectRatio) { img.setAttribute('aspect-ratio', data.content.featured_image.aspectRatio); }
+                    if (data.content.featured_image.position) { 
+                        var classes = data.content.featured_image.position;
+                        for (var pos = 0; classes.length > pos; pos++) {
+                            img.classList.add(classes[pos]);
+                        };
+                    }
+                }
+
+                imgWrap.appendChild(img);
+                imgWrap.setAttribute('image-loader', true);
+                if (data.content.funny_picture) {
+                    var img2 = document.createElement('img');
+                    img2.setAttribute('ng-src', data.content.funny_picture);
+                    img.setAttribute('precision-image', true);
+                    imgWrap.appendChild(img2);
+                }
+                // Create Overlay
+                var ovrly = document.createElement('div');
+                ovrly.setAttribute('class', 'overlay');
+                // Create Title Elements
+                var h2 = document.createElement('h2');
+                var h3 = document.createElement('h3');
+                var h3Text;
+
+                if (view === 'projects') {
+                    h2.innerHTML = data.title;
+                    h3Text = data.content.name;
+                    imgWrap.appendChild(ovrly); }
+                else if (view === 'team') {
+                    h2.innerHTML = data.title;
+                    h3Text =  data.content.position;
+
+                    if (data.content.accounts && data.content.accounts.length) {
+
+                        var account, anchor;
+                        var socialList = document.createElement('ul');
+                        socialList.setAttribute('class', 'socialButtons');
+
+                        for (var d = 0; data.content.accounts.length > d; d++) {
+
+                            var linkClass;
+                            switch(data.content.accounts[d].account.toLowerCase()) {
+                                case 'facebook':
+                                    linkClass = 'fb_btn';
+                                    break;
+                                case 'twitter':
+                                    linkClass = 'tw_btn';
+                                    break;
+                                case 'behance':
+                                    linkClass = 'be_btn';
+                                    break;
+                                case 'pinterest':
+                                    linkClass = 'pi_btn';
+                                    break;
+                                case 'linkedin':
+                                    linkClass = 'li_btn';
+                                    break;
+                                case 'tumblr':
+                                    linkClass = 'tr_btn';
+                                    break;
+                                case 'youtube':
+                                    linkClass = 'yt_btn';
+                                    break;
+                                case 'mail':
+                                    linkClass = 'ma_btn';
+                                    break;
+                                default:
+                                    linkClass = 'ot_btn';
+                            }
+
+                            account = document.createElement('li');
+                            account.setAttribute('class', 'anchorWrapper invert invertHover ' + linkClass);
+
+                            anchor = document.createElement('a');
+                            anchor.setAttribute('href', ((data.content.accounts[d].account.toLowerCase() == 'mail') ? 'mailto:' : '') + data.content.accounts[d].url);
+                            anchor.setAttribute('target', '_blank');
+                            account.appendChild(anchor);
+                            socialList.appendChild(account);
+                        }
+
+                        imgWrap.appendChild(socialList);
+                    }
+                }
+
+                h3.innerHTML = h3Text;
+
+                // Append Section Elements together
+                sec.appendChild(imgWrap);
+                sec.appendChild(h2);
+                sec.appendChild(h3);
+
+                return sec;
+            }
+
+
+            var grid, wrapper;
+            var allProjects = document.createElement('div');
+            allProjects.setAttribute('class', 'gridBox')
+            // Iterate thru tree, format template
+            for (var i = 0; data.length > i; i++) {
+                // Create new project section module
+                var proj = newSection(data[i]);
+
+                // Create grid if first of a new group of 3
+                if (i % 3 == 0) {
+                    // if already inside of a grid
+                    if (grid) { wrapper.appendChild(grid); }
+                    // Finsih last grid, create new one
+                    grid = newGrid(i);
+                    // Create wrapper if first of a new group of 6
+                    if (i % 6 == 0) {
+                        // if already inside of a wrapper
+                        if (wrapper) { allProjects.appendChild(wrapper); }
+                        wrapper = newWrapper(); 
+                    }
+                }
+
+                // Attach section to grid if no new wrappers or grid are created
+                grid.appendChild(proj);
+
+                // Attach grid to wrapper if final loop iteration
+                if (i == (data.length - 1)) {
+                    wrapper.appendChild(grid);
+                    allProjects.appendChild(wrapper);
+                }
+            };
+
+            return allProjects;
+        }
+
+        function addEventListeners(scope){
+            // Add a hover effect for the image overlay when img or headers are hovered over
+            $('.projectWrapper .grid section > *').click(function(){
+                var project;
+                try {
+                    project = this.parentNode.dataset.id;
+                } catch(e) {
+                    for (var i = 0; this.parentNode.attributes.length > i; i++) {
+                        if (this.parentNode.attributes[i].nodeName = "data-id") {
+                            project = this.parentNode.attributes[i].nodeValue;
+                            break;
+                        }
+                    };
+                }
+                scope.$parent.viewProject(project);
+            });
+            
         };
 
-        return allProjects;
-    }
-
-    function addEventListeners(scope){
-        // Add a hover effect for the image overlay when img or headers are hovered over
-        $('.projectWrapper .grid section > *').hover(
-            function(){
-                $(this.parentNode).children('.imgWrapper').children('.overlay').addClass('open');
-            },
-            function(){
-                $(this.parentNode).children('.imgWrapper').children('.overlay').removeClass('open');
+        return {
+            restrict: "E",
+            link: linker,
+            scope: {
+                content:'='
             }
-        ).click(function(){
-            var project;
-            try {
-                project = this.parentNode.dataset.id;
-            } catch(e) {
-                for (var i = 0; this.parentNode.attributes.length > i; i++) {
-                    if (this.parentNode.attributes[i].nodeName = "data-id") {
-                        project = this.parentNode.attributes[i].nodeValue;
-                        break;
-                    }
-                };
-            }
-            scope.$parent.viewProject(project);
-        });
-        
-    };
-
-    return {
-        restrict: "E",
-        link: linker,
-        scope: {
-            content:'='
-        }
-    };
+        };
 });
 
 app.directive('officeList', function() {
@@ -1143,16 +991,16 @@ app.directive('officeList', function() {
 
         scope.offices = [
             {
-                'location': 'New York',
-                'address'    : '392 Broadway, 2nd Floor',
-                'region'  : 'New York, NY 10013',
-                'phone'   : '+1 212 219 1606'
-            },
-            {
                 'location': 'Rio de Janeiro',
                 'address'    : 'R Benjamim Batista, 153',
                 'region'  : 'Rio de Janeiro, RJ 22461-120',
                 'phone'   : '+55 21 3627 7529'
+            },
+            {
+                'location': 'New York',
+                'address'    : '392 Broadway, 2nd Floor',
+                'region'  : 'New York, NY 10013',
+                'phone'   : '+1 212 219 1606'
             },
             {
                 'location': 'Geneva',
@@ -1231,7 +1079,7 @@ app.directive('homeSections', function() {
     
     var linker = function(scope, element, attrs) {
         // scope.banner_caption.first = 
-        var words = scope.section.content.image_caption.trim().split(" ");
+        var words = scope.section.content.caption.trim().split(" ");
         var colors = ['blue', 'yellow', 'pink', 'green'];
 
         scope.caption = {
@@ -1263,15 +1111,139 @@ app.directive('underZ', function() {
     };
 });
 
+app.directive('projectNav', function(){
+
+    var linker = function($scope, element, attrs){
+
+    };
+
+    return {
+        restrict: 'A',
+        templateUrl: '../pieces/project_nav.html',
+        replace: true,
+        link : linker
+    }
+});
+
+app.directive('precisionImage', function($timeout, Functions){
+
+    var linker = function($scope, element, attrs){
+        // Add Custom Image Positioning classes
+        if (attrs.precisionImage) {
+            var classes = JSON.parse(attrs.precisionImage);
+            for (var i = 0; classes.length > i; i++) {
+                element[0].classList.add(classes[i]);
+            };
+        }
+
+        var image = element[0];
+        var wrapper = image.parentNode;
+
+        function checkRatio(){
+            if (attrs.aspectRatio / (wrapper.clientHeight / wrapper.clientWidth) > 1) {
+                image.classList.add('stretch');
+            } else { image.classList.remove('stretch'); }
+        };
+
+        var listener = window.addEventListener('resize', Functions.throttle(checkRatio, 100));
+
+        $timeout(checkRatio);
+
+        $scope.$on('$destroy', function(){
+            window.removeEventListener('resize', Functions.throttle(checkRatio, 100));
+        });
+
+    };
+
+    return {
+        restrict: 'A',
+        link : linker,
+        scope: true
+    }
+});
+
+app.directive('imageLoader', function(){
+
+    var linker = function(scope, element, attrs){
+        var loader = document.createElement('div');
+        var wheel = document.createElement('div');
+        loader.setAttribute('class', 'loaderBox');
+        wheel.setAttribute('class', 'loader');
+        loader.appendChild(wheel);
+        element[0].appendChild(loader);
+        element[0].classList.add('loaderWrapper');
+    };
+
+    return {
+        restrict: 'A',
+        link: linker
+    }
+});
+
+app.directive('rotateImages', function($interval){
+    var linker = function($scope, element, attrs){
+
+        function getImages(){
+            var elems = element[0].children;
+
+            var images = [];
+            // Get IMG Tags
+            for (var r = 0; elems.length > r; r++) {
+                if (elems[r].tagName == 'IMG') {
+                    images.push(elems[r]);
+            }   }
+
+            return images;
+        };
+
+
+        function rotateImages(){
+            var images = getImages();
+            // @BUG This is acting funny, 95% working, but has some weird issues
+            // If img is last in array, set NEXT to first image, else set to next image in array
+            $scope.lastBanner = $scope.activeBanner;
+            $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
+        };
+
+        var timer;
+        var waitTiming = 5000; // how long each slide remains active
+        $scope.setTimer = function(){
+            $scope.activeBanner = 0;
+            $scope.lastBanner;
+            // Set rotation interval
+            timer = $interval(rotateImages, waitTiming);
+        };
+
+        $scope.$watch(function(){ return element; }, function(){
+            $scope.setTimer();
+        });
+
+        $scope.$on('$destroy', function() {
+            // Clear old timers
+            $interval.cancel(timer);
+            $scope.timer = undefined;
+        });
+
+    };
+
+    return {
+        restrict: 'A',
+        link: linker
+    }
+
+
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.controller('AppCtrl', function($scope, $rootScope, Functions, Storage){
+var AppCtrl = app.controller('AppCtrl', function($scope, $rootScope, $timeout, Functions, Storage){
 
     // App-general Functions
     ////////////////////////////////////////////////////////////////////////////////////
     $scope.route = Functions.route;
     $scope.toggleMenu = Functions.toggleMenu;
     $scope.viewProject = Functions.viewProject;
+    $scope.setPageTitle = Functions.setPageTitle;
     $scope.anchorTo = Functions.anchorTo;
     $scope.scrollTop = Functions.scrollTop;
     $scope.colors = ['#00ffff','#ffff00','#ff00ff','#00ff00'];
@@ -1281,54 +1253,78 @@ app.controller('AppCtrl', function($scope, $rootScope, Functions, Storage){
 
     // Splash Page configuration
     ////////////////////////////////////////////////////////////////////////////////////
-    (function splashPage() {
-        // If first time visiting site via mobile, flash splashpage
-        if (!Storage.splashed && (Modernizr.phone)) {
-            $scope.showSplash = true;
-            Functions.disableScroll(true);
-        }
-    })();
+    // (function splashPage() {
+    //     // If first time visiting site via mobile, flash splashpage
+    //     if (!Storage.splashed && (Modernizr.phone)) {
+    //         $scope.showSplash = true;
+    //         Functions.disableScroll(true);
+    //     }
+    // })();
 
-    // Button to hide splash page and show full site
-    $scope.hideSplash = function() {
-        Storage.splashed = true;
-        $scope.showSplash = false;
-        Functions.disableScroll(false);
-    };
+    // // Button to hide splash page and show full site
+    // $scope.hideSplash = function() {
+    //     Storage.splashed = true;
+    //     $scope.showSplash = false;
+    //     Functions.disableScroll(false);
+    // };
 
 });
 
-app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Functions, Preloader, Storage){
+AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage){
+    var defer = $q.defer();
+    // If the Site Data is missing, stop navigation and retreive data
+    // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
+    //////////////////////////////////////////////////////////////////////////
+    var newTimestamp = new Date().getTime();
+    // Set Time of User Entry (default to 24hr reset)
+    Storage.dailyTimestamp = (Storage.dailyTimestamp && Storage.dailyTimestamp > (newTimestamp - 86400000)) ? Storage.dailyTimestamp : newTimestamp;
+    // If the Storage Site object is empty or older than X, reload Wordpress data tree (default to 1hr reset)
+    if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - 3600000)) {
+        SiteLoader.getRawData().then(function(data){
+            var site, posts;
+            // If object returned is some fucked up IE shit (ie String), parse it
+            site = data.responseText || data.data;
+            if (typeof site == 'string') { site = JSON.parse(site); }
+            // Get & Store Posts Tree
+            posts = SiteLoader.getPosts(site);
+            Storage.site = JSON.stringify(posts);
+            Storage.dataTimestamp = newTimestamp;
+            $rootScope.site = posts;
+            defer.resolve();
+        });
+    } else { $rootScope.site = JSON.parse(Storage.site); defer.resolve(); }
+
+    return defer.promise;
+
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Functions, Storage){
 
     $rootScope.pageView = "homePage";
+    $scope.setPageTitle();
 
-    var posts = JSON.parse(Storage.site).home;
+    var posts = $rootScope.site.home;
     $scope.hero = posts.banners[0];
     $scope.blurb = posts.blurb[0];
     $scope.sections = posts.sections;
 
-    Preloader.preload(posts.images);
-
-
     // Section Nav scrolling event listener & logic
     ////////////////////////////////////////////////////////////////////////////////////
-    var doneOnce;
     $rootScope.$on('$viewContentLoaded', function(){
-        // if Images have loaded, it IS the homepage, and the functions haven't been triggered once before
-        if (!$rootScope.isLoading && $rootScope.pageView == 'homePage' && !doneOnce) {
-            doneOnce = true;
+        // if it IS the homepage
+        if ($rootScope.pageView === "homePage") {
             try { // Workaround for $rootScope.$on checking on every view instead of just homePage
-                $scope.rotateHeros();
-                setDimensions(); // @BUG This is firing before DOM is fully loaded
-                pinMenu();
-                Functions.setListener(window, 'scroll', Functions.throttle(pinMenu, 10));
-                Functions.setListener(window, 'resize', Functions.throttle(setDimensions, 10)); }
+                $timeout(function(){ setDimensions(); });
+                Functions.setListener(  window, 'resize', Functions.throttle(setDimensions, 10));
+                Functions.setListener(window, 'scroll', Functions.throttle(pinMenu, 10)); }
             catch (error) { }
         }
     });
 
     var pieces; // Get & Set Dimensions and add menu scroll listener once Preloader finishes
-    function setDimensions(){ pieces = getDimensions(); };
+    function setDimensions(){ pieces = getDimensions(); pinMenu(); };
 
     function getDimensions(){
         var dims = {
@@ -1378,44 +1374,16 @@ app.controller('HomeCtrl', function($scope, $rootScope, $timeout, $interval, Fun
         });
     };
 
-    // Set Rotate of hero banner images
-    ////////////////////////////////////////////////////////////////////////////////////
-    $scope.activeBanner = 0;
-    $scope.lastBanner;
-
-    $scope.rotateHeros = function(idx){
-        var elems = document.getElementById('heroBanner').children;
-        var images = [];
-        // Get IMG Tags
-        for (var r = 0; elems.length > r; r++) {
-            if (elems[r].tagName == 'IMG') {
-                images.push(elems[r]);
-        }   }
-
-        var waitTiming = 4000; // how long each slide remains active
-        var slideTiming = 1500; // CSS transition timing
-
-        // Set rotation interval
-        $interval(function(){ // @BUG This is acting funny, 95% working, but has some weird issues
-            $scope.lastBanner = $scope.activeBanner;
-            // If img is last in array, set NEXT to first image, else set to next image in array
-            if (($scope.activeBanner+1) == images.length) { $scope.activeBanner = 0; }
-            else { $scope.activeBanner++; }
-            $timeout(function(){ $scope.lastBanner = null; }, slideTiming); // wait for css transition before unsetting lastBanner
-        }, waitTiming);
-    };
-
 });
 
-app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Preloader, Styling){
+app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Styling){
 
     $rootScope.pageView = "projectsOverviewPage";
+    $scope.setPageTitle('Projects');
 
-    var posts = JSON.parse(Storage.site).project;
+    var posts = $rootScope.site.project;
     $scope.blurb = posts.blurb[0];
     $scope.projects = posts.projects;
-
-    Preloader.preload(posts.images);
 
     (function randomizeHoverColors(){
         colors = $scope.colors.shuffle();
@@ -1429,11 +1397,11 @@ app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Preloader, 
 
 });
 
-app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, Storage, Preloader){
+app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, Storage){
 
     $rootScope.pageView = "projectPage";
 
-    var posts = JSON.parse(Storage.site).project;
+    var posts = $rootScope.site.project;
 
     // Get CURRENT, NEXT & PERVIOUS project IDs based on SITE TREE position (Project Sub-Nav)
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1468,64 +1436,56 @@ app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, S
 
     // If project exists, extract image urls and preload images
     if ($scope.project) {
-        var images = [];
-        var imageURLs = [];
 
-        for (var p = 0; $scope.project.content.images.length >p; p++) {
-            images.push($scope.project.content.images[p]);
-            imageURLs.push($scope.project.content.images[p].url);
-        };
+        $scope.setPageTitle($scope.project.title);
 
-        // Preloader.preload(imageURLs);
+        var sections = $scope.project.content.image_sections;
 
         // Construct Image Object
         ///////////////////////////////////////////////////////
-        images.shift(); // Remove Featured Image from object
         $scope.imageSections = [];
-        for (var o = 0; images.length > o; o++) {
-            console.dir(images[o]);
+        for (var o = 0; sections.length > o; o++) {
             var temp = {
-                'label' : images[o].label,
-                'order' : images[o].order,
+                'label' : sections[o].label,
+                'order' : sections[o].order,
                 'images' : [{
-                    'url' : images[o].url,
-                    'alt' : images[o].alt
+                    'url' : sections[o].url,
+                    'alt' : sections[o].alt,
+                    'position' : sections[o].position,
+                    'aspectRatio' : sections[o].aspectRatio
                 }]
             };
 
             // If this Image and Next Image are part of a pair
             // Then Advance loop $index ahead by one and pair img urls together
-            if (images[o].half && images[o+1].half) {
+            if (sections[o].half && sections[o+1].half) {
                 o++;
                 temp.images.push({
-                    'url' : images[o].url,
-                    'alt' : images[o].alt
+                    'url' : sections[o].url,
+                    'alt' : sections[o].alt,
+                    'position' : sections[o].position,
+                    'aspectRatio' : sections[o].aspectRatio
                 });
             }
 
             $scope.imageSections.push(temp);
         };
 
-        console.log($scope.imageSections);
 
-        ///////////////////////////////////////////////////////
-    // Else redirect back to projects overview page
+    ///////////////////////////////////////////////////////
+    // Else redirect back to projects overview page if project doesn't exist
     } else { $scope.route('projects', true); }
-    
-    console.log($scope.project);
 
 });
 
-app.controller('TeamCtrl', function($scope, $rootScope, Functions, Preloader, Storage){
+app.controller('TeamCtrl', function($scope, $rootScope, Functions, Storage){
 
     $rootScope.pageView = "teamPage";
+    $scope.setPageTitle('The Team');
 
-    var posts = JSON.parse(Storage.site).team;
+    var posts = $rootScope.site.team;
     $scope.blurb = posts.blurb[0];
     $scope.members = posts.members.shuffle();
-
-    // Preloader.preload(posts.images);
-    Functions.preloadImages(posts, 'team');
 
 });
 
@@ -1535,13 +1495,9 @@ app.controller('LoveCtrl', function($scope, $rootScope){
 
 });
 
-app.controller('ErrorCtrl', function($scope, $rootScope, $state, Storage){
-
-});
-
 app.controller('LegacyCtrl', function($scope, $rootScope, $state, Functions, Storage){
 
-    console.log('Implementing Legacy browser notice');
+    $scope.setPageTitle('Outdated Browser');
 
     // Set Notice Height to Window Height, monitor resize event
     function setBodyHeight(){
@@ -1553,11 +1509,3 @@ app.controller('LegacyCtrl', function($scope, $rootScope, $state, Functions, Sto
     Functions.hideAppElements();
 
 });
-
-
-
-
-
-
-
-

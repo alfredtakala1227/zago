@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" xml:lang="en" ng-app="app">
 <head>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- *** Google Chrome mis-autotranslate fix *** -->
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en_US">
+    <!-- ******************************************* -->
     <base href="/" > <!-- Allows for Angular deep-linking -->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>Zago | Under Construction</title>
     <link rel="icon" type="image/png" href="images/favicon.ico">
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/enhance.js"></script> <!-- Custom javaScript prototype functions -->
@@ -11,6 +17,7 @@
     <script src="js/mobile-detect.min.js"></script> <!-- library to detect whether "true" mobile/touch device -->
     <script src="js/mobile-detect-modernizr.js"></script> <!-- modernizr & mobile-detect integration -->
     <script src="js/modernizr-script.js"></script> <!-- Custom modernizr code logic -->
+    <script src="js/ios-orientationchange-fix.js"></script> <!-- Fix zooming issues with older iOS devices -->
     <script type="text/javascript" src="js/overthrow.min.js"></script> <!-- Mobile touch scrolling plugin -->
     <script src="js/jquery-1.8.3.min.js"></script>
     <!-- Application Files -->
@@ -25,7 +32,7 @@
 <body id="body" ng-controller="AppCtrl">
     <!-- @BUG {pageLoading:isLoading || isRouting} controls the page view sliding offscreen to the right -->
     <!-- It works, but its very buggy. Basically CSS animates the page in/out based on Angular value -->
-    <div id="container" ng-class="{pageLoading:isLoading || isRouting}">
+    <div id="container">
 
         <img id="siteID" class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png" ng-click="route('home', true)">
 
@@ -36,7 +43,7 @@
                         <li> <a ng-click="route('home')" title="Home">Zago</a> </li>
                         <li> <a ng-click="route('projects')" title="Zago Projects">Projects</a> </li>
                         <li> <a ng-click="route('team')" title="Meet Z Team">Team</a> </li>
-                        <li> <a ng-click="route('love')" title="Blog Love">Love</a> </li>
+                        <li> <a href="http://zagolovesyou.tumblr.com/" ng-click="toggleMenu(true)" target="_blank" title="Blog Love">Love</a> </li>
                     </ul>
                 </div>
                 <div class="menuContacts" office-list></div>
@@ -50,24 +57,30 @@
 
         <button id="scrollTop" type="button" ng-click="scrollTop()"></button>
 
-        <div id="pageContent" class="{{pageView}}" ng-class="{pageLoading: isLoading}" ui-view autoscroll="true"><!-- Angular Partials go here --></div>
+        <div id="pageContent" class="{{pageView}}" ui-view autoscroll="true"><!-- Angular Partials go here --></div>
 
-        <footer id="footer" ng-class="{pageLoading: isLoading}">
-            <div office-list></div>
-            <section class="intern">
-                <p>We take interns in NYC for
-                3 to 6 month engagements.<br>Inquire at </p>
-                <a href="mailto:intern@zagollc.com">intern@zagollc.com</a>
+        <footer id="footer" ng-class="{homePage: pageView == 'homePage', lovePage: pageView == 'lovePage'}">
+            <section class="collaboration">
+                <p>Let's work together.</p>
+                <p>Come have coffee & say ciao.</p>
+                <a href="mailto:info@zagollc.com">info@zagollc.com</a>
             </section>
+            <section class="intern">
+                <p class="footerCiaoline">Say ciao at <a href="mailto:info@zagollc.com">info@zagollc.com</a></p>
+                <p>We take interns in NYC for</p>
+                <p>3 to 6 month engagements.</p>
+                <p>Inquire at <a href="mailto:intern@zagollc.com">intern@zagollc.com</a></p>
+            </section>
+            <div class="officeListing" office-list></div>
             <section class="social" social-buttons></section>
         </footer>
 
-        <div id="splash" class="overthrow" ng-if="showSplash">
+        <!-- <div id="splash" class="overthrow" ng-if="showSplash">
             <img class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png">
             <h1>Zago</h1>
             <div class="menuContacts splashpage" office-list></div>
             <button type="button" ng-click="hideSplash()">Full Site</button> 
-        </div>
+        </div> -->
 
         <div id="cssTest">
             <p class="cssvwunit">No vw units</p>
@@ -80,14 +93,7 @@
         </div>
 
     </div>
-    <div id="loader">
-        <div class="beaconWrapper">
-            <div class="beacon">
-                <div class="percentComplete" style="width:{{percentLoaded-10}}%; height:{{percentLoaded-10}}%;"></div>
-                <!-- <p>{{percentLoaded}}%</p> -->
-            </div>
-        </div>
-    </div> 
+
     <script src="http://localhost:35729/livereload.js"></script> 
     <!-- redirect to legacy browser unsupported message -->
     <!--[if lt IE 9]> <script type="text/javascript" src="js/unsupported.js"></script> <![endif]-->

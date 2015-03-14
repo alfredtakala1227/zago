@@ -1,0 +1,93 @@
+<div project-nav></div>
+
+<div id="projectLayout" ng-class="{caseStudy: project.content.case_study}">
+	<div class="featuredImage" image-loader>
+		<img ng-src="{{project.content.featured_image.url}}" alt="{{project.content.featured_image.alt}}" ng-class="{isPortrait: project.content.featured_image.isPortrait}" precision-image="{{project.content.featured_image.position}}" aspect-ratio="{{project.content.featured_image.aspectRatio}}">
+	</div>
+	<div class="projectContent">
+		<h1 ng-bind-html="project.title" ng-if="project.content.case_study"></h1>
+		<div class="projectDetails">
+			<div class="projectInfo">
+				<section>
+					<h2>Client</h2>
+					<p>{{project.content.client}}</p>
+				</section>
+				<section ng-if="project.content.project">
+					<h2>Project</h2>
+					<p ng-repeat="bodyText in project.content.project">{{bodyText}}</p>
+				</section>
+				<section ng-if="project.content.services">
+					<h2>Services</h2>
+					<p ng-repeat="bodyText in project.content.services">{{bodyText}}</p>
+				</section>
+				<section ng-repeat="detail in project.content.other_details">
+					<h2>{{detail.title}}</h2>
+					<p ng-repeat="bodyText in detail.details">{{bodyText}}</p>
+				</section>
+			</div>
+			<a class="clientSite" href="{{project.content.url}}">Visit Website</a>
+			<div class="socialAccounts" ng-if="project.content.social_media.length">
+				<ul class="socialButtons">
+					<li ng-repeat="social in project.content.social_media"
+						ng-class="{
+							fb_btn: social.account.toLowerCase() == 'facebook',
+							tw_btn: social.account.toLowerCase() == 'twitter',
+							be_btn: social.account.toLowerCase() == 'behance',
+							pi_btn: social.account.toLowerCase() == 'pinterest',
+							li_btn: social.account.toLowerCase() == 'linkedin',
+							tr_btn: social.account.toLowerCase() == 'tumblr',
+							yt_btn: social.account.toLowerCase() == 'youtube',
+							ot_btn: social.account.toLowerCase() == 'other',
+							ma_btn: social.account.toLowerCase() == 'mail'
+						}"
+					>
+						<a href="{{social.url}}"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="projectBody" ng-bind-html="project.body" ng-if="project.content.case_study"></div>
+	</div>
+</div>
+
+<div id="projectImages" ng-if="imageSections.length">
+	<section ng-repeat="section in imageSections">
+		<h6>{{section.label}}</h6>
+		<div class="imageWrapper">
+			<div ng-repeat="image in section.images" class="imageBox" ng-class="{halfImage: section.images.length > 1}" image-loader>
+				<img ng-src="{{image.url}}" alt="{{image.alt}}" ng-class="{isPortrait: image.isPortrait}" precision-image="{{image.position}}" aspect-ratio="{{image.aspectRatio}}">
+			</div>
+		</div>
+	</section>
+</div>
+
+<div id="readAbout" ng-if="project.content.case_study && project.content.read_about.length">
+	<h3>Read More About {{project.content.client}}</h3>
+	<section ng-repeat="story in project.content.read_about">
+		<a href="{{story.url}}" target="_blank">
+			<p>{{story.title}}</p>
+			<h4>{{story.source}}</h4>
+		</a>
+	</section>
+</div>
+
+<div id="relatedProjects" ng-if="project.content.case_study && project.content.related_projects.length">
+	<h3>Related Projects</h3>
+	<section ng-repeat="related in project.content.related_projects" ng-click="viewProject(related.id)">
+		<div class="imgWrapper" image-loader>
+			<img ng-src="{{related.image.url}}" alt="{{related.image.alt}}" ng-class="{isPortrait: related.image.isPortrait}" precision-image="{{related.image.position}}" aspect-ratio="{{related.image.aspectRatio}}">
+		</div>
+		<div class="contentWrapper">
+			<p>{{related.title}}</p>
+			<h4>{{related.client}}</h4>
+		</div>
+	</section>
+</div>
+
+
+
+
+
+
+
+

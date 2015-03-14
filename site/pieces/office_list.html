@@ -2,10 +2,8 @@
     <h2 ng-bind-html="office.location"></h2>
     <p ng-bind-html="office.address"></p>
     <p ng-bind-html="office.region"></p>
-    <p><a href="tel:{{office.phone}}" ng-bind-html="'P: '+office.phone"></p>
+    <p>P: <a href="tel:{{office.phone}}" ng-bind-html="office.phone"></p>
 </section>
 <section class="info">
-    <p>Say ciao.
-    Email us at </p>
     <a href="mailto:info@zagollc.com">info@zagollc.com</a>
 </section>
