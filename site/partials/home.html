@@ -2,6 +2,7 @@
 	<img ng-repeat="image in hero.content.images | orderBy:'order'" ng-src="{{image.url}}" ng-class="{showing: activeBanner == $index, last: lastBanner == $index}" precision-image aspect-ratio="{{image.aspectRatio}}">
 	<h1>Zago</h1>
 	<p ng-bind-html="hero.content.banner_caption"></p>
+	<button type="button" ng-click="scrollDown()"></button>
 </div>
 
 <div id="homeBlurb">

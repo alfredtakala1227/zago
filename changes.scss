@@ -10,6 +10,7 @@ ul{
       /*background-image: url('../images/social_sprites.png');*/
       background-repeat: no-repeat;
       background-size: 50% auto;
+
       border-right: 1px solid #040707;
       -webkit-transition: background-color 0.3s ease-out;
       -moz-transition: background-color 0.3s ease-out;
@@ -42,7 +43,6 @@ ul{
     }
   }
 }
-
 footer {
   .officeListing {
     section {
@@ -88,6 +88,7 @@ footer {
 }
 
 @-webkit-keyframes spinner { }
+
 
 button#scrollTop {
   position: fixed;
@@ -288,6 +289,7 @@ nav {
 
 }
 
+
 /*@media (min-width: 992px) {
   .gridWrapper {
     margin-bottom: 30px;
@@ -323,7 +325,7 @@ nav {
       }
     }
 
-    @include breakpoint(mobile) {
+    @include breakpoint(smallTablet) {
       section {
         &:nth-of-type(2), &:nth-of-type(3) { 
           width: 49%;
@@ -381,7 +383,7 @@ nav {
     }
   }
   &.teamWrapper {
-    @include breakpoint(mobile) {
+    @include breakpoint(smallTablet) {
       .grid {
         section {
           width: 49%;
@@ -446,6 +448,7 @@ nav {
     }
   }
 }
+
 
   
 #projectLayout {
@@ -513,6 +516,9 @@ nav {
     }
   } */
 }
+
+
+/**************/
 
 #projectImages {
   section {
