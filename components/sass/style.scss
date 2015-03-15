@@ -270,7 +270,11 @@ footer {
 			ul {
 				float: left;
 				display: inline-block;
-				margin-bottom: 20px; }
+				margin-bottom: 20px;
+				li {
+					background-color: transparent;
+				}
+			}
 			p { 
 				float: left;
 				clear: left; }
@@ -381,8 +385,6 @@ footer {
 					@include breakpoint(desktop) {
 						border: 1px solid $darkgrey; }
 					li {
-			            width: 50px;
-			            height: 50px;
 			            border-top: 0;
 			            border-bottom: 0;
 			            border-left: 0;
@@ -392,7 +394,7 @@ footer {
 					float: none;
 					width: auto; } } }
 		@include breakpoint(tablet) {
-			padding: 120px 0 40px;
+			padding: 60px 0 40px;
 				section {
 					margin-bottom: 75px;
 					&.social { margin-bottom: 0; }
@@ -1072,7 +1074,7 @@ nav {
 		z-index: 200;
 		top: 25%; left: 15px;
 		border-bottom: 5px solid white;
-		display: none; }
+	}
 	p {
 		position: absolute;
 		z-index: 200;
@@ -1096,16 +1098,16 @@ nav {
 	    z-index: 300;
 	    height: 50px;
 	    width: 50px;
-	    border: 1px solid black;
+	    border: 1px solid white;
 	    border-bottom: 0;
 	    background-color: transparent;
 	    background-image: url("../images/site-sprites.png");
 	    background-repeat: no-repeat;
 	    background-size: 24px auto;
-	    background-position: 50% -1.65%;
+	    background-position: 50% 2.5%;
 	    &:hover {
-	      	background-color: black;
-	      	background-position: 50% 2.5%;
+	      	background-color: white;
+	      	background-position: 50% -1.65%;
 	    }
   	}
 
@@ -1115,8 +1117,8 @@ nav {
 	}
 	@include breakpoint(smallTablet) {
 		h1 {
-			font-size: 6em;
-      		font-size: 6vw; }
+			font-size: 4em;
+      		font-size: 4vw; }
 		p {
 			font-size: 7.5em;
 			font-size: 10vw; } }	
