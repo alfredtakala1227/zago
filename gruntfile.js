@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 			app:        {
 				cwd: 'site',
 				src:      ['*.html','pieces/*.html','partials/*.html'],
-				dest:     'site/js/templates.js',
+				dest:     'site/js/app/templates.js',
 				options:  {
 					htmlmin: {
 						collapseBooleanAttributes:      true,

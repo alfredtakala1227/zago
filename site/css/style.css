@@ -1180,6 +1180,9 @@ nav#mainNav #menuWrapper #menu ul li a {
   position: relative;
   text-decoration: none;
 }
+nav#mainNav #menuWrapper #menu ul li a.active {
+  text-decoration: underline;
+}
 @media (min-width: 640px) {
   nav#mainNav #menuWrapper #menu ul li a {
     font-size: 4.8em;
@@ -1245,9 +1248,12 @@ nav#projectNav {
   z-index: 700;
   backface-visibility: hidden;
   top: 50%;
-  top: 50vh;
   left: 0;
-  /*@include translate(0, -50%);*/
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
   width: 50px;
 }
 nav#projectNav ul li {
@@ -1348,6 +1354,11 @@ nav#projectNav ul li:hover .navTitle {
   nav#projectNav {
     top: 0;
     right: 0;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
     left: initial;
     width: 150px;
   }
@@ -1995,7 +2006,6 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 .gridWrapper .grid section h3 {
   float: left;
   clear: both;
-  margin: 0 3px;
   font-size: 1.4em;
   letter-spacing: .09em;
   font-family: 'Black';

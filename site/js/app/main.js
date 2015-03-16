@@ -89,11 +89,21 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
         // Remove page-specific event listeners
         Functions.removeListeners();
+
+        var menuOpen = $('#mainNav').hasClass('menu-open'),
+            menuTimer = 550;
+
+        if (menuOpen) {
+            event.preventDefault();
+
+            Functions.toggleMenu(true);
+            setTimeout(function(){ $state.go(to.name, toParams); }, menuTimer);
+        }
         
     });
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
-
+        $rootScope.currentState = to.name;
 
     });
 });
@@ -408,7 +418,7 @@ app.factory('Styling', function(){
     }
 });
 
-app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $timeout ) {
+app.factory("Functions", function( $q, $http, $rootScope, $templateCache, $state, Storage, $document, $timeout ) {
     
     //////////////////////////////////////////////////////////////////////
     // Methods, Properties and Values Used/Shared throughout entire site
@@ -500,7 +510,7 @@ app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $
 
     // Object Menthods
     ////////////////////////////////////////////////////////////////
-    return {
+    var Functions = {
     
         'checkPrompt' : checkPrompt,
 
@@ -528,7 +538,7 @@ app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $
 
                 var params = params || {};
                 var menuOpen = dom.mainNav.classList.contains('menu-open');
-                this.toggleMenu(turnOff);
+                Functions.toggleMenu(turnOff);
 
                 // if route is different, or params are different (stringified object comparison), then route to new destination
                 if ($state.current.name != route || JSON.stringify($state.params) != JSON.stringify(params)) {
@@ -645,13 +655,26 @@ app.factory("Functions", function( $q, $rootScope, $state, Storage, $document, $
             },
 
         'viewProject' : function(id){
-                this.route('project', true, {'project':id});
+                Functions.route('project', true, {'project':id});
+            },
+
+        'getTemplate' : function(tree, branch, baseURL) {
+                var base = baseURL || '../../pieces/';
+                var templateUrl = base + tree[branch];
+                console.log(templateUrl);
+
+                var templateLoader = $http.get(templateUrl, {cache: $templateCache});
+
+                return templateLoader;
+
             },
 
         'testFunction' : function(test){
                 console.log(test || 'test');
             }
     }
+
+    return Functions;
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -761,6 +784,7 @@ app.directive('grid', function($compile) {
 
         var data, view;
         var linker = function(scope, element, attrs) {
+
             switch(scope.$parent.pageView) {
                 case 'projectsOverviewPage':
                     data = scope.$parent.projects;
@@ -807,7 +831,6 @@ app.directive('grid', function($compile) {
             }
 
             var newSection = function(data){
-                console.log(data);
                 // Create Section element
                 var sec = document.createElement('section');
                 sec.setAttribute('data-id', data.id);
@@ -818,7 +841,6 @@ app.directive('grid', function($compile) {
                 var img = document.createElement('img');
 
                 if (data.content.featured_image) {
-                    console.log(data.content.featured_image);
                     img.setAttribute('ng-src', (data.content.featured_image.url || data.content.featured_image)); // @todo fix projects bug
                     // Check and Add class for portrait images
                     img.setAttribute('precision-image', true);
@@ -979,6 +1001,51 @@ app.directive('grid', function($compile) {
                 content:'='
             }
         };
+});
+
+app.directive('newGrid', function($compile, $http, Functions){
+
+    var templateTree = {
+        'project-section' : 'project_section.html',
+        'team-section' : 'team_section.html'
+    };
+
+            
+
+    var linker = function($scope, element, attrs){
+
+        Functions.getTemplate(templateTree, attrs.type).then(function(data){
+            var template = data.data;
+            $scope.sections = $scope.$parent.sections; 
+
+            function newWrapper(){
+                var newWrapper = $(document.createElement(el));
+
+            }
+
+            function newSection(el){
+                var newEl = $(document.createElement(el));
+                newEl.html(template);
+                $compile(newEl.contents());
+
+                return newEl[0];
+            }
+
+            for (var i = 0; $scope.sections.length > i; i++) {
+                var section = newSection('div', template);
+                element[0].appendChild(section);
+                $compile($(element[0]).contents())($scope);
+            };
+        });
+
+    };
+
+    return {
+        restrict: "E",
+        link: linker,
+        scope: true
+
+    };
 });
 
 app.directive('officeList', function() {
@@ -1388,6 +1455,7 @@ app.controller('ProjectsCtrl', function($scope, $rootScope, Storage, Styling){
     var posts = $rootScope.site.project;
     $scope.blurb = posts.blurb[0];
     $scope.projects = posts.projects;
+    $scope.sections = posts.projects;
 
     (function randomizeHoverColors(){
         colors = $scope.colors.shuffle();
@@ -1490,6 +1558,7 @@ app.controller('TeamCtrl', function($scope, $rootScope, Functions, Storage){
     var posts = $rootScope.site.team;
     $scope.blurb = posts.blurb[0];
     $scope.members = posts.members.shuffle();
+    $scope.sections = posts.members.shuffle();
 
 });
 

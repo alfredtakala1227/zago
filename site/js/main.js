@@ -93,7 +93,7 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
     });
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
-
+        console.log(to);
 
     });
 });
@@ -808,7 +808,6 @@ app.directive('grid', function($compile) {
             }
 
             var newSection = function(data){
-                console.log(data);
                 // Create Section element
                 var sec = document.createElement('section');
                 sec.setAttribute('data-id', data.id);
@@ -819,7 +818,6 @@ app.directive('grid', function($compile) {
                 var img = document.createElement('img');
 
                 if (data.content.featured_image) {
-                    console.log(data.content.featured_image);
                     img.setAttribute('ng-src', (data.content.featured_image.url || data.content.featured_image)); // @todo fix projects bug
                     // Check and Add class for portrait images
                     img.setAttribute('precision-image', true);
@@ -991,10 +989,10 @@ app.directive('officeList', function() {
 
         scope.offices = [
             {
-                'location': 'Rio de Janeiro',
-                'address'    : 'R Benjamim Batista, 153',
-                'region'  : 'Rio de Janeiro, RJ 22461-120',
-                'phone'   : '+55 21 3627 7529'
+                'location': 'Geneva',
+                'address'    : '37 rue Eug&egrave;ne-Marziano',
+                'region'  : 'CH-1227 Gen&egrave;ve',
+                'phone'   : '+41 22 548 0480'
             },
             {
                 'location': 'New York',
@@ -1003,10 +1001,10 @@ app.directive('officeList', function() {
                 'phone'   : '+1 212 219 1606'
             },
             {
-                'location': 'Geneva',
-                'address'    : '37 rue Eug&egrave;ne-Marziano',
-                'region'  : 'CH-1227 Gen&egrave;ve',
-                'phone'   : '+41 22 548 0480'
+                'location': 'Rio de Janeiro',
+                'address'    : 'R Benjamim Batista, 153',
+                'region'  : 'Rio de Janeiro, RJ 22461-120',
+                'phone'   : '+55 21 3627 7529'
             }
         ];
     }

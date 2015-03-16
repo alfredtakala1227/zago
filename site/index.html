@@ -41,9 +41,9 @@
             <div id="menuWrapper">
                 <div id="menu">
                     <ul>
-                        <li> <a ng-click="route('home')" title="Home">Zago</a> </li>
-                        <li> <a ng-click="route('projects')" title="Zago Projects">Projects</a> </li>
-                        <li> <a ng-click="route('team')" title="Meet Z Team">Team</a> </li>
+                        <li> <a ui-sref="home" ng-class="{active: currentState == 'home'}" title="Home">Zago</a> </li>
+                        <li> <a ui-sref="projects" ng-class="{active: currentState == 'projects'}" title="Zago Projects">Projects</a> </li>
+                        <li> <a ui-sref="team" ng-class="{active: currentState == 'team'}" title="Meet Z Team">Team</a> </li>
                         <li> <a href="http://zagolovesyou.tumblr.com/" ng-click="toggleMenu(true)" target="_blank" title="Blog Love">Love</a> </li>
                     </ul>
                 </div>
