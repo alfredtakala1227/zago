@@ -13,8 +13,5 @@ RewriteCond %{REQUEST_URI} !index
 RewriteRule (.*) index.html [L]
 
 RewriteBase /
-# RewriteCond %{HTTP_HOST} ^www.zagollc.com$ [NC]
-# RewriteRule ^(.*)$ http://zagollc.com/$1 [R=301,L]
-
-RewriteCond %{HTTP_HOST} !^localhost:8888$ [NC]
-RewriteRule ^(.*)$ localhost:8888/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]

@@ -196,7 +196,7 @@ a {
 .projectContent a {
   color: black;
   display: inline-block;
-  line-height: 1;
+  line-height: .75;
   border-bottom: 1px solid black;
 }
 .projectContent a:hover {
@@ -216,7 +216,7 @@ ul.socialButtons li {
   height: 30px;
   background-color: white;
   /*background-image: url('../images/social_sprites.png');*/
-  background-image: url("../images/site-sprites.png");
+  background-image: url("../images/sprite-sheet.png");
   background-repeat: no-repeat;
   background-size: 50% auto;
   border-right: 1px solid #040707;
@@ -323,11 +323,6 @@ body {
 }
 body.hidden {
   overflow: hidden;
-}
-@media (min-width: 1800px) {
-  body {
-    font-size: 70%;
-  }
 }
 @media (min-width: 2200px) {
   body {
@@ -633,7 +628,6 @@ footer.pageLoading {
 }
 
 .loaderWrapper {
-  background-color: #e6e6e6 !important;
   position: relative !important;
   z-index: 1 !important;
 }
@@ -655,8 +649,8 @@ footer.pageLoading {
   transform: translate(-50%, -50%);
 }
 .loaderBox .loader {
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  border-left: 5px solid #ffffff;
+  border: 5px solid #e6e6e6;
+  border-left: 5px solid rgba(230, 230, 230, 0.5);
   -webkit-animation: spinner 1s infinite linear;
   animation: spinner 1s infinite linear;
 }
@@ -1090,7 +1084,7 @@ button#scrollTop {
   border-right: 0;
   border-bottom: 0;
   background-color: transparent;
-  background-image: url("../images/site-sprites.png");
+  background-image: url("../images/sprite-sheet.png");
   background-repeat: no-repeat;
   background-size: 24px auto;
   background-position: 50% 6.8%;
@@ -1267,15 +1261,18 @@ nav#projectNav ul li a {
   height: 100%;
   color: black;
 }
+nav#projectNav ul li .navButton,
+nav#projectNav ul li .navTitle {
+  height: 49px;
+}
 nav#projectNav ul li .navButton {
   width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 520;
   background-color: white;
-  background-image: url("../images/site-sprites.png");
+  background-image: url("../images/sprite-sheet.png");
   background-repeat: no-repeat;
   background-size: 24px auto;
   border: 1px solid #040707;
@@ -1316,7 +1313,6 @@ nav#projectNav ul li .navTitle {
   border: 1px solid #040707;
   background-color: white;
   border-left: 0px;
-  height: 100%;
   z-index: 500;
   padding: 0 10px;
   white-space: nowrap;
@@ -1705,7 +1701,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   border: 1px solid white;
   border-bottom: 0;
   background-color: transparent;
-  background-image: url("../images/site-sprites.png");
+  background-image: url("../images/sprite-sheet.png");
   background-repeat: no-repeat;
   background-size: 24px auto;
   background-position: 50% 2.5%;
@@ -1750,6 +1746,14 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     top: 43%;
     font-size: 9em;
     font-size: 6vw;
+  }
+}
+@media (min-width: 1800px) {
+  #heroBanner h1 {
+    font-size: 7.2em;
+  }
+  #heroBanner p {
+    font-size: 10.8em;
   }
 }
 

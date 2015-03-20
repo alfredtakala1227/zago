@@ -1,10 +1,7 @@
-<div class="gridBox">
-	<div ng-repeat="section in sections">
-		<div ng-class="{ gridWrapper: checkModulo($index, 6) }">
-			<div ng-class="{ grid: checkModulo($index, 3), gridLeft: checkModulo($index, 6) }">
-				<div ng-if="gridType == 'project-section'" project-section></div>
-				<div ng-if="gridType == 'team-section'" team-section></div>
-			</div>
+<div ng-repeat="section in sections">
+	<div ng-class="{ gridWrapper: checkModulo($index, 6) }">
+		<div ng-class="{ grid: checkModulo($index, 3), gridLeft: checkModulo($index, 6) }">
+			
 		</div>
 	</div>
 </div>

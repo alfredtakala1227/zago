@@ -131,8 +131,11 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
 
     // Custom sorter function to arrange post tree via 'order' property
     function sorter(a,b) {
-        if ( a.order < b.order ) return -1;
-        if ( a.order > b.order ) return 1;
+        var first  = parseInt(a.order),
+            second = parseInt(b.order);
+
+        if ( first < second ) return -1;
+        if ( first > second ) return 1;
         return 0;
     }
 
@@ -295,6 +298,7 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
 
                             temp.content = {
                                 'name' : ternValue(post.title),
+                                'slug' : post.slug,
                                 'case_study' : post.acf.case_study,
                                 'client' : ternValue(post.acf.client),
                                 'services' : ternValue(splitCSV(post.acf.services)),
@@ -336,8 +340,6 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
 
                             tree.project.images.push(temp.content.featured_image.url);
                             tree.project.projects.push(temp);
-                            // Sort projects object via arrangement parameter
-                            tree.project.projects.sort(sorter);
 
                             continue;
                         }
@@ -360,8 +362,6 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
                                     'funny'    : post.acf.funny_picture
                                 }
                             };
-
-                            console.log(post);
 
                             tree.team.images.push(temp.content.featured_image);
                             temp.content.funny_picture ? tree.team.images.push(temp.content.funny_picture) : '';
@@ -396,6 +396,10 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
                     // Assign/Push new Related Pojects obj into tree
                     projects[o].content.related_projects = details;
                 }
+
+                // Sort projects object via arrangement parameter
+                tree.project.projects.sort(sorter);
+
                 console.log(tree);
                 return tree;
             };
@@ -833,7 +837,7 @@ app.directive('grid', function($compile) {
             var newSection = function(data){
                 // Create Section element
                 var sec = document.createElement('section');
-                sec.setAttribute('data-id', data.id);
+                sec.setAttribute('data-slug', data.content.slug);
                 // Create wrapper element for img & overlay
                 var imgWrap = document.createElement('div');
                 imgWrap.setAttribute('class', 'imgWrapper');
@@ -980,10 +984,10 @@ app.directive('grid', function($compile) {
             $('.projectWrapper .grid section > *').click(function(){
                 var project;
                 try {
-                    project = this.parentNode.dataset.id;
+                    project = this.parentNode.dataset.slug;
                 } catch(e) {
                     for (var i = 0; this.parentNode.attributes.length > i; i++) {
-                        if (this.parentNode.attributes[i].nodeName = "data-id") {
+                        if (this.parentNode.attributes[i].nodeName == "data-slug") {
                             project = this.parentNode.attributes[i].nodeValue;
                             break;
                         }
@@ -1003,50 +1007,50 @@ app.directive('grid', function($compile) {
         };
 });
 
-app.directive('newGrid', function($compile, $http, Functions){
+// app.directive('newGrid', function($compile, $http, Functions){
 
-    var templateTree = {
-        'project-section' : 'project_section.html',
-        'team-section' : 'team_section.html'
-    };
+//     var templateTree = {
+//         'project-section' : 'project_section.html',
+//         'team-section' : 'team_section.html'
+//     };
 
             
 
-    var linker = function($scope, element, attrs){
+//     var linker = function($scope, element, attrs){
 
-        Functions.getTemplate(templateTree, attrs.type).then(function(data){
-            var template = data.data;
-            $scope.sections = $scope.$parent.sections; 
+//         Functions.getTemplate(templateTree, attrs.type).then(function(data){
+//             var template = data.data;
+//             $scope.sections = $scope.$parent.sections; 
 
-            function newWrapper(){
-                var newWrapper = $(document.createElement(el));
+//             function newWrapper(){
+//                 var newWrapper = $(document.createElement(el));
 
-            }
+//             }
 
-            function newSection(el){
-                var newEl = $(document.createElement(el));
-                newEl.html(template);
-                $compile(newEl.contents());
+//             function newSection(el){
+//                 var newEl = $(document.createElement(el));
+//                 newEl.html(template);
+//                 $compile(newEl.contents());
 
-                return newEl[0];
-            }
+//                 return newEl[0];
+//             }
 
-            for (var i = 0; $scope.sections.length > i; i++) {
-                var section = newSection('div', template);
-                element[0].appendChild(section);
-                $compile($(element[0]).contents())($scope);
-            };
-        });
+//             for (var i = 0; $scope.sections.length > i; i++) {
+//                 var section = newSection('div', template);
+//                 element[0].appendChild(section);
+//                 $compile($(element[0]).contents())($scope);
+//             };
+//         });
 
-    };
+//     };
 
-    return {
-        restrict: "E",
-        link: linker,
-        scope: true
+//     return {
+//         restrict: "E",
+//         link: linker,
+//         scope: true
 
-    };
-});
+//     };
+// });
 
 app.directive('officeList', function() {
     
@@ -1090,6 +1094,8 @@ app.directive('socialButtons', function() {
     ////////////////////////////////////////////////
 
     var linker = function(scope, element, attrs) {
+        scope.currentYear = new Date().getFullYear();
+
         scope.socials = [
             {
                 'name'  : 'facebook',
@@ -1300,6 +1306,27 @@ app.directive('rotateImages', function($interval){
 
 });
 
+app.directive('newWindowLinks', function($location, $timeout){
+
+    var linker = function($scope, element, attrs) {
+        $timeout(function(){
+            var links = element.find('a');
+            console.log($location.host());
+            for (var i = 0; links.length > i; i++) {
+                if (links[i]) {
+                    $(links[i]).attr('target', '_blank');
+                }
+            }
+        });
+    };
+
+    return {
+        restrict: 'A',
+        link: linker
+    }
+
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var AppCtrl = app.controller('AppCtrl', function($scope, $rootScope, $timeout, Functions, Storage){
@@ -1316,6 +1343,10 @@ var AppCtrl = app.controller('AppCtrl', function($scope, $rootScope, $timeout, F
 
     // Show/Hide ScrollToTop button functionality
     window.addEventListener('scroll', Functions.throttle(Functions.showScroll, 200));
+
+    $scope.keyRelease = function($event){
+        if ($event.keyCode === 27){ Functions.toggleMenu(true); }
+    };
 
     // Splash Page configuration
     ////////////////////////////////////////////////////////////////////////////////////
@@ -1479,7 +1510,8 @@ app.controller('ProjectDetailCtrl', function($scope, $rootScope, $stateParams, S
     ////////////////////////////////////////////////////////////////////////////////////
     $scope.project = null;
     for (var i = 0; posts.projects.length > i; i++) {
-        if (posts.projects[i].id == $stateParams.project) {
+
+        if (posts.projects[i].content.slug == $stateParams.project) {
             $scope.project = posts.projects[i];
             if (i == 0) { // If THIS project is the first one
                 $scope.nextProject = posts.projects[(i+1)];

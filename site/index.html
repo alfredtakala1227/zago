@@ -30,12 +30,12 @@
     <script src="js/app/templates.js"></script> <!-- Template caching -->
 </head>
 
-<body id="body" ng-controller="AppCtrl">
+<body id="body" ng-controller="AppCtrl" ng-keyup="keyRelease($event)">
     <!-- @BUG {pageLoading:isLoading || isRouting} controls the page view sliding offscreen to the right -->
     <!-- It works, but its very buggy. Basically CSS animates the page in/out based on Angular value -->
     <div id="container">
 
-        <img id="siteID" class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png" ng-click="route('home', true)">
+        <a ui-sref="home"><img id="siteID" class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png"></a>
 
         <nav id="mainNav" class="overthrow">
             <div id="menuWrapper">
