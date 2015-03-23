@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-angular-templates');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-usemin');
 
 	grunt.initConfig({
@@ -13,6 +14,18 @@ module.exports = function(grunt) {
 					config: 'config.rb'
 				}
 			}
+		},
+
+		autoprefixer: {
+		    options: {
+		      expand: true,
+		      flatten: true,
+		      browsers: ['> 1%']
+		    },
+
+		    dist: {
+		      	src: 'site/css/*.css'
+		    },
 		},
 
 		ngtemplates:  {
@@ -39,12 +52,12 @@ module.exports = function(grunt) {
 			options: {livereload: true},
 
 			scripts: {
-				files: ['site/js/main.js'],
+				files: ['site/js/**/*.js'],
 				tasks: []
 			},
 			sass: {
-				files: ['components/sass/*.scss'],
-				tasks: ['compass:dev']
+				files: ['components/**/*.scss'],
+				tasks: ['compass:dev', 'autoprefixer']
 			},
 			html: {
 				files: ['site/index.html', 'site/partials/*.html', 'site/pieces/*.html'],
@@ -54,5 +67,5 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.registerTask('default', ['ngtemplates', 'watch']);
+	grunt.registerTask('default', ['compass', 'autoprefixer',  'ngtemplates', 'watch']);
 }

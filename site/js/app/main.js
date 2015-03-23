@@ -104,6 +104,7 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
         $rootScope.currentState = to.name;
+        console.log($state);
 
     });
 });
@@ -458,7 +459,6 @@ app.factory("Functions", function( $q, $http, $rootScope, $templateCache, $state
     $rootScope.$on('$viewContentLoaded', function(){
         // Checks to see that image preloading isn't still processing
         dom = getDOM();
-        checkPrompt();
     });
 
     // Helper Functions
@@ -483,16 +483,19 @@ app.factory("Functions", function( $q, $http, $rootScope, $templateCache, $state
     function checkPrompt(){
         // If user hasn't been prompted/clicked the menu, show prompt (else hide)
         if (!Storage.prompted) { 
-            dom.prompt.classList.remove('bounce');
-            $timeout(function(){ dom.prompt.classList.add('bounce'); }); // $timeout to let class removal trigger first
+            dom.prompt.classList.remove('marquee');
+            // $timeout to let class removal trigger first
+            $timeout(function(){ dom.prompt.classList.add('marquee'); }); 
         } else { hidePrompt(); }
     };
+
+    checkPrompt();
 
     function hidePrompt(){
         // Function to hide menuPrompt
         dom.prompt.classList.add('hiding');
         setTimeout(function(){
-            dom.prompt.classList.add('hidden');
+            dom.prompt.classList.remove('marquee');
         }, 500);
     };
 
