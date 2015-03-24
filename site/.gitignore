@@ -1,0 +1,39 @@
+#### [IMPORTANT] Server files for GIT to ignore [IMPORTANT] ###
+
+
+
+# Server Files ###
+
+error_log
+
+*.shtml
+
+*.php
+
+crossdomain.xml
+
+default.html
+
+favicon.ico
+
+php.ini
+
+
+
+# Server Directories ###
+
+archive/
+
+cgi-bin/
+
+deploy/
+
+develop/
+
+discesismo/
+
+logos/
+
+packard/
+
+zago_admin/

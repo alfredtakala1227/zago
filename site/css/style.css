@@ -701,6 +701,7 @@ footer.pageLoading {
   background-color: white;
   -webkit-transition: all 0.5s ease-out;
           transition: all 0.5s ease-out;
+  content: "viewport-units-buggyfill; min-height: 100vh;";
 }
 #container.pageLoading {
   -webkit-transform: translateX(100%);
@@ -714,6 +715,7 @@ footer.pageLoading {
   min-height: 100vh;
   overflow: auto;
   position: relative;
+  content: "viewport-units-buggyfill; min-height: 100vh;";
 }
 #pageContent.menu-open {
   overflow: hidden;
@@ -846,15 +848,14 @@ img.siteID {
           transform: translateX(50%);
   z-index: 1000;
   text-align: center;
-  width: 41em;
   width: 41vh;
   min-width: 230px;
   max-width: 70vw;
+  content: "viewport-units-buggyfill; width: 41vh; max-width: 70vw;";
 }
 
 button#menuButton {
   width: 100%;
-  height: 6em;
   height: 6vh;
   min-height: 30px;
   max-height: 9vw;
@@ -866,6 +867,7 @@ button#menuButton {
   -webkit-transition: opacity 0.5s ease-out;
           transition: opacity 0.5s ease-out;
   overflow: hidden;
+  content: "viewport-units-buggyfill; height: 6vh; max-height: 9vw;";
 }
 button#menuButton span#menuPrompt {
   width: 100%;
@@ -928,7 +930,6 @@ button#scrollTop:hover {
 nav#mainNav {
   width: 100%;
   height: 100%;
-  min-height: 50em;
   min-height: 100vh;
   position: fixed;
   -webkit-backface-visibility: hidden;
@@ -942,6 +943,7 @@ nav#mainNav {
           transform: translateX(0);
   -webkit-transition: all 0.5s ease-out;
           transition: all 0.5s ease-out;
+  content: "viewport-units-buggyfill; min-height: 100vh;";
 }
 nav#mainNav.menu-open {
   -webkit-transform: translateX(-100%);
@@ -962,6 +964,7 @@ nav#mainNav #menuWrapper {
   padding: 20vmin 0 25vmin;
   position: relative;
   z-index: 800;
+  content: "viewport-units-buggyfill; padding: 20vmin 0 25vmin;";
 }
 nav#mainNav #menuWrapper #menu {
   margin: 0 50px;
@@ -985,6 +988,7 @@ nav#mainNav #menuWrapper #menu ul li a {
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
+  content: "viewport-units-buggyfill; font-size: 12vmin;";
 }
 nav#mainNav #menuWrapper #menu ul li a.active {
   text-decoration: underline;
@@ -996,12 +1000,13 @@ nav#mainNav #menuWrapper #menu ul li a.active {
 }
 @media (min-width: 1400px) {
   nav#mainNav #menuWrapper #menu ul li {
-    margin-bottom: 1.8em;
     margin-bottom: 1.8vw;
+    content: "viewport-units-buggyfill; margin-bottom: 1.8vw;";
   }
   nav#mainNav #menuWrapper #menu ul li a {
     margin-bottom: 3em;
     font-size: 3.25vw;
+    content: "viewport-units-buggyfill; font-size: 3.25vw;";
   }
 }
 @media (min-width: 480px) {
@@ -1018,22 +1023,26 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
 @media (max-height: 400px) {
   nav#mainNav #menuWrapper {
     padding-bottom: 30vh;
+    content: "viewport-units-buggyfill; padding-bottom: 30vh;";
   }
 }
 @media (max-height: tiny) {
   nav#mainNav #menuWrapper {
     padding-bottom: 30vh;
+    content: "viewport-units-buggyfill; padding-bottom: 30vh;";
   }
 }
 @media (min-width: 640px) {
   nav#mainNav #menuWrapper {
     padding-top: 20vh;
+    content: "viewport-units-buggyfill; padding-top: 20vh;";
   }
 }
 @media (min-width: 992px) {
   nav#mainNav #menuWrapper {
-    padding-top: 25vh;
     padding-bottom: 50px !important;
+    padding-top: 25vh;
+    content: "viewport-units-buggyfill; padding-top: 25vh;";
   }
 }
 @media (max-width: 639px) and (orientation: landscape) {
@@ -1044,9 +1053,11 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     float: left;
     width: 50%;
     margin: 0 0 20vmin !important;
+    content: "viewport-units-buggyfill; margin: 0 0 20vmin !important;";
   }
   nav#mainNav #menuWrapper ul li a {
     font-size: 9vmax !important;
+    content: "viewport-units-buggyfill; font-size: 9vmax !important;";
   }
 }
 nav#projectNav {
@@ -1303,6 +1314,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   min-height: 100vh;
   background: black;
   color: white;
+  content: "viewport-units-buggyfill; min-height: 100vh;";
 }
 #splash img.siteID {
   position: relative;
@@ -1428,7 +1440,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  min-height: 500px;
+  content: "viewport-units-buggyfill; height: 100vh;";
 }
 #heroBanner img {
   z-index: 150;
@@ -1505,12 +1517,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 @media (min-width: 640px) {
   #heroBanner h1 {
-    font-size: 4em;
     font-size: 4vw;
+    content: "viewport-units-buggyfill; font-size: 4vw";
   }
   #heroBanner p {
-    font-size: 7.5em;
     font-size: 10vw;
+    content: "viewport-units-buggyfill; font-size: 10vw";
   }
 }
 @media (min-width: 768px) {
@@ -1529,8 +1541,8 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   #heroBanner p {
     left: 100px;
     top: 43%;
-    font-size: 9em;
     font-size: 6vw;
+    content: "viewport-units-buggyfill; font-size: 6vw;";
   }
 }
 @media (min-width: 1800px) {
@@ -1574,9 +1586,9 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 #homeSections section .bannerWrapper {
   position: relative;
-  height: 40em;
   height: 40vh;
   margin-bottom: 25px;
+  content: "viewport-units-buggyfill; height: 40vh;";
 }
 #homeSections section .bannerWrapper .imgWrapper {
   overflow: hidden;
@@ -1586,14 +1598,14 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
 }
 #homeSections section .bannerWrapper .imgWrapper img {
-  height: 40em;
   height: 40vh;
+  content: "viewport-units-buggyfill; height: 40vh;";
   z-index: 2;
 }
 @media (min-width: 640px) {
   #homeSections section .bannerWrapper {
-    height: 50em;
     height: 50vh;
+    content: "viewport-units-buggyfill; height: 50vh;";
   }
   #homeSections section .bannerWrapper .imgWrapper img {
     height: auto;
@@ -1609,12 +1621,14 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
           transform: translateY(32%);
 }
 #homeSections section .bannerWrapper .captionWrapper p {
+  /* Cascade fallback for vw units */
   font-family: 'Black';
   color: black;
-  font-size: 12vw;
   line-height: 1.05em;
   letter-spacing: .075em;
   text-transform: uppercase;
+  font-size: 12vw;
+  content: "viewport-units-buggyfill; font-size: 12vw;";
 }
 @media (min-width: 320px) {
   #homeSections section .bannerWrapper .captionWrapper p {
@@ -1629,11 +1643,6 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 640px) {
   #homeSections section .bannerWrapper .captionWrapper p {
     font-size: 7.5em;
-  }
-}
-@media (min-width: 320px) {
-  #homeSections section .bannerWrapper .captionWrapper p {
-    font-size: 12vw;
   }
 }
 @media (min-width: 768px) {
@@ -1749,13 +1758,13 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 .gridWrapper .grid section .imgWrapper {
   position: relative;
   overflow: hidden;
-  height: 57em;
   height: 57vw;
+  content: "viewport-units-buggyfill; height: 57vw;";
 }
 @media (min-width: 640px) {
   .gridWrapper .grid section .imgWrapper {
-    height: 50em;
     height: 50vw;
+    content: "viewport-units-buggyfill; height: 50vw;";
   }
 }
 .gridWrapper .grid section .imgWrapper .overlay {
@@ -1799,12 +1808,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 49%;
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 30em;
     height: 30vw;
+    content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 30em;
     min-height: 30vw;
+    content: "viewport-units-buggyfill; min-height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(2) {
     margin-right: 2%;
@@ -1818,23 +1827,23 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 49%;
   }
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
-    height: 30em;
     height: 30vw;
+    content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper img {
-    min-height: 30em;
     min-height: 30vw;
+    content: "viewport-units-buggyfill; min-height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(2), .gridWrapper .grid section:nth-of-type(3) {
     width: 23.5%;
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 14em;
     height: 14vw;
+    content: "viewport-units-buggyfill; height: 14vw;";
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 14em;
     min-height: 14vw;
+    content: "viewport-units-buggyfill; min-height: 14vw;";
   }
   .gridWrapper .grid section:nth-of-type(3) {
     margin-right: 0;
@@ -1857,15 +1866,15 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   opacity: 0;
 }
 .gridWrapper.teamWrapper .grid section .imgWrapper {
-  height: 90em;
   height: 90vw;
+  content: "viewport-units-buggyfill; height: 90vw;";
   position: relative;
 }
 .gridWrapper.teamWrapper .grid section .imgWrapper img {
   -webkit-transition: opacity 0.3s ease-out;
           transition: opacity 0.3s ease-out;
-  min-height: 90em;
   min-height: 90vw;
+  content: "viewport-units-buggyfill; min-height: 90vw;";
   height: 100%;
   width: auto;
 }
@@ -1903,18 +1912,17 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 @media (min-width: 992px) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
-    width: 2.25em;
-    height: 2.25em;
     width: 2.25vw;
     height: 2.25vw;
+    content: "viewport-units-buggyfill; width: 2.25vw; height: 2.25vw;";
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
-    right: 2.25em;
     right: 2.25vw;
+    content: "viewport-units-buggyfill; right: 2.25vw;";
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
-    right: 4.55em;
     right: 4.5vw;
+    content: "viewport-units-buggyfill; right: 4.5vw;";
   }
 }
 @media (min-width: 640px) {
@@ -1922,12 +1930,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 49%;
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper {
-    height: 45em;
     height: 45vw;
+    content: "viewport-units-buggyfill; height: 45vw;";
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper img {
-    min-height: 45em;
     min-height: 45vw;
+    content: "viewport-units-buggyfill; min-height: 45vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) {
     margin-right: 2%;
@@ -1950,12 +1958,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 @media (min-width: 992px) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
-    height: 30em;
     height: 30vw;
+    content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper img {
-    min-height: 30em;
     min-height: 30vw;
+    content: "viewport-units-buggyfill; min-height: 30vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) {
     margin-right: 2%;
@@ -1967,12 +1975,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 23.5%;
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 22.5em;
     height: 22.5vw;
+    content: "viewport-units-buggyfill; height: 22.5vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 22.5em;
     min-height: 22.5vw;
+    content: "viewport-units-buggyfill; min-height: 22.5vw;";
   }
   .gridWrapper.teamWrapper .grid.gridRight section:nth-of-type(3) {
     margin-right: 2%;
@@ -1995,12 +2003,10 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 #projectLayout .featuredImage {
   position: relative;
   width: 100%;
-  height: 500px;
   height: 100vh;
-  min-height: 400px;
-  max-height: 1000px;
   max-height: 100vh;
   overflow: hidden;
+  content: "viewport-units-buggyfill; height: 100vh; max-height: 100vh;";
 }
 #projectLayout .projectContent {
   font-size: 1.6em;
@@ -2143,14 +2149,15 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
 }
 #projectLayout.caseStudy .featuredImage {
-  height: 35em;
-  height: 40vw;
   min-height: initial;
   max-height: initial;
+  height: 40vw;
+  content: "viewport-units-buggyfill; height: 40vw;";
 }
 @media (min-width: 640px) {
   #projectLayout.caseStudy .featuredImage {
     height: 35vw;
+    content: "viewport-units-buggyfill; height: 35vw;";
   }
 }
 #projectLayout.caseStudy .projectContent {
@@ -2218,11 +2225,11 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 #projectImages section .imageWrapper .imageBox {
   width: 100%;
-  height: 40em;
   height: 40vw;
   display: inline-block;
   position: relative;
   overflow: hidden;
+  content: "viewport-units-buggyfill; height: 40vw;";
 }
 #projectImages section .imageWrapper .imageBox.halfImage {
   width: 100%;
@@ -2298,9 +2305,9 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 
 #readAbout section {
-  height: 40em;
   height: 40vw;
   background-color: #e6e6e6;
+  content: "viewport-units-buggyfill; height: 40vw;";
 }
 #readAbout section a {
   color: black;
@@ -2323,14 +2330,14 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 @media (min-width: 640px) {
   #readAbout section {
-    height: 18em;
     height: 18vw;
+    content: "viewport-units-buggyfill; height: 18vw;";
   }
 }
 @media (min-width: 992px) {
   #readAbout section {
-    height: 14em;
     height: 14vw;
+    content: "viewport-units-buggyfill; height: 14vw;";
   }
 }
 
@@ -2347,21 +2354,21 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 #relatedProjects section .imgWrapper {
   width: 100%;
-  height: 40em;
   height: 40vw;
   position: relative;
   overflow: hidden;
+  content: "viewport-units-buggyfill; height: 40vw;";
 }
 @media (min-width: 640px) {
   #relatedProjects section .imgWrapper {
-    height: 18em;
     height: 18vw;
+    content: "viewport-units-buggyfill; height: 18vw;";
   }
 }
 @media (min-width: 992px) {
   #relatedProjects section .imgWrapper {
-    height: 14em;
     height: 14vw;
+    content: "viewport-units-buggyfill; height: 14vw;";
   }
 }
 #relatedProjects section .contentWrapper {
@@ -2384,16 +2391,16 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   background-color: #555656;
   margin-top: -47px;
   padding-bottom: 47px;
-  height: 100%;
   height: 100vh;
+  content: "viewport-units-buggyfill; height: 100vh;";
 }
 #pageContent.lovePage embed {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   height: 100vh;
+  content: "viewport-units-buggyfill; height: 100vh;";
 }
 #pageContent.pageLoading {
   display: none;
@@ -2500,6 +2507,7 @@ html.overthrow-enabled #cssTest p.overthrow-enabled {
     -webkit-transform: translate(50%, -100vh);
             transform: translate(50%, -100vh);
     opacity: 0;
+    content: "viewport-units-buggyfill; transform: translate(50%, -100vh);";
   }
   100% {
     -webkit-transform: translate(50%, 0);
@@ -2512,6 +2520,7 @@ html.overthrow-enabled #cssTest p.overthrow-enabled {
     -webkit-transform: translate(50%, -100vh);
             transform: translate(50%, -100vh);
     opacity: 0;
+    content: "viewport-units-buggyfill; transform: translate(50%, -100vh);";
   }
   100% {
     -webkit-transform: translate(50%, 0);
