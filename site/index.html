@@ -106,6 +106,15 @@
  -->
     </div>
 
+
+    <script src="js/lib/viewport-units-buggyfill.hacks.js"></script>
+    <script src="js/lib/viewport-units-buggyfill.js"></script>
+      <script>
+        window.viewportUnitsBuggyfill.init({
+          refreshDebounceWait: 50,
+          hacks: window.viewportUnitsBuggyfillHacks
+        });
+      </script>
     <script src="http://localhost:35729/livereload.js"></script>
     <!-- redirect to legacy browser unsupported message -->
     <!--[if lt IE 9]> <script type="text/javascript" src="js/unsupported.js"></script> <![endif]-->

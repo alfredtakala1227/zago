@@ -548,9 +548,6 @@ img.siteID {
 	min-width: 230px;
 	max-width: 70vw;
 
-	span {
-
-	}
 }
 
 button {
@@ -570,6 +567,7 @@ button {
 			width: 100%;
 			transition: opacity $slowSpeed $primaryEase;
 			display: none;
+			color: white;
 
 			&.marquee {
 				display: block;
@@ -994,6 +992,7 @@ nav {
 	width: 100%;
 	height: 100vh;
 	min-height: 500px;
+
 	img {
 		@extend .absoluteCenter;
 		z-index: 150;
@@ -1008,7 +1007,7 @@ nav {
 	h1 {
 		font-family: 'Black';
 		font-size: 2.4em;
-		line-height: 1.1em;
+		line-height: .9em;
 		color: white;
 		letter-spacing: .075em;
 		text-transform: uppercase;
@@ -1161,7 +1160,7 @@ nav {
 			@include clearfix;
 			padding: 50px 15px 20px;
 			max-width: 1400px;
-			
+
 			h1 {
 				@extend .bodyTitle;
 				width: 100%;

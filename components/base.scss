@@ -74,6 +74,10 @@ $primaryEase: ease-out;
   column-rule: $rule;
 }
 
+@mixin buggyfill($values) {
+  content: 'viewport-units-buggyfill; ' + $values;
+}
+
 /*************************************************/
 
 @keyframes spinner {

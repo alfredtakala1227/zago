@@ -98,12 +98,14 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
             Functions.toggleMenu(true);
             setTimeout(function(){ $state.go(to.name, toParams); }, menuTimer);
+
+        } else {
+            $rootScope.currentState = to.name;
         }
         
     });
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
-        $rootScope.currentState = to.name;
         console.log($state);
 
     });
