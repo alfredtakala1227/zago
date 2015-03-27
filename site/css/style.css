@@ -1598,8 +1598,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
 }
 #homeSections section .bannerWrapper .imgWrapper img {
-  height: 40vh;
-  content: "viewport-units-buggyfill; height: 40vh;";
+  height: 100%;
   z-index: 2;
 }
 @media (min-width: 640px) {
@@ -1812,8 +1811,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 30vw;
-    content: "viewport-units-buggyfill; min-height: 30vw;";
+    height: 100%;
   }
   .gridWrapper .grid section:nth-of-type(2) {
     margin-right: 2%;
@@ -1831,8 +1829,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper img {
-    min-height: 30vw;
-    content: "viewport-units-buggyfill; min-height: 30vw;";
+    height: 100%;
   }
   .gridWrapper .grid section:nth-of-type(2), .gridWrapper .grid section:nth-of-type(3) {
     width: 23.5%;
@@ -1842,8 +1839,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 14vw;";
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 14vw;
-    content: "viewport-units-buggyfill; min-height: 14vw;";
+    height: 100%;
   }
   .gridWrapper .grid section:nth-of-type(3) {
     margin-right: 0;
@@ -1873,8 +1869,6 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 .gridWrapper.teamWrapper .grid section .imgWrapper img {
   -webkit-transition: opacity 0.3s ease-out;
           transition: opacity 0.3s ease-out;
-  min-height: 90vw;
-  content: "viewport-units-buggyfill; min-height: 90vw;";
   height: 100%;
   width: auto;
 }
@@ -1934,8 +1928,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 45vw;";
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper img {
-    min-height: 45vw;
-    content: "viewport-units-buggyfill; min-height: 45vw;";
+    height: 100%;
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) {
     margin-right: 2%;
@@ -1962,8 +1955,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 30vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper img {
-    min-height: 30vw;
-    content: "viewport-units-buggyfill; min-height: 30vw;";
+    height: 100%;
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) {
     margin-right: 2%;
@@ -1979,8 +1971,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     content: "viewport-units-buggyfill; height: 22.5vw;";
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper img {
-    min-height: 22.5vw;
-    content: "viewport-units-buggyfill; min-height: 22.5vw;";
+    height: 100%;
   }
   .gridWrapper.teamWrapper .grid.gridRight section:nth-of-type(3) {
     margin-right: 2%;

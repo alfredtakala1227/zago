@@ -3,7 +3,9 @@ AddHandler application/x-httpd-php54 .php
 
 Header set Access-Control-Allow-Origin "*"
 
-Options +FollowSymLinks
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 
 RewriteEngine On
 
@@ -12,6 +14,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !index
 RewriteRule (.*) index.html [L]
+
 
 # WWW Removal
 RewriteBase /

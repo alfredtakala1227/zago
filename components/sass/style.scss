@@ -1154,9 +1154,7 @@ nav {
 				overflow: hidden;
 				img {	
 				    @extend .absoluteCenter;
-				    height: 40vh;
-				    @include buggyfill("height: 40vh;");
-
+				    height: 100%;
 				    z-index: 2; } }
 			@include breakpoint(smallTablet) {
 				height: 50vh;
@@ -1316,8 +1314,7 @@ nav {
 						@include buggyfill("height: 30vw;");
 
 						img {
-						  min-height: 30vw;
-						  @include buggyfill("min-height: 30vw;");
+						  height: 100%;
 						}
 					}
 				}
@@ -1334,16 +1331,14 @@ nav {
 						height: 30vw;
 						@include buggyfill("height: 30vw;");
 						img {
-							min-height: 30vw;
-							@include buggyfill("min-height: 30vw;"); } } }
+							height: 100%; } } }
 				&:nth-of-type(2), &:nth-of-type(3) {
 					width: 23.5%;
 					.imgWrapper {
 						height: 14vw;
 						@include buggyfill("height: 14vw;");
 						img {
-						  min-height: 14vw;
-						  @include buggyfill("min-height: 14vw;");
+						  height: 100%;
 						}
 					}
 				}
@@ -1377,8 +1372,6 @@ nav {
 					position: relative;
 					img {
 						transition: opacity $fastSpeed $primaryEase;
-						min-height: 90vw;
-						@include buggyfill("min-height: 90vw;");
 						height: 100%;
 						width: auto;
 						&:first-of-type { z-index: 150; }
@@ -1426,8 +1419,7 @@ nav {
 						height: 45vw;
 						@include buggyfill("height: 45vw;");
 						img {
-							min-height: 45vw;
-							@include buggyfill("min-height: 45vw;"); }
+							height: 100%; }
 						}
 					&:nth-of-type(1) { margin-right: 2%; }
 			        &:nth-of-type(2) { margin-right: 0; }
@@ -1450,8 +1442,7 @@ nav {
 		              		height: 30vw;
 		              		@include buggyfill("height: 30vw;");
 		            		img {
-			                	min-height: 30vw;
-			                	@include buggyfill("min-height: 30vw;");
+			                	height: 100%;
 			                }
 		                }
 		            }
@@ -1465,8 +1456,7 @@ nav {
 		              		height: 22.5vw;
 		              		@include buggyfill("height: 22.5vw;");
 		              		img {
-		                		min-height: 22.5vw;
-		                		@include buggyfill("min-height: 22.5vw;");
+		                		height: 100%;
 		              		}
 		            	}
 		          	}
