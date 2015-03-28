@@ -55,19 +55,6 @@ $primaryEase: ease-out;
   @else { @media (max-height: $point) { @content; } }
 }
 
-@mixin transition($type, $duration : .5s, $easing : ease-out) {
-    transition: $type $duration $easing;
-}
-
-@mixin translate($x: 0, $y: 0) {
-	transform: translate($x, $y);
-}
-
-@mixin transform($action, $origin) {
-  transform: $action;
-  transform-origin: $origin;
-}
-
 @mixin columns($count : 0, $gap : 0px, $rule : 0) {
   column-count: $count;
   column-gap: $gap;

@@ -1193,15 +1193,12 @@ nav {
   }
   @include breakpoint(desktop) {
     transform: translateX(-25em);
-    /*@include translate(-25vw);*/
   }
   @include breakpoint(large) {
     transform: translateX(-35em);
-    /*@include translate(-25vw);*/
   }
   @include breakpoint(wide) {
     transform: translateX(-45em);
-    /*@include translate(-35vw);*/
   }
   section {
     font-size: 1.4em;
