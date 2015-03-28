@@ -114,12 +114,12 @@ a {
 	cursor: pointer;
 	color: white;
 	text-decoration: none;
-	@include transition(all, .2s);
+	transition: all $fastSpeed $primaryEase;
 
 	.projectContent & {
 		color: black;
 		display: inline-block;
-		line-height: 1;
+		line-height: .75;
 		border-bottom: 1px solid black;
 		&:hover { border-bottom-color: white; } }
 
@@ -136,12 +136,12 @@ ul {
 			height: 30px;
 			background-color: white;
 			/*background-image: url('../images/social_sprites.png');*/
-      		background-image: url("../images/site-sprites.png");
+      		background-image: url("../images/sprite-sheet.png");
 			background-repeat: no-repeat;
 			background-size: 50% auto;
 
 			border-right: 1px solid $darkgrey;
-			@include transition(background-color, .3s);
+			transition: background-color $fastSpeed $primaryEase;
 			&:last-of-type { border-right: 0; }
 
 			a {
@@ -207,8 +207,6 @@ body {
 	overflow: auto;
 	&.hidden {
 		overflow: hidden; }
-	@include breakpoint(superwide) {
-		font-size: 70%; }
 	@include breakpoint(oversize) {
 		font-size: 100%; }
 }
@@ -270,7 +268,11 @@ footer {
 			ul {
 				float: left;
 				display: inline-block;
-				margin-bottom: 20px; }
+				margin-bottom: 20px;
+				li {
+					background-color: transparent;
+				}
+			}
 			p { 
 				float: left;
 				clear: left; }
@@ -381,8 +383,6 @@ footer {
 					@include breakpoint(desktop) {
 						border: 1px solid $darkgrey; }
 					li {
-			            width: 50px;
-			            height: 50px;
 			            border-top: 0;
 			            border-bottom: 0;
 			            border-left: 0;
@@ -392,7 +392,7 @@ footer {
 					float: none;
 					width: auto; } } }
 		@include breakpoint(tablet) {
-			padding: 120px 0 40px;
+			padding: 60px 0 40px;
 				section {
 					margin-bottom: 75px;
 					&.social { margin-bottom: 0; }
@@ -416,12 +416,13 @@ footer {
 	position: relative;
 	z-index: 100;
 	background-color: white;
-	/*@include animateTranslate(1s);*/
-	@include transition(all);
+	transition: all $normalSpeed $primaryEase;
 	&.pageLoading {
-		@include translate(100%);
+		transform: translateX(100%);
 		/*opacity: 0;*/
 	}
+
+	@include buggyfill("min-height: 100vh;");
 }
 
 #pageContent {
@@ -432,6 +433,8 @@ footer {
 	&.menu-open {
 		overflow: hidden;
 	}
+
+	@include buggyfill("min-height: 100vh;");
 }
 
 #loader {
@@ -445,7 +448,6 @@ footer {
 }
 
 .loaderWrapper {
-	background-color: $grey !important;
 	position: relative !important;
 	z-index: 1 !important;
 	img {
@@ -459,11 +461,10 @@ footer {
 	z-index: 0;
 	width: 25px;
 	height: 25px;
-	@include translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 	.loader {
-		border: 5px solid rgba(255, 255, 255, 0.2);
-		border-left: 5px solid #ffffff;
-		-webkit-animation: spinner 1s infinite linear;
+		border: 5px solid $grey;
+		border-left: 5px solid rgba($grey, .5);
 		animation: spinner 1s infinite linear;
 		&, &:after {
 			position: absolute;
@@ -473,17 +474,6 @@ footer {
 			height: 100%;
 		}
 	}
-}
-
-@include keyframes(spinner){
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
 }
 
 .beaconWrapper {
@@ -511,15 +501,9 @@ footer {
 			box-shadow: 0 0 50px #fff, inset 0 0 50px #fff; }
 		&:after {
 			z-index: 1;
-			-webkit-animation: beacon 2s infinite 1s;
-			-moz-animation: beacon 2s infinite 1s;
-			-o-animation: beacon 2s infinite 1s;
 			animation: beacon 2s infinite 1s; }
 		&:before {
 			z-index: 2;
-			-webkit-animation: beacon 2s infinite;
-			-moz-animation: beacon 2s infinite;
-			-o-animation: beacon 2s infinite;
 			animation: beacon 2s infinite; }
 		/*.percentComplete {
 			min-width: 0%;
@@ -544,34 +528,6 @@ footer {
 }
 	
 
-@include keyframes(beacon) {
-  0% {
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-@include keyframes(loader-background) {
-	0%   { background: rgba(nth($menuButtonColors, 1), .3); }
-	25%   { background: rgba(nth($menuButtonColors, 2), .3); }
-	50%   { background: rgba(nth($menuButtonColors, 3), .3); }
-	75%   { background: rgba(nth($menuButtonColors, 4), .3); }
-	100%   { background: rgba(nth($menuButtonColors, 1), .3); }
-}
-
 /*************************************************/
 /* Nav Styles
 /*************************************************/
@@ -589,65 +545,54 @@ img.siteID {
 	position: fixed;
 	backface-visibility: hidden;
 	top: 78%; right: 50%;
-	@include translate(50%);
+	transform: translateX(50%);
 	z-index: 1000;
 	text-align: center;
-	width: 41em; width: 41vh;
+	width: 41vh;
 	min-width: 230px;
 	max-width: 70vw;
-}
 
-p#menuPrompt {
-	position: absolute;
-	bottom: 180%; right: 50%;
-	@include translate(50%);
-	z-index: 500;
-	color: white;
-	font-size: 1.2em;
-	line-height: 1.5em;
-	letter-spacing: .07em;
-	@include transition(opacity);
-	&.bounce {
-		@include animate(bounce-prompt 1.5s);
-	}
-	&.hiding {
-		opacity: 0;
-		&.hidden {
-			display: none; } }
-	&::after {
-		content: '';
-		position: absolute;
-		bottom: -17px;
-		right: 50%;
-		@include translate(50%);
-		width: 24px;
-		height: 13px;
-		background-image: url('../images/arrow_white_sprites.png');
-		background-repeat: no-repeat;
-		background-size: 24px auto;
-		background-position: 0 -72px;
-
-	}
+	@include buggyfill("width: 41vh; max-width: 70vw;");
 
 }
 
 button {
 	&#menuButton {
 		width: 100%;
-		height: 6em; height: 6vh;
+		height: 6vh;
 		min-height: 30px;
 		max-height: 9vw;
 		border: 0;
 		padding: 0;
 		opacity: .5;
-		@include animate(menu-button 8s infinite);
-		@include transition(opacity);
+		animation: menu-button 8s infinite;
+		transition: opacity $normalSpeed $primaryEase;
+		overflow: hidden;
+
+		@include buggyfill("height: 6vh; max-height: 9vw;");
+
+		span#menuPrompt {
+			width: 100%;
+			transition: opacity $slowSpeed $primaryEase;
+			display: none;
+			color: white;
+
+			&.marquee {
+				display: block;
+				animation: marquee 7.5s infinite;
+			}
+
+			&.hiding {
+				opacity: 0;
+			}
+		}
+
 		&:hover {
 			opacity: 1; }
 		&:active {
 			/*button click styling*/ }
 		&.menu-open {
-			@include animate(none);
+			animation: none;
 			background-color: white; } }
 	&#scrollTop {
 		position: fixed;
@@ -660,13 +605,13 @@ button {
 		border-right: 0;
 		border-bottom: 0;
 		background-color: transparent;
-		background-image: url("../images/site-sprites.png");
+		background-image: url("../images/sprite-sheet.png");
 		background-repeat: no-repeat;
 		background-size: 24px auto;
 		background-position: 50% 6.8%;
 		max-width: 0;
 		max-height: 0;
-		@include transition(background-color);
+		transition: background-color $normalSpeed $primaryEase;
 
 		&.show {
 			max-height: 50px;
@@ -680,25 +625,29 @@ nav {
 	&#mainNav {
 		width: 100%;
 		height: 100%;
-		min-height: 50em;
 		min-height: 100vh;
 		position: fixed;
 		backface-visibility: hidden;
 		top: 0; right: -100%;
 		z-index: 800;
 		background: black;
-		@include translate(0);
-		@include transition(all);
+		transform: translateX(0);
+		transition: all $normalSpeed $primaryEase;
+
+		@include buggyfill("min-height: 100vh;");
+
 		&.menu-open {
-			@include translate(-100%);
+			transform: translateX(-100%);
 			@include breakpoint(desktop) {
-				@include translate(-75%); } }
+				transform: translateX(-75%); } }
 		#menuWrapper {
 			@include clearfix;
 			margin: 0 auto;
 			padding: 20vmin 0 25vmin;
 			position: relative;
 			z-index: 800;
+			@include buggyfill("padding: 20vmin 0 25vmin;");
+
 			#menu {
 				margin: 0 50px;
 				display: inline-block;
@@ -716,16 +665,22 @@ nav {
 							letter-spacing: .075em;
 							text-transform: uppercase;
 							position: relative;
-							text-decoration: none; }
+							text-decoration: none;
+							@include buggyfill("font-size: 12vmin;");
+							&.active {
+								text-decoration: underline;
+							}
+						}
 						@include breakpoint(smallTablet){
 							a {
 								font-size: 4.8em; } }
 						@include breakpoint(wide) {
-							margin-bottom: 1.8em; 
 							margin-bottom: 1.8vw;
+							@include buggyfill("margin-bottom: 1.8vw;");
 							a {
 								margin-bottom: 3em; 
-								font-size: 3.25vw; } } } }
+								font-size: 3.25vw;
+								@include buggyfill("font-size: 3.25vw;"); } } } }
 				@include breakpoint(mobile) {
 					margin: 0 70px; } }
 			.menuContacts {
@@ -735,13 +690,23 @@ nav {
 							&:hover { text-decoration: none; } } }
 				}
 			}
+
 			@include breakheight(tiny) {
-				padding-bottom: 30vh;  }
+				padding-bottom: 30vh;
+				@include buggyfill("padding-bottom: 30vh;");
+			}
+
 			@include breakpoint(smallTablet) {
-				padding-top: 20vh;  }
+				padding-top: 20vh;
+				@include buggyfill("padding-top: 20vh;");
+			}
+
 			@include breakpoint(desktop) {
+				padding-bottom: 50px !important;
 				padding-top: 25vh;
-				padding-bottom: 50px !important; }
+				@include buggyfill("padding-top: 25vh;");
+			}
+
 			// Landscape Styling for mobile
 			@media(max-width: 639px) and (orientation : landscape) {
 				display: block;
@@ -750,8 +715,10 @@ nav {
 						float: left;
 						width: 50%;
 						margin: 0 0 20vmin !important;
+						@include buggyfill("margin: 0 0 20vmin !important;");
 						a {
 							font-size: 9vmax !important;
+							@include buggyfill("font-size: 9vmax !important;");
 						}
 					}
 				}
@@ -762,84 +729,86 @@ nav {
 		position: fixed;
 		z-index: 700;
 		backface-visibility: hidden;
-		top: 50%;
-		top: 50vh; left: 0;
-		/*@include translate(0, -50%);*/
+		top: 50%; left: 0;
+		transform: translateY(-50%);
 		width: 50px;
-			ul {
-				li {
-					height: 50px;
-					width: 50px;
-					position: relative;
-					a {
-						display: block;
-						width: 100%;
-						height: 100%;
-						color: black; }
-					.navButton {
-						width: 100%;
-						height: 100%;
-						position: absolute;
-						top: 0; left: 0;
-						z-index: 520;
-						background-color: white;
-						background-image: url('../images/site-sprites.png');
-						background-repeat: no-repeat;
-						background-size: 24px auto;
-						border: 1px solid $darkgrey;
-						border-left: 0; border-bottom: 0;
-						@include transition(background-color);
+		ul {
+			li {
+				height: 50px;
+				width: 50px;
+				position: relative;
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+					color: black; }
 
-						&.project-back { background-position: 47% 86.25%; }
+				.navButton,
+				.navTitle {
+					height: 49px; }
 
-						&.project-prev { background-position: 40% 15.7%; }
+				.navButton {
+					width: 100%;
+					position: absolute;
+					top: 0; left: 0;
+					z-index: 520;
+					background-color: white;
+					background-image: url('../images/sprite-sheet.png');
+					background-repeat: no-repeat;
+					background-size: 24px auto;
+					border: 1px solid $darkgrey;
+					border-left: 0; border-bottom: 0;
+					transition: background-color $normalSpeed $primaryEase;
 
-						&.project-next {
-							background-position: 50% 23.9%;
-							border-bottom: 1px solid #040707;
-						}
-					}
+					&.project-back { background-position: 47% 86.25%; }
 
+					&.project-prev { background-position: 40% 15.7%; }
 
-
-					@include breakpoint(oversize){
-						height: 70px;
-						width: 70px;
-						.navButton { background-size: 35px auto; } }
-
-					.navTitle {
-						position: absolute;
-						margin-left: 1px;
-						top: 0px;
-						left: 100%;
-						font-size: 2em;
-						line-height: 2.75;
-						border: 1px solid $darkgrey;
-						background-color: white;
-						border-left: 0px;
-						height: 100%;
-						z-index: 500;
-						padding: 0 10px;
-						white-space: nowrap;;
-						@include translate(-100%, 0);
-						@include transition(transform); }
-
-					&:hover {
-						.navButton { 
-				            background-color: black;
-				            &.project-back { background-position: 47% 90.5%; }
-				            &.project-prev { background-position: 40% 19.75%; }
-				            &.project-next { background-position: 50% 28%; }
-				        }
-						.navTitle { @include translate(0, 0); }
+					&.project-next {
+						background-position: 50% 23.9%;
+						border-bottom: 1px solid #040707;
 					}
 				}
+
+
+
+				@include breakpoint(oversize){
+					height: 70px;
+					width: 70px;
+					.navButton { background-size: 35px auto; } }
+
+				.navTitle {
+					position: absolute;
+					margin-left: 1px;
+					top: 0px;
+					left: 100%;
+					font-size: 2em;
+					line-height: 2.75;
+					border: 1px solid $darkgrey;
+					background-color: white;
+					border-left: 0px;
+					z-index: 500;
+					padding: 0 10px;
+					white-space: nowrap;;
+					transition: transform $normalSpeed $primaryEase;
+					transform: translateX(-100%); }
+
+				&:hover {
+					.navButton { 
+			            background-color: black;
+			            &.project-back { background-position: 47% 90.5%; }
+			            &.project-prev { background-position: 40% 19.75%; }
+			            &.project-next { background-position: 50% 28%; }
+			        }
+					.navTitle { transform: translateX(0); }
+				}
 			}
+		}
 
 
 		@include breakpoint(639px, true) {
-			top: 0;
-			right: 0;
+			top: 0; right: 0;
+			transform: translateY(0);
 			left: initial;
 			width: 150px;
 			ul {
@@ -884,7 +853,7 @@ nav {
 				display: inline-block;
 				text-transform: uppercase;
 				cursor: pointer;
-				@include transition(color, .3s);
+				transition: color $fastSpeed $primaryEase;
 				&:nth-of-type(1) { &:hover, &.active { color: nth($menuButtonColors, 1); } }
 				&:nth-of-type(2) { &:hover, &.active { color: nth($menuButtonColors, 2); } }
 				&:nth-of-type(3) { &:hover, &.active { color: nth($menuButtonColors, 3); } }
@@ -910,13 +879,13 @@ nav {
 		section {
 			font-size: 1.6em; } }
 	@include breakpoint(desktop) {
-		@include translate(-25em);
+		transform: translateX(-25em);
 		/*@include translate(-25vw);*/ }
 	@include breakpoint(large) {
-		@include translate(-35em);
+		transform: translateX(-35em);
 		/*@include translate(-25vw);*/ }
 	@include breakpoint(wide) {
-		@include translate(-45em);
+		transform: translateX(-45em);
 		/*@include translate(-35vw);*/ }
 	section {
 		color: white;
@@ -946,6 +915,9 @@ nav {
 	min-height: 100vh;
 	background: black;
 	color: white;
+
+	@include buggyfill("min-height: 100vh;");
+
 	img.siteID {
 		position: relative;
 		display: block;
@@ -972,7 +944,7 @@ nav {
 		display: block;
 		float: none;
 		text-align: center;
-		@include translate(0);
+		transform: translateX(0);
 		section {
 			margin-bottom: 50px;
 			vertical-align: top;
@@ -1048,12 +1020,14 @@ nav {
 	overflow: hidden;
 	width: 100%;
 	height: 100vh;
-	min-height: 500px;
+
+	@include buggyfill("height: 100vh;");
+
 	img {
 		@extend .absoluteCenter;
 		z-index: 150;
 		opacity: 0;
-		@include transition(opacity, 1500ms);
+		transition: opacity 1500ms $primaryEase;
 		&.showing {
 			opacity: 1;
 			z-index: 200; }
@@ -1063,7 +1037,7 @@ nav {
 	h1 {
 		font-family: 'Black';
 		font-size: 2.4em;
-		line-height: 1.1em;
+		line-height: .9em;
 		color: white;
 		letter-spacing: .075em;
 		text-transform: uppercase;
@@ -1072,7 +1046,7 @@ nav {
 		z-index: 200;
 		top: 25%; left: 15px;
 		border-bottom: 5px solid white;
-		display: none; }
+	}
 	p {
 		position: absolute;
 		z-index: 200;
@@ -1092,20 +1066,20 @@ nav {
 	    bottom: 0;
 	    left: 50%;
 	    transform: translate(-50%, 0);
-	    @include transition(background-color);
+	    transition: background-color $normalSpeed $primaryEase;
 	    z-index: 300;
 	    height: 50px;
 	    width: 50px;
-	    border: 1px solid black;
+	    border: 1px solid white;
 	    border-bottom: 0;
 	    background-color: transparent;
-	    background-image: url("../images/site-sprites.png");
+	    background-image: url("../images/sprite-sheet.png");
 	    background-repeat: no-repeat;
 	    background-size: 24px auto;
-	    background-position: 50% -1.65%;
+	    background-position: 50% 2.5%;
 	    &:hover {
-	      	background-color: black;
-	      	background-position: 50% 2.5%;
+	      	background-color: white;
+	      	background-position: 50% -1.65%;
 	    }
   	}
 
@@ -1115,11 +1089,14 @@ nav {
 	}
 	@include breakpoint(smallTablet) {
 		h1 {
-			font-size: 6em;
-      		font-size: 6vw; }
+      		font-size: 4vw;
+      		@include buggyfill("font-size: 4vw");
+      	}
 		p {
-			font-size: 7.5em;
-			font-size: 10vw; } }	
+			font-size: 10vw;
+			@include buggyfill("font-size: 10vw");
+		}
+	}	
 	@include breakpoint(tablet) {
 		h1 {
 			left: 60px; }
@@ -1132,8 +1109,15 @@ nav {
 		p {
 			left: 100px;
 			top: 43%;
-			font-size: 9em;
-			font-size: 6vw; } }
+			font-size: 6vw;
+			@include buggyfill("font-size: 6vw;");
+		}
+	}	
+	@include breakpoint(superwide) {
+		h1 {
+			font-size: 7.2em; }
+		p {
+			font-size: 10.8em; } }
 }
 
 #homeBlurb {
@@ -1159,9 +1143,10 @@ nav {
 		@include clearfix;
 		.bannerWrapper {
 			position: relative;
-			height: 40em;
 			height: 40vh;
 			margin-bottom: 25px;
+			@include buggyfill("height: 40vh;");
+
 			.imgWrapper {
 				@include clearfix;
 				height: 100%;
@@ -1169,12 +1154,12 @@ nav {
 				overflow: hidden;
 				img {	
 				    @extend .absoluteCenter;
-				    height: 40em;
-				    height: 40vh;
+				    height: 100%;
 				    z-index: 2; } }
 			@include breakpoint(smallTablet) {
-				height: 50em;
 				height: 50vh;
+				@include buggyfill("height: 50vh;");
+
 				.imgWrapper {
 					img {
 						height: auto; } } }
@@ -1182,34 +1167,22 @@ nav {
 				position: absolute;
 				left: 15px; bottom: 0;
 				z-index: 5;
-				@include translate(0, 32%);
+				transform: translateY(32%);
 				p {
+					/* Cascade fallback for vw units */
+					@include breakpoint(mini){ font-size: 3.8em; }
+					@include breakpoint(mobile){ font-size: 5.5em; }
+					@include breakpoint(smallTablet){ font-size: 7.5em; }
+
 					font-family: 'Black';
 					color: black;
-					@include breakpoint(mini){
-						font-size: 3.8em; }
-					@include breakpoint(mobile){
-						font-size: 5.5em; }
-					@include breakpoint(smallTablet){
-						font-size: 7.5em; }
-					@include breakpoint(mini){
-						font-size: 12vw; }
-					font-size: 12vw;
 					line-height: 1.05em;
 					letter-spacing: .075em;
 					text-transform: uppercase;
-					&:first-of-type {
-						&::after {
-							content: "";
-							display: inline-block;
-							background: black;
-							height: .12em;
-							width: 1em;
-							margin: 0;
-							border: 0;
-							position: relative;
-							top: -.25em;
-							left: .25em; } } }
+					font-size: 12vw;
+
+					@include buggyfill("font-size: 12vw;");
+				}
 			@include breakpoint(tablet) {
 				left: 60px;
 					p {
@@ -1222,6 +1195,8 @@ nav {
 		.sectionWrapper {
 			@include clearfix;
 			padding: 50px 15px 20px;
+			max-width: 1400px;
+
 			h1 {
 				@extend .bodyTitle;
 				width: 100%;
@@ -1293,12 +1268,15 @@ nav {
 			.imgWrapper {
 				position: relative;
 				overflow: hidden;
-				height: 57em;
 				height: 57vw;
-				@include breakpoint(smallTablet) {
-					height: 50em;
-					height: 50vw; }
+				@include buggyfill("height: 57vw;");
+
 				img { @extend .absoluteCenter; }
+
+				@include breakpoint(smallTablet) {
+					height: 50vw;
+					@include buggyfill("height: 50vw;"); }
+
 				.overlay {
 					position: absolute;
 					top: 0; left: 0;
@@ -1306,7 +1284,7 @@ nav {
 					height: 100%;
 					opacity: 0;
 					z-index: 10;
-					@include transition(opacity); } }
+					transition: opacity $normalSpeed $primaryEase; } }
 			h2 {
 				float: left;
 				margin: 20px 3px 10px 0;
@@ -1316,7 +1294,6 @@ nav {
 			h3 {
 				float: left;
 				clear: both;
-				margin: 0 3px;
 				font-size: 1.4em;
 				letter-spacing: .09em;
 				font-family: 'Black';
@@ -1333,11 +1310,11 @@ nav {
 				 &:nth-of-type(2), &:nth-of-type(3) { 
 					width: 49%;
 					.imgWrapper {
-						height: 30em;
 						height: 30vw;
+						@include buggyfill("height: 30vw;");
+
 						img {
-						  min-height: 30em;
-						  min-height: 30vw;
+						  height: 100%;
 						}
 					}
 				}
@@ -1351,19 +1328,17 @@ nav {
 				&:nth-of-type(1) {
 					width: 49%;
 					.imgWrapper {
-						height: 30em;
 						height: 30vw;
+						@include buggyfill("height: 30vw;");
 						img {
-							min-height: 30em;
-							min-height: 30vw; } } }
+							height: 100%; } } }
 				&:nth-of-type(2), &:nth-of-type(3) {
 					width: 23.5%;
 					.imgWrapper {
-						height: 14em;
 						height: 14vw;
+						@include buggyfill("height: 14vw;");
 						img {
-						  min-height: 14em;
-						  min-height: 14vw;
+						  height: 100%;
 						}
 					}
 				}
@@ -1392,13 +1367,11 @@ nav {
 					}
 				}
 				.imgWrapper {
-					height: 90em;
 					height: 90vw;
+					@include buggyfill("height: 90vw;");
 					position: relative;
 					img {
-						@include transition(opacity, .25s);
-						min-height: 90em;
-						min-height: 90vw;
+						transition: opacity $fastSpeed $primaryEase;
 						height: 100%;
 						width: auto;
 						&:first-of-type { z-index: 150; }
@@ -1411,7 +1384,7 @@ nav {
 							z-index: 200;
 							border: 1px solid white;
 							border-top: 0; border-right: 0;
-							@include transition(none);
+							transition: none;
 							position: absolute;
 							top: 0; 
 							&:nth-of-type(1) { right: 0; }
@@ -1422,10 +1395,16 @@ nav {
 								width: 100%;
 								height: 100%; }
 							@include breakpoint(desktop) {
-								width: 2.25em; height: 2.25em;
 								width: 2.25vw; height: 2.25vw;
-								&:nth-of-type(2) { right: 2.25em; right: 2.25vw; }
-								&:nth-of-type(3) { right: 4.55em; right: 4.5vw; }
+								@include buggyfill("width: 2.25vw; height: 2.25vw;");
+								&:nth-of-type(2) {
+									right: 2.25vw;
+									@include buggyfill("right: 2.25vw;");
+								}
+								&:nth-of-type(3) {
+									right: 4.5vw;
+									@include buggyfill("right: 4.5vw;");
+								}
 							}
 						}
 					}
@@ -1437,11 +1416,10 @@ nav {
 				section {
 					width: 49%;
 					.imgWrapper {
-						height: 45em;
 						height: 45vw;
+						@include buggyfill("height: 45vw;");
 						img {
-							min-height: 45em;
-							min-height: 45vw; }
+							height: 100%; }
 						}
 					&:nth-of-type(1) { margin-right: 2%; }
 			        &:nth-of-type(2) { margin-right: 0; }
@@ -1461,11 +1439,10 @@ nav {
 	        	section{
 		            &:nth-of-type(1) {
 		                .imgWrapper {
-		                    height: 30em;
 		              		height: 30vw;
+		              		@include buggyfill("height: 30vw;");
 		            		img {
-			                	min-height: 30em;
-			                	min-height: 30vw;
+			                	height: 100%;
 			                }
 		                }
 		            }
@@ -1476,11 +1453,10 @@ nav {
 		            &:nth-of-type(3) {
 		          		width: 23.5%;
 		            	.imgWrapper {
-		              		height: 22.5em;
 		              		height: 22.5vw;
+		              		@include buggyfill("height: 22.5vw;");
 		              		img {
-		              		    min-height: 22.5em;
-		                		min-height: 22.5vw;
+		                		height: 100%;
 		              		}
 		            	}
 		          	}
@@ -1507,12 +1483,12 @@ nav {
 	.featuredImage {
 		position: relative;
 		width: 100%;
-		height: 500px;
 		height: 100vh;
-		min-height: 400px;
-		max-height: 1000px;
 		max-height: 100vh;
 		overflow: hidden;
+
+		@include buggyfill("height: 100vh; max-height: 100vh;");
+
 		img { @extend .absoluteCenter; } }
 	.projectContent {
 		font-size: 1.6em;
@@ -1596,12 +1572,16 @@ nav {
 
 	&.caseStudy {
 		.featuredImage {
-				height: 35em;
-				height: 40vw;
-				min-height: initial;
-				max-height: initial;
-				@include breakpoint(smallTablet){
-					height: 35vw; } }
+			min-height: initial;
+			max-height: initial;
+			height: 40vw;
+			@include buggyfill("height: 40vw;");
+
+			@include breakpoint(smallTablet){
+				height: 35vw;
+				@include buggyfill("height: 35vw;");
+			}
+		}
 		.projectContent {
 			margin: 50px 0;
 			.projectDetails {
@@ -1655,11 +1635,12 @@ nav {
 				margin-left: 100px; }
 			.imageBox {
 				width: 100%;
-				height: 40em;
 				height: 40vw;
 				display: inline-block;
 				position: relative;
 				overflow: hidden;
+				@include buggyfill("height: 40vw;");
+
 				&.halfImage {
 					width: 100%;
 					@include breakpoint(smallTablet) {
@@ -1718,15 +1699,16 @@ nav {
 #readAbout {
 	@extend .flexBox4;
 	section {
-		height: 40em;
 		height: 40vw;
 		background-color: $grey;
+		@include buggyfill("height: 40vw;");
 		a {
 			color: black;
 			display: inline-block;
 			padding: 30px;
 		}
 	    p {
+	    	/* autoprefixer: off */
 			display: block;
 			/* non-webkit fallback */
 			display: -webkit-box;
@@ -1740,12 +1722,12 @@ nav {
 			line-height: 1.1;
 	    }
 	    @include breakpoint(smallTablet) {
-	     	height: 18em;
 	      	height: 18vw;
+	      	@include buggyfill("height: 18vw;");
 	    }
 	    @include breakpoint(desktop) {
-	      	height: 14em;
 	      	height: 14vw;
+	      	@include buggyfill("height: 14vw;");
 	    }
 	}
 }
@@ -1761,18 +1743,20 @@ nav {
 		}
 		.imgWrapper {
 			width: 100%;
-			height: 40em;
 			height: 40vw;
 			position: relative;
 			overflow: hidden;
+			@include buggyfill("height: 40vw;");
+
 			img { @extend .absoluteCenter; }
+
 			@include breakpoint(smallTablet) {
-	        	height: 18em;
 	        	height: 18vw;
+	        	@include buggyfill("height: 18vw;");
 	      	}
 	      	@include breakpoint(desktop) {
-	        	height: 14em;
 	        	height: 14vw;
+	        	@include buggyfill("height: 14vw;");
 	      	}
 	    }
 		.contentWrapper {
@@ -1795,15 +1779,15 @@ nav {
 		background-color: $tumblrgrey;
 		margin-top: -47px;
 		padding-bottom: 47px;
-		height: 100%;
 		height: 100vh;
+		@include buggyfill("height: 100vh;");
 		embed {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 100%;
-			height: 100vh; } }
+			height: 100vh;
+			@include buggyfill("height: 100vh;"); } }
 	&.pageLoading {
 		display: none;
 	}
@@ -1888,11 +1872,13 @@ html {
 
 @include keyframes(bounce-prompt) {
 	0% {
-		@include translate(50%, -100vh);
+		transform: translate(50%, -100vh);
 		opacity: 0;
+
+		@include buggyfill("transform: translate(50%, -100vh);");
 	}
 	100% {
-	  	@include translate(50%, 0);
+	  	transform: translate(50%, 0);
 	  	opacity: 1;
 	}
 }

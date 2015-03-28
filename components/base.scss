@@ -18,6 +18,16 @@ $lightblue : #5ad3cf;
 $menuButtonColors: $blue, $yellow, $pink, $green;
 
 /*************************************************/
+/* Speeds
+/*************************************************/
+
+$slowSpeed: .7s;
+$normalSpeed: .5s;
+$fastSpeed: .3s;
+
+$primaryEase: ease-out;
+
+/*************************************************/
 /* Mixins
 /*************************************************/
 
@@ -46,75 +56,64 @@ $menuButtonColors: $blue, $yellow, $pink, $green;
 }
 
 @mixin transition($type, $duration : .5s, $easing : ease-out) {
-    -webkit-transition: $type $duration $easing;
-    -moz-transition: $type $duration $easing;
-    -ms-transition: $type $duration $easing;
-    -o-transition: $type $duration $easing;
     transition: $type $duration $easing;
 }
 
 @mixin translate($x: 0, $y: 0) {
-	-webkit-transform: translate($x, $y);
-	-moz-transform: translate($x, $y);
-	-ms-transform: translate($x, $y);
-	-o-transform: translate($x, $y);
 	transform: translate($x, $y);
 }
 
 @mixin transform($action, $origin) {
-  -webkit-transform: $action;
-  -webkit-transform-origin: $origin;
-  -moz-transform: $action;
-  -moz-transform-origin: $origin;
-  -o-transform: $action;
-  -o-transform-origin: $origin;
   transform: $action;
   transform-origin: $origin;
 }
 
-@mixin animateTranslate($duration: .5s, $easing : ease-out) {
-  -webkit-transition: -webkit-translate $duration $easing;
-  -moz-transition: -moz-translate $duration $easing;
-  -ms-transition: -ms-translate $duration $easing;
-  -o-transition: -o-translate $duration $easing;
-  transition: translate $duration $easing;
-}
-
-@mixin animate($animations) {
-	-webkit-animation: $animations;
-	-moz-animation: $animations;
-	-ms-animation: $animations;
-	-o-animation: $animations;
-	animation: $animations;
-}
-
-@mixin borderRadius($int : 0) {
-  -webkit-border-radius: $int;
-  -moz-border-radius: $int;
-  -o-border-radius: $int;
-  border-radius: $int;
-}
-
-@mixin keyframes($name) {
-	@-webkit-keyframes #{$name} { @content; }
-	@-moz-keyframes #{$name} { @content; }
-	@-ms-keyframes #{$name} { @content; }
-	@-o-keyframes #{$name} { @content; }
-	@keyframes #{$name} { @content; }
-}
-
 @mixin columns($count : 0, $gap : 0px, $rule : 0) {
-  -webkit-column-count: $count;
-  -moz-column-count: $count;
   column-count: $count;
-
-  -webkit-column-gap: $gap;
-  -moz-column-gap: $gap;
   column-gap: $gap;
-
-  -webkit-column-rule: $rule;
-  -moz-column-rule: $rule;
   column-rule: $rule;
 }
 
+@mixin buggyfill($values) {
+  content: 'viewport-units-buggyfill; ' + $values;
+}
+
 /*************************************************/
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes beacon {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loader-background {
+  0%   { background: rgba(nth($menuButtonColors, 1), .3); }
+  25%   { background: rgba(nth($menuButtonColors, 2), .3); }
+  50%   { background: rgba(nth($menuButtonColors, 3), .3); }
+  75%   { background: rgba(nth($menuButtonColors, 4), .3); }
+  100%   { background: rgba(nth($menuButtonColors, 1), .3); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  5% { transform: translateX(100%); }
+
+  95% { transform: translateX(-100%); }
+  100% { transform: translateX(-100%); }
+
+}

@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" ng-app="app">
 <head>
-    <!-- *** Google Chrome mis-autotranslate fix *** -->
+    <base href="/" > <!-- Allows for Angular deep-linking -->
     <meta charset="UTF-8" />
     <meta name="google" content="notranslate">
     <meta http-equiv="Content-Language" content="en_US">
-    <!-- ******************************************* -->
-    <base href="/" > <!-- Allows for Angular deep-linking -->
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <title>Zago | Under Construction</title>
     <link rel="icon" type="image/png" href="images/favicon.ico">
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/lib/polyfills.min.js"></script> <!-- shims for legacy browsers -->
-    <script src="js/lib/modernizr.js"></script> <!-- Library to test and detect browser compatability -->
-    <script src="js/lib/mobile-detect.min.js"></script> <!-- library to detect whether "true" mobile/touch device -->
-    <script src="js/lib/mobile-detect-modernizr.js"></script> <!-- modernizr & mobile-detect integration -->
-    <script src="js/lib/ios-orientationchange-fix.js"></script> <!-- Fix zooming issues with older iOS devices -->
-    <script src="js/lib/overthrow.min.js"></script> <!-- Mobile touch scrolling plugin -->
-    <script src="js/lib/jquery-1.8.3.min.js"></script>
-    <!-- Angular Core/Modules Files -->
-    <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/angular-ui-router.min.js"></script>
-    <script src="js/lib/angular-sanitize.min.js"></script>
-    <script src="js/lib/angular-scroll.min.js"></script> 
-    <!-- Application Files -->
-    <script src="js/app/enhance.js"></script> <!-- Custom javaScript prototype functions -->
-    <script src="js/app/modernizr-script.js"></script> <!-- Custom modernizr code logic -->
-    <script src="js/app/main.js"></script> <!-- Angular Application -->
-    <script src="js/app/templates.js"></script> <!-- Template caching -->
+    <!-- ******************************************* -->
+    <title>Zago | Under Construction</title>
+    <!-- ******************************************* -->
+    <!-- css files -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- /css files -->
+    <!-- ******************************************* -->
+    <!-- required files -->
+    <script type="text/javascript" src="js/lib/polyfills.js"></script>
+    <script type="text/javascript" src="js/lib/modernizr.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/angular.js"></script>
+    <script type="text/javascript" src="js/lib/start_scripts.js"></script>
+    <!-- /required files -->
+    <!-- ******************************************* -->
+    <!-- application files -->
+    <script type="text/javascript" src="js/app/main.js"></script>
+    <!-- /application files -->
+    <!-- ******************************************* -->
+
 </head>
 
-<body id="body" ng-controller="AppCtrl">
-    <!-- @BUG {pageLoading:isLoading || isRouting} controls the page view sliding offscreen to the right -->
-    <!-- It works, but its very buggy. Basically CSS animates the page in/out based on Angular value -->
+<body id="body" ng-controller="AppCtrl" ng-keyup="keyRelease($event)">
     <div id="container">
 
-        <img id="siteID" class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png" ng-click="route('home', true)">
+        <a ui-sref="home"><img id="siteID" class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png"></a>
 
         <nav id="mainNav" class="overthrow">
             <div id="menuWrapper">
                 <div id="menu">
                     <ul>
-                        <li> <a ng-click="route('home')" title="Home">Zago</a> </li>
-                        <li> <a ng-click="route('projects')" title="Zago Projects">Projects</a> </li>
-                        <li> <a ng-click="route('team')" title="Meet Z Team">Team</a> </li>
+                        <li> <a ui-sref="home" href="" ng-class="{active: currentState == 'home'}" title="Home">Zago</a> </li>
+                        <li> <a ui-sref="projects" href="" ng-class="{active: currentState == 'projects'}" title="Zago Projects">Projects</a> </li>
+                        <li> <a ui-sref="team" href="" ng-class="{active: currentState == 'team'}" title="Meet Z Team">Team</a> </li>
                         <li> <a href="http://zagolovesyou.tumblr.com/" ng-click="toggleMenu(true)" target="_blank" title="Blog Love">Love</a> </li>
                     </ul>
                 </div>
@@ -52,8 +49,7 @@
         </nav>
 
         <div class="buttonWrapper">
-            <p id="menuPrompt">Click for<br>Menu</p>
-            <button id="menuButton" type="button" ng-click="toggleMenu()"></button>
+            <button id="menuButton" type="button" ng-click="toggleMenu()"><span id="menuPrompt">Click for Menu</span></button>
         </div>
 
         <button id="scrollTop" type="button" ng-click="scrollTop()"></button>
@@ -87,29 +83,13 @@
 
 
         </footer>
-
-        <!-- <div id="splash" class="overthrow" ng-if="showSplash">
-            <img class="siteID" alt="Zago LLC Logo" src="images/zago_logo.png">
-            <h1>Zago</h1>
-            <div class="menuContacts splashpage" office-list></div>
-            <button type="button" ng-click="hideSplash()">Full Site</button> 
-        </div> -->
-<!-- 
-        <div id="cssTest">
-            <p class="cssvwunit">No vw units</p>
-
-            <p class="mobilegradea">No mobile grade a</p>
-
-            <p class="overthrow-enabled">No overthrow-enabled</p>
-            <p class="cssvhunit">No vh units</p>
-            <p class="localstorage">No localStorage</p>
-        </div>
- -->
     </div>
 
-    <!-- <script src="http://localhost:35729/livereload.js"></script> -->
-    <!-- redirect to legacy browser unsupported message -->
-    <!--[if lt IE 9]> <script type="text/javascript" src="js/unsupported.js"></script> <![endif]-->
-
+    
+    <!-- ******************************************* -->
+    <!-- closing files -->
+    <script type="text/javascript" src="js/lib/end_scripts.js"></script>
+    <!-- /closing files -->
+    <!-- ******************************************* -->
 </body>
 </html>

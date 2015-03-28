@@ -39,12 +39,18 @@
 							ma_btn: social.account.toLowerCase() == 'mail'
 						}"
 					>
-						<a href="{{social.url}}"></a>
+						<a href="{{social.url}}" target="_blank"></a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="projectBody" ng-class="{singleColumn: project.body.length < 1500}" ng-bind-html="project.body" ng-if="project.content.case_study"></div>
+		<div 
+			ng-if="project.content.case_study"
+			class="projectBody"
+			ng-class="{singleColumn: project.body.length < 1500}"
+			ng-bind-html="project.body"
+			new-window-links >
+		</div>
 	</div>
 </div>
 

@@ -3,17 +3,20 @@ AddHandler application/x-httpd-php54 .php
 
 Header set Access-Control-Allow-Origin "*"
 
-Options +FollowSymLinks
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 
 RewriteEngine On
 
+# Angular Redirects
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !index
 RewriteRule (.*) index.html [L]
 
+
+# WWW Removal
 RewriteBase /
-# RewriteCond %{HTTP_HOST} !^new.zagollc.com$ [NC]
-# RewriteRule ^(.*)$ new.zagollc.com/$1 [L,R=301]
-RewriteCond %{HTTP_HOST} !^localhost:8888$ [NC]
-RewriteRule ^(.*)$ localhost:8888/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]

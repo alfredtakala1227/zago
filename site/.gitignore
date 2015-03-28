@@ -1,0 +1,52 @@
+### [IMPORTANT] Server files for GIT to ignore [IMPORTANT] ###
+
+
+
+# Server Files ###
+
+error_log
+
+.DS_Store
+
+*.shtml
+
+*.php
+
+crossdomain.xml
+
+default.html
+
+favicon.ico
+
+php.ini
+
+
+
+# Server Directories ###
+
+archive/
+
+cgi-bin/
+
+deploy/
+
+develop/
+
+discesismo/
+
+logos/
+
+packard/
+
+zago_admin/
+
+
+
+# Live Site Override ###
+
+!css/**/*
+!fonts/**/*
+!images/**/*
+!js/**/*
+!partials/**/*
+!pieces/**/*

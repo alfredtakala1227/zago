@@ -1,8 +1,8 @@
-<section data-id="{{section.id}}">
+<section data-id="{{sections[$index].id}}">
     <div class="imgWrapper">
-        <img ng-src="{{section.featured_image.url}}">
+        <img ng-src="{{sections[$index].featured_image.url}}">
         <div class="overlay"></div>
     </div>
-    <h2>{{section.title}}</h2>
-    <h3>{{section.client}}</h3>
+    <h2>{{sections[$index].title}}</h2>
+    <h3>{{sections[$index].client}}</h3>
 </section>
