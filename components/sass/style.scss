@@ -749,6 +749,9 @@ footer {
   &.menu-open {
     overflow: hidden;
   }
+  &.pageLoading {
+    display: none;
+  }
 }
 
 .loaderWrapper {
@@ -2380,34 +2383,6 @@ nav {
 /* Support Styles
 /*************************************************/
 
-#pageContent {
-  &.lovePage {
-    overflow: visible;
-
-    height: 100vh;
-    margin-top: -47px;
-    padding-bottom: 47px;
-
-    background-color: $tumblrgrey;
-
-    @include buggyfill("height: 100vh;");
-    embed {
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 100vh;
-
-      @include buggyfill("height: 100vh;");
-    }
-  }
-  &.pageLoading {
-    display: none;
-  }
-}
-
-
 #legacy-notice {
   font-family: "Roman", "Black", sans-serif;
   font-size: 18px;
@@ -2455,17 +2430,27 @@ nav {
   }
 }
 
-@keyframes bounce-prompt {
+@keyframes spinner {
   0% {
-    transform: translate(50%, -100vh);
-
-    opacity: 0;
-
-    @include buggyfill("transform: translate(50%, -100vh);");
+    transform: rotate(0deg);
   }
   100% {
-    transform: translate(50%, 0);
+    transform: rotate(360deg);
+  }
+}
 
-    opacity: 1;
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  5% {
+    transform: translateX(100%);
+  }
+
+  95% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
