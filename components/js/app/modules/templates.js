@@ -71,11 +71,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('partials/loading.html',
-    "<div id=loader><h1>Loading</h1></div>"
-  );
-
-
   $templateCache.put('partials/love.html',
     "<embed src=\"http://zagolovesyou.tumblr.com/\" frameborder=0>"
   );
