@@ -413,7 +413,7 @@ button#scrollTop.show {
   max-width: 50px;
   max-height: 50px;
 }
-button#scrollTop:hover {
+button#scrollTop.hover {
   background-color: black;
   background-position: 50% 11%;
 }

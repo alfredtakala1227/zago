@@ -630,7 +630,7 @@ button {
 		&.show {
 			max-height: 50px;
 			max-width: 50px; }
-		&:hover {
+		&.hover {
 			background-color: $grey; } }
 }
 

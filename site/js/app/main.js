@@ -447,7 +447,11 @@ app.factory("Functions", function($q, $http, $rootScope, $templateCache, $state,
             }
         },
         scrollTop: function() {
+            $('#scrollTop').addClass('hover');
             $document.scrollTo(0, 0, 500);
+            setTimeout(function() {
+                $('#scrollTop').removeClass('hover');
+            }, 550);
         },
         throttle: function(fn, threshhold, scope) {
             threshhold || (threshhold = 250);
