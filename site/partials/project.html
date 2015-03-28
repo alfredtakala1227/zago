@@ -77,14 +77,16 @@
 
 <div id="relatedProjects" ng-if="project.content.case_study && project.content.related_projects.length">
 	<h3>Related Projects</h3>
-	<section ng-repeat="related in project.content.related_projects" ng-click="viewProject(related.id)">
-		<div class="imgWrapper" image-loader>
-			<img ng-src="{{related.image.url}}" alt="{{related.image.alt}}" ng-class="{isPortrait: related.image.isPortrait}" precision-image="{{related.image.position}}" aspect-ratio="{{related.image.aspectRatio}}">
-		</div>
-		<div class="contentWrapper">
-			<p>{{related.title}}</p>
-			<h4>{{related.client}}</h4>
-		</div>
+	<section ng-repeat="related in project.content.related_projects">
+		<a ui-sref="project({project: related.slug})">
+			<div class="imgWrapper" image-loader>
+				<img ng-src="{{related.image.url}}" alt="{{related.image.alt}}" ng-class="{isPortrait: related.image.isPortrait}" precision-image="{{related.image.position}}" aspect-ratio="{{related.image.aspectRatio}}">
+			</div>
+			<div class="contentWrapper">
+				<p>{{related.title}}</p>
+				<h4>{{related.client}}</h4>
+			</div>
+		</a>
 	</section>
 </div>
 

@@ -1637,6 +1637,9 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
           transition: opacity 0.5s ease-out;
   opacity: 0;
 }
+.gridWrapper .grid section a {
+  color: black;
+}
 .gridWrapper .grid section h2 {
   font-size: 2.2em;
   font-weight: 300;
@@ -2135,7 +2138,13 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 #relatedProjects section .imgWrapper,
 #relatedProjects section .contentWrapper {
   float: left;
+  color: black;
   vertical-align: top;
+  margin-left: 15px;
+}
+#relatedProjects section .imgWrapper p,
+#relatedProjects section .contentWrapper p {
+  margin-top: 20px;
 }
 #relatedProjects section .imgWrapper {
   position: relative;
@@ -2155,12 +2164,6 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 14vw;
     content: "viewport-units-buggyfill; height: 14vw;";
   }
-}
-#relatedProjects section .contentWrapper {
-  margin-left: 15px;
-}
-#relatedProjects section .contentWrapper p {
-  margin-top: 20px;
 }
 @media (min-width: 640px) {
   #relatedProjects section {
