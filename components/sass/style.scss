@@ -475,57 +475,6 @@ footer {
 		}
 	}
 }
-
-.beaconWrapper {
-	position: relative;
-	height: 100%;
-	width: 100%;
-	.beacon {
-		width: 150px;
-		height: 150px;
-		line-height: 150px;
-		@extend .absoluteCenter;
-		min-width: initial;
-		min-height: initial;
-		&:before, &:after {
-			opacity: 0;
-			box-sizing: border-box;
-			content: "\0020";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			@include border-radius(100%);
-			border: 5px solid #fff;
-			box-shadow: 0 0 50px #fff, inset 0 0 50px #fff; }
-		&:after {
-			z-index: 1;
-			animation: beacon 2s infinite 1s; }
-		&:before {
-			z-index: 2;
-			animation: beacon 2s infinite; }
-		/*.percentComplete {
-			min-width: 0%;
-			min-height: 0%;
-			@extend .absoluteCenter;
-			@include border-radius(100%);
-			@include transition(all);
-			-webkit-animation: loader-background 8s infinite;
-			-moz-animation: loader-background 8s infinite;
-			-o-animation: loader-background 8s infinite;
-			animation: loader-background 8s infinite; }
-		p {
-			width: 100%;
-			height: 100%;
-			text-align: center;
-			font-size: 2em;
-			color: white;
-			@extend .absoluteCenter;
-			top: -9992px;
-			left: -9996px; }*/
-	}
-}
 	
 
 /*************************************************/
@@ -1624,7 +1573,7 @@ nav {
 			position: absolute;
 			left: 0; top: 0;
 			padding-right: 20px;
-			@include transform(rotate(270deg) translate(-100%, 0), 0 0);
+			transform-origin: 0 0;
 
 			@include breakpoint(smallTablet) { display: block; } }
 		.imageWrapper {
@@ -1861,7 +1810,7 @@ html {
 /*************************************************/
 
 
-@include keyframes(menu-button) {
+@keyframes menu-button {
 	0%   { background-color: nth($menuButtonColors, 1); }
 	25%   { background-color: nth($menuButtonColors, 2); }
 	50%   { background-color: nth($menuButtonColors, 3); }
@@ -1869,7 +1818,7 @@ html {
 	100%   { background-color: nth($menuButtonColors, 1); }
 }
 
-@include keyframes(bounce-prompt) {
+@keyframes bounce-prompt {
 	0% {
 		transform: translate(50%, -100vh);
 		opacity: 0;
