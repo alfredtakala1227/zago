@@ -1093,8 +1093,8 @@ nav {
       		@include buggyfill("font-size: 4vw");
       	}
 		p {
-			font-size: 10vw;
-			@include buggyfill("font-size: 10vw");
+			font-size: 6vw;
+			@include buggyfill("font-size: 6vw");
 		}
 	}	
 	@include breakpoint(tablet) {
@@ -1105,12 +1105,11 @@ nav {
 	@include breakpoint(desktop) {
 		h1 {
 			left: 100px;
-			top: 20%; }
+			top: 20%;
+		}
 		p {
 			left: 100px;
 			top: 43%;
-			font-size: 6vw;
-			@include buggyfill("font-size: 6vw;");
 		}
 	}	
 	@include breakpoint(superwide) {

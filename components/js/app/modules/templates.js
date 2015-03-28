@@ -17,7 +17,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('pieces/loader.html',
-    "<div class=loaderBox><div class=loader></div></div>"
+    "<div class=loaderWrapper><div class=loaderBox><div class=loader></div></div></div>"
   );
 
 

@@ -1252,7 +1252,7 @@ app.directive('imageLoader', function(){
     };
 
     return {
-        restrict: 'A',
+        restrict: 'AE',
         link: linker
     }
 });
