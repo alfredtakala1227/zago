@@ -1,27 +1,29 @@
 @import "compass";
 @import "compass/reset";
-@import '../base.scss';
+@import "../base.scss";
 
 @font-face {
-  font-family: 'Black';
-  src: url('../fonts/black/NewsGothicLTStd-Black.eot');
-  src: url('../fonts/black/NewsGothicLTStd-Black.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/black/NewsGothicLTStd-Black.woff') format('woff'),
-  url('../fonts/black/NewsGothicLTStd-Black.ttf') format('truetype'),
-  url('../fonts/black/NewsGothicLTStd-Black.svg#black') format('svg');
+  font-family: "Black";
   font-weight: normal;
   font-style: normal;
+
+  src: url("../fonts/black/NewsGothicLTStd-Black.eot");
+  src: url("../fonts/black/NewsGothicLTStd-Black.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/black/NewsGothicLTStd-Black.woff") format("woff"),
+  url("../fonts/black/NewsGothicLTStd-Black.ttf") format("truetype"),
+  url("../fonts/black/NewsGothicLTStd-Black.svg#black") format("svg");
 }
 
 @font-face {
-  font-family: 'Roman';
-  src: url('../fonts/roman/NewsGothicLTStd-Roman.eot');
-  src: url('../fonts/roman/NewsGothicLTStd-Roman.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/roman/NewsGothicLTStd-Roman.woff') format('woff'),
-  url('../fonts/roman/NewsGothicLTStd-Roman.ttf') format('truetype'),
-  url('../fonts/roman/NewsGothicLTStd-Roman.svg#roman') format('svg');
+  font-family: "Roman";
   font-weight: normal;
   font-style: normal;
+
+  src: url("../fonts/roman/NewsGothicLTStd-Roman.eot");
+  src: url("../fonts/roman/NewsGothicLTStd-Roman.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/roman/NewsGothicLTStd-Roman.woff") format("woff"),
+  url("../fonts/roman/NewsGothicLTStd-Roman.ttf") format("truetype"),
+  url("../fonts/roman/NewsGothicLTStd-Roman.svg#roman") format("svg");
 }
 
 /*************************************************/
@@ -29,379 +31,686 @@
 /*************************************************/
 
 .overthrow-enabled .overthrow {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+  overflow: auto;
+
+  -webkit-overflow-scrolling: touch;
 }
 
-.contain{
-	padding: 0 0 0 100px;
-	@include breakpoint(tablet){ width: 668px; }
-	@include breakpoint(desktop){ width: 860px; }
-	@include breakpoint(large){ padding: 0 0 0 200px; width: 800px; }
-	@include breakpoint(superwide){ width: 1000px; }
+%headerText {
+  font-size: 3em;
+  line-height: 1.3;
 
+  letter-spacing: .02em;
+
+  @include breakpoint(desktop) {
+    font-size: 3.6em;
+  }
 }
 
-.headerTitle {
+%bodyTitle {
+  font-size: 2.6em;
+  line-height: 1.4em;
 
+  letter-spacing: .075em;
+
+  @include breakpoint(desktop) {
+    font-size: 3em;
+  }
 }
 
-.headerText {
-	font-size: 3em;
-	line-height: 1.3;
-	letter-spacing: .02em;
-	@include breakpoint(desktop) {
-		font-size: 3.6em; }
+%bodyText {
+  font-size: 1.6em;
+  line-height: 1.5em;
+
+  letter-spacing: .04em;
 }
 
-.bodyTitle {
-	font-size: 2.6em;
-	line-height: 1.4em;
-	letter-spacing: .075em;
-	@include breakpoint(desktop) {
-		font-size: 3em; }
+%absoluteCenter {
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: auto;
+  &.top {
+    top: 0;
+    bottom: initial;
+  }
+  &.bottom {
+    top: initial;
+    bottom: 0;
+  }
+  &.left {
+    right: initial;
+    left: 0;
+  }
+  &.right {
+    right: 0;
+    left: initial;
+  }
+  &.stretch {
+    width: 100%;
+    height: auto;
+  }
 }
 
-.bodyText {
-	font-size: 1.6em;
-	line-height: 1.5em;
-	letter-spacing: .04em;
+%flexBox4 {
+  margin-bottom: 50px;
+  margin-left: 15px;
+
+  @include clearfix;
+  @include breakpoint(smallTablet) {
+    margin-left: 100px;
+  }
+  @include breakpoint(smallTablet) {
+    section {
+      display: inline-block;
+      float: left;
+
+      width: 32%;
+      margin-right: 2%;
+      margin-bottom: 0;
+      &:nth-of-type(3) {
+        margin-right: 0;
+      }
+    }
+  }
+  @include breakpoint(desktop) {
+    section {
+      width: 23.5%;
+      margin-right: 2%;
+      &:nth-of-type(3) {
+        margin-right: 2%;
+      }
+      &:nth-of-type(4) {
+        display: inline-block;
+
+        margin-right: 0;
+      }
+    }
+  }
+  h3 {
+    font-family: "Black";
+    font-size: 2em;
+
+    margin-bottom: 40px;
+
+    letter-spacing: .075em;
+  }
+  section {
+    display: block;
+
+    margin-right: 0;
+    margin-bottom: 40px;
+
+    cursor: pointer;
+
+    color: black;
+    &:nth-of-type(4) {
+      display: none;
+    }
+    p {
+      font-size: 2.4em;
+
+      text-transform: capitalize;
+    }
+    h4 {
+      font-family: "Black";
+      font-size: 1.6em;
+
+      margin-top: 10px;
+
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+  }
 }
 
-.absoluteCenter {
-	position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
-    height: 100%;
-    &.top {
-    	top: 0;
-	    bottom: initial; }
-    &.bottom {
-    	bottom: 0;
-	    top: initial; }
-    &.left {
-    	left: 0;
-    	right: initial; }
-    &.right {
-    	right: 0;
-    	left: initial; }
-    &.stretch {
-    	width: 100%;
-    	height: auto; }
+// Inline style combo
+.color {
+  &.blue {
+    color: $blue;
+  }
+  &.green {
+    color: $green;
+  }
+  &.yellow {
+    color: $yellow;
+  }
+  &.pink {
+    color: $pink;
+  }
+  &.red {
+    color: $red;
+  }
 }
 
 /*************************************************/
 /* Element & Reset Styles
 /*************************************************/
 
-b, strong {
-	font-family: 'Black';
+b,
+strong {
+  font-family: "Black";
 }
 
 u {
-	text-decoration: underline;
-	&.z {
-		letter-spacing: 0;
-		padding-right: .075em;
-		} }
+  text-decoration: underline;
+  &.z {
+    padding-right: .075em;
+
+    letter-spacing: 0;
+  }
+}
 
 a {
-	cursor: pointer;
-	color: white;
-	text-decoration: none;
-	transition: all $fastSpeed $primaryEase;
+  cursor: pointer;
+  transition: all $fastSpeed $primaryEase;
+  text-decoration: none;
 
-	.projectContent & {
-		color: black;
-		display: inline-block;
-		line-height: .75;
-		border-bottom: 1px solid black;
-		&:hover { border-bottom-color: white; } }
+  color: white;
+  .projectContent & {
+    line-height: .75;
 
-	&:hover { color: $blue; }
+    display: inline-block;
+
+    color: black;
+    border-bottom: 1px solid black;
+    &:hover {
+      border-bottom-color: white;
+    }
+  }
+  &:hover {
+    color: $blue;
+  }
 }
 
 ul {
-	&.socialButtons {
-		border: 1px solid $darkgrey;
-		li {
-			cursor: pointer;
-			float: left;
-			width: 30px;
-			height: 30px;
-			background-color: white;
-			/*background-image: url('../images/social_sprites.png');*/
-      		background-image: url("../images/sprite-sheet.png");
-			background-repeat: no-repeat;
-			background-size: 50% auto;
+  &.socialButtons {
+    border: 1px solid $darkgrey;
+    li {
+      float: left;
 
-			border-right: 1px solid $darkgrey;
-			transition: background-color $fastSpeed $primaryEase;
-			&:last-of-type { border-right: 0; }
+      width: 30px;
+      height: 30px;
 
-			a {
-				display: inline-block;
-				width: 100%;
-				height: 100%; }
+      cursor: pointer;
+      transition: background-color $fastSpeed $primaryEase;
 
-			&:hover {
-				background-color: black;
-				a { border-color: transparent; } }
+      border-right: 1px solid $darkgrey;
+      background-color: white;
+      /*background-image: url('../images/social_sprites.png');*/
+      background-image: url("../images/sprite-sheet.png");
+      background-repeat: no-repeat;
+      background-size: 50% auto;
+      &:last-of-type {
+        border-right: 0;
+      }
+      a {
+        display: inline-block;
 
-			&.invert { background-color: transparent;
-				&.invertHover:hover { background-color: white; } }
-
-			&.fb_btn, &.fb_btn.invert:hover { background-position: 50% 36.35%; }
-			&.fb_btn:hover, &.fb_btn.invert { background-position: 50% 40.5%; }
-
-			&.tw_btn, &.tw_btn.invert:hover { background-position: 50% 44.35%; }
-			&.tw_btn:hover, &.tw_btn.invert { background-position: 50% 48.5%; }
-
-			&.li_btn, &.li_btn.invert:hover { background-position: 50% 53%; }
-			&.li_btn:hover, &.li_btn.invert { background-position: 50% 57.25%; }
-
-			&.pi_btn, &.pi_btn.invert:hover { background-position: 50% 69.5%; }
-			&.pi_btn:hover, &.pi_btn.invert { background-position: 50% 73.7%; }
-
-			&.be_btn, &.be_btn.invert:hover { background-position: 50% 60.85%; }
-			&.be_btn:hover, &.be_btn.invert { background-position: 50% 65.1%; }
-
-			&.ma_btn, &.ma_btn.invert:hover { background-position: 50% 77.5%; }
-			&.ma_btn:hover, &.ma_btn.invert { background-position: 50% 81.65%; }
-
-			&.tr_btn, &.tr_btn.invert:hover { background-position: 50% 94.4%; }
-			&.tr_btn:hover, &.tr_btn.invert { background-position: 50% 98.5%; }
-
-		}
-	}
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        background-color: black;
+        a {
+          border-color: transparent;
+        }
+      }
+      &.invert {
+        background-color: transparent;
+        &.invertHover:hover {
+          background-color: white;
+        }
+      }
+      &.fb_btn,
+      &.fb_btn.invert:hover {
+        background-position: 50% 36.35%;
+      }
+      &.fb_btn:hover,
+      &.fb_btn.invert {
+        background-position: 50% 40.5%;
+      }
+      &.tw_btn,
+      &.tw_btn.invert:hover {
+        background-position: 50% 44.35%;
+      }
+      &.tw_btn:hover,
+      &.tw_btn.invert {
+        background-position: 50% 48.5%;
+      }
+      &.li_btn,
+      &.li_btn.invert:hover {
+        background-position: 50% 53%;
+      }
+      &.li_btn:hover,
+      &.li_btn.invert {
+        background-position: 50% 57.25%;
+      }
+      &.pi_btn,
+      &.pi_btn.invert:hover {
+        background-position: 50% 69.5%;
+      }
+      &.pi_btn:hover,
+      &.pi_btn.invert {
+        background-position: 50% 73.7%;
+      }
+      &.be_btn,
+      &.be_btn.invert:hover {
+        background-position: 50% 60.85%;
+      }
+      &.be_btn:hover,
+      &.be_btn.invert {
+        background-position: 50% 65.1%;
+      }
+      &.ma_btn,
+      &.ma_btn.invert:hover {
+        background-position: 50% 77.5%;
+      }
+      &.ma_btn:hover,
+      &.ma_btn.invert {
+        background-position: 50% 81.65%;
+      }
+      &.tr_btn,
+      &.tr_btn.invert:hover {
+        background-position: 50% 94.4%;
+      }
+      &.tr_btn:hover,
+      &.tr_btn.invert {
+        background-position: 50% 98.5%;
+      }
+    }
+  }
 }
 
 button {
-	cursor: pointer;
-	&:focus {
-		border: 0;
-		outline: 0;
-	}
+  cursor: pointer;
+  &#menuButton {
+    overflow: hidden;
+
+    width: 100%;
+    height: 6vh;
+    min-height: 30px;
+    max-height: 9vw;
+    padding: 0;
+
+    transition: opacity $normalSpeed $primaryEase;
+    animation: menu-button 8s infinite;
+
+    opacity: .5;
+    border: 0;
+
+    @include buggyfill("height: 6vh; max-height: 9vw;");
+    span#menuPrompt {
+      display: none;
+
+      width: 100%;
+
+      transition: opacity $slowSpeed $primaryEase;
+
+      color: white;
+      &.marquee {
+        display: block;
+
+        animation: marquee 7.5s infinite;
+      }
+      &.hiding {
+        opacity: 0;
+      }
+    }
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      /*button click styling*/
+    }
+    &.menu-open {
+      animation: none;
+
+      background-color: white;
+    }
+  }
+  &#scrollTop {
+    position: fixed;
+    z-index: 500;
+    right: 0;
+    bottom: 0;
+
+    width: 50px;
+    max-width: 0;
+    height: 50px;
+    max-height: 0;
+    padding: 0;
+
+    transition: background-color $normalSpeed $primaryEase;
+
+    border: 1px inset black;
+    border-right: 0;
+    border-bottom: 0;
+    background-color: transparent;
+    background-image: url("../images/sprite-sheet.png");
+    background-repeat: no-repeat;
+    background-position: 50% 6.8%;
+    background-size: 24px auto;
+
+    backface-visibility: hidden;
+    &.show {
+      max-width: 50px;
+      max-height: 50px;
+    }
+    &:hover {
+      background-color: black;
+      background-position: 50% 11%;
+    }
+  }
+  &:focus {
+    border: 0;
+    outline: 0;
+  }
 }
 
-.color {
-	&.blue { color: $blue; }
-	&.green { color: $green; }
-	&.yellow { color: $yellow; }
-	&.pink { color: $pink; }
-	&.red { color: $red; }
-}
 
 /*************************************************/
 /* Main Styles
 /*************************************************/
 
 body {
-	font-family: 'Roman';
-	font-size: 62.5%;
-	overflow: auto;
-	&.hidden {
-		overflow: hidden; }
-	@include breakpoint(oversize) {
-		font-size: 100%; }
+  font-family: "Roman";
+  font-size: 62.5%;
+
+  overflow: auto;
+
+  @include breakpoint(oversize) {
+    font-size: 100%;
+  }
+  &.hidden {
+    overflow: hidden;
+  }
 }
 
 header {
-	position: absolute;
-	width: 100%;
+  position: absolute;
+
+  width: 100%;
 }
 
 footer {
-	border-top: 1px solid $grey;
-	margin-left: 15px;
-	padding: 50px 0;
-	@include clearfix;
-	section {
-		float: left;
-		display: inline-block;
-		vertical-align: top;
-		font-size: 1.2em;
-		line-height: 1.5em;
-		letter-spacing: .02em;
-		width: 48%;
-		padding-right: 2%;
-		margin-bottom: 30px;
-		&.collaboration {
-			display: none; }
-		@include breakpoint(smallTablet) {
-			width: 24%;
-			padding-right: 1%;
-			margin-bottom: 0; }
-		@include breakpoint(desktop) {
-			width: 19%;
-			padding-right: 1%; }
-		h2 {
-			text-transform: uppercase;
-			font-family: 'Black';
-			letter-spacing: .075em; }
-		a {
-			color: black;
-			&:hover { text-decoration: none; } }
+  margin-left: 15px;
+  padding: 50px 0;
 
-		&.intern {
-			p {
-				display: block;
-				white-space: pre-line;
-				&.footerCiaoline {
-					display: block;
-					margin-bottom: 1em; }
-				@include breakpoint(639px, true) {
-					white-space: normal; } }
-			a {
-				text-decoration: underline;
-				&:hover { text-decoration: none; } } }
+  border-top: 1px solid $grey;
 
-		&.info { display: none; }
+  @include clearfix;
+  @include breakpoint(smallTablet) {
+    margin-left: 100px;
+    .officeListing {
+      section {
+        float: left;
+      }
+    }
+  }
+  @include breakpoint(desktop) {
+    section {
+      font-size: 1.4em;
+    }
+  }
+  section {
+    font-size: 1.2em;
+    line-height: 1.5em;
 
-		&.social {
-			width: 100%;
-			ul {
-				float: left;
-				display: inline-block;
-				margin-bottom: 20px;
-				li {
-					background-color: transparent;
-				}
-			}
-			p { 
-				float: left;
-				clear: left; }
-			@include breakpoint(smallTablet) {
-				margin-top: 30px;
-				margin-bottom: 5px;
-				p {
-					float: right;
-					clear: none;
-					width: 25%; } }
-			@include breakpoint(desktop) {
-				width: 19%;
-				margin-top: 0;
-				ul {
-					float: none;
-					width: 100px;
-					border: 0;
-					li {
-						border-bottom: 1px solid $darkgrey;
-						&:nth-of-type(1), &:nth-of-type(2) ,&:nth-of-type(3) {
-							border-top: 1px solid $darkgrey; }
-						&:nth-of-type(4), &:first-of-type {
-							border-left: 1px solid $darkgrey; }
-						&:nth-of-type(3), &:last-of-type {
-							border-right: 1px solid $darkgrey; } } }
-				p {
-					float: none;
-					width: auto; } } } }
-	.officeListing {
-	    section {
-	      float: right;
-	      &:last-of-type { float: left; }
-	    }
-	  }
-	@include breakpoint(smallTablet) {
-		margin-left: 100px;
-		.officeListing {
-	    	section {
-	    		float: left;
-	    	}
-	    }
-	}
+    display: inline-block;
+    float: left;
 
-	@include breakpoint(desktop) {
-		section {
-			font-size: 1.4em; } }
+    width: 48%;
+    margin-bottom: 30px;
+    padding-right: 2%;
 
-	&.homePage {
-		border: 0;
-		margin-left: 0;
-		padding: 60px 0 20px;
-		background-color: $lightgrey;
-		text-align: center;
+    vertical-align: top;
+    letter-spacing: .02em;
 
-		section {
-			float: none;
-			width: 100%;
-			padding-right: 0;
-			margin-bottom: 35px;
-			@extend .bodyText;
-			&.collaboration {
-				display: block;
-				margin-bottom: 30px;
-				p {
-					line-height: 1.5;
-					letter-spacing: .075;
-					text-transform: uppercase;
-					font-family: 'Black'; }
-				a {
-					display: inline-block;
-					margin-top: 40px;
-					text-decoration: underline;
-					&:hover { text-decoration: none; } } } 
-			&.intern {
-				p {
-					display: inline;
-				    &.footerCiaoline { display: none; }
-				}
-			}
-			@include breakpoint(smallTablet) {
-				width: 33%;
-				&.collaboration, &.intern, &.social {
-					width: 100%; } }
-			@include breakpoint(tablet) {
-				&.social {
-					ul {
-						li {
-							&.first-of-type {
-								border-left: 0;
-							}
-						}
-					}
-				}
-			}
-			@include breakpoint(large) {
-				width: 25%; }
-			&.collaboration, &.intern {
-				display: block;
-				width: 100%;
-				p {
-					white-space: normal; } }
-			&.social {
-				margin-top: 0;
-				ul {
-					float: none;
-					width: auto;
-					text-align: center;
-					@include breakpoint(desktop) {
-						border: 1px solid $darkgrey; }
-					li {
-			            border-top: 0;
-			            border-bottom: 0;
-			            border-left: 0;
-						&:last-of-type {
-							border-right: 0; } } }
-				p {
-					float: none;
-					width: auto; } } }
-		@include breakpoint(tablet) {
-			padding: 60px 0 40px;
-				section {
-					margin-bottom: 75px;
-					&.social { margin-bottom: 0; }
-					&.intern {
-						 } } } }
-	&.lovePage {
-		display: none; }
-	&.pageLoading {
-		display: none; }
+    @include breakpoint(smallTablet) {
+      width: 24%;
+      margin-bottom: 0;
+      padding-right: 1%;
+    }
+    @include breakpoint(desktop) {
+      width: 19%;
+      padding-right: 1%;
+    }
+    &.collaboration {
+      display: none;
+    }
+    h2 {
+      font-family: "Black";
+
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+    a {
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &.intern {
+      p {
+        display: block;
+
+        white-space: pre-line;
+
+        @include breakpoint(639px, true) {
+          white-space: normal;
+        }
+        &.footerCiaoline {
+          display: block;
+
+          margin-bottom: 1em;
+        }
+      }
+      a {
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    &.info {
+      display: none;
+    }
+    &.social {
+      width: 100%;
+
+      @include breakpoint(smallTablet) {
+        margin-top: 30px;
+        margin-bottom: 5px;
+        p {
+          float: right;
+          clear: none;
+
+          width: 25%;
+        }
+      }
+      @include breakpoint(desktop) {
+        width: 19%;
+        margin-top: 0;
+        ul {
+          float: none;
+
+          width: 100px;
+
+          border: 0;
+          li {
+            border-bottom: 1px solid $darkgrey;
+            &:nth-of-type(1),
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+              border-top: 1px solid $darkgrey;
+            }
+            &:nth-of-type(4),
+            &:first-of-type {
+              border-left: 1px solid $darkgrey;
+            }
+            &:nth-of-type(3),
+            &:last-of-type {
+              border-right: 1px solid $darkgrey;
+            }
+          }
+        }
+        p {
+          float: none;
+
+          width: auto;
+        }
+      }
+      ul {
+        display: inline-block;
+        float: left;
+
+        margin-bottom: 20px;
+        li {
+          background-color: transparent;
+        }
+      }
+      p {
+        float: left;
+        clear: left;
+      }
+    }
+  }
+  .officeListing {
+    section {
+      float: right;
+      &:last-of-type {
+        float: left;
+      }
+    }
+  }
+  &.homePage {
+    margin-left: 0;
+    padding: 60px 0 20px;
+
+    text-align: center;
+
+    border: 0;
+    background-color: $lightgrey;
+
+    @include breakpoint(tablet) {
+      padding: 60px 0 40px;
+      section {
+        margin-bottom: 75px;
+        &.social {
+          margin-bottom: 0;
+        }
+        &.intern {
+        }
+      }
+    }
+    section {
+      float: none;
+
+      width: 100%;
+      margin-bottom: 35px;
+      padding-right: 0;
+
+      @extend %bodyText;
+      @include breakpoint(smallTablet) {
+        width: 33%;
+        &.collaboration,
+        &.intern,
+        &.social {
+          width: 100%;
+        }
+      }
+      @include breakpoint(tablet) {
+        &.social {
+          ul {
+            li {
+              &.first-of-type {
+                border-left: 0;
+              }
+            }
+          }
+        }
+      }
+      @include breakpoint(large) {
+        width: 25%;
+      }
+      &.collaboration {
+        display: block;
+
+        margin-bottom: 30px;
+        p {
+          font-family: "Black";
+          line-height: 1.5;
+
+          letter-spacing: .075;
+          text-transform: uppercase;
+        }
+        a {
+          display: inline-block;
+
+          margin-top: 40px;
+
+          text-decoration: underline;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      &.intern {
+        p {
+          display: inline;
+          &.footerCiaoline {
+            display: none;
+          }
+        }
+      }
+      &.collaboration,
+      &.intern {
+        display: block;
+
+        width: 100%;
+        p {
+          white-space: normal;
+        }
+      }
+      &.social {
+        margin-top: 0;
+        ul {
+          float: none;
+
+          width: auto;
+
+          text-align: center;
+
+          @include breakpoint(desktop) {
+            border: 1px solid $darkgrey;
+          }
+          li {
+            border-top: 0;
+            border-bottom: 0;
+            border-left: 0;
+            &:last-of-type {
+              border-right: 0;
+            }
+          }
+        }
+        p {
+          float: none;
+
+          width: auto;
+        }
+      }
+    }
+  }
+  &.pageLoading {
+    display: none;
+  }
 }
 
 /*************************************************/
@@ -409,523 +718,624 @@ footer {
 /*************************************************/
 
 #container {
-	width: 100%;
-	min-height: 100vh;
-	position: relative;
-	opacity: 1;
-	position: relative;
-	z-index: 100;
-	background-color: white;
-	transition: all $normalSpeed $primaryEase;
-	&.pageLoading {
-		transform: translateX(100%);
-		/*opacity: 0;*/
-	}
+  position: relative;
+  position: relative;
+  z-index: 100;
 
-	@include buggyfill("min-height: 100vh;");
+  width: 100%;
+  min-height: 100vh;
+
+  transition: all $normalSpeed $primaryEase;
+
+  opacity: 1;
+  background-color: white;
+
+  @include buggyfill("min-height: 100vh;");
+  &.pageLoading {
+    transform: translateX(100%);
+    /*opacity: 0;*/
+  }
 }
 
 #pageContent {
-	width: 100%;
-	min-height: 100vh;
-	overflow: auto;
-	position: relative;
-	&.menu-open {
-		overflow: hidden;
-	}
+  position: relative;
 
-	@include buggyfill("min-height: 100vh;");
-}
+  overflow: auto;
 
-#loader {
-	position: fixed;
-	backface-visibility: hidden;
-	top: 0; left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,.5);
-	z-index: 0;
+  width: 100%;
+  min-height: 100vh;
+
+  @include buggyfill("min-height: 100vh;");
+  &.menu-open {
+    overflow: hidden;
+  }
 }
 
 .loaderWrapper {
-	position: relative !important;
-	z-index: 1 !important;
-	img {
-		z-index: 5;
-	}
+  position: relative !important;
+  z-index: 1 !important;
+  img {
+    z-index: 5;
+  }
 }
 
 .loaderBox {
-	position: absolute;
-	top: 50%; left: 50%;
-	z-index: 0;
-	width: 25px;
-	height: 25px;
-	transform: translate(-50%, -50%);
-	.loader {
-		border: 5px solid $grey;
-		border-left: 5px solid rgba($grey, .5);
-		animation: spinner 1s infinite linear;
-		&, &:after {
-			position: absolute;
-			top: -1em; left: -1em;
-			border-radius: 50%;
-			width: 100%;
-			height: 100%;
-		}
-	}
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  transform: translate(-50%, -50%);
+  .loader {
+    animation: spinner 1s infinite linear;
+
+    border: 5px solid $grey;
+    border-left: 5px solid rgba($grey, .5);
+    &,
+    &:after {
+      position: absolute;
+      top: -1em;
+      left: -1em;
+
+      width: 100%;
+      height: 100%;
+
+      border-radius: 50%;
+    }
+  }
 }
-	
+
 
 /*************************************************/
 /* Nav Styles
 /*************************************************/
 
 img.siteID {
-	position: fixed;
-	backface-visibility: hidden;
-	top: 0; left: 0;
-	z-index: 1000;
-	width: 50px;
-	height: auto;
-	cursor: pointer; }
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
 
-.buttonWrapper {
-	position: fixed;
-	backface-visibility: hidden;
-	top: 78%; right: 50%;
-	transform: translateX(50%);
-	z-index: 1000;
-	text-align: center;
-	width: 41vh;
-	min-width: 230px;
-	max-width: 70vw;
+  width: 50px;
+  height: auto;
 
-	@include buggyfill("width: 41vh; max-width: 70vw;");
+  cursor: pointer;
 
+  backface-visibility: hidden;
 }
 
-button {
-	&#menuButton {
-		width: 100%;
-		height: 6vh;
-		min-height: 30px;
-		max-height: 9vw;
-		border: 0;
-		padding: 0;
-		opacity: .5;
-		animation: menu-button 8s infinite;
-		transition: opacity $normalSpeed $primaryEase;
-		overflow: hidden;
+.buttonWrapper {
+  position: fixed;
+  z-index: 1000;
+  top: 78%;
+  right: 50%;
 
-		@include buggyfill("height: 6vh; max-height: 9vw;");
+  width: 41vh;
+  min-width: 230px;
+  max-width: 70vw;
 
-		span#menuPrompt {
-			width: 100%;
-			transition: opacity $slowSpeed $primaryEase;
-			display: none;
-			color: white;
+  transform: translateX(50%);
+  text-align: center;
 
-			&.marquee {
-				display: block;
-				animation: marquee 7.5s infinite;
-			}
-
-			&.hiding {
-				opacity: 0;
-			}
-		}
-
-		&:hover {
-			opacity: 1; }
-		&:active {
-			/*button click styling*/ }
-		&.menu-open {
-			animation: none;
-			background-color: white; } }
-	&#scrollTop {
-		position: fixed;
-		backface-visibility: hidden;
-		bottom: 0; right: 0;
-		z-index: 500;
-		padding: 0;
-		height: 50px; width: 50px;
-		border: 1px inset black;
-		border-right: 0;
-		border-bottom: 0;
-		background-color: transparent;
-		background-image: url("../images/sprite-sheet.png");
-		background-repeat: no-repeat;
-		background-size: 24px auto;
-		background-position: 50% 6.8%;
-		max-width: 0;
-		max-height: 0;
-		transition: background-color $normalSpeed $primaryEase;
-
-		&.show {
-			max-height: 50px;
-			max-width: 50px; }
-		&:hover {
-			background-color: black;
-			background-position: 50% 11%; } }
+  backface-visibility: hidden;
+  @include buggyfill("width: 41vh; max-width: 70vw;");
 }
 
 nav {
-	&#mainNav {
-		width: 100%;
-		height: 100%;
-		min-height: 100vh;
-		position: fixed;
-		backface-visibility: hidden;
-		top: 0; right: -100%;
-		z-index: 800;
-		background: black;
-		transform: translateX(0);
-		transition: all $normalSpeed $primaryEase;
+  &#mainNav {
+    position: fixed;
+    z-index: 800;
+    top: 0;
+    right: -100%;
 
-		@include buggyfill("min-height: 100vh;");
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
 
-		&.menu-open {
-			transform: translateX(-100%);
-			@include breakpoint(desktop) {
-				transform: translateX(-75%); } }
-		#menuWrapper {
-			@include clearfix;
-			margin: 0 auto;
-			padding: 20vmin 0 25vmin;
-			position: relative;
-			z-index: 800;
-			@include buggyfill("padding: 20vmin 0 25vmin;");
+    transition: all $normalSpeed $primaryEase;
+    transform: translateX(0);
 
-			#menu {
-				margin: 0 50px;
-				display: inline-block;
-				vertical-align: top;
-				ul {
-					color: white;
-					li {
-						margin: 0 0 25px;
-						display: block;
-						&:last-of-type {
-							margin-bottom: 0; }
-						a {
-							font-size: 12vmin;
-							font-family: 'Black';
-							letter-spacing: .075em;
-							text-transform: uppercase;
-							position: relative;
-							text-decoration: none;
-							@include buggyfill("font-size: 12vmin;");
-							&.active {
-								text-decoration: underline;
-							}
-						}
-						@include breakpoint(smallTablet){
-							a {
-								font-size: 4.8em; } }
-						@include breakpoint(wide) {
-							margin-bottom: 1.8vw;
-							@include buggyfill("margin-bottom: 1.8vw;");
-							a {
-								margin-bottom: 3em; 
-								font-size: 3.25vw;
-								@include buggyfill("font-size: 3.25vw;"); } } } }
-				@include breakpoint(mobile) {
-					margin: 0 70px; } }
-			.menuContacts {
-				section {
-					&.info {
-						a { text-decoration: underline;
-							&:hover { text-decoration: none; } } }
-				}
-			}
+    background: black;
 
-			@include breakheight(tiny) {
-				padding-bottom: 30vh;
-				@include buggyfill("padding-bottom: 30vh;");
-			}
+    backface-visibility: hidden;
+    @include buggyfill("min-height: 100vh;");
+    &.menu-open {
+      transform: translateX(-100%);
 
-			@include breakpoint(smallTablet) {
-				padding-top: 20vh;
-				@include buggyfill("padding-top: 20vh;");
-			}
+      @include breakpoint(desktop) {
+        transform: translateX(-75%);
+      }
+    }
+    #menuWrapper {
+      position: relative;
+      z-index: 800;
 
-			@include breakpoint(desktop) {
-				padding-bottom: 50px !important;
-				padding-top: 25vh;
-				@include buggyfill("padding-top: 25vh;");
-			}
+      margin: 0 auto;
+      padding: 20vmin 0 25vmin;
 
-			// Landscape Styling for mobile
-			@media(max-width: 639px) and (orientation : landscape) {
-				display: block;
-				ul {
-					li {
-						float: left;
-						width: 50%;
-						margin: 0 0 20vmin !important;
-						@include buggyfill("margin: 0 0 20vmin !important;");
-						a {
-							font-size: 9vmax !important;
-							@include buggyfill("font-size: 9vmax !important;");
-						}
-					}
-				}
-			}
-		}
-	}
-	&#projectNav {
-		position: fixed;
-		z-index: 700;
-		backface-visibility: hidden;
-		top: 50%; left: 0;
-		transform: translateY(-50%);
-		width: 50px;
-		ul {
-			li {
-				height: 50px;
-				width: 50px;
-				position: relative;
-				a {
-					display: block;
-					width: 100%;
-					height: 100%;
-					color: black; }
+      @include clearfix;
+      @include buggyfill("padding: 20vmin 0 25vmin;");
+      @include breakheight(tiny) {
+        padding-bottom: 30vh;
 
-				.navButton,
-				.navTitle {
-					height: 49px; }
+        @include buggyfill("padding-bottom: 30vh;");
+      }
+      @include breakpoint(smallTablet) {
+        padding-top: 20vh;
 
-				.navButton {
-					width: 100%;
-					position: absolute;
-					top: 0; left: 0;
-					z-index: 520;
-					background-color: white;
-					background-image: url('../images/sprite-sheet.png');
-					background-repeat: no-repeat;
-					background-size: 24px auto;
-					border: 1px solid $darkgrey;
-					border-left: 0; border-bottom: 0;
-					transition: background-color $normalSpeed $primaryEase;
+        @include buggyfill("padding-top: 20vh;");
+      }
+      @include breakpoint(desktop) {
+        padding-top: 25vh;
+        padding-bottom: 50px !important;
 
-					&.project-back { background-position: 47% 86.25%; }
+        @include buggyfill("padding-top: 25vh;");
+      }
+      #menu {
+        display: inline-block;
 
-					&.project-prev { background-position: 40% 15.7%; }
+        margin: 0 50px;
 
-					&.project-next {
-						background-position: 50% 23.9%;
-						border-bottom: 1px solid #040707;
-					}
-				}
+        vertical-align: top;
 
+        @include breakpoint(mobile) {
+          margin: 0 70px;
+        }
+        ul {
+          color: white;
+          li {
+            display: block;
 
+            margin: 0 0 25px;
 
-				@include breakpoint(oversize){
-					height: 70px;
-					width: 70px;
-					.navButton { background-size: 35px auto; } }
+            @include breakpoint(smallTablet) {
+              a {
+                font-size: 4.8em;
+              }
+            }
+            @include breakpoint(wide) {
+              margin-bottom: 1.8vw;
 
-				.navTitle {
-					position: absolute;
-					margin-left: 1px;
-					top: 0px;
-					left: 100%;
-					font-size: 2em;
-					line-height: 2.75;
-					border: 1px solid $darkgrey;
-					background-color: white;
-					border-left: 0px;
-					z-index: 500;
-					padding: 0 10px;
-					white-space: nowrap;;
-					transition: transform $normalSpeed $primaryEase;
-					transform: translateX(-100%); }
+              @include buggyfill("margin-bottom: 1.8vw;");
+              a {
+                font-size: 3.25vw;
 
-				&:hover {
-					.navButton { 
-			            background-color: black;
-			            &.project-back { background-position: 47% 90.5%; }
-			            &.project-prev { background-position: 40% 19.75%; }
-			            &.project-next { background-position: 50% 28%; }
-			        }
-					.navTitle { transform: translateX(0); }
-				}
-			}
-		}
+                margin-bottom: 3em;
 
+                @include buggyfill("font-size: 3.25vw;");
+              }
+            }
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+            a {
+              font-family: "Black";
+              font-size: 12vmin;
 
-		@include breakpoint(639px, true) {
-			top: 0; right: 0;
-			transform: translateY(0);
-			left: initial;
-			width: 150px;
-			ul {
-				li {
-					float: left;
-					.navButton {
-						border: 0;
-						border-left: 1px solid $darkgrey;
-						border-bottom: 1px solid $darkgrey;
-						background-color: transparent;
-						&.project-next { }
-						&.project-prev { } }
-					.navTitle { display: none; }
-				}
-			}
-		}
-	}
-	&#sectionNav {
-		background-color: white;
-		padding: 33px 0;
-		width: 100%;
-		height: 10px;
-		position: absolute;
-		bottom: 0; left: 0;
-		display: none;
-		&.pinned {
-			position: fixed;
-			backface-visibility: hidden;
-			top: 0; left: 0; bottom: initial;
-			z-index: 500;
-		}
-		ul {
-			font-family: 'Black';
-			text-align: center;
-			li {
-				font-size: 30px;
-				letter-spacing: .075em;
-				line-height: 1.2em;
-				margin-top: -.2em;
-				vertical-align: middle;
-				padding: 0 3%;
-				display: inline-block;
-				text-transform: uppercase;
-				cursor: pointer;
-				transition: color $fastSpeed $primaryEase;
-				&:nth-of-type(1) { &:hover, &.active { color: nth($menuButtonColors, 1); } }
-				&:nth-of-type(2) { &:hover, &.active { color: nth($menuButtonColors, 2); } }
-				&:nth-of-type(3) { &:hover, &.active { color: nth($menuButtonColors, 3); } }
-				&:nth-of-type(4) { &:hover, &.active { color: nth($menuButtonColors, 4); } } } }
-		@include breakpoint(tablet) {
-			display: block; }
-	}
+              position: relative;
+
+              text-decoration: none;
+              letter-spacing: .075em;
+              text-transform: uppercase;
+
+              @include buggyfill("font-size: 12vmin;");
+              &.active {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .menuContacts {
+        section {
+          &.info {
+            a {
+              text-decoration: underline;
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+      // Landscape Styling for mobile
+      @media(max-width: 639px) and (orientation : landscape) {
+        display: block;
+        ul {
+          li {
+            float: left;
+
+            width: 50%;
+            margin: 0 0 20vmin !important;
+
+            @include buggyfill("margin: 0 0 20vmin !important;");
+            a {
+              font-size: 9vmax !important;
+
+              @include buggyfill("font-size: 9vmax !important;");
+            }
+          }
+        }
+      }
+    }
+  }
+  &#projectNav {
+    position: fixed;
+    z-index: 700;
+    top: 50%;
+    left: 0;
+
+    width: 50px;
+
+    transform: translateY(-50%);
+
+    backface-visibility: hidden;
+    @include breakpoint(639px, true) {
+      top: 0;
+      right: 0;
+      left: initial;
+
+      width: 150px;
+
+      transform: translateY(0);
+      ul {
+        li {
+          float: left;
+          .navButton {
+            border: 0;
+            border-bottom: 1px solid $darkgrey;
+            border-left: 1px solid $darkgrey;
+            background-color: transparent;
+            &.project-next {
+            }
+            &.project-prev {
+            }
+          }
+          .navTitle {
+            display: none;
+          }
+        }
+      }
+    }
+    ul {
+      li {
+        position: relative;
+
+        width: 50px;
+        height: 50px;
+
+        @include breakpoint(oversize) {
+          width: 70px;
+          height: 70px;
+          .navButton {
+            background-size: 35px auto;
+          }
+        }
+        a {
+          display: block;
+
+          width: 100%;
+          height: 100%;
+
+          color: black;
+        }
+        .navButton,
+        .navTitle {
+          height: 49px;
+        }
+        .navButton {
+          position: absolute;
+          z-index: 520;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+
+          transition: background-color $normalSpeed $primaryEase;
+
+          border: 1px solid $darkgrey;
+          border-bottom: 0;
+          border-left: 0;
+          background-color: white;
+          background-image: url("../images/sprite-sheet.png");
+          background-repeat: no-repeat;
+          background-size: 24px auto;
+          &.project-back {
+            background-position: 47% 86.25%;
+          }
+          &.project-prev {
+            background-position: 40% 15.7%;
+          }
+          &.project-next {
+            border-bottom: 1px solid #040707;
+            background-position: 50% 23.9%;
+          }
+        }
+        .navTitle {
+          font-size: 2em;
+          line-height: 2.75;
+
+          position: absolute;
+          z-index: 500;
+          top: 0;
+          left: 100%;
+
+          margin-left: 1px;
+          padding: 0 10px;
+
+          transition: transform $normalSpeed $primaryEase;
+          transform: translateX(-100%);
+          white-space: nowrap;
+
+          border: 1px solid $darkgrey;
+          border-left: 0;
+          background-color: white;;
+        }
+        &:hover {
+          .navButton {
+            background-color: black;
+            &.project-back {
+              background-position: 47% 90.5%;
+            }
+            &.project-prev {
+              background-position: 40% 19.75%;
+            }
+            &.project-next {
+              background-position: 50% 28%;
+            }
+          }
+          .navTitle {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+  &#sectionNav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 10px;
+    padding: 33px 0;
+
+    background-color: white;
+
+    @include breakpoint(tablet) {
+      display: block;
+    }
+    &.pinned {
+      position: fixed;
+      z-index: 500;
+      top: 0;
+      bottom: initial;
+      left: 0;
+
+      backface-visibility: hidden;
+    }
+    ul {
+      font-family: "Black";
+
+      text-align: center;
+      li {
+        font-size: 30px;
+        line-height: 1.2em;
+
+        display: inline-block;
+
+        margin-top: -.2em;
+        padding: 0 3%;
+
+        cursor: pointer;
+        transition: color $fastSpeed $primaryEase;
+        vertical-align: middle;
+        letter-spacing: .075em;
+        text-transform: uppercase;
+        &:nth-of-type(1) {
+          &:hover,
+          &.active {
+            color: nth($menuButtonColors, 1);
+          }
+        }
+        &:nth-of-type(2) {
+          &:hover,
+          &.active {
+            color: nth($menuButtonColors, 2);
+          }
+        }
+        &:nth-of-type(3) {
+          &:hover,
+          &.active {
+            color: nth($menuButtonColors, 3);
+          }
+        }
+        &:nth-of-type(4) {
+          &:hover,
+          &.active {
+            color: nth($menuButtonColors, 4);
+          }
+        }
+      }
+    }
+  }
 }
 
 .menuContacts {
-	margin: 0;
-	padding-left: 15px;
-	display: inline-block;
-	vertical-align: top;
-	text-align: left;
-	border-left: 1px solid darken($grey, 50%);
-	float: right;
-	margin-right: 70px;
-	display: none;
-	@include breakpoint(smallTablet) {
-		display: block; }
-	@include breakpoint(tablet) {
-		section {
-			font-size: 1.6em; } }
-	@include breakpoint(desktop) {
-		transform: translateX(-25em);
-		/*@include translate(-25vw);*/ }
-	@include breakpoint(large) {
-		transform: translateX(-35em);
-		/*@include translate(-25vw);*/ }
-	@include breakpoint(wide) {
-		transform: translateX(-45em);
-		/*@include translate(-35vw);*/ }
-	section {
-		color: white;
-		font-size: 1.4em;
-		line-height: 1.6;
-		letter-spacing: .02em;
-		margin-bottom: 40px;
-		h2 {
-			text-transform: uppercase;
-			font-family: 'Black';
-			letter-spacing: .075em; }
-		p {
-			a {
-				&:hover {
-					color: white; } } }
-		&.info {
-			margin-bottom: 0px;
-			a { /* info@zagollc */
-				&:hover {
-					text-decoration: underline; } } } } }
+  display: inline-block;
+  display: none;
+  float: right;
+
+  margin: 0;
+  margin-right: 70px;
+  padding-left: 15px;
+
+  text-align: left;
+  vertical-align: top;
+
+  border-left: 1px solid darken($grey, 50%);
+
+  @include breakpoint(smallTablet) {
+    display: block;
+  }
+  @include breakpoint(tablet) {
+    section {
+      font-size: 1.6em;
+    }
+  }
+  @include breakpoint(desktop) {
+    transform: translateX(-25em);
+    /*@include translate(-25vw);*/
+  }
+  @include breakpoint(large) {
+    transform: translateX(-35em);
+    /*@include translate(-25vw);*/
+  }
+  @include breakpoint(wide) {
+    transform: translateX(-45em);
+    /*@include translate(-35vw);*/
+  }
+  section {
+    font-size: 1.4em;
+    line-height: 1.6;
+
+    margin-bottom: 40px;
+
+    letter-spacing: .02em;
+
+    color: white;
+    h2 {
+      font-family: "Black";
+
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+    p {
+      a {
+        &:hover {
+          color: white;
+        }
+      }
+    }
+    &.info {
+      margin-bottom: 0;
+      a {
+        /* info@zagollc */
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
 
 #splash {
-	position: absolute;
-	top: 0; left: 0;
-	z-index: 1200;
-	width: 100%;
-	min-height: 100vh;
-	background: black;
-	color: white;
+  position: absolute;
+  z-index: 1200;
+  top: 0;
+  left: 0;
 
-	@include buggyfill("min-height: 100vh;");
+  width: 100%;
+  min-height: 100vh;
 
-	img.siteID {
-		position: relative;
-		display: block;
-		margin: 0 auto 20px; }
-	h1 {
-		font-size: 2.4em;
-		letter-spacing: .075em;
-		text-decoration: underline;
-		text-align: center;
-		margin-bottom: 70px; }
-	button {
-		display: block;
-		margin: 0 auto 35px;
-		width: 275px;
-		height: 80px;
-		font-size: 2.4em;
-		line-height: 3.6em;
-		font-family: 'Roman';
-		letter-spacing: .02em; }
-	.menuContacts.splashpage {
-		border: 0;
-		margin: 0;
-		padding: 0;
-		display: block;
-		float: none;
-		text-align: center;
-		transform: translateX(0);
-		section {
-			margin-bottom: 50px;
-			vertical-align: top;
-			&:last-of-type {
-				margin-bottom: 40px; }
-			&.info {
-				display: none; } } }
-	@include breakpoint(landscape) {
-		img.siteID {
-			margin: 0;
-			margin-bottom: 20px;
-			float: left; }
-		h1 {
-			float: left;
-			margin: 30px 0 0 40px; }
-		button {
-			font-size: 1.4em;
-			line-height: 3.4em;
-			width: 160px;
-			height: 45px;
-			margin: 0 0 35px 30px; }
-		.menuContacts.splashpage {
-			clear: both;
-			margin-bottom: 20px;
-			text-align: left;
-			min-width: 575px;
-			section {
-				display: inline-block;
-				text-align: left;
-				margin: 0;
-				margin-left: 30px; } }
-	}
+  color: white;
+  background: black;
+
+  @include buggyfill("min-height: 100vh;");
+  @include breakpoint(landscape) {
+    img.siteID {
+      float: left;
+
+      margin: 0;
+      margin-bottom: 20px;
+    }
+    h1 {
+      float: left;
+
+      margin: 30px 0 0 40px;
+    }
+    button {
+      font-size: 1.4em;
+      line-height: 3.4em;
+
+      width: 160px;
+      height: 45px;
+      margin: 0 0 35px 30px;
+    }
+    .menuContacts.splashpage {
+      clear: both;
+
+      min-width: 575px;
+      margin-bottom: 20px;
+
+      text-align: left;
+      section {
+        display: inline-block;
+
+        margin: 0;
+        margin-left: 30px;
+
+        text-align: left;
+      }
+    }
+  }
+  img.siteID {
+    position: relative;
+
+    display: block;
+
+    margin: 0 auto 20px;
+  }
+  h1 {
+    font-size: 2.4em;
+
+    margin-bottom: 70px;
+
+    text-align: center;
+    text-decoration: underline;
+    letter-spacing: .075em;
+  }
+  button {
+    font-family: "Roman";
+    font-size: 2.4em;
+    line-height: 3.6em;
+
+    display: block;
+
+    width: 275px;
+    height: 80px;
+    margin: 0 auto 35px;
+
+    letter-spacing: .02em;
+  }
+  .menuContacts.splashpage {
+    display: block;
+    float: none;
+
+    margin: 0;
+    padding: 0;
+
+    transform: translateX(0);
+    text-align: center;
+
+    border: 0;
+    section {
+      margin-bottom: 50px;
+
+      vertical-align: top;
+      &:last-of-type {
+        margin-bottom: 40px;
+      }
+      &.info {
+        display: none;
+      }
+    }
+  }
 }
 
 /*************************************************/
@@ -933,30 +1343,42 @@ nav {
 /*************************************************/
 
 .blurb {
-	padding-right: 5%;
-	margin: 120px 0 40px;
-	margin-left: 15px;
-	@include breakpoint(smallTablet) {
-		margin-left: 100px; }
-	@include breakpoint(desktop) {
-		width: 60%;
-		margin-left: 22%; }
-	h1 {
-		font-size: 4.4em;
-		font-family: 'Black';
-		letter-spacing: .075em;
-		text-transform: uppercase;
-		margin-bottom: 20px; }
-	p {
-		font-size: 2.1em;
-		line-height: 1.4em;
-		letter-spacing: .03em;
-		padding-right: 15px; }
-	@include breakpoint(superwide){
-		h1 {
-			font-size: 5.5em; }
-		p {
-			font-size: 2.6em; } }
+  margin: 120px 0 40px;
+  margin-left: 15px;
+  padding-right: 5%;
+
+  @include breakpoint(smallTablet) {
+    margin-left: 100px;
+  }
+  @include breakpoint(desktop) {
+    width: 60%;
+    margin-left: 22%;
+  }
+  @include breakpoint(superwide) {
+    h1 {
+      font-size: 5.5em;
+    }
+    p {
+      font-size: 2.6em;
+    }
+  }
+  h1 {
+    font-family: "Black";
+    font-size: 4.4em;
+
+    margin-bottom: 20px;
+
+    letter-spacing: .075em;
+    text-transform: uppercase;
+  }
+  p {
+    font-size: 2.1em;
+    line-height: 1.4em;
+
+    padding-right: 15px;
+
+    letter-spacing: .03em;
+  }
 }
 
 /*************************************************/
@@ -964,228 +1386,317 @@ nav {
 /*************************************************/
 
 #heroBanner {
-	font-family: 'Black';
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 100vh;
+  font-family: "Black";
 
-	@include buggyfill("height: 100vh;");
+  position: relative;
 
-	img {
-		@extend .absoluteCenter;
-		z-index: 150;
-		opacity: 0;
-		transition: opacity 1500ms $primaryEase;
-		&.showing {
-			opacity: 1;
-			z-index: 200; }
-		&.last {
-			opacity: 0;
-			z-index: 150; } }
-	h1 {
-		font-family: 'Black';
-		font-size: 2.4em;
-		line-height: .9em;
-		color: white;
-		letter-spacing: .075em;
-		text-transform: uppercase;
+  overflow: hidden;
 
-		position: absolute;
-		z-index: 200;
-		top: 25%; left: 15px;
-		border-bottom: 5px solid white;
-	}
-	p {
-		position: absolute;
-		z-index: 200;
-		top: 37%; left: 15px;
-		padding: 0;
-		white-space: pre;
+  width: 100%;
+  height: 100vh;
 
-		font-family: 'Black';
-		font-size: 3.6em;
-		line-height: 1.2em;
-		color: white;
-		text-transform: uppercase;
-		letter-spacing: .075em; }
+  @include buggyfill("height: 100vh;");
+  @include breakpoint(mobile) {
+    h1 {
+      font-size: 3.6em;
+    }
+    p {
+      font-size: 4.8em;
+    }
+  }
+  @include breakpoint(smallTablet) {
+    h1 {
+      font-size: 4vw;
 
-  	button {
-	    position: absolute;
-	    bottom: 0;
-	    left: 50%;
-	    transform: translate(-50%, 0);
-	    transition: background-color $normalSpeed $primaryEase;
-	    z-index: 300;
-	    height: 50px;
-	    width: 50px;
-	    border: 1px solid white;
-	    border-bottom: 0;
-	    background-color: transparent;
-	    background-image: url("../images/sprite-sheet.png");
-	    background-repeat: no-repeat;
-	    background-size: 24px auto;
-	    background-position: 50% 2.5%;
-	    &:hover {
-	      	background-color: white;
-	      	background-position: 50% -1.65%;
-	    }
-  	}
+      @include buggyfill("font-size: 4vw");
+    }
+    p {
+      font-size: 6vw;
 
-	@include breakpoint(mobile) {
-		h1 { font-size: 3.6em; }
-		p {font-size: 4.8em; }
-	}
-	@include breakpoint(smallTablet) {
-		h1 {
-      		font-size: 4vw;
-      		@include buggyfill("font-size: 4vw");
-      	}
-		p {
-			font-size: 6vw;
-			@include buggyfill("font-size: 6vw");
-		}
-	}	
-	@include breakpoint(tablet) {
-		h1 {
-			left: 60px; }
-		p {
-			left: 60px; } }
-	@include breakpoint(desktop) {
-		h1 {
-			left: 100px;
-			top: 20%;
-		}
-		p {
-			left: 100px;
-			top: 43%;
-		}
-	}	
-	@include breakpoint(superwide) {
-		h1 {
-			font-size: 7.2em; }
-		p {
-			font-size: 10.8em; } }
+      @include buggyfill("font-size: 6vw");
+    }
+  }
+  @include breakpoint(tablet) {
+    h1 {
+      left: 60px;
+    }
+    p {
+      left: 60px;
+    }
+  }
+  @include breakpoint(desktop) {
+    h1 {
+      top: 20%;
+      left: 100px;
+    }
+    p {
+      top: 43%;
+      left: 100px;
+    }
+  }
+  @include breakpoint(superwide) {
+    h1 {
+      font-size: 7.2em;
+    }
+    p {
+      font-size: 10.8em;
+    }
+  }
+  img {
+    z-index: 150;
+
+    transition: opacity 1500ms $primaryEase;
+
+    opacity: 0;
+
+    @extend %absoluteCenter;
+    &.showing {
+      z-index: 200;
+
+      opacity: 1;
+    }
+    &.last {
+      z-index: 150;
+
+      opacity: 0;
+    }
+  }
+  h1 {
+    font-family: "Black";
+    font-size: 2.4em;
+    line-height: .9em;
+
+    position: absolute;
+    z-index: 200;
+    top: 25%;
+    left: 15px;
+
+    letter-spacing: .075em;
+    text-transform: uppercase;
+
+    color: white;
+    border-bottom: 5px solid white;
+  }
+  p {
+    font-family: "Black";
+    font-size: 3.6em;
+    line-height: 1.2em;
+
+    position: absolute;
+    z-index: 200;
+    top: 37%;
+    left: 15px;
+
+    padding: 0;
+
+    white-space: pre;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+
+    color: white;
+  }
+  button {
+    position: absolute;
+    z-index: 300;
+    bottom: 0;
+    left: 50%;
+
+    width: 50px;
+    height: 50px;
+
+    transition: background-color $normalSpeed $primaryEase;
+    transform: translate(-50%, 0);
+
+    border: 1px solid white;
+    border-bottom: 0;
+    background-color: transparent;
+    background-image: url("../images/sprite-sheet.png");
+    background-repeat: no-repeat;
+    background-position: 50% 2.5%;
+    background-size: 24px auto;
+    &:hover {
+      background-color: white;
+      background-position: 50% -1.65%;
+    }
+  }
 }
 
 #homeBlurb {
-	padding: 50px 15px;
-	position: relative;
-	p {
-		@extend .headerText;
-		max-width: 900px;
-		text-align: left;
-		padding: 0; }
-	@include breakpoint(tablet) {
-		padding: 80px 60px 120px; }
-	@include breakpoint(desktop) {
-		p { 
-			text-align: center;
-			margin: 0 auto; } }
-	@include breakpoint(wide) {
-		padding: 150px 100px 200px; }
+  position: relative;
+
+  padding: 50px 15px;
+
+  @include breakpoint(tablet) {
+    padding: 80px 60px 120px;
+  }
+  @include breakpoint(desktop) {
+    p {
+      margin: 0 auto;
+
+      text-align: center;
+    }
+  }
+  @include breakpoint(wide) {
+    padding: 150px 100px 200px;
+  }
+  p {
+    max-width: 900px;
+    padding: 0;
+
+    text-align: left;
+
+    @extend %headerText;
+  }
 }
 
 #homeSections {
-	section {
-		@include clearfix;
-		.bannerWrapper {
-			position: relative;
-			height: 40vh;
-			margin-bottom: 25px;
-			@include buggyfill("height: 40vh;");
+  section {
+    @include clearfix;
+    .bannerWrapper {
+      position: relative;
 
-			.imgWrapper {
-				@include clearfix;
-				height: 100%;
-				position: relative;
-				overflow: hidden;
-				img {	
-				    @extend .absoluteCenter;
-				    height: 100%;
-				    z-index: 2; } }
-			@include breakpoint(smallTablet) {
-				height: 50vh;
-				@include buggyfill("height: 50vh;");
+      height: 40vh;
+      margin-bottom: 25px;
 
-				.imgWrapper {
-					img {
-						height: auto; } } }
-			.captionWrapper {
-				position: absolute;
-				left: 15px; bottom: 0;
-				z-index: 5;
-				transform: translateY(32%);
-				p {
-					/* Cascade fallback for vw units */
-					@include breakpoint(mini){ font-size: 3.8em; }
-					@include breakpoint(mobile){ font-size: 5.5em; }
-					@include breakpoint(smallTablet){ font-size: 7.5em; }
+      @include buggyfill("height: 40vh;");
+      @include breakpoint(smallTablet) {
+        height: 50vh;
 
-					font-family: 'Black';
-					color: black;
-					line-height: 1.05em;
-					letter-spacing: .075em;
-					text-transform: uppercase;
-					font-size: 12vw;
+        @include buggyfill("height: 50vh;");
+        .imgWrapper {
+          img {
+            height: auto;
+          }
+        }
+      }
+      .imgWrapper {
+        position: relative;
 
-					@include buggyfill("font-size: 12vw;");
-				}
-			@include breakpoint(tablet) {
-				left: 60px;
-					p {
-						font-size: 8em; } }
-			@include breakpoint(desktop) {
-				left: 100px;
-					p {
-						font-size: 10em; } } }
-		}
-		.sectionWrapper {
-			@include clearfix;
-			padding: 50px 15px 20px;
-			max-width: 1400px;
+        overflow: hidden;
 
-			h1 {
-				@extend .bodyTitle;
-				width: 100%;
-				display: inline-block;
-				vertical-align: top;
-				font-family: "Black";
-				text-transform: uppercase;
-				padding: 0;
-				margin: 0;
-				margin-bottom: 50px; }
-			.sectionText {
-				width: 100%;
-				display: inline-block;
-				vertical-align: top;
-				margin: 0;
-				p {
-					@extend .bodyText;
-					margin-bottom: 30px;
-					&:last-of-type { 
-						margin-bottom: 0; } } }
-			@include breakpoint(tablet) {
-				padding: 60px; }
-			@include breakpoint(desktop) {
-				padding: 100px 0;
-				.padder {
-					width: 50%;
-					display: inline-block;
-					vertical-align: top;
-					&.left {
-						text-align: right; } }
-				h1 {
-					width: 72%;
-					padding: 0px 100px;
-					text-align: left; }
-				.sectionText {
-					width: 72%;
-					padding-right: 100px; }
-			@include breakpoint(superwide) {
-				padding: 150px 0; } }
-		}
-	}
+        height: 100%;
+
+        @include clearfix;
+        img {
+          z-index: 2;
+
+          height: 100%;
+
+          @extend %absoluteCenter;
+        }
+      }
+      .captionWrapper {
+        position: absolute;
+        z-index: 5;
+        bottom: 0;
+        left: 15px;
+
+        transform: translateY(32%);
+
+        @include breakpoint(tablet) {
+          left: 60px;
+          p {
+            font-size: 8em;
+          }
+        }
+        @include breakpoint(desktop) {
+          left: 100px;
+          p {
+            font-size: 10em;
+          }
+        }
+        p {
+          font-family: "Black";
+          font-size: 12vw;
+          line-height: 1.05em;
+
+          letter-spacing: .075em;
+          text-transform: uppercase;
+
+          color: black;
+          /* Cascade fallback for vw units */
+
+          @include breakpoint(mini) {
+            font-size: 3.8em;
+          }
+          @include breakpoint(mobile) {
+            font-size: 5.5em;
+          }
+          @include breakpoint(smallTablet) {
+            font-size: 7.5em;
+          }
+          @include buggyfill("font-size: 12vw;");
+        }
+      }
+    }
+    .sectionWrapper {
+      max-width: 1400px;
+      padding: 50px 15px 20px;
+
+      @include clearfix;
+      @include breakpoint(tablet) {
+        padding: 60px;
+      }
+      @include breakpoint(desktop) {
+        padding: 100px 0;
+
+        @include breakpoint(superwide) {
+          padding: 150px 0;
+        }
+        .padder {
+          display: inline-block;
+
+          width: 50%;
+
+          vertical-align: top;
+          &.left {
+            text-align: right;
+          }
+        }
+        h1 {
+          width: 72%;
+          padding: 0 100px;
+
+          text-align: left;
+        }
+        .sectionText {
+          width: 72%;
+          padding-right: 100px;
+        }
+      }
+      h1 {
+        font-family: "Black";
+
+        display: inline-block;
+
+        width: 100%;
+        margin: 0;
+        margin-bottom: 50px;
+        padding: 0;
+
+        vertical-align: top;
+        text-transform: uppercase;
+
+        @extend %bodyTitle;
+      }
+      .sectionText {
+        display: inline-block;
+
+        width: 100%;
+        margin: 0;
+
+        vertical-align: top;
+        p {
+          margin-bottom: 30px;
+
+          @extend %bodyText;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 /*************************************************/
@@ -1193,230 +1704,319 @@ nav {
 /*************************************************/
 
 .gridBox {
-	margin-bottom: 12px;
-	@include clearfix;	
+  margin-bottom: 12px;
+
+  @include clearfix;
 }
 
 /* Mobile First Styling */
 .gridWrapper {
-	@include clearfix;
-	max-width: 100%;
-	padding-left: 15px;
-	@include breakpoint(smallTablet) {
-		padding-left: 100px; }
-	@include breakpoint(desktop) {
-		margin-bottom: 30px; }
-	.grid {
-		section {
-			float: left;
-			display: inline-block;
-			width: 100%;
-			margin-bottom: 30px;
-			cursor: pointer;
-			.imgWrapper {
-				position: relative;
-				overflow: hidden;
-				height: 57vw;
-				@include buggyfill("height: 57vw;");
+  max-width: 100%;
+  padding-left: 15px;
 
-				img { @extend .absoluteCenter; }
+  @include clearfix;
+  @include breakpoint(smallTablet) {
+    padding-left: 100px;
+  }
+  @include breakpoint(desktop) {
+    margin-bottom: 30px;
+  }
+  .grid {
+    @include breakpoint(smallTablet) {
+      margin-bottom: 50px;
+      section {
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+          width: 49%;
+          .imgWrapper {
+            height: 30vw;
 
-				@include breakpoint(smallTablet) {
-					height: 50vw;
-					@include buggyfill("height: 50vw;"); }
+            @include buggyfill("height: 30vw;");
+            img {
+              height: 100%;
+            }
+          }
+        }
+        &:nth-of-type(2) {
+          margin-right: 2%;
+        }
+      }
+    }
+    @include breakpoint(desktop) {
+      section {
+        margin-right: 2%;
+        &:nth-of-type(1) {
+          width: 49%;
+          .imgWrapper {
+            height: 30vw;
 
-				.overlay {
-					position: absolute;
-					top: 0; left: 0;
-					width: 100%;
-					height: 100%;
-					opacity: 0;
-					z-index: 10;
-					transition: opacity $normalSpeed $primaryEase; } }
-			h2 {
-				float: left;
-				margin: 20px 3px 10px 0;
-				font-size: 2.2em;
-				letter-spacing: .02em;
-				font-weight: 300; }
-			h3 {
-				float: left;
-				clear: both;
-				font-size: 1.4em;
-				letter-spacing: .09em;
-				font-family: 'Black';
-				text-transform: uppercase; }
-			&:hover {
-				/* h2, h3 { text-decoration: underline; }*/
-				.imgWrapper {
-					.overlay {
-						opacity: .4;
-						display: block; } } } }
-		@include breakpoint(smallTablet) {
-			margin-bottom: 50px;
-			section {
-				 &:nth-of-type(2), &:nth-of-type(3) { 
-					width: 49%;
-					.imgWrapper {
-						height: 30vw;
-						@include buggyfill("height: 30vw;");
+            @include buggyfill("height: 30vw;");
+            img {
+              height: 100%;
+            }
+          }
+        }
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+          width: 23.5%;
+          .imgWrapper {
+            height: 14vw;
 
-						img {
-						  height: 100%;
-						}
-					}
-				}
+            @include buggyfill("height: 14vw;");
+            img {
+              height: 100%;
+            }
+          }
+        }
+        &:nth-of-type(3) {
+          margin-right: 0;
+        }
+      }
+      &.gridRight {
+        section {
+          float: right;
 
-				&:nth-of-type(2) { margin-right: 2%; }
-			}
-		}
-		@include breakpoint(desktop) {
-			section {
-				margin-right: 2%;
-				&:nth-of-type(1) {
-					width: 49%;
-					.imgWrapper {
-						height: 30vw;
-						@include buggyfill("height: 30vw;");
-						img {
-							height: 100%; } } }
-				&:nth-of-type(2), &:nth-of-type(3) {
-					width: 23.5%;
-					.imgWrapper {
-						height: 14vw;
-						@include buggyfill("height: 14vw;");
-						img {
-						  height: 100%;
-						}
-					}
-				}
-				&:nth-of-type(3) { margin-right: 0; }
-			}
-			&.gridRight {
-				section {
-					float: right;
-					margin-right: 2%;
-					&:nth-of-type(1) { margin-right: 0; }
-				}
-			}
-		}
-	}
-	&.teamWrapper {
-		.grid {
-			section {
-				& > * {
-					cursor: auto; }
-				&:hover {
-					h2 { text-decoration: none; }
-					.imgWrapper {
-						img {
-							&:first-of-type { opacity: 0; }
-						}
-					}
-				}
-				.imgWrapper {
-					height: 90vw;
-					@include buggyfill("height: 90vw;");
-					position: relative;
-					img {
-						transition: opacity $fastSpeed $primaryEase;
-						height: 100%;
-						width: auto;
-						&:first-of-type { z-index: 150; }
-					}
-					ul.socialButtons {
-						border: 0;
-						li.anchorWrapper {
-							width: 30px;
-							height: 30px;
-							z-index: 200;
-							border: 1px solid white;
-							border-top: 0; border-right: 0;
-							transition: none;
-							position: absolute;
-							top: 0; 
-							&:nth-of-type(1) { right: 0; }
-							&:nth-of-type(2) { right: 30px; }
-							&:nth-of-type(3) { right: 60px; }
-							a {
-								display: block;
-								width: 100%;
-								height: 100%; }
-							@include breakpoint(desktop) {
-								width: 2.25vw; height: 2.25vw;
-								@include buggyfill("width: 2.25vw; height: 2.25vw;");
-								&:nth-of-type(2) {
-									right: 2.25vw;
-									@include buggyfill("right: 2.25vw;");
-								}
-								&:nth-of-type(3) {
-									right: 4.5vw;
-									@include buggyfill("right: 4.5vw;");
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		@include breakpoint(smallTablet) {
-			.grid {
-				section {
-					width: 49%;
-					.imgWrapper {
-						height: 45vw;
-						@include buggyfill("height: 45vw;");
-						img {
-							height: 100%; }
-						}
-					&:nth-of-type(1) { margin-right: 2%; }
-			        &:nth-of-type(2) { margin-right: 0; }
-			        &:nth-of-type(3) { margin-right: 2%; }
-			    }
-				&.gridRight {
-					section {
-						&:nth-of-type(1) { margin-right: 0; }
-			            &:nth-of-type(2) { margin-right: 2%; }
-			            &:nth-of-type(3) { margin-right: 0; }
-			        }
-			    }
-			}
-		}
-		@include breakpoint(desktop) {
-			.grid {
-	        	section{
-		            &:nth-of-type(1) {
-		                .imgWrapper {
-		              		height: 30vw;
-		              		@include buggyfill("height: 30vw;");
-		            		img {
-			                	height: 100%;
-			                }
-		                }
-		            }
-		            &:nth-of-type(2) { margin-right: 2%; }
-		            &:nth-of-type(3) { margin-right: 0; }
+          margin-right: 2%;
+          &:nth-of-type(1) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    section {
+      display: inline-block;
+      float: left;
 
-		            &:nth-of-type(2), 
-		            &:nth-of-type(3) {
-		          		width: 23.5%;
-		            	.imgWrapper {
-		              		height: 22.5vw;
-		              		@include buggyfill("height: 22.5vw;");
-		              		img {
-		                		height: 100%;
-		              		}
-		            	}
-		          	}
-		        }
-				&.gridRight {
-					section {
-						&:nth-of-type(3) { margin-right: 2%; }
-					}
-				}
-			}
-		}
-	}
+      width: 100%;
+      margin-bottom: 30px;
+
+      cursor: pointer;
+      .imgWrapper {
+        position: relative;
+
+        overflow: hidden;
+
+        height: 57vw;
+
+        @include buggyfill("height: 57vw;");
+        @include breakpoint(smallTablet) {
+          height: 50vw;
+
+          @include buggyfill("height: 50vw;");
+        }
+        img {
+          @extend %absoluteCenter;
+        }
+        .overlay {
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100%;
+
+          transition: opacity $normalSpeed $primaryEase;
+
+          opacity: 0;
+        }
+      }
+      h2 {
+        font-size: 2.2em;
+        font-weight: 300;
+
+        float: left;
+
+        margin: 20px 3px 10px 0;
+
+        letter-spacing: .02em;
+      }
+      h3 {
+        font-family: "Black";
+        font-size: 1.4em;
+
+        float: left;
+        clear: both;
+
+        letter-spacing: .09em;
+        text-transform: uppercase;
+      }
+      &:hover {
+        /* h2, h3 { text-decoration: underline; }*/
+        .imgWrapper {
+          .overlay {
+            display: block;
+
+            opacity: .4;
+          }
+        }
+      }
+    }
+  }
+  &.teamWrapper {
+    @include breakpoint(smallTablet) {
+      .grid {
+        section {
+          width: 49%;
+          .imgWrapper {
+            height: 45vw;
+
+            @include buggyfill("height: 45vw;");
+            img {
+              height: 100%;
+            }
+          }
+          &:nth-of-type(1) {
+            margin-right: 2%;
+          }
+          &:nth-of-type(2) {
+            margin-right: 0;
+          }
+          &:nth-of-type(3) {
+            margin-right: 2%;
+          }
+        }
+        &.gridRight {
+          section {
+            &:nth-of-type(1) {
+              margin-right: 0;
+            }
+            &:nth-of-type(2) {
+              margin-right: 2%;
+            }
+            &:nth-of-type(3) {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+    @include breakpoint(desktop) {
+      .grid {
+        section {
+          &:nth-of-type(1) {
+            .imgWrapper {
+              height: 30vw;
+
+              @include buggyfill("height: 30vw;");
+              img {
+                height: 100%;
+              }
+            }
+          }
+          &:nth-of-type(2) {
+            margin-right: 2%;
+          }
+          &:nth-of-type(3) {
+            margin-right: 0;
+          }
+          &:nth-of-type(2),
+          &:nth-of-type(3) {
+            width: 23.5%;
+            .imgWrapper {
+              height: 22.5vw;
+
+              @include buggyfill("height: 22.5vw;");
+              img {
+                height: 100%;
+              }
+            }
+          }
+        }
+        &.gridRight {
+          section {
+            &:nth-of-type(3) {
+              margin-right: 2%;
+            }
+          }
+        }
+      }
+    }
+    .grid {
+      section {
+        & > * {
+          cursor: auto;
+        }
+        &:hover {
+          h2 {
+            text-decoration: none;
+          }
+          .imgWrapper {
+            img {
+              &:first-of-type {
+                opacity: 0;
+              }
+            }
+          }
+        }
+        .imgWrapper {
+          position: relative;
+
+          height: 90vw;
+
+          @include buggyfill("height: 90vw;");
+          img {
+            width: auto;
+            height: 100%;
+
+            transition: opacity $fastSpeed $primaryEase;
+            &:first-of-type {
+              z-index: 150;
+            }
+          }
+          ul.socialButtons {
+            border: 0;
+            li.anchorWrapper {
+              position: absolute;
+              z-index: 200;
+              top: 0;
+
+              width: 30px;
+              height: 30px;
+
+              transition: none;
+
+              border: 1px solid white;
+              border-top: 0;
+              border-right: 0;
+
+              @include breakpoint(desktop) {
+                width: 2.25vw;
+                height: 2.25vw;
+
+                @include buggyfill("width: 2.25vw; height: 2.25vw;");
+                &:nth-of-type(2) {
+                  right: 2.25vw;
+
+                  @include buggyfill("right: 2.25vw;");
+                }
+                &:nth-of-type(3) {
+                  right: 4.5vw;
+
+                  @include buggyfill("right: 4.5vw;");
+                }
+              }
+              &:nth-of-type(1) {
+                right: 0;
+              }
+              &:nth-of-type(2) {
+                right: 30px;
+              }
+              &:nth-of-type(3) {
+                right: 60px;
+              }
+              a {
+                display: block;
+
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /*************************************************/
@@ -1424,297 +2024,356 @@ nav {
 /*************************************************/
 
 #projectLayout {
-	position: relative;
-	margin-left: 15px;
-	@include breakpoint(smallTablet) {
-		margin-left: 100px; }
-	.featuredImage {
-		position: relative;
-		width: 100%;
-		height: 100vh;
-		max-height: 100vh;
-		overflow: hidden;
+  position: relative;
 
-		@include buggyfill("height: 100vh; max-height: 100vh;");
+  margin-left: 15px;
 
-		img { @extend .absoluteCenter; } }
-	.projectContent {
-		font-size: 1.6em;
-		line-height: 1.5em;
-		@include clearfix;
-		h1 {
-			font-size: 1.65em;
-			line-height: 1.25em;
-			letter-spacing: .075em;
-			text-transform: uppercase;
-			font-family: 'Black';
-			margin-bottom: 40px;
-			@include breakpoint(tablet) { font-size: 2em; }
-      		@include breakpoint(desktop) { font-size: 2.5em; } }
-		.projectDetails {
-			position: absolute;
-			bottom: 20px; left: 20px;
-			z-index: 50;
-			&.greyed {
-				background-color: rgba($lightgrey, .3);
-				padding: 20px 100px 20px 20px; }
-			.projectInfo {
-				section {
-					margin-bottom: 25px;
-					h2 {
-						letter-spacing: .075em;
-						text-transform: uppercase;
-						font-family: 'Black'; }
-					p {
-						letter-spacing: .02em; } } }
-			a.clientSite {
-				margin-bottom: 20px; }
-			.socialAccounts {
-				line-height: 0;
-				ul.socialButtons {
-					@include clearfix;
-					display: inline-block;
-					max-width: 110px;
-					border-right: 0;
-					border-bottom: 0;
-					border-top: 0;
-					li {
-						width: 35px;
-						height: 35px;
-						border-bottom: 1px solid $darkgrey;
-						background-color: transparent;
-						&:hover {
-							border-color: black;
-							background-color: black;
-						}
-						&:nth-of-type(1), &:nth-of-type(2) ,&:nth-of-type(3) {
-							border-top: 1px solid $darkgrey; }
-						&:nth-of-type(3), &:last-of-type {
-							border-right: 1px solid $darkgrey; } } } } }
-		.projectBody {
-			padding: 0 30px;
-			letter-spacing: .02em;
-			max-width: 900px;
-			@include columns(1, 30px);
-			& > * {
-				margin-bottom: 30px;
-			&:last-child {
-					margin-bottom: 0; } }
-			blockquote {
-				p {
-					font-size: 1.5em;
-					line-height: 1.4em; } }
-			ul {
-				list-style: disc outside url("../images/bullet.png");
-				li {
-					margin-left: 1em;
-					&:first-of-type {
-						list-style: none;
-						margin-left: 0; } } }
-			@include breakpoint(desktop) { padding: 0 140px; }
-			@include breakpoint(large) { 
-				@include columns(2, 30px);
-				&.singleColumn { 
-					width: 40%;
-					@include columns(1, 30px); } } } }
+  @include breakpoint(smallTablet) {
+    margin-left: 100px;
+  }
+  /*mobile version hack*/
+  @include breakpoint(639px, true) {
+    &.caseStudy {
+      .projectContent {
+        .projectDetails {
+          float: none;
 
-	&.caseStudy {
-		.featuredImage {
-			min-height: initial;
-			max-height: initial;
-			height: 40vw;
-			@include buggyfill("height: 40vw;");
+          margin-bottom: 50px;
+          .projectInfo {
+            section {
+              float: left;
 
-			@include breakpoint(smallTablet){
-				height: 35vw;
-				@include buggyfill("height: 35vw;");
-			}
-		}
-		.projectContent {
-			margin: 50px 0;
-			.projectDetails {
-				float: left;
-				position: relative;
-				bottom: 0; left: 0;
-				background-color: none;
-				padding: 0;
-			}
-		}
-	}
-	/*mobile version hack*/
-	@include breakpoint(639px, true) {
-		&.caseStudy {
-			.projectContent { 
-				.projectDetails {
-					float: none;
-					margin-bottom: 50px;
-					.projectInfo {
-						section {
-							width: 100%;
-							float: left; } } }
-				.projectBody {
-					padding-left: 0; }
-			}
-		}
-	}
+              width: 100%;
+            }
+          }
+        }
+        .projectBody {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  .featuredImage {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+
+    @include buggyfill("height: 100vh; max-height: 100vh;");
+    img {
+      @extend %absoluteCenter;
+    }
+  }
+  .projectContent {
+    font-size: 1.6em;
+    line-height: 1.5em;
+
+    @include clearfix;
+    h1 {
+      font-family: "Black";
+      font-size: 1.65em;
+      line-height: 1.25em;
+
+      margin-bottom: 40px;
+
+      letter-spacing: .075em;
+      text-transform: uppercase;
+
+      @include breakpoint(tablet) {
+        font-size: 2em;
+      }
+      @include breakpoint(desktop) {
+        font-size: 2.5em;
+      }
+    }
+    .projectDetails {
+      position: absolute;
+      z-index: 50;
+      bottom: 20px;
+      left: 20px;
+      &.greyed {
+        padding: 20px 100px 20px 20px;
+
+        background-color: rgba($lightgrey, .3);
+      }
+      .projectInfo {
+        section {
+          margin-bottom: 25px;
+          h2 {
+            font-family: "Black";
+
+            letter-spacing: .075em;
+            text-transform: uppercase;
+          }
+          p {
+            letter-spacing: .02em;
+          }
+        }
+      }
+      a.clientSite {
+        margin-bottom: 20px;
+      }
+      .socialAccounts {
+        line-height: 0;
+        ul.socialButtons {
+          display: inline-block;
+
+          max-width: 110px;
+
+          border-top: 0;
+          border-right: 0;
+          border-bottom: 0;
+
+          @include clearfix;
+          li {
+            width: 35px;
+            height: 35px;
+
+            border-bottom: 1px solid $darkgrey;
+            background-color: transparent;
+            &:hover {
+              border-color: black;
+              background-color: black;
+            }
+            &:nth-of-type(1),
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+              border-top: 1px solid $darkgrey;
+            }
+            &:nth-of-type(3),
+            &:last-of-type {
+              border-right: 1px solid $darkgrey;
+            }
+          }
+        }
+      }
+    }
+    .projectBody {
+      max-width: 900px;
+      padding: 0 30px;
+
+      letter-spacing: .02em;
+
+      @include columns(1, 30px);
+      @include breakpoint(desktop) {
+        padding: 0 140px;
+      }
+      @include breakpoint(large) {
+        @include columns(2, 30px);
+        &.singleColumn {
+          width: 40%;
+
+          @include columns(1, 30px);
+        }
+      }
+      & > * {
+        margin-bottom: 30px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      blockquote {
+        p {
+          font-size: 1.5em;
+          line-height: 1.4em;
+        }
+      }
+      ul {
+        list-style: disc outside url("../images/bullet.png");
+        li {
+          margin-left: 1em;
+          &:first-of-type {
+            margin-left: 0;
+
+            list-style: none;
+          }
+        }
+      }
+    }
+  }
+  &.caseStudy {
+    .featuredImage {
+      height: 40vw;
+      min-height: initial;
+      max-height: initial;
+
+      @include buggyfill("height: 40vw;");
+      @include breakpoint(smallTablet) {
+        height: 35vw;
+
+        @include buggyfill("height: 35vw;");
+      }
+    }
+    .projectContent {
+      margin: 50px 0;
+      .projectDetails {
+        position: relative;
+        bottom: 0;
+        left: 0;
+
+        float: left;
+
+        padding: 0;
+
+        background-color: none;
+      }
+    }
+  }
 }
 
 #projectImages {
-	margin-bottom: 50px;
-	section {
-		position: relative;
-		h6 {
-			display: none;
-			height: 80px;
-			font-size: 1.6em;
-			line-height: 155px;
-			letter-spacing: .02em;
-			border-right: 1px solid $grey;
-			position: absolute;
-			left: 0; top: 0;
-			padding-right: 20px;
-			transform-origin: 0 0;
+  margin-bottom: 50px;
+  section {
+    position: relative;
+    h6 {
+      font-size: 1.6em;
+      line-height: 155px;
 
-			@include breakpoint(smallTablet) { display: block; } }
-		.imageWrapper {
-			margin-left: 15px;
-			line-height: 0;
-			@include breakpoint(smallTablet) {
-				margin-left: 100px; }
-			.imageBox {
-				width: 100%;
-				height: 40vw;
-				display: inline-block;
-				position: relative;
-				overflow: hidden;
-				@include buggyfill("height: 40vw;");
+      position: absolute;
+      top: 0;
+      left: 0;
 
-				&.halfImage {
-					width: 100%;
-					@include breakpoint(smallTablet) {
-						width: 50%; } }
-				img { @extend .absoluteCenter; } } } }
-}
+      display: none;
 
-.flexBox4 {
-	margin-bottom: 50px;
-	margin-left: 15px;
-	@include clearfix;
-	@include breakpoint(smallTablet) {
-		margin-left: 100px; }
-	h3 {
-		font-size: 2em;
-		letter-spacing: .075em;
-		font-family: 'Black';
-		margin-bottom: 40px; }
-	section {
-		cursor: pointer;
-		display: block;
-		margin-right: 0;
-		margin-bottom: 40px;
-		color: black;
-		&:nth-of-type(4) {
-			display: none; }
-		p {
-			font-size: 2.4em;
-			text-transform: capitalize; }
-		h4 {
-			font-size: 1.6em;
-			letter-spacing: .075em;
-			text-transform: uppercase;
-			font-family: 'Black';
-			margin-top: 10px; } }
-	@include breakpoint(smallTablet) {
-		section {
-			float: left;
-			display: inline-block;
-			width: 32%;
-			margin-right: 2%;
-			margin-bottom: 0;
-			&:nth-of-type(3) {
-				margin-right: 0; } } }
-	@include breakpoint(desktop) {
-		section {
-			width: 23.5%;
-			margin-right: 2%;
-			&:nth-of-type(3) {
-				margin-right: 2%; }
-			&:nth-of-type(4) {
-				margin-right: 0;
-				display: inline-block; } } }
+      height: 80px;
+      padding-right: 20px;
+
+      transform-origin: 0 0;
+      letter-spacing: .02em;
+
+      border-right: 1px solid $grey;
+
+      @include breakpoint(smallTablet) {
+        display: block;
+      }
+    }
+    .imageWrapper {
+      line-height: 0;
+
+      margin-left: 15px;
+
+      @include breakpoint(smallTablet) {
+        margin-left: 100px;
+      }
+      .imageBox {
+        position: relative;
+
+        display: inline-block;
+        overflow: hidden;
+
+        width: 100%;
+        height: 40vw;
+
+        @include buggyfill("height: 40vw;");
+        &.halfImage {
+          width: 100%;
+
+          @include breakpoint(smallTablet) {
+            width: 50%;
+          }
+        }
+        img {
+          @extend %absoluteCenter;
+        }
+      }
+    }
+  }
 }
 
 #readAbout {
-	@extend .flexBox4;
-	section {
-		height: 40vw;
-		background-color: $grey;
-		@include buggyfill("height: 40vw;");
-		a {
-			color: black;
-			display: inline-block;
-			padding: 30px;
-		}
-	    p {
-	    	/* autoprefixer: off */
-			display: block;
-			/* non-webkit fallback */
-			display: -webkit-box;
-			line-height: 1;
-			height: 48px;
-			/* non-webkit fallback */
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			line-height: 1.1;
-	    }
-	    @include breakpoint(smallTablet) {
-	      	height: 18vw;
-	      	@include buggyfill("height: 18vw;");
-	    }
-	    @include breakpoint(desktop) {
-	      	height: 14vw;
-	      	@include buggyfill("height: 14vw;");
-	    }
-	}
+  @extend %flexBox4;
+  section {
+    height: 40vw;
+
+    background-color: $grey;
+
+    @include buggyfill("height: 40vw;");
+    @include breakpoint(smallTablet) {
+      height: 18vw;
+
+      @include buggyfill("height: 18vw;");
+    }
+    @include breakpoint(desktop) {
+      height: 14vw;
+
+      @include buggyfill("height: 14vw;");
+    }
+    a {
+      display: inline-block;
+
+      padding: 30px;
+
+      color: black;
+    }
+    p {
+      line-height: 1;
+      line-height: 1.1;
+      /* autoprefixer: off */
+
+      display: block;
+      /* non-webkit fallback */
+      display: -webkit-box;
+      overflow: hidden;
+
+      height: 48px;
+
+      text-overflow: ellipsis;
+      /* non-webkit fallback */
+
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
 }
 
 #relatedProjects {
-	@extend .flexBox4;
-	margin-right: 15px;
-	section {
-		@include clearfix;
-		.imgWrapper, .contentWrapper {
-			float: left;
-			vertical-align: top;
-		}
-		.imgWrapper {
-			width: 100%;
-			height: 40vw;
-			position: relative;
-			overflow: hidden;
-			@include buggyfill("height: 40vw;");
+  margin-right: 15px;
 
-			img { @extend .absoluteCenter; }
+  @extend %flexBox4;
+  section {
+    @include clearfix;
+    @include breakpoint(smallTablet) {
+      margin-right: 0;
+    }
+    .imgWrapper,
+    .contentWrapper {
+      float: left;
 
-			@include breakpoint(smallTablet) {
-	        	height: 18vw;
-	        	@include buggyfill("height: 18vw;");
-	      	}
-	      	@include breakpoint(desktop) {
-	        	height: 14vw;
-	        	@include buggyfill("height: 14vw;");
-	      	}
-	    }
-		.contentWrapper {
-			margin-left: 15px;
-			p { margin-top: 20px; }
-		}
-		@include breakpoint(smallTablet) {
-			margin-right: 0;
-		}
-	}
+      vertical-align: top;
+    }
+    .imgWrapper {
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
+      height: 40vw;
+
+      @include buggyfill("height: 40vw;");
+      @include breakpoint(smallTablet) {
+        height: 18vw;
+
+        @include buggyfill("height: 18vw;");
+      }
+      @include breakpoint(desktop) {
+        height: 14vw;
+
+        @include buggyfill("height: 14vw;");
+      }
+      img {
+        @extend %absoluteCenter;
+      }
+    }
+    .contentWrapper {
+      margin-left: 15px;
+      p {
+        margin-top: 20px;
+      }
+    }
+  }
 }
 
 /*************************************************/
@@ -1722,87 +2381,55 @@ nav {
 /*************************************************/
 
 #pageContent {
-	&.lovePage {
-		overflow: visible;
-		background-color: $tumblrgrey;
-		margin-top: -47px;
-		padding-bottom: 47px;
-		height: 100vh;
-		@include buggyfill("height: 100vh;");
-		embed {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100vh;
-			@include buggyfill("height: 100vh;"); } }
-	&.pageLoading {
-		display: none;
-	}
+  &.lovePage {
+    overflow: visible;
+
+    height: 100vh;
+    margin-top: -47px;
+    padding-bottom: 47px;
+
+    background-color: $tumblrgrey;
+
+    @include buggyfill("height: 100vh;");
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100vh;
+
+      @include buggyfill("height: 100vh;");
+    }
+  }
+  &.pageLoading {
+    display: none;
+  }
 }
 
-#cssTest {
-	position: absolute;
-	top: 10px; right: 20px;
-	text-align: left;
-	color: pink;
-	p {
-		font-size: 2em;
-		line-height: 1.5;
-	}
-}
-
-html {
-	&.cssvhunit {
-		#cssTest {
-			p.cssvhunit {
-				display: none; } } }
-	&.cssvwunit {
-		#cssTest {
-			p.cssvwunit {
-				display: none; } } }
-	&.mobilegradea {
-		#cssTest {
-			p.mobilegradea {
-				display: none; } } }
-	&.localstorage {
-		#cssTest {
-			p.localstorage {
-				display: none; } } }
-	&.overthrow-enabled {
-		#cssTest {
-			p.overthrow-enabled {
-				display: none; } } }
-}
-
-.tester_classes {
-	background: $red;
-	color: black;
-	> div {
-		display: inline-block;
-		padding: 20px;
-		font-size: 20px
-		;	
-	}
-}
 
 #legacy-notice {
-	color: white;
-	text-align: center;
-	font-size: 18px;
-	font-size: 1.8em;
-	font-family: 'Roman', 'Black', sans-serif;
-	padding: 100px 50px;
-	background: black;
-	/*background-image: url('../images/zago_logo.png');
+  font-family: "Roman", "Black", sans-serif;
+  font-size: 18px;
+  font-size: 1.8em;
+
+  padding: 100px 50px;
+
+  text-align: center;
+
+  color: white;
+  background: black;
+  /*background-image: url('../images/zago_logo.png');
 	background-repeat: no-repeat;
 	background-size: auto 50%;
 	background-position: center center;*/
-	& > * {
-		margin-bottom: 30px; }
-	h1 {
-		font-size: 30px;
-		font-size: 3em; }
+  & > * {
+    margin-bottom: 30px;
+  }
+  h1 {
+    font-size: 30px;
+    font-size: 3em;
+  }
 }
 
 /*************************************************/
@@ -1811,24 +2438,34 @@ html {
 
 
 @keyframes menu-button {
-	0%   { background-color: nth($menuButtonColors, 1); }
-	25%   { background-color: nth($menuButtonColors, 2); }
-	50%   { background-color: nth($menuButtonColors, 3); }
-	75%   { background-color: nth($menuButtonColors, 4); }
-	100%   { background-color: nth($menuButtonColors, 1); }
+  0% {
+    background-color: nth($menuButtonColors, 1);
+  }
+  25% {
+    background-color: nth($menuButtonColors, 2);
+  }
+  50% {
+    background-color: nth($menuButtonColors, 3);
+  }
+  75% {
+    background-color: nth($menuButtonColors, 4);
+  }
+  100% {
+    background-color: nth($menuButtonColors, 1);
+  }
 }
 
 @keyframes bounce-prompt {
-	0% {
-		transform: translate(50%, -100vh);
-		opacity: 0;
+  0% {
+    transform: translate(50%, -100vh);
 
-		@include buggyfill("transform: translate(50%, -100vh);");
-	}
-	100% {
-	  	transform: translate(50%, 0);
-	  	opacity: 1;
-	}
+    opacity: 0;
+
+    @include buggyfill("transform: translate(50%, -100vh);");
+  }
+  100% {
+    transform: translate(50%, 0);
+
+    opacity: 1;
+  }
 }
-
-

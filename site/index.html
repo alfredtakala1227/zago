@@ -56,7 +56,7 @@
 
         <div id="pageContent" class="{{pageView}}" ui-view autoscroll="true"><!-- Angular Partials go here --></div>
 
-        <footer id="footer" ng-class="{homePage: pageView == 'homePage', lovePage: pageView == 'lovePage'}">
+        <footer id="footer" ng-class="{homePage: pageView == 'homePage'}">
             <section class="collaboration">
                 <p>Let's work together.</p>
                 <p>Come have coffee & say ciao.</p>
@@ -70,18 +70,6 @@
             </section>
             <div class="officeListing" office-list></div>
             <section class="social" social-buttons></section>
-
-
-            <div id="test-sprites">
-                <ul>
-                    <li class="downArrow"></li>
-                    <li class="downArrow-white"></li>
-                    <li class="upArrow"></li>
-                    <li class="upArrow-white"></li>
-                </ul>
-            </div>
-
-
         </footer>
     </div>
 
