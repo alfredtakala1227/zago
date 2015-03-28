@@ -3,27 +3,27 @@
 @import "../base.scss";
 
 @font-face {
-  font-family: "Black";
-  font-weight: normal;
-  font-style: normal;
+	font-family: "Black";
+	font-weight: normal;
+	font-style: normal;
 
-  src: url("../fonts/black/NewsGothicLTStd-Black.eot");
-  src: url("../fonts/black/NewsGothicLTStd-Black.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/black/NewsGothicLTStd-Black.woff") format("woff"),
-  url("../fonts/black/NewsGothicLTStd-Black.ttf") format("truetype"),
-  url("../fonts/black/NewsGothicLTStd-Black.svg#black") format("svg");
+	src: url("../fonts/black/NewsGothicLTStd-Black.eot");
+	src: url("../fonts/black/NewsGothicLTStd-Black.eot?#iefix") format("embedded-opentype"),
+	url("../fonts/black/NewsGothicLTStd-Black.woff") format("woff"),
+	url("../fonts/black/NewsGothicLTStd-Black.ttf") format("truetype"),
+	url("../fonts/black/NewsGothicLTStd-Black.svg#black") format("svg");
 }
 
 @font-face {
-  font-family: "Roman";
-  font-weight: normal;
-  font-style: normal;
+	font-family: "Roman";
+	font-weight: normal;
+	font-style: normal;
 
-  src: url("../fonts/roman/NewsGothicLTStd-Roman.eot");
-  src: url("../fonts/roman/NewsGothicLTStd-Roman.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/roman/NewsGothicLTStd-Roman.woff") format("woff"),
-  url("../fonts/roman/NewsGothicLTStd-Roman.ttf") format("truetype"),
-  url("../fonts/roman/NewsGothicLTStd-Roman.svg#roman") format("svg");
+	src: url("../fonts/roman/NewsGothicLTStd-Roman.eot");
+	src: url("../fonts/roman/NewsGothicLTStd-Roman.eot?#iefix") format("embedded-opentype"),
+	url("../fonts/roman/NewsGothicLTStd-Roman.woff") format("woff"),
+	url("../fonts/roman/NewsGothicLTStd-Roman.ttf") format("truetype"),
+	url("../fonts/roman/NewsGothicLTStd-Roman.svg#roman") format("svg");
 }
 
 /*************************************************/
@@ -31,162 +31,166 @@
 /*************************************************/
 
 .overthrow-enabled .overthrow {
-  overflow: auto;
+	overflow: auto;
 
-  -webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
 }
 
 %headerText {
-  font-size: 3em;
-  line-height: 1.3;
+	font-size: 3em;
+	line-height: 1.3;
 
-  letter-spacing: .02em;
+	letter-spacing: .02em;
 
-  @include breakpoint(desktop) {
-    font-size: 3.6em;
-  }
+	@include breakpoint(desktop) {
+		font-size: 3.6em;
+	}
 }
 
 %bodyTitle {
-  font-size: 2.6em;
-  line-height: 1.4em;
+	font-size: 2.6em;
+	line-height: 1.4em;
 
-  letter-spacing: .075em;
+	letter-spacing: .075em;
 
-  @include breakpoint(desktop) {
-    font-size: 3em;
-  }
+	@include breakpoint(desktop) {
+		font-size: 3em;
+	}
 }
 
 %bodyText {
-  font-size: 1.6em;
-  line-height: 1.5em;
+	font-size: 1.6em;
+	line-height: 1.5em;
 
-  letter-spacing: .04em;
+	letter-spacing: .04em;
+
+	@include breakpoint(desktop) {
+		font-size: 2em;
+	}
 }
 
 %absoluteCenter {
-  position: absolute;
-  top: -9999px;
-  right: -9999px;
-  bottom: -9999px;
-  left: -9999px;
+	position: absolute;
+	top: -9999px;
+	right: -9999px;
+	bottom: -9999px;
+	left: -9999px;
 
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-  margin: auto;
-  &.top {
-    top: 0;
-    bottom: initial;
-  }
-  &.bottom {
-    top: initial;
-    bottom: 0;
-  }
-  &.left {
-    right: initial;
-    left: 0;
-  }
-  &.right {
-    right: 0;
-    left: initial;
-  }
-  &.stretch {
-    width: 100%;
-    height: auto;
-  }
+	min-width: 100%;
+	height: 100%;
+	min-height: 100%;
+	margin: auto;
+	&.top {
+		top: 0;
+		bottom: initial;
+	}
+	&.bottom {
+		top: initial;
+		bottom: 0;
+	}
+	&.left {
+		right: initial;
+		left: 0;
+	}
+	&.right {
+		right: 0;
+		left: initial;
+	}
+	&.stretch {
+		width: 100%;
+		height: auto;
+	}
 }
 
 %flexBox4 {
-  margin-bottom: 50px;
-  margin-left: 15px;
+	margin-bottom: 50px;
+	margin-left: 15px;
 
-  @include clearfix;
-  @include breakpoint(smallTablet) {
-    margin-left: 100px;
-  }
-  @include breakpoint(smallTablet) {
-    section {
-      display: inline-block;
-      float: left;
+	@include clearfix;
+	h3 {
+		font-family: "Black";
+		font-size: 2em;
 
-      width: 32%;
-      margin-right: 2%;
-      margin-bottom: 0;
-      &:nth-of-type(3) {
-        margin-right: 0;
-      }
-    }
-  }
-  @include breakpoint(desktop) {
-    section {
-      width: 23.5%;
-      margin-right: 2%;
-      &:nth-of-type(3) {
-        margin-right: 2%;
-      }
-      &:nth-of-type(4) {
-        display: inline-block;
+		margin-bottom: 40px;
 
-        margin-right: 0;
-      }
-    }
-  }
-  h3 {
-    font-family: "Black";
-    font-size: 2em;
+		letter-spacing: .075em;
+	}
+	section {
+		display: block;
 
-    margin-bottom: 40px;
+		margin-right: 0;
+		margin-bottom: 40px;
 
-    letter-spacing: .075em;
-  }
-  section {
-    display: block;
+		cursor: pointer;
 
-    margin-right: 0;
-    margin-bottom: 40px;
+		color: black;
+		&:nth-of-type(4) {
+			display: none;
+		}
+		p {
+			font-size: 2.4em;
 
-    cursor: pointer;
+			text-transform: capitalize;
+		}
+		h4 {
+			font-family: "Black";
+			font-size: 1.6em;
 
-    color: black;
-    &:nth-of-type(4) {
-      display: none;
-    }
-    p {
-      font-size: 2.4em;
+			margin-top: 10px;
 
-      text-transform: capitalize;
-    }
-    h4 {
-      font-family: "Black";
-      font-size: 1.6em;
+			letter-spacing: .075em;
+			text-transform: uppercase;
+		}
+	}
+	@include breakpoint(smallTablet) {
+		margin-left: 100px;
+	}
+	@include breakpoint(smallTablet) {
+		section {
+			display: inline-block;
+			float: left;
 
-      margin-top: 10px;
+			width: 32%;
+			margin-right: 2%;
+			margin-bottom: 0;
+			&:nth-of-type(3) {
+				margin-right: 0;
+			}
+		}
+	}
+	@include breakpoint(desktop) {
+		section {
+			width: 23.5%;
+			margin-right: 2%;
+			&:nth-of-type(3) {
+				margin-right: 2%;
+			}
+			&:nth-of-type(4) {
+				display: inline-block;
 
-      letter-spacing: .075em;
-      text-transform: uppercase;
-    }
-  }
+				margin-right: 0;
+			}
+		}
+	}
 }
 
 // Inline style combo
 .color {
-  &.blue {
-    color: $blue;
-  }
-  &.green {
-    color: $green;
-  }
-  &.yellow {
-    color: $yellow;
-  }
-  &.pink {
-    color: $pink;
-  }
-  &.red {
-    color: $red;
-  }
+	&.blue {
+		color: $blue;
+	}
+	&.green {
+		color: $green;
+	}
+	&.yellow {
+		color: $yellow;
+	}
+	&.pink {
+		color: $pink;
+	}
+	&.red {
+		color: $red;
+	}
 }
 
 /*************************************************/
@@ -195,223 +199,223 @@
 
 b,
 strong {
-  font-family: "Black";
+	font-family: "Black";
 }
 
 u {
-  text-decoration: underline;
-  &.z {
-    padding-right: .075em;
+	text-decoration: underline;
+	&.z {
+		padding-right: .075em;
 
-    letter-spacing: 0;
-  }
+		letter-spacing: 0;
+	}
 }
 
 a {
-  cursor: pointer;
-  transition: all $fastSpeed $primaryEase;
-  text-decoration: none;
+	cursor: pointer;
+	transition: all $fastSpeed $primaryEase;
+	text-decoration: none;
 
-  color: white;
-  .projectContent & {
-    line-height: .75;
+	color: white;
+	.projectContent & {
+		line-height: .75;
 
-    display: inline-block;
+		display: inline-block;
 
-    color: black;
-    border-bottom: 1px solid black;
-    &:hover {
-      border-bottom-color: white;
-    }
-  }
-  &:hover {
-    color: $blue;
-  }
+		color: black;
+		border-bottom: 1px solid black;
+		&:hover {
+			border-bottom-color: white;
+		}
+	}
+	&:hover {
+		color: $blue;
+	}
 }
 
 ul {
-  &.socialButtons {
-    border: 1px solid $darkgrey;
-    li {
-      float: left;
+	&.socialButtons {
+		border: 1px solid $darkgrey;
+		li {
+			float: left;
 
-      width: 30px;
-      height: 30px;
+			width: 30px;
+			height: 30px;
 
-      cursor: pointer;
-      transition: background-color $fastSpeed $primaryEase;
+			cursor: pointer;
+			transition: background-color $fastSpeed $primaryEase;
 
-      border-right: 1px solid $darkgrey;
-      background-color: white;
-      /*background-image: url('../images/social_sprites.png');*/
-      background-image: url("../images/sprite-sheet.png");
-      background-repeat: no-repeat;
-      background-size: 50% auto;
-      &:last-of-type {
-        border-right: 0;
-      }
-      a {
-        display: inline-block;
+			border-right: 1px solid $darkgrey;
+			background-color: white;
+			/*background-image: url('../images/social_sprites.png');*/
+			background-image: url("../images/sprite-sheet.png");
+			background-repeat: no-repeat;
+			background-size: 50% auto;
+			&:last-of-type {
+				border-right: 0;
+			}
+			a {
+				display: inline-block;
 
-        width: 100%;
-        height: 100%;
-      }
-      &:hover {
-        background-color: black;
-        a {
-          border-color: transparent;
-        }
-      }
-      &.invert {
-        background-color: transparent;
-        &.invertHover:hover {
-          background-color: white;
-        }
-      }
-      &.fb_btn,
-      &.fb_btn.invert:hover {
-        background-position: 50% 36.35%;
-      }
-      &.fb_btn:hover,
-      &.fb_btn.invert {
-        background-position: 50% 40.5%;
-      }
-      &.tw_btn,
-      &.tw_btn.invert:hover {
-        background-position: 50% 44.35%;
-      }
-      &.tw_btn:hover,
-      &.tw_btn.invert {
-        background-position: 50% 48.5%;
-      }
-      &.li_btn,
-      &.li_btn.invert:hover {
-        background-position: 50% 53%;
-      }
-      &.li_btn:hover,
-      &.li_btn.invert {
-        background-position: 50% 57.25%;
-      }
-      &.pi_btn,
-      &.pi_btn.invert:hover {
-        background-position: 50% 69.5%;
-      }
-      &.pi_btn:hover,
-      &.pi_btn.invert {
-        background-position: 50% 73.7%;
-      }
-      &.be_btn,
-      &.be_btn.invert:hover {
-        background-position: 50% 60.85%;
-      }
-      &.be_btn:hover,
-      &.be_btn.invert {
-        background-position: 50% 65.1%;
-      }
-      &.ma_btn,
-      &.ma_btn.invert:hover {
-        background-position: 50% 77.5%;
-      }
-      &.ma_btn:hover,
-      &.ma_btn.invert {
-        background-position: 50% 81.65%;
-      }
-      &.tr_btn,
-      &.tr_btn.invert:hover {
-        background-position: 50% 94.4%;
-      }
-      &.tr_btn:hover,
-      &.tr_btn.invert {
-        background-position: 50% 98.5%;
-      }
-    }
-  }
+				width: 100%;
+				height: 100%;
+			}
+			&:hover {
+				background-color: black;
+				a {
+					border-color: transparent;
+				}
+			}
+			&.invert {
+				background-color: transparent;
+				&.invertHover:hover {
+					background-color: white;
+				}
+			}
+			&.fb_btn,
+			&.fb_btn.invert:hover {
+				background-position: 50% 36.35%;
+			}
+			&.fb_btn:hover,
+			&.fb_btn.invert {
+				background-position: 50% 40.5%;
+			}
+			&.tw_btn,
+			&.tw_btn.invert:hover {
+				background-position: 50% 44.35%;
+			}
+			&.tw_btn:hover,
+			&.tw_btn.invert {
+				background-position: 50% 48.5%;
+			}
+			&.li_btn,
+			&.li_btn.invert:hover {
+				background-position: 50% 53%;
+			}
+			&.li_btn:hover,
+			&.li_btn.invert {
+				background-position: 50% 57.25%;
+			}
+			&.pi_btn,
+			&.pi_btn.invert:hover {
+				background-position: 50% 69.5%;
+			}
+			&.pi_btn:hover,
+			&.pi_btn.invert {
+				background-position: 50% 73.7%;
+			}
+			&.be_btn,
+			&.be_btn.invert:hover {
+				background-position: 50% 60.85%;
+			}
+			&.be_btn:hover,
+			&.be_btn.invert {
+				background-position: 50% 65.1%;
+			}
+			&.ma_btn,
+			&.ma_btn.invert:hover {
+				background-position: 50% 77.5%;
+			}
+			&.ma_btn:hover,
+			&.ma_btn.invert {
+				background-position: 50% 81.65%;
+			}
+			&.tr_btn,
+			&.tr_btn.invert:hover {
+				background-position: 50% 94.4%;
+			}
+			&.tr_btn:hover,
+			&.tr_btn.invert {
+				background-position: 50% 98.5%;
+			}
+		}
+	}
 }
 
 button {
-  cursor: pointer;
-  &#menuButton {
-    overflow: hidden;
+	cursor: pointer;
+	&#menuButton {
+		overflow: hidden;
 
-    width: 100%;
-    height: 6vh;
-    min-height: 30px;
-    max-height: 9vw;
-    padding: 0;
+		width: 100%;
+		height: 6vh;
+		min-height: 30px;
+		max-height: 9vw;
+		padding: 0;
 
-    transition: opacity $normalSpeed $primaryEase;
-    animation: menu-button 8s infinite;
+		transition: opacity $normalSpeed $primaryEase;
+		animation: menu-button 8s infinite;
 
-    opacity: .5;
-    border: 0;
+		opacity: .5;
+		border: 0;
 
-    @include buggyfill("height: 6vh; max-height: 9vw;");
-    span#menuPrompt {
-      display: none;
+		@include buggyfill("height: 6vh; max-height: 9vw;");
+		span#menuPrompt {
+			display: none;
 
-      width: 100%;
+			width: 100%;
 
-      transition: opacity $slowSpeed $primaryEase;
+			transition: opacity $slowSpeed $primaryEase;
 
-      color: white;
-      &.marquee {
-        display: block;
+			color: white;
+			&.marquee {
+				display: block;
 
-        animation: marquee 7.5s infinite;
-      }
-      &.hiding {
-        opacity: 0;
-      }
-    }
-    &:hover {
-      opacity: 1;
-    }
-    &:active {
-      /*button click styling*/
-    }
-    &.menu-open {
-      animation: none;
+				animation: marquee 7.5s infinite;
+			}
+			&.hiding {
+				opacity: 0;
+			}
+		}
+		&:hover {
+			opacity: 1;
+		}
+		&:active {
+			/*button click styling*/
+		}
+		&.menu-open {
+			animation: none;
 
-      background-color: white;
-    }
-  }
-  &#scrollTop {
-    position: fixed;
-    z-index: 500;
-    right: 0;
-    bottom: 0;
+			background-color: white;
+		}
+	}
+	&#scrollTop {
+		position: fixed;
+		z-index: 500;
+		right: 0;
+		bottom: 0;
 
-    width: 50px;
-    max-width: 0;
-    height: 50px;
-    max-height: 0;
-    padding: 0;
+		width: 50px;
+		max-width: 0;
+		height: 50px;
+		max-height: 0;
+		padding: 0;
 
-    transition: background-color $normalSpeed $primaryEase;
+		transition: background-color $normalSpeed $primaryEase;
 
-    border: 1px inset black;
-    border-right: 0;
-    border-bottom: 0;
-    background-color: transparent;
-    background-image: url("../images/sprite-sheet.png");
-    background-repeat: no-repeat;
-    background-position: 50% 6.8%;
-    background-size: 24px auto;
+		border: 1px inset black;
+		border-right: 0;
+		border-bottom: 0;
+		background-color: transparent;
+		background-image: url("../images/sprite-sheet.png");
+		background-repeat: no-repeat;
+		background-position: 50% 6.8%;
+		background-size: 24px auto;
 
-    backface-visibility: hidden;
-    &.show {
-      max-width: 50px;
-      max-height: 50px;
-    }
-    &:hover {
-      background-color: black;
-      background-position: 50% 11%;
-    }
-  }
-  &:focus {
-    border: 0;
-    outline: 0;
-  }
+		backface-visibility: hidden;
+		&.show {
+			max-width: 50px;
+			max-height: 50px;
+		}
+		&:hover {
+			background-color: black;
+			background-position: 50% 11%;
+		}
+	}
+	&:focus {
+		border: 0;
+		outline: 0;
+	}
 }
 
 
@@ -420,297 +424,297 @@ button {
 /*************************************************/
 
 body {
-  font-family: "Roman";
-  font-size: 62.5%;
+	font-family: "Roman";
+	font-size: 62.5%;
 
-  overflow: auto;
+	overflow: auto;
 
-  @include breakpoint(oversize) {
-    font-size: 100%;
-  }
-  &.hidden {
-    overflow: hidden;
-  }
+	@include breakpoint(oversize) {
+		font-size: 100%;
+	}
+	&.hidden {
+		overflow: hidden;
+	}
 }
 
 header {
-  position: absolute;
+	position: absolute;
 
-  width: 100%;
+	width: 100%;
 }
 
 footer {
-  margin-left: 15px;
-  padding: 50px 0;
+	margin-left: 15px;
+	padding: 50px 0;
 
-  border-top: 1px solid $grey;
+	border-top: 1px solid $grey;
 
-  @include clearfix;
-  @include breakpoint(smallTablet) {
-    margin-left: 100px;
-    .officeListing {
-      section {
-        float: left;
-      }
-    }
-  }
-  @include breakpoint(desktop) {
-    section {
-      font-size: 1.4em;
-    }
-  }
-  section {
-    font-size: 1.2em;
-    line-height: 1.5em;
+	@include clearfix;
+	section {
+		font-size: 1.2em;
+		line-height: 1.5em;
 
-    display: inline-block;
-    float: left;
+		display: inline-block;
+		float: left;
 
-    width: 48%;
-    margin-bottom: 30px;
-    padding-right: 2%;
+		width: 48%;
+		margin-bottom: 30px;
+		padding-right: 2%;
 
-    vertical-align: top;
-    letter-spacing: .02em;
+		vertical-align: top;
+		letter-spacing: .02em;
 
-    @include breakpoint(smallTablet) {
-      width: 24%;
-      margin-bottom: 0;
-      padding-right: 1%;
-    }
-    @include breakpoint(desktop) {
-      width: 19%;
-      padding-right: 1%;
-    }
-    &.collaboration {
-      display: none;
-    }
-    h2 {
-      font-family: "Black";
+		@include breakpoint(smallTablet) {
+			width: 24%;
+			margin-bottom: 0;
+			padding-right: 1%;
+		}
+		@include breakpoint(desktop) {
+			width: 19%;
+			padding-right: 1%;
+		}
+		&.collaboration {
+			display: none;
+		}
+		h2 {
+			font-family: "Black";
 
-      letter-spacing: .075em;
-      text-transform: uppercase;
-    }
-    a {
-      color: black;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-    &.intern {
-      p {
-        display: block;
+			letter-spacing: .075em;
+			text-transform: uppercase;
+		}
+		a {
+			color: black;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		&.intern {
+			p {
+				display: block;
 
-        white-space: pre-line;
+				white-space: pre-line;
 
-        @include breakpoint(639px, true) {
-          white-space: normal;
-        }
-        &.footerCiaoline {
-          display: block;
+				@include breakpoint(639px, true) {
+					white-space: normal;
+				}
+				&.footerCiaoline {
+					display: block;
 
-          margin-bottom: 1em;
-        }
-      }
-      a {
-        text-decoration: underline;
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-    &.info {
-      display: none;
-    }
-    &.social {
-      width: 100%;
+					margin-bottom: 1em;
+				}
+			}
+			a {
+				text-decoration: underline;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+		&.info {
+			display: none;
+		}
+		&.social {
+			width: 100%;
 
-      @include breakpoint(smallTablet) {
-        margin-top: 30px;
-        margin-bottom: 5px;
-        p {
-          float: right;
-          clear: none;
+			@include breakpoint(smallTablet) {
+				margin-top: 30px;
+				margin-bottom: 5px;
+				p {
+					float: right;
+					clear: none;
 
-          width: 25%;
-        }
-      }
-      @include breakpoint(desktop) {
-        width: 19%;
-        margin-top: 0;
-        ul {
-          float: none;
+					width: 25%;
+				}
+			}
+			@include breakpoint(desktop) {
+				width: 19%;
+				margin-top: 0;
+				ul {
+					float: none;
 
-          width: 100px;
+					width: 100px;
 
-          border: 0;
-          li {
-            border-bottom: 1px solid $darkgrey;
-            &:nth-of-type(1),
-            &:nth-of-type(2),
-            &:nth-of-type(3) {
-              border-top: 1px solid $darkgrey;
-            }
-            &:nth-of-type(4),
-            &:first-of-type {
-              border-left: 1px solid $darkgrey;
-            }
-            &:nth-of-type(3),
-            &:last-of-type {
-              border-right: 1px solid $darkgrey;
-            }
-          }
-        }
-        p {
-          float: none;
+					border: 0;
+					li {
+						border-bottom: 1px solid $darkgrey;
+						&:nth-of-type(1),
+						&:nth-of-type(2),
+						&:nth-of-type(3) {
+							border-top: 1px solid $darkgrey;
+						}
+						&:nth-of-type(4),
+						&:first-of-type {
+							border-left: 1px solid $darkgrey;
+						}
+						&:nth-of-type(3),
+						&:last-of-type {
+							border-right: 1px solid $darkgrey;
+						}
+					}
+				}
+				p {
+					float: none;
 
-          width: auto;
-        }
-      }
-      ul {
-        display: inline-block;
-        float: left;
+					width: auto;
+				}
+			}
+			ul {
+				display: inline-block;
+				float: left;
 
-        margin-bottom: 20px;
-        li {
-          background-color: transparent;
-        }
-      }
-      p {
-        float: left;
-        clear: left;
-      }
-    }
-  }
-  .officeListing {
-    section {
-      float: right;
-      &:last-of-type {
-        float: left;
-      }
-    }
-  }
-  &.homePage {
-    margin-left: 0;
-    padding: 60px 0 20px;
+				margin-bottom: 20px;
+				li {
+					background-color: transparent;
+				}
+			}
+			p {
+				float: left;
+				clear: left;
+			}
+		}
+	}
+	.officeListing {
+		section {
+			float: right;
+			&:last-of-type {
+				float: left;
+			}
+		}
+	}
+	&.homePage {
+		margin-left: 0;
+		padding: 60px 0 20px;
 
-    text-align: center;
+		text-align: center;
 
-    border: 0;
-    background-color: $lightgrey;
+		border: 0;
+		background-color: $lightgrey;
+		section {
+			float: none;
 
-    @include breakpoint(tablet) {
-      padding: 60px 0 40px;
-      section {
-        margin-bottom: 75px;
-        &.social {
-          margin-bottom: 0;
-        }
-        &.intern {
-        }
-      }
-    }
-    section {
-      float: none;
+			width: 100%;
+			margin-bottom: 35px;
+			padding-right: 0;
 
-      width: 100%;
-      margin-bottom: 35px;
-      padding-right: 0;
+			@extend %bodyText;
+			&.collaboration {
+				display: block;
 
-      @extend %bodyText;
-      @include breakpoint(smallTablet) {
-        width: 33%;
-        &.collaboration,
-        &.intern,
-        &.social {
-          width: 100%;
-        }
-      }
-      @include breakpoint(tablet) {
-        &.social {
-          ul {
-            li {
-              &.first-of-type {
-                border-left: 0;
-              }
-            }
-          }
-        }
-      }
-      @include breakpoint(large) {
-        width: 25%;
-      }
-      &.collaboration {
-        display: block;
+				margin-bottom: 30px;
+				p {
+					font-family: "Black";
+					line-height: 1.5;
 
-        margin-bottom: 30px;
-        p {
-          font-family: "Black";
-          line-height: 1.5;
+					letter-spacing: .075;
+					text-transform: uppercase;
+				}
+				a {
+					display: inline-block;
 
-          letter-spacing: .075;
-          text-transform: uppercase;
-        }
-        a {
-          display: inline-block;
+					margin-top: 40px;
 
-          margin-top: 40px;
+					text-decoration: underline;
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+			&.intern {
+				p {
+					display: inline;
+					&.footerCiaoline {
+						display: none;
+					}
+				}
+			}
+			&.collaboration,
+			&.intern {
+				display: block;
 
-          text-decoration: underline;
-          &:hover {
-            text-decoration: none;
-          }
-        }
-      }
-      &.intern {
-        p {
-          display: inline;
-          &.footerCiaoline {
-            display: none;
-          }
-        }
-      }
-      &.collaboration,
-      &.intern {
-        display: block;
+				width: 100%;
+				p {
+					white-space: normal;
+				}
+			}
+			&.social {
+				margin-top: 0;
+				ul {
+					float: none;
 
-        width: 100%;
-        p {
-          white-space: normal;
-        }
-      }
-      &.social {
-        margin-top: 0;
-        ul {
-          float: none;
+					width: auto;
 
-          width: auto;
+					text-align: center;
+					li {
+						border-top: 0;
+						border-bottom: 0;
+						border-left: 0;
+						&:last-of-type {
+							border-right: 0;
+						}
+					}
 
-          text-align: center;
+					@include breakpoint(desktop) {
+						border: 1px solid $darkgrey;
+					}
+				}
+				p {
+					float: none;
 
-          @include breakpoint(desktop) {
-            border: 1px solid $darkgrey;
-          }
-          li {
-            border-top: 0;
-            border-bottom: 0;
-            border-left: 0;
-            &:last-of-type {
-              border-right: 0;
-            }
-          }
-        }
-        p {
-          float: none;
+					width: auto;
+				}
+			}
+			@include breakpoint(smallTablet) {
+				width: 33%;
+				&.collaboration,
+				&.intern,
+				&.social {
+					width: 100%;
+				}
+			}
+			@include breakpoint(tablet) {
+				&.social {
+					ul {
+						li {
+							&.first-of-type {
+								border-left: 0;
+							}
+						}
+					}
+				}
+			}
+			@include breakpoint(large) {
+				width: 25%;
+			}
+		}
 
-          width: auto;
-        }
-      }
-    }
-  }
-  &.pageLoading {
-    display: none;
-  }
+		@include breakpoint(tablet) {
+			padding: 60px 0 40px;
+			section {
+				margin-bottom: 75px;
+				&.social {
+					margin-bottom: 0;
+				}
+				&.intern {
+				}
+			}
+		}
+	}
+	@include breakpoint(smallTablet) {
+		margin-left: 100px;
+		.officeListing {
+			section {
+				float: left;
+			}
+		}
+	}
+	@include breakpoint(desktop) {
+		section {
+			font-size: 1.4em;
+		}
+	}
+	&.pageLoading {
+		display: none;
+	}
 }
 
 /*************************************************/
@@ -718,77 +722,77 @@ footer {
 /*************************************************/
 
 #container {
-  position: relative;
-  position: relative;
-  z-index: 100;
+	position: relative;
+	position: relative;
+	z-index: 100;
 
-  width: 100%;
-  min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 
-  transition: all $normalSpeed $primaryEase;
+	transition: all $normalSpeed $primaryEase;
 
-  opacity: 1;
-  background-color: white;
+	opacity: 1;
+	background-color: white;
 
-  @include buggyfill("min-height: 100vh;");
-  &.pageLoading {
-    transform: translateX(100%);
-    /*opacity: 0;*/
-  }
+	@include buggyfill("min-height: 100vh;");
+	&.pageLoading {
+		transform: translateX(100%);
+		/*opacity: 0;*/
+	}
 }
 
 #pageContent {
-  position: relative;
+	position: relative;
 
-  overflow: auto;
+	overflow: auto;
 
-  width: 100%;
-  min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 
-  @include buggyfill("min-height: 100vh;");
-  &.menu-open {
-    overflow: hidden;
-  }
-  &.pageLoading {
-    display: none;
-  }
+	@include buggyfill("min-height: 100vh;");
+	&.menu-open {
+		overflow: hidden;
+	}
+	&.pageLoading {
+		display: none;
+	}
 }
 
 .loaderWrapper {
-  position: relative !important;
-  z-index: 1 !important;
-  img {
-    z-index: 5;
-  }
+	position: relative !important;
+	z-index: 1 !important;
+	img {
+		z-index: 5;
+	}
 }
 
 .loaderBox {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	left: 50%;
 
-  width: 25px;
-  height: 25px;
+	width: 25px;
+	height: 25px;
 
-  transform: translate(-50%, -50%);
-  .loader {
-    animation: spinner 1s infinite linear;
+	transform: translate(-50%, -50%);
+	.loader {
+		animation: spinner 1s infinite linear;
 
-    border: 5px solid $grey;
-    border-left: 5px solid rgba($grey, .5);
-    &,
-    &:after {
-      position: absolute;
-      top: -1em;
-      left: -1em;
+		border: 5px solid $grey;
+		border-left: 5px solid rgba($grey, .5);
+		&,
+		&:after {
+			position: absolute;
+			top: -1em;
+			left: -1em;
 
-      width: 100%;
-      height: 100%;
+			width: 100%;
+			height: 100%;
 
-      border-radius: 50%;
-    }
-  }
+			border-radius: 50%;
+		}
+	}
 }
 
 
@@ -797,545 +801,545 @@ footer {
 /*************************************************/
 
 img.siteID {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
 
-  width: 50px;
-  height: auto;
+	width: 50px;
+	height: auto;
 
-  cursor: pointer;
+	cursor: pointer;
 
-  backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 .buttonWrapper {
-  position: fixed;
-  z-index: 1000;
-  top: 78%;
-  right: 50%;
+	position: fixed;
+	z-index: 1000;
+	top: 78%;
+	right: 50%;
 
-  width: 41vh;
-  min-width: 230px;
-  max-width: 70vw;
+	width: 41vh;
+	min-width: 230px;
+	max-width: 70vw;
 
-  transform: translateX(50%);
-  text-align: center;
+	transform: translateX(50%);
+	text-align: center;
 
-  backface-visibility: hidden;
-  @include buggyfill("width: 41vh; max-width: 70vw;");
+	backface-visibility: hidden;
+	@include buggyfill("width: 41vh; max-width: 70vw;");
 }
 
 nav {
-  &#mainNav {
-    position: fixed;
-    z-index: 800;
-    top: 0;
-    right: -100%;
+	&#mainNav {
+		position: fixed;
+		z-index: 800;
+		top: 0;
+		right: -100%;
 
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
 
-    transition: all $normalSpeed $primaryEase;
-    transform: translateX(0);
+		transition: all $normalSpeed $primaryEase;
+		transform: translateX(0);
 
-    background: black;
+		background: black;
 
-    backface-visibility: hidden;
-    @include buggyfill("min-height: 100vh;");
-    &.menu-open {
-      transform: translateX(-100%);
+		backface-visibility: hidden;
+		@include buggyfill("min-height: 100vh;");
+		&.menu-open {
+			transform: translateX(-100%);
 
-      @include breakpoint(desktop) {
-        transform: translateX(-75%);
-      }
-    }
-    #menuWrapper {
-      position: relative;
-      z-index: 800;
+			@include breakpoint(desktop) {
+				transform: translateX(-75%);
+			}
+		}
+		#menuWrapper {
+			position: relative;
+			z-index: 800;
 
-      margin: 0 auto;
-      padding: 20vmin 0 25vmin;
+			margin: 0 auto;
+			padding: 20vmin 0 25vmin;
 
-      @include clearfix;
-      @include buggyfill("padding: 20vmin 0 25vmin;");
-      @include breakheight(tiny) {
-        padding-bottom: 30vh;
+			@include clearfix;
+			@include buggyfill("padding: 20vmin 0 25vmin;");
+			#menu {
+				display: inline-block;
 
-        @include buggyfill("padding-bottom: 30vh;");
-      }
-      @include breakpoint(smallTablet) {
-        padding-top: 20vh;
+				margin: 0 50px;
 
-        @include buggyfill("padding-top: 20vh;");
-      }
-      @include breakpoint(desktop) {
-        padding-top: 25vh;
-        padding-bottom: 50px !important;
+				vertical-align: top;
+				ul {
+					color: white;
+					li {
+						display: block;
 
-        @include buggyfill("padding-top: 25vh;");
-      }
-      #menu {
-        display: inline-block;
+						margin: 0 0 25px;
+						&:last-of-type {
+							margin-bottom: 0;
+						}
+						a {
+							font-family: "Black";
+							font-size: 12vmin;
 
-        margin: 0 50px;
+							position: relative;
 
-        vertical-align: top;
+							text-decoration: none;
+							letter-spacing: .075em;
+							text-transform: uppercase;
 
-        @include breakpoint(mobile) {
-          margin: 0 70px;
-        }
-        ul {
-          color: white;
-          li {
-            display: block;
+							@include buggyfill("font-size: 12vmin;");
+							&.active {
+								text-decoration: underline;
+							}
+						}
 
-            margin: 0 0 25px;
+						@include breakpoint(smallTablet) {
+							a {
+								font-size: 4.8em;
+							}
+						}
+						@include breakpoint(wide) {
+							margin-bottom: 1.8vw;
 
-            @include breakpoint(smallTablet) {
-              a {
-                font-size: 4.8em;
-              }
-            }
-            @include breakpoint(wide) {
-              margin-bottom: 1.8vw;
+							@include buggyfill("margin-bottom: 1.8vw;");
+							a {
+								font-size: 3.25vw;
 
-              @include buggyfill("margin-bottom: 1.8vw;");
-              a {
-                font-size: 3.25vw;
+								margin-bottom: 3em;
 
-                margin-bottom: 3em;
+								@include buggyfill("font-size: 3.25vw;");
+							}
+						}
+					}
+				}
 
-                @include buggyfill("font-size: 3.25vw;");
-              }
-            }
-            &:last-of-type {
-              margin-bottom: 0;
-            }
-            a {
-              font-family: "Black";
-              font-size: 12vmin;
+				@include breakpoint(mobile) {
+					margin: 0 70px;
+				}
+			}
+			.menuContacts {
+				section {
+					&.info {
+						a {
+							text-decoration: underline;
+							&:hover {
+								text-decoration: none;
+							}
+						}
+					}
+				}
+			}
+			@include breakheight(tiny) {
+				padding-bottom: 30vh;
 
-              position: relative;
+				@include buggyfill("padding-bottom: 30vh;");
+			}
+			@include breakpoint(smallTablet) {
+				padding-top: 20vh;
 
-              text-decoration: none;
-              letter-spacing: .075em;
-              text-transform: uppercase;
+				@include buggyfill("padding-top: 20vh;");
+			}
+			@include breakpoint(desktop) {
+				padding-top: 25vh;
+				padding-bottom: 50px !important;
 
-              @include buggyfill("font-size: 12vmin;");
-              &.active {
-                text-decoration: underline;
-              }
-            }
-          }
-        }
-      }
-      .menuContacts {
-        section {
-          &.info {
-            a {
-              text-decoration: underline;
-              &:hover {
-                text-decoration: none;
-              }
-            }
-          }
-        }
-      }
-      // Landscape Styling for mobile
-      @media(max-width: 639px) and (orientation : landscape) {
-        display: block;
-        ul {
-          li {
-            float: left;
+				@include buggyfill("padding-top: 25vh;");
+			}
+		    // Landscape Styling for mobile
+		    @media(max-width: 639px) and (orientation : landscape) {
+		      	display: block;
+		      	ul {
+		      		li {
+		      			float: left;
 
-            width: 50%;
-            margin: 0 0 20vmin !important;
+		      			width: 50%;
+		      			margin: 0 0 20vmin !important;
 
-            @include buggyfill("margin: 0 0 20vmin !important;");
-            a {
-              font-size: 9vmax !important;
+		      			@include buggyfill("margin: 0 0 20vmin !important;");
+		      			a {
+		      				font-size: 9vmax !important;
 
-              @include buggyfill("font-size: 9vmax !important;");
-            }
-          }
-        }
-      }
-    }
-  }
-  &#projectNav {
-    position: fixed;
-    z-index: 700;
-    top: 50%;
-    left: 0;
+		      				@include buggyfill("font-size: 9vmax !important;");
+		      			}
+		      		}
+		      	}
+	        }
+    	}
+	}
+	&#projectNav {
+		position: fixed;
+		z-index: 700;
+		top: 50%;
+		left: 0;
 
-    width: 50px;
+		width: 50px;
 
-    transform: translateY(-50%);
+		transform: translateY(-50%);
 
-    backface-visibility: hidden;
-    @include breakpoint(639px, true) {
-      top: 0;
-      right: 0;
-      left: initial;
+		backface-visibility: hidden;
+		ul {
+			li {
+				position: relative;
 
-      width: 150px;
+				width: 50px;
+				height: 50px;
+				a {
+					display: block;
 
-      transform: translateY(0);
-      ul {
-        li {
-          float: left;
-          .navButton {
-            border: 0;
-            border-bottom: 1px solid $darkgrey;
-            border-left: 1px solid $darkgrey;
-            background-color: transparent;
-            &.project-next {
-            }
-            &.project-prev {
-            }
-          }
-          .navTitle {
-            display: none;
-          }
-        }
-      }
-    }
-    ul {
-      li {
-        position: relative;
+					width: 100%;
+					height: 100%;
 
-        width: 50px;
-        height: 50px;
+					color: black;
+				}
+				.navButton,
+				.navTitle {
+					height: 49px;
+				}
+				.navButton {
+					position: absolute;
+					z-index: 520;
+					top: 0;
+					left: 0;
 
-        @include breakpoint(oversize) {
-          width: 70px;
-          height: 70px;
-          .navButton {
-            background-size: 35px auto;
-          }
-        }
-        a {
-          display: block;
+					width: 100%;
 
-          width: 100%;
-          height: 100%;
+					transition: background-color $normalSpeed $primaryEase;
 
-          color: black;
-        }
-        .navButton,
-        .navTitle {
-          height: 49px;
-        }
-        .navButton {
-          position: absolute;
-          z-index: 520;
-          top: 0;
-          left: 0;
+					border: 1px solid $darkgrey;
+					border-bottom: 0;
+					border-left: 0;
+					background-color: white;
+					background-image: url("../images/sprite-sheet.png");
+					background-repeat: no-repeat;
+					background-size: 24px auto;
+					&.project-back {
+						background-position: 47% 86.25%;
+					}
+					&.project-prev {
+						background-position: 40% 15.7%;
+					}
+					&.project-next {
+						border-bottom: 1px solid #040707;
+						background-position: 50% 23.9%;
+					}
+				}
+				.navTitle {
+					font-size: 2em;
+					line-height: 2.75;
 
-          width: 100%;
+					position: absolute;
+					z-index: 500;
+					top: 0;
+					left: 100%;
 
-          transition: background-color $normalSpeed $primaryEase;
+					margin-left: 1px;
+					padding: 0 10px;
 
-          border: 1px solid $darkgrey;
-          border-bottom: 0;
-          border-left: 0;
-          background-color: white;
-          background-image: url("../images/sprite-sheet.png");
-          background-repeat: no-repeat;
-          background-size: 24px auto;
-          &.project-back {
-            background-position: 47% 86.25%;
-          }
-          &.project-prev {
-            background-position: 40% 15.7%;
-          }
-          &.project-next {
-            border-bottom: 1px solid #040707;
-            background-position: 50% 23.9%;
-          }
-        }
-        .navTitle {
-          font-size: 2em;
-          line-height: 2.75;
+					transition: transform $normalSpeed $primaryEase;
+					transform: translateX(-100%);
+					white-space: nowrap;
 
-          position: absolute;
-          z-index: 500;
-          top: 0;
-          left: 100%;
+					border: 1px solid $darkgrey;
+					border-left: 0;
+					background-color: white;;
+				}
+				&:hover {
+					.navButton {
+						background-color: black;
+						&.project-back {
+							background-position: 47% 90.5%;
+						}
+						&.project-prev {
+							background-position: 40% 19.75%;
+						}
+						&.project-next {
+							background-position: 50% 28%;
+						}
+					}
+					.navTitle {
+						transform: translateX(0);
+					}
+				}
 
-          margin-left: 1px;
-          padding: 0 10px;
+				@include breakpoint(oversize) {
+					width: 70px;
+					height: 70px;
+					.navButton {
+						background-size: 35px auto;
+					}
+				}
+			}
+		}
+		@include breakpoint(639px, true) {
+			top: 0;
+			right: 0;
+			left: initial;
 
-          transition: transform $normalSpeed $primaryEase;
-          transform: translateX(-100%);
-          white-space: nowrap;
+			width: 150px;
 
-          border: 1px solid $darkgrey;
-          border-left: 0;
-          background-color: white;;
-        }
-        &:hover {
-          .navButton {
-            background-color: black;
-            &.project-back {
-              background-position: 47% 90.5%;
-            }
-            &.project-prev {
-              background-position: 40% 19.75%;
-            }
-            &.project-next {
-              background-position: 50% 28%;
-            }
-          }
-          .navTitle {
-            transform: translateX(0);
-          }
-        }
-      }
-    }
-  }
-  &#sectionNav {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+			transform: translateY(0);
+			ul {
+				li {
+					float: left;
+					.navButton {
+						border: 0;
+						border-bottom: 1px solid $darkgrey;
+						border-left: 1px solid $darkgrey;
+						background-color: transparent;
+						&.project-next {
+						}
+						&.project-prev {
+						}
+					}
+					.navTitle {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	&#sectionNav {
+		position: absolute;
+		bottom: 0;
+		left: 0;
 
-    display: none;
+		display: none;
 
-    width: 100%;
-    height: 10px;
-    padding: 33px 0;
+		width: 100%;
+		height: 10px;
+		padding: 33px 0;
 
-    background-color: white;
+		background-color: white;
+		&.pinned {
+			position: fixed;
+			z-index: 500;
+			top: 0;
+			bottom: initial;
+			left: 0;
 
-    @include breakpoint(tablet) {
-      display: block;
-    }
-    &.pinned {
-      position: fixed;
-      z-index: 500;
-      top: 0;
-      bottom: initial;
-      left: 0;
+			backface-visibility: hidden;
+		}
+		ul {
+			font-family: "Black";
 
-      backface-visibility: hidden;
-    }
-    ul {
-      font-family: "Black";
+			text-align: center;
+			li {
+				font-size: 30px;
+				line-height: 1.2em;
 
-      text-align: center;
-      li {
-        font-size: 30px;
-        line-height: 1.2em;
+				display: inline-block;
 
-        display: inline-block;
+				margin-top: -.2em;
+				padding: 0 3%;
 
-        margin-top: -.2em;
-        padding: 0 3%;
+				cursor: pointer;
+				transition: color $fastSpeed $primaryEase;
+				vertical-align: middle;
+				letter-spacing: .075em;
+				text-transform: uppercase;
+				&:nth-of-type(1) {
+					&:hover,
+					&.active {
+						color: nth($menuButtonColors, 1);
+					}
+				}
+				&:nth-of-type(2) {
+					&:hover,
+					&.active {
+						color: nth($menuButtonColors, 2);
+					}
+				}
+				&:nth-of-type(3) {
+					&:hover,
+					&.active {
+						color: nth($menuButtonColors, 3);
+					}
+				}
+				&:nth-of-type(4) {
+					&:hover,
+					&.active {
+						color: nth($menuButtonColors, 4);
+					}
+				}
+			}
+		}
 
-        cursor: pointer;
-        transition: color $fastSpeed $primaryEase;
-        vertical-align: middle;
-        letter-spacing: .075em;
-        text-transform: uppercase;
-        &:nth-of-type(1) {
-          &:hover,
-          &.active {
-            color: nth($menuButtonColors, 1);
-          }
-        }
-        &:nth-of-type(2) {
-          &:hover,
-          &.active {
-            color: nth($menuButtonColors, 2);
-          }
-        }
-        &:nth-of-type(3) {
-          &:hover,
-          &.active {
-            color: nth($menuButtonColors, 3);
-          }
-        }
-        &:nth-of-type(4) {
-          &:hover,
-          &.active {
-            color: nth($menuButtonColors, 4);
-          }
-        }
-      }
-    }
-  }
+		@include breakpoint(tablet) {
+			display: block;
+		}
+	}
 }
 
 .menuContacts {
-  display: inline-block;
-  display: none;
-  float: right;
+	display: inline-block;
+	display: none;
+	float: right;
 
-  margin: 0;
-  margin-right: 70px;
-  padding-left: 15px;
+	margin: 0;
+	margin-right: 70px;
+	padding-left: 15px;
 
-  text-align: left;
-  vertical-align: top;
+	text-align: left;
+	vertical-align: top;
 
-  border-left: 1px solid darken($grey, 50%);
+	border-left: 1px solid darken($grey, 50%);
+	section {
+		font-size: 1.4em;
+		line-height: 1.6;
 
-  @include breakpoint(smallTablet) {
-    display: block;
-  }
-  @include breakpoint(tablet) {
-    section {
-      font-size: 1.6em;
-    }
-  }
-  @include breakpoint(desktop) {
-    transform: translateX(-25em);
-  }
-  @include breakpoint(large) {
-    transform: translateX(-35em);
-  }
-  @include breakpoint(wide) {
-    transform: translateX(-45em);
-  }
-  section {
-    font-size: 1.4em;
-    line-height: 1.6;
+		margin-bottom: 40px;
 
-    margin-bottom: 40px;
+		letter-spacing: .02em;
 
-    letter-spacing: .02em;
+		color: white;
+		h2 {
+			font-family: "Black";
 
-    color: white;
-    h2 {
-      font-family: "Black";
+			letter-spacing: .075em;
+			text-transform: uppercase;
+		}
+		p {
+			a {
+				&:hover {
+					color: white;
+				}
+			}
+		}
+		&.info {
+			margin-bottom: 0;
+			a {
+				/* info@zagollc */
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
 
-      letter-spacing: .075em;
-      text-transform: uppercase;
-    }
-    p {
-      a {
-        &:hover {
-          color: white;
-        }
-      }
-    }
-    &.info {
-      margin-bottom: 0;
-      a {
-        /* info@zagollc */
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+	@include breakpoint(smallTablet) {
+		display: block;
+	}
+	@include breakpoint(tablet) {
+		section {
+			font-size: 1.6em;
+		}
+	}
+	@include breakpoint(desktop) {
+		transform: translateX(-25em);
+	}
+	@include breakpoint(large) {
+		transform: translateX(-35em);
+	}
+	@include breakpoint(wide) {
+		transform: translateX(-45em);
+	}
 }
 
 #splash {
-  position: absolute;
-  z-index: 1200;
-  top: 0;
-  left: 0;
+	position: absolute;
+	z-index: 1200;
+	top: 0;
+	left: 0;
 
-  width: 100%;
-  min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 
-  color: white;
-  background: black;
+	color: white;
+	background: black;
 
-  @include buggyfill("min-height: 100vh;");
-  @include breakpoint(landscape) {
-    img.siteID {
-      float: left;
+	@include buggyfill("min-height: 100vh;");
+	img.siteID {
+		position: relative;
 
-      margin: 0;
-      margin-bottom: 20px;
-    }
-    h1 {
-      float: left;
+		display: block;
 
-      margin: 30px 0 0 40px;
-    }
-    button {
-      font-size: 1.4em;
-      line-height: 3.4em;
+		margin: 0 auto 20px;
+	}
+	h1 {
+		font-size: 2.4em;
 
-      width: 160px;
-      height: 45px;
-      margin: 0 0 35px 30px;
-    }
-    .menuContacts.splashpage {
-      clear: both;
+		margin-bottom: 70px;
 
-      min-width: 575px;
-      margin-bottom: 20px;
+		text-align: center;
+		text-decoration: underline;
+		letter-spacing: .075em;
+	}
+	button {
+		font-family: "Roman";
+		font-size: 2.4em;
+		line-height: 3.6em;
 
-      text-align: left;
-      section {
-        display: inline-block;
+		display: block;
 
-        margin: 0;
-        margin-left: 30px;
+		width: 275px;
+		height: 80px;
+		margin: 0 auto 35px;
 
-        text-align: left;
-      }
-    }
-  }
-  img.siteID {
-    position: relative;
+		letter-spacing: .02em;
+	}
+	.menuContacts.splashpage {
+		display: block;
+		float: none;
 
-    display: block;
+		margin: 0;
+		padding: 0;
 
-    margin: 0 auto 20px;
-  }
-  h1 {
-    font-size: 2.4em;
+		transform: translateX(0);
+		text-align: center;
 
-    margin-bottom: 70px;
+		border: 0;
+		section {
+			margin-bottom: 50px;
 
-    text-align: center;
-    text-decoration: underline;
-    letter-spacing: .075em;
-  }
-  button {
-    font-family: "Roman";
-    font-size: 2.4em;
-    line-height: 3.6em;
+			vertical-align: top;
+			&:last-of-type {
+				margin-bottom: 40px;
+			}
+			&.info {
+				display: none;
+			}
+		}
+	}
+	@include breakpoint(landscape) {
+		img.siteID {
+			float: left;
 
-    display: block;
+			margin: 0;
+			margin-bottom: 20px;
+		}
+		h1 {
+			float: left;
 
-    width: 275px;
-    height: 80px;
-    margin: 0 auto 35px;
+			margin: 30px 0 0 40px;
+		}
+		button {
+			font-size: 1.4em;
+			line-height: 3.4em;
 
-    letter-spacing: .02em;
-  }
-  .menuContacts.splashpage {
-    display: block;
-    float: none;
+			width: 160px;
+			height: 45px;
+			margin: 0 0 35px 30px;
+		}
+		.menuContacts.splashpage {
+			clear: both;
 
-    margin: 0;
-    padding: 0;
+			min-width: 575px;
+			margin-bottom: 20px;
 
-    transform: translateX(0);
-    text-align: center;
+			text-align: left;
+			section {
+				display: inline-block;
 
-    border: 0;
-    section {
-      margin-bottom: 50px;
+				margin: 0;
+				margin-left: 30px;
 
-      vertical-align: top;
-      &:last-of-type {
-        margin-bottom: 40px;
-      }
-      &.info {
-        display: none;
-      }
-    }
-  }
+				text-align: left;
+			}
+		}
+	}
 }
 
 /*************************************************/
@@ -1343,42 +1347,42 @@ nav {
 /*************************************************/
 
 .blurb {
-  margin: 120px 0 40px;
-  margin-left: 15px;
-  padding-right: 5%;
+	margin: 120px 0 40px;
+	margin-left: 15px;
+	padding-right: 5%;
+	h1 {
+		font-family: "Black";
+		font-size: 4.4em;
 
-  @include breakpoint(smallTablet) {
-    margin-left: 100px;
-  }
-  @include breakpoint(desktop) {
-    width: 60%;
-    margin-left: 22%;
-  }
-  @include breakpoint(superwide) {
-    h1 {
-      font-size: 5.5em;
-    }
-    p {
-      font-size: 2.6em;
-    }
-  }
-  h1 {
-    font-family: "Black";
-    font-size: 4.4em;
+		margin-bottom: 20px;
 
-    margin-bottom: 20px;
+		letter-spacing: .075em;
+		text-transform: uppercase;
+	}
+	p {
+		font-size: 2.1em;
+		line-height: 1.4em;
 
-    letter-spacing: .075em;
-    text-transform: uppercase;
-  }
-  p {
-    font-size: 2.1em;
-    line-height: 1.4em;
+		padding-right: 15px;
 
-    padding-right: 15px;
+		letter-spacing: .03em;
+	}
 
-    letter-spacing: .03em;
-  }
+	@include breakpoint(smallTablet) {
+		margin-left: 100px;
+	}
+	@include breakpoint(desktop) {
+		width: 60%;
+		margin-left: 22%;
+	}
+	@include breakpoint(superwide) {
+		h1 {
+			font-size: 5.5em;
+		}
+		p {
+			font-size: 2.6em;
+		}
+	}
 }
 
 /*************************************************/
@@ -1386,317 +1390,319 @@ nav {
 /*************************************************/
 
 #heroBanner {
-  font-family: "Black";
+	font-family: "Black";
 
-  position: relative;
+	position: relative;
 
-  overflow: hidden;
+	overflow: hidden;
 
-  width: 100%;
-  height: 100vh;
+	width: 100%;
+	height: 100vh;
 
-  @include buggyfill("height: 100vh;");
-  @include breakpoint(mobile) {
-    h1 {
-      font-size: 3.6em;
-    }
-    p {
-      font-size: 4.8em;
-    }
-  }
-  @include breakpoint(smallTablet) {
-    h1 {
-      font-size: 4vw;
+	@include buggyfill("height: 100vh;");
 
-      @include buggyfill("font-size: 4vw");
-    }
-    p {
-      font-size: 6vw;
+	img {
+		z-index: 150;
 
-      @include buggyfill("font-size: 6vw");
-    }
-  }
-  @include breakpoint(tablet) {
-    h1 {
-      left: 60px;
-    }
-    p {
-      left: 60px;
-    }
-  }
-  @include breakpoint(desktop) {
-    h1 {
-      top: 20%;
-      left: 100px;
-    }
-    p {
-      top: 43%;
-      left: 100px;
-    }
-  }
-  @include breakpoint(superwide) {
-    h1 {
-      font-size: 7.2em;
-    }
-    p {
-      font-size: 10.8em;
-    }
-  }
-  img {
-    z-index: 150;
+		transition: opacity 1500ms $primaryEase;
 
-    transition: opacity 1500ms $primaryEase;
+		opacity: 0;
 
-    opacity: 0;
+		@extend %absoluteCenter;
+		&.showing {
+			z-index: 200;
 
-    @extend %absoluteCenter;
-    &.showing {
-      z-index: 200;
+			opacity: 1;
+		}
+		&.last {
+			z-index: 150;
 
-      opacity: 1;
-    }
-    &.last {
-      z-index: 150;
+			opacity: 0;
+		}
+	}
+	h1 {
+		font-family: "Black";
+		font-size: 2.4em;
+		line-height: .9em;
 
-      opacity: 0;
-    }
-  }
-  h1 {
-    font-family: "Black";
-    font-size: 2.4em;
-    line-height: .9em;
+		position: absolute;
+		z-index: 200;
+		top: 25%;
+		left: 15px;
 
-    position: absolute;
-    z-index: 200;
-    top: 25%;
-    left: 15px;
+		letter-spacing: .075em;
+		text-transform: uppercase;
 
-    letter-spacing: .075em;
-    text-transform: uppercase;
+		color: white;
+		border-bottom: 5px solid white;
+	}
+	p {
+		font-family: "Black";
+		font-size: 3.6em;
+		line-height: 1.2em;
 
-    color: white;
-    border-bottom: 5px solid white;
-  }
-  p {
-    font-family: "Black";
-    font-size: 3.6em;
-    line-height: 1.2em;
+		position: absolute;
+		z-index: 200;
+		top: 37%;
+		left: 15px;
 
-    position: absolute;
-    z-index: 200;
-    top: 37%;
-    left: 15px;
+		padding: 0;
 
-    padding: 0;
+		white-space: pre;
+		letter-spacing: .075em;
+		text-transform: uppercase;
 
-    white-space: pre;
-    letter-spacing: .075em;
-    text-transform: uppercase;
+		color: white;
+	}
+	button {
+		position: absolute;
+		z-index: 300;
+		bottom: 0;
+		left: 50%;
 
-    color: white;
-  }
-  button {
-    position: absolute;
-    z-index: 300;
-    bottom: 0;
-    left: 50%;
+		width: 50px;
+		height: 50px;
 
-    width: 50px;
-    height: 50px;
+		transition: background-color $normalSpeed $primaryEase;
+		transform: translate(-50%, 0);
 
-    transition: background-color $normalSpeed $primaryEase;
-    transform: translate(-50%, 0);
+		border: 1px solid white;
+		border-bottom: 0;
+		background-color: transparent;
+		background-image: url("../images/sprite-sheet.png");
+		background-repeat: no-repeat;
+		background-position: 50% 2.5%;
+		background-size: 24px auto;
+		&:hover {
+			background-color: white;
+			background-position: 50% -1.65%;
+		}
+	}
+	@include breakpoint(mobile) {
+		h1 {
+			font-size: 3.6em;
+		}
+		p {
+			font-size: 4.8em;
+		}
+	}
+	@include breakpoint(smallTablet) {
+		h1 {
+			font-size: 4vw;
 
-    border: 1px solid white;
-    border-bottom: 0;
-    background-color: transparent;
-    background-image: url("../images/sprite-sheet.png");
-    background-repeat: no-repeat;
-    background-position: 50% 2.5%;
-    background-size: 24px auto;
-    &:hover {
-      background-color: white;
-      background-position: 50% -1.65%;
-    }
-  }
+			@include buggyfill("font-size: 4vw");
+		}
+		p {
+			font-size: 6vw;
+
+			@include buggyfill("font-size: 6vw");
+		}
+	}
+	@include breakpoint(tablet) {
+		h1 {
+			left: 60px;
+		}
+		p {
+			left: 60px;
+		}
+	}
+	@include breakpoint(desktop) {
+		h1 {
+			top: 20%;
+			left: 100px;
+		}
+		p {
+			top: 43%;
+			left: 100px;
+		}
+	}
+	@include breakpoint(superwide) {
+		h1 {
+			font-size: 7.2em;
+		}
+		p {
+			font-size: 10.8em;
+		}
+	}
 }
 
 #homeBlurb {
-  position: relative;
+	position: relative;
 
-  padding: 50px 15px;
+	padding: 50px 15px;
+	p {
+		max-width: 900px;
+		padding: 0;
 
-  @include breakpoint(tablet) {
-    padding: 80px 60px 120px;
-  }
-  @include breakpoint(desktop) {
-    p {
-      margin: 0 auto;
+		text-align: left;
 
-      text-align: center;
-    }
-  }
-  @include breakpoint(wide) {
-    padding: 150px 100px 200px;
-  }
-  p {
-    max-width: 900px;
-    padding: 0;
+		@extend %headerText;
+	}
 
-    text-align: left;
+	@include breakpoint(tablet) {
+		padding: 80px 60px 120px;
+	}
+	@include breakpoint(desktop) {
+		p {
+			margin: 0 auto;
 
-    @extend %headerText;
-  }
+			text-align: center;
+		}
+	}
+	@include breakpoint(wide) {
+		padding: 150px 100px 200px;
+	}
 }
 
 #homeSections {
-  section {
-    @include clearfix;
-    .bannerWrapper {
-      position: relative;
+	section {
+		@include clearfix;
+		.bannerWrapper {
+			position: relative;
 
-      height: 40vh;
-      margin-bottom: 25px;
+			height: 40vh;
+			margin-bottom: 25px;
 
-      @include buggyfill("height: 40vh;");
-      @include breakpoint(smallTablet) {
-        height: 50vh;
+			@include buggyfill("height: 40vh;");
+			.imgWrapper {
+				position: relative;
 
-        @include buggyfill("height: 50vh;");
-        .imgWrapper {
-          img {
-            height: auto;
-          }
-        }
-      }
-      .imgWrapper {
-        position: relative;
+				overflow: hidden;
 
-        overflow: hidden;
+				height: 100%;
 
-        height: 100%;
+				@include clearfix;
+				img {
+					z-index: 2;
 
-        @include clearfix;
-        img {
-          z-index: 2;
+					height: 100%;
 
-          height: 100%;
+					@extend %absoluteCenter;
+				}
+			}
+			.captionWrapper {
+				position: absolute;
+				z-index: 5;
+				bottom: 0;
+				left: 15px;
 
-          @extend %absoluteCenter;
-        }
-      }
-      .captionWrapper {
-        position: absolute;
-        z-index: 5;
-        bottom: 0;
-        left: 15px;
+				transform: translateY(32%);
+				p {
+					font-family: "Black";
+					font-size: 12vw;
+					line-height: 1.05em;
 
-        transform: translateY(32%);
+					letter-spacing: .075em;
+					text-transform: uppercase;
 
-        @include breakpoint(tablet) {
-          left: 60px;
-          p {
-            font-size: 8em;
-          }
-        }
-        @include breakpoint(desktop) {
-          left: 100px;
-          p {
-            font-size: 10em;
-          }
-        }
-        p {
-          font-family: "Black";
-          font-size: 12vw;
-          line-height: 1.05em;
+					color: black;
+					/* Cascade fallback for vw units */
 
-          letter-spacing: .075em;
-          text-transform: uppercase;
+					@include breakpoint(mini) {
+						font-size: 3.8em;
+					}
+					@include breakpoint(mobile) {
+						font-size: 5.5em;
+					}
+					@include breakpoint(smallTablet) {
+						font-size: 7.5em;
+					}
+					@include buggyfill("font-size: 12vw;");
+				}
 
-          color: black;
-          /* Cascade fallback for vw units */
+				@include breakpoint(tablet) {
+					left: 60px;
+					p {
+						font-size: 8em;
+					}
+				}
+				@include breakpoint(desktop) {
+					left: 100px;
+					p {
+						font-size: 10em;
+					}
+				}
+			}
+			@include breakpoint(smallTablet) {
+				height: 50vh;
 
-          @include breakpoint(mini) {
-            font-size: 3.8em;
-          }
-          @include breakpoint(mobile) {
-            font-size: 5.5em;
-          }
-          @include breakpoint(smallTablet) {
-            font-size: 7.5em;
-          }
-          @include buggyfill("font-size: 12vw;");
-        }
-      }
-    }
-    .sectionWrapper {
-      max-width: 1400px;
-      padding: 50px 15px 20px;
+				@include buggyfill("height: 50vh;");
+				.imgWrapper {
+					img {
+						height: auto;
+					}
+				}
+			}
+		}
+		.sectionWrapper {
+			max-width: 1400px;
+			padding: 50px 15px 20px;
 
-      @include clearfix;
-      @include breakpoint(tablet) {
-        padding: 60px;
-      }
-      @include breakpoint(desktop) {
-        padding: 100px 0;
+			@include clearfix;
+			h1 {
+				font-family: "Black";
 
-        @include breakpoint(superwide) {
-          padding: 150px 0;
-        }
-        .padder {
-          display: inline-block;
+				display: inline-block;
 
-          width: 50%;
+				width: 100%;
+				margin: 0;
+				margin-bottom: 50px;
+				padding: 0;
 
-          vertical-align: top;
-          &.left {
-            text-align: right;
-          }
-        }
-        h1 {
-          width: 72%;
-          padding: 0 100px;
+				vertical-align: top;
+				text-transform: uppercase;
 
-          text-align: left;
-        }
-        .sectionText {
-          width: 72%;
-          padding-right: 100px;
-        }
-      }
-      h1 {
-        font-family: "Black";
+				@extend %bodyTitle;
+			}
+			.sectionText {
+				display: inline-block;
 
-        display: inline-block;
+				width: 100%;
+				margin: 0;
 
-        width: 100%;
-        margin: 0;
-        margin-bottom: 50px;
-        padding: 0;
+				vertical-align: top;
+				p {
+					margin-bottom: 30px;
 
-        vertical-align: top;
-        text-transform: uppercase;
+					@extend %bodyText;
+					&:last-of-type {
+						margin-bottom: 0;
+					}
+				}
+			}
 
-        @extend %bodyTitle;
-      }
-      .sectionText {
-        display: inline-block;
+			@include breakpoint(tablet) {
+				padding: 60px;
+			}
+			@include breakpoint(desktop) {
+				padding: 100px 0;
+				.padder {
+					display: inline-block;
 
-        width: 100%;
-        margin: 0;
+					width: 50%;
 
-        vertical-align: top;
-        p {
-          margin-bottom: 30px;
+					vertical-align: top;
+					&.left {
+						text-align: right;
+					}
+				}
+				h1 {
+					width: 72%;
+					padding: 0 100px;
 
-          @extend %bodyText;
-          &:last-of-type {
-            margin-bottom: 0;
-          }
-        }
-      }
-    }
-  }
+					text-align: left;
+				}
+				.sectionText {
+					width: 72%;
+					padding-right: 100px;
+				}
+
+				@include breakpoint(superwide) {
+					padding: 150px 0;
+				}
+			}
+		}
+	}
 }
 
 /*************************************************/
@@ -1704,319 +1710,319 @@ nav {
 /*************************************************/
 
 .gridBox {
-  margin-bottom: 12px;
+	margin-bottom: 12px;
 
-  @include clearfix;
+	@include clearfix;
 }
 
 /* Mobile First Styling */
 .gridWrapper {
-  max-width: 100%;
-  padding-left: 15px;
+	max-width: 100%;
+	padding-left: 15px;
 
-  @include clearfix;
-  @include breakpoint(smallTablet) {
-    padding-left: 100px;
-  }
-  @include breakpoint(desktop) {
-    margin-bottom: 30px;
-  }
-  .grid {
-    @include breakpoint(smallTablet) {
-      margin-bottom: 50px;
-      section {
-        &:nth-of-type(2),
-        &:nth-of-type(3) {
-          width: 49%;
-          .imgWrapper {
-            height: 30vw;
+	@include clearfix;
+	@include breakpoint(smallTablet) {
+		padding-left: 100px;
+	}
+	@include breakpoint(desktop) {
+		margin-bottom: 30px;
+	}
+	.grid {
+		section {
+			display: inline-block;
+			float: left;
 
-            @include buggyfill("height: 30vw;");
-            img {
-              height: 100%;
-            }
-          }
-        }
-        &:nth-of-type(2) {
-          margin-right: 2%;
-        }
-      }
-    }
-    @include breakpoint(desktop) {
-      section {
-        margin-right: 2%;
-        &:nth-of-type(1) {
-          width: 49%;
-          .imgWrapper {
-            height: 30vw;
+			width: 100%;
+			margin-bottom: 30px;
 
-            @include buggyfill("height: 30vw;");
-            img {
-              height: 100%;
-            }
-          }
-        }
-        &:nth-of-type(2),
-        &:nth-of-type(3) {
-          width: 23.5%;
-          .imgWrapper {
-            height: 14vw;
+			cursor: pointer;
+			.imgWrapper {
+				position: relative;
 
-            @include buggyfill("height: 14vw;");
-            img {
-              height: 100%;
-            }
-          }
-        }
-        &:nth-of-type(3) {
-          margin-right: 0;
-        }
-      }
-      &.gridRight {
-        section {
-          float: right;
+				overflow: hidden;
 
-          margin-right: 2%;
-          &:nth-of-type(1) {
-            margin-right: 0;
-          }
-        }
-      }
-    }
-    section {
-      display: inline-block;
-      float: left;
+				height: 57vw;
 
-      width: 100%;
-      margin-bottom: 30px;
+				@include buggyfill("height: 57vw;");
+				@include breakpoint(smallTablet) {
+					height: 50vw;
 
-      cursor: pointer;
-      .imgWrapper {
-        position: relative;
+					@include buggyfill("height: 50vw;");
+				}
+				img {
+					@extend %absoluteCenter;
+				}
+				.overlay {
+					position: absolute;
+					z-index: 10;
+					top: 0;
+					left: 0;
 
-        overflow: hidden;
+					width: 100%;
+					height: 100%;
 
-        height: 57vw;
+					transition: opacity $normalSpeed $primaryEase;
 
-        @include buggyfill("height: 57vw;");
-        @include breakpoint(smallTablet) {
-          height: 50vw;
+					opacity: 0;
+				}
+			}
+			h2 {
+				font-size: 2.2em;
+				font-weight: 300;
 
-          @include buggyfill("height: 50vw;");
-        }
-        img {
-          @extend %absoluteCenter;
-        }
-        .overlay {
-          position: absolute;
-          z-index: 10;
-          top: 0;
-          left: 0;
+				float: left;
 
-          width: 100%;
-          height: 100%;
+				margin: 20px 3px 10px 0;
 
-          transition: opacity $normalSpeed $primaryEase;
+				letter-spacing: .02em;
+			}
+			h3 {
+				font-family: "Black";
+				font-size: 1.4em;
 
-          opacity: 0;
-        }
-      }
-      h2 {
-        font-size: 2.2em;
-        font-weight: 300;
+				float: left;
+				clear: both;
 
-        float: left;
+				letter-spacing: .09em;
+				text-transform: uppercase;
+			}
+			&:hover {
+				/* h2, h3 { text-decoration: underline; }*/
+				.imgWrapper {
+					.overlay {
+						display: block;
 
-        margin: 20px 3px 10px 0;
+						opacity: .4;
+					}
+				}
+			}
+		}
+		@include breakpoint(smallTablet) {
+			margin-bottom: 50px;
+			section {
+				&:nth-of-type(2),
+				&:nth-of-type(3) {
+					width: 49%;
+					.imgWrapper {
+						height: 30vw;
 
-        letter-spacing: .02em;
-      }
-      h3 {
-        font-family: "Black";
-        font-size: 1.4em;
+						@include buggyfill("height: 30vw;");
+						img {
+							height: 100%;
+						}
+					}
+				}
+				&:nth-of-type(2) {
+					margin-right: 2%;
+				}
+			}
+		}
+		@include breakpoint(desktop) {
+			section {
+				margin-right: 2%;
+				&:nth-of-type(1) {
+					width: 49%;
+					.imgWrapper {
+						height: 30vw;
 
-        float: left;
-        clear: both;
+						@include buggyfill("height: 30vw;");
+						img {
+							height: 100%;
+						}
+					}
+				}
+				&:nth-of-type(2),
+				&:nth-of-type(3) {
+					width: 23.5%;
+					.imgWrapper {
+						height: 14vw;
 
-        letter-spacing: .09em;
-        text-transform: uppercase;
-      }
-      &:hover {
-        /* h2, h3 { text-decoration: underline; }*/
-        .imgWrapper {
-          .overlay {
-            display: block;
+						@include buggyfill("height: 14vw;");
+						img {
+							height: 100%;
+						}
+					}
+				}
+				&:nth-of-type(3) {
+					margin-right: 0;
+				}
+			}
+			&.gridRight {
+				section {
+					float: right;
 
-            opacity: .4;
-          }
-        }
-      }
-    }
-  }
-  &.teamWrapper {
-    @include breakpoint(smallTablet) {
-      .grid {
-        section {
-          width: 49%;
-          .imgWrapper {
-            height: 45vw;
+					margin-right: 2%;
+					&:nth-of-type(1) {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+	&.teamWrapper {
+		.grid {
+			section {
+				& > * {
+					cursor: auto;
+				}
+				&:hover {
+					h2 {
+						text-decoration: none;
+					}
+					.imgWrapper {
+						img {
+							&:first-of-type {
+								opacity: 0;
+							}
+						}
+					}
+				}
+				.imgWrapper {
+					position: relative;
 
-            @include buggyfill("height: 45vw;");
-            img {
-              height: 100%;
-            }
-          }
-          &:nth-of-type(1) {
-            margin-right: 2%;
-          }
-          &:nth-of-type(2) {
-            margin-right: 0;
-          }
-          &:nth-of-type(3) {
-            margin-right: 2%;
-          }
-        }
-        &.gridRight {
-          section {
-            &:nth-of-type(1) {
-              margin-right: 0;
-            }
-            &:nth-of-type(2) {
-              margin-right: 2%;
-            }
-            &:nth-of-type(3) {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-    }
-    @include breakpoint(desktop) {
-      .grid {
-        section {
-          &:nth-of-type(1) {
-            .imgWrapper {
-              height: 30vw;
+					height: 90vw;
 
-              @include buggyfill("height: 30vw;");
-              img {
-                height: 100%;
-              }
-            }
-          }
-          &:nth-of-type(2) {
-            margin-right: 2%;
-          }
-          &:nth-of-type(3) {
-            margin-right: 0;
-          }
-          &:nth-of-type(2),
-          &:nth-of-type(3) {
-            width: 23.5%;
-            .imgWrapper {
-              height: 22.5vw;
+					@include buggyfill("height: 90vw;");
+					img {
+						width: auto;
+						height: 100%;
 
-              @include buggyfill("height: 22.5vw;");
-              img {
-                height: 100%;
-              }
-            }
-          }
-        }
-        &.gridRight {
-          section {
-            &:nth-of-type(3) {
-              margin-right: 2%;
-            }
-          }
-        }
-      }
-    }
-    .grid {
-      section {
-        & > * {
-          cursor: auto;
-        }
-        &:hover {
-          h2 {
-            text-decoration: none;
-          }
-          .imgWrapper {
-            img {
-              &:first-of-type {
-                opacity: 0;
-              }
-            }
-          }
-        }
-        .imgWrapper {
-          position: relative;
+						transition: opacity $fastSpeed $primaryEase;
+						&:first-of-type {
+							z-index: 150;
+						}
+					}
+					ul.socialButtons {
+						border: 0;
+						li.anchorWrapper {
+							position: absolute;
+							z-index: 200;
+							top: 0;
 
-          height: 90vw;
+							width: 30px;
+							height: 30px;
 
-          @include buggyfill("height: 90vw;");
-          img {
-            width: auto;
-            height: 100%;
+							transition: none;
 
-            transition: opacity $fastSpeed $primaryEase;
-            &:first-of-type {
-              z-index: 150;
-            }
-          }
-          ul.socialButtons {
-            border: 0;
-            li.anchorWrapper {
-              position: absolute;
-              z-index: 200;
-              top: 0;
+							border: 1px solid white;
+							border-top: 0;
+							border-right: 0;
 
-              width: 30px;
-              height: 30px;
+							@include breakpoint(desktop) {
+								width: 2.25vw;
+								height: 2.25vw;
 
-              transition: none;
+								@include buggyfill("width: 2.25vw; height: 2.25vw;");
+								&:nth-of-type(2) {
+									right: 2.25vw;
 
-              border: 1px solid white;
-              border-top: 0;
-              border-right: 0;
+									@include buggyfill("right: 2.25vw;");
+								}
+								&:nth-of-type(3) {
+									right: 4.5vw;
 
-              @include breakpoint(desktop) {
-                width: 2.25vw;
-                height: 2.25vw;
+									@include buggyfill("right: 4.5vw;");
+								}
+							}
+							&:nth-of-type(1) {
+								right: 0;
+							}
+							&:nth-of-type(2) {
+								right: 30px;
+							}
+							&:nth-of-type(3) {
+								right: 60px;
+							}
+							a {
+								display: block;
 
-                @include buggyfill("width: 2.25vw; height: 2.25vw;");
-                &:nth-of-type(2) {
-                  right: 2.25vw;
+								width: 100%;
+								height: 100%;
+							}
+						}
+					}
+				}
+			}
+		}
+		@include breakpoint(smallTablet) {
+			.grid {
+				section {
+					width: 49%;
+					.imgWrapper {
+						height: 45vw;
 
-                  @include buggyfill("right: 2.25vw;");
-                }
-                &:nth-of-type(3) {
-                  right: 4.5vw;
+						@include buggyfill("height: 45vw;");
+						img {
+							height: 100%;
+						}
+					}
+					&:nth-of-type(1) {
+						margin-right: 2%;
+					}
+					&:nth-of-type(2) {
+						margin-right: 0;
+					}
+					&:nth-of-type(3) {
+						margin-right: 2%;
+					}
+				}
+				&.gridRight {
+					section {
+						&:nth-of-type(1) {
+							margin-right: 0;
+						}
+						&:nth-of-type(2) {
+							margin-right: 2%;
+						}
+						&:nth-of-type(3) {
+							margin-right: 0;
+						}
+					}
+				}
+			}
+		}
+		@include breakpoint(desktop) {
+			.grid {
+				section {
+					&:nth-of-type(1) {
+						.imgWrapper {
+							height: 30vw;
 
-                  @include buggyfill("right: 4.5vw;");
-                }
-              }
-              &:nth-of-type(1) {
-                right: 0;
-              }
-              &:nth-of-type(2) {
-                right: 30px;
-              }
-              &:nth-of-type(3) {
-                right: 60px;
-              }
-              a {
-                display: block;
+							@include buggyfill("height: 30vw;");
+							img {
+								height: 100%;
+							}
+						}
+					}
+					&:nth-of-type(2) {
+						margin-right: 2%;
+					}
+					&:nth-of-type(3) {
+						margin-right: 0;
+					}
+					&:nth-of-type(2),
+					&:nth-of-type(3) {
+						width: 23.5%;
+						.imgWrapper {
+							height: 22.5vw;
 
-                width: 100%;
-                height: 100%;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+							@include buggyfill("height: 22.5vw;");
+							img {
+								height: 100%;
+							}
+						}
+					}
+				}
+				&.gridRight {
+					section {
+						&:nth-of-type(3) {
+							margin-right: 2%;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 /*************************************************/
@@ -2024,356 +2030,358 @@ nav {
 /*************************************************/
 
 #projectLayout {
-  position: relative;
+	position: relative;
 
-  margin-left: 15px;
+	margin-left: 15px;
+	.featuredImage {
+		position: relative;
 
-  @include breakpoint(smallTablet) {
-    margin-left: 100px;
-  }
-  /*mobile version hack*/
-  @include breakpoint(639px, true) {
-    &.caseStudy {
-      .projectContent {
-        .projectDetails {
-          float: none;
+		overflow: hidden;
 
-          margin-bottom: 50px;
-          .projectInfo {
-            section {
-              float: left;
+		width: 100%;
+		height: 100vh;
+		max-height: 100vh;
 
-              width: 100%;
-            }
-          }
-        }
-        .projectBody {
-          padding-left: 0;
-        }
-      }
-    }
-  }
-  .featuredImage {
-    position: relative;
+		@include buggyfill("height: 100vh; max-height: 100vh;");
+		img {
+			@extend %absoluteCenter;
+		}
+	}
+	.projectContent {
+		font-size: 1.6em;
+		line-height: 1.5em;
 
-    overflow: hidden;
+		@include clearfix;
+		h1 {
+			font-family: "Black";
+			font-size: 1.65em;
+			line-height: 1.25em;
 
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
+			margin-bottom: 40px;
 
-    @include buggyfill("height: 100vh; max-height: 100vh;");
-    img {
-      @extend %absoluteCenter;
-    }
-  }
-  .projectContent {
-    font-size: 1.6em;
-    line-height: 1.5em;
+			letter-spacing: .075em;
+			text-transform: uppercase;
 
-    @include clearfix;
-    h1 {
-      font-family: "Black";
-      font-size: 1.65em;
-      line-height: 1.25em;
+			@include breakpoint(tablet) {
+				font-size: 2em;
+			}
+			@include breakpoint(desktop) {
+				font-size: 2.5em;
+			}
+		}
+		.projectDetails {
+			position: absolute;
+			z-index: 50;
+			bottom: 20px;
+			left: 20px;
+			&.greyed {
+				padding: 20px 100px 20px 20px;
 
-      margin-bottom: 40px;
+				background-color: rgba($lightgrey, .3);
+			}
+			.projectInfo {
+				section {
+					margin-bottom: 25px;
+					h2 {
+						font-family: "Black";
 
-      letter-spacing: .075em;
-      text-transform: uppercase;
+						letter-spacing: .075em;
+						text-transform: uppercase;
+					}
+					p {
+						letter-spacing: .02em;
+					}
+				}
+			}
+			a.clientSite {
+				margin-bottom: 20px;
+			}
+			.socialAccounts {
+				line-height: 0;
+				ul.socialButtons {
+					display: inline-block;
 
-      @include breakpoint(tablet) {
-        font-size: 2em;
-      }
-      @include breakpoint(desktop) {
-        font-size: 2.5em;
-      }
-    }
-    .projectDetails {
-      position: absolute;
-      z-index: 50;
-      bottom: 20px;
-      left: 20px;
-      &.greyed {
-        padding: 20px 100px 20px 20px;
+					max-width: 110px;
 
-        background-color: rgba($lightgrey, .3);
-      }
-      .projectInfo {
-        section {
-          margin-bottom: 25px;
-          h2 {
-            font-family: "Black";
+					border-top: 0;
+					border-right: 0;
+					border-bottom: 0;
 
-            letter-spacing: .075em;
-            text-transform: uppercase;
-          }
-          p {
-            letter-spacing: .02em;
-          }
-        }
-      }
-      a.clientSite {
-        margin-bottom: 20px;
-      }
-      .socialAccounts {
-        line-height: 0;
-        ul.socialButtons {
-          display: inline-block;
+					@include clearfix;
+					li {
+						width: 35px;
+						height: 35px;
 
-          max-width: 110px;
+						border-bottom: 1px solid $darkgrey;
+						background-color: transparent;
+						&:hover {
+							border-color: black;
+							background-color: black;
+						}
+						&:nth-of-type(1),
+						&:nth-of-type(2),
+						&:nth-of-type(3) {
+							border-top: 1px solid $darkgrey;
+						}
+						&:nth-of-type(3),
+						&:last-of-type {
+							border-right: 1px solid $darkgrey;
+						}
+					}
+				}
+			}
+		}
+		.projectBody {
+			max-width: 900px;
+			padding: 0 30px;
 
-          border-top: 0;
-          border-right: 0;
-          border-bottom: 0;
+			letter-spacing: .02em;
 
-          @include clearfix;
-          li {
-            width: 35px;
-            height: 35px;
+			@include columns(1, 30px);
+			& > * {
+				margin-bottom: 30px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			blockquote {
+				p {
+					font-size: 1.5em;
+					line-height: 1.4em;
+				}
+			}
+			ul {
+				list-style: disc outside url("../images/bullet.png");
+				li {
+					margin-left: 1em;
+					&:first-of-type {
+						margin-left: 0;
 
-            border-bottom: 1px solid $darkgrey;
-            background-color: transparent;
-            &:hover {
-              border-color: black;
-              background-color: black;
-            }
-            &:nth-of-type(1),
-            &:nth-of-type(2),
-            &:nth-of-type(3) {
-              border-top: 1px solid $darkgrey;
-            }
-            &:nth-of-type(3),
-            &:last-of-type {
-              border-right: 1px solid $darkgrey;
-            }
-          }
-        }
-      }
-    }
-    .projectBody {
-      max-width: 900px;
-      padding: 0 30px;
+						list-style: none;
+					}
+				}
+			}
+			@include breakpoint(desktop) {
+				padding: 0 140px;
+			}
+			@include breakpoint(large) {
+				@include columns(2, 30px);
+				&.singleColumn {
+					width: 40%;
 
-      letter-spacing: .02em;
+					@include columns(1, 30px);
+				}
+			}
+		}
+	}
+	&.caseStudy {
+		.featuredImage {
+			height: 40vw;
+			min-height: initial;
+			max-height: initial;
 
-      @include columns(1, 30px);
-      @include breakpoint(desktop) {
-        padding: 0 140px;
-      }
-      @include breakpoint(large) {
-        @include columns(2, 30px);
-        &.singleColumn {
-          width: 40%;
+			@include buggyfill("height: 40vw;");
+			@include breakpoint(smallTablet) {
+				height: 35vw;
 
-          @include columns(1, 30px);
-        }
-      }
-      & > * {
-        margin-bottom: 30px;
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-      blockquote {
-        p {
-          font-size: 1.5em;
-          line-height: 1.4em;
-        }
-      }
-      ul {
-        list-style: disc outside url("../images/bullet.png");
-        li {
-          margin-left: 1em;
-          &:first-of-type {
-            margin-left: 0;
+				@include buggyfill("height: 35vw;");
+			}
+		}
+		.projectContent {
+			margin: 50px 0;
+			.projectDetails {
+				position: relative;
+				bottom: 0;
+				left: 0;
 
-            list-style: none;
-          }
-        }
-      }
-    }
-  }
-  &.caseStudy {
-    .featuredImage {
-      height: 40vw;
-      min-height: initial;
-      max-height: initial;
+				float: left;
 
-      @include buggyfill("height: 40vw;");
-      @include breakpoint(smallTablet) {
-        height: 35vw;
+				padding: 0;
 
-        @include buggyfill("height: 35vw;");
-      }
-    }
-    .projectContent {
-      margin: 50px 0;
-      .projectDetails {
-        position: relative;
-        bottom: 0;
-        left: 0;
+				background-color: none;
+			}
+		}
+	}
 
-        float: left;
+	@include breakpoint(smallTablet) {
+		margin-left: 100px;
+	}
+	/*mobile version hack*/
+	@include breakpoint(639px, true) {
+		&.caseStudy {
+			.projectContent {
+				.projectDetails {
+					float: none;
 
-        padding: 0;
+					margin-bottom: 50px;
+					.projectInfo {
+						section {
+							float: left;
 
-        background-color: none;
-      }
-    }
-  }
+							width: 100%;
+						}
+					}
+				}
+				.projectBody {
+					padding-left: 0;
+				}
+			}
+		}
+	}
 }
 
 #projectImages {
-  margin-bottom: 50px;
-  section {
-    position: relative;
-    h6 {
-      font-size: 1.6em;
-      line-height: 155px;
+	margin-bottom: 50px;
+	section {
+		position: relative;
+		h6 {
+			font-size: 1.6em;
+			line-height: 155px;
 
-      position: absolute;
-      top: 0;
-      left: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
 
-      display: none;
+			display: none;
 
-      height: 80px;
-      padding-right: 20px;
+			height: 80px;
+			padding-right: 20px;
 
-      transform-origin: 0 0;
-      letter-spacing: .02em;
+			transform-origin: 0 0;
+			letter-spacing: .02em;
 
-      border-right: 1px solid $grey;
+			border-right: 1px solid $grey;
 
-      @include breakpoint(smallTablet) {
-        display: block;
-      }
-    }
-    .imageWrapper {
-      line-height: 0;
+			@include breakpoint(smallTablet) {
+				display: block;
+			}
+		}
+		.imageWrapper {
+			line-height: 0;
 
-      margin-left: 15px;
+			margin-left: 15px;
 
-      @include breakpoint(smallTablet) {
-        margin-left: 100px;
-      }
-      .imageBox {
-        position: relative;
+			@include breakpoint(smallTablet) {
+				margin-left: 100px;
+			}
+			.imageBox {
+				position: relative;
 
-        display: inline-block;
-        overflow: hidden;
+				display: inline-block;
+				overflow: hidden;
 
-        width: 100%;
-        height: 40vw;
+				width: 100%;
+				height: 40vw;
 
-        @include buggyfill("height: 40vw;");
-        &.halfImage {
-          width: 100%;
+				@include buggyfill("height: 40vw;");
+				&.halfImage {
+					width: 100%;
 
-          @include breakpoint(smallTablet) {
-            width: 50%;
-          }
-        }
-        img {
-          @extend %absoluteCenter;
-        }
-      }
-    }
-  }
+					@include breakpoint(smallTablet) {
+						width: 50%;
+					}
+				}
+				img {
+					@extend %absoluteCenter;
+				}
+			}
+		}
+	}
 }
 
 #readAbout {
-  @extend %flexBox4;
-  section {
-    height: 40vw;
+	@extend %flexBox4;
+	section {
+		height: 40vw;
 
-    background-color: $grey;
+		background-color: $grey;
 
-    @include buggyfill("height: 40vw;");
-    @include breakpoint(smallTablet) {
-      height: 18vw;
+		@include buggyfill("height: 40vw;");
+		a {
+			display: inline-block;
 
-      @include buggyfill("height: 18vw;");
-    }
-    @include breakpoint(desktop) {
-      height: 14vw;
+			padding: 30px;
 
-      @include buggyfill("height: 14vw;");
-    }
-    a {
-      display: inline-block;
+			color: black;
+		}
+		p {
+			line-height: 1;
+			line-height: 1.1;
+			/* autoprefixer: off */
 
-      padding: 30px;
+			display: block;
+			/* non-webkit fallback */
+			display: -webkit-box;
+			overflow: hidden;
 
-      color: black;
-    }
-    p {
-      line-height: 1;
-      line-height: 1.1;
-      /* autoprefixer: off */
+			height: 48px;
 
-      display: block;
-      /* non-webkit fallback */
-      display: -webkit-box;
-      overflow: hidden;
+			text-overflow: ellipsis;
+			/* non-webkit fallback */
 
-      height: 48px;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+		@include breakpoint(smallTablet) {
+			height: 18vw;
 
-      text-overflow: ellipsis;
-      /* non-webkit fallback */
+			@include buggyfill("height: 18vw;");
+		}
+		@include breakpoint(desktop) {
+			height: 14vw;
 
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-  }
+			@include buggyfill("height: 14vw;");
+		}
+	}
 }
 
 #relatedProjects {
-  margin-right: 15px;
+	margin-right: 15px;
 
-  @extend %flexBox4;
-  section {
-    @include clearfix;
-    @include breakpoint(smallTablet) {
-      margin-right: 0;
-    }
-    .imgWrapper,
-    .contentWrapper {
-      float: left;
+	@extend %flexBox4;
+	section {
+		@include clearfix;
+		.imgWrapper,
+		.contentWrapper {
+			float: left;
 
-      vertical-align: top;
-    }
-    .imgWrapper {
-      position: relative;
+			vertical-align: top;
+		}
+		.imgWrapper {
+			position: relative;
 
-      overflow: hidden;
+			overflow: hidden;
 
-      width: 100%;
-      height: 40vw;
+			width: 100%;
+			height: 40vw;
 
-      @include buggyfill("height: 40vw;");
-      @include breakpoint(smallTablet) {
-        height: 18vw;
+			@include buggyfill("height: 40vw;");
+			
+			img {
+				@extend %absoluteCenter;
+			}
 
-        @include buggyfill("height: 18vw;");
-      }
-      @include breakpoint(desktop) {
-        height: 14vw;
+			@include breakpoint(smallTablet) {
+				height: 18vw;
 
-        @include buggyfill("height: 14vw;");
-      }
-      img {
-        @extend %absoluteCenter;
-      }
-    }
-    .contentWrapper {
-      margin-left: 15px;
-      p {
-        margin-top: 20px;
-      }
-    }
-  }
+				@include buggyfill("height: 18vw;");
+			}
+			@include breakpoint(desktop) {
+				height: 14vw;
+
+				@include buggyfill("height: 14vw;");
+			}
+		}
+		.contentWrapper {
+			margin-left: 15px;
+			p {
+				margin-top: 20px;
+			}
+		}
+		@include breakpoint(smallTablet) {
+			margin-right: 0;
+		}
+	}
 }
 
 /*************************************************/
@@ -2381,27 +2389,27 @@ nav {
 /*************************************************/
 
 #legacy-notice {
-  font-family: "Roman", "Black", sans-serif;
-  font-size: 18px;
-  font-size: 1.8em;
+	font-family: "Roman", "Black", sans-serif;
+	font-size: 18px;
+	font-size: 1.8em;
 
-  padding: 100px 50px;
+	padding: 100px 50px;
 
-  text-align: center;
+	text-align: center;
 
-  color: white;
-  background: black;
+	color: white;
+	background: black;
   /*background-image: url('../images/zago_logo.png');
 	background-repeat: no-repeat;
 	background-size: auto 50%;
 	background-position: center center;*/
-  & > * {
-    margin-bottom: 30px;
-  }
-  h1 {
-    font-size: 30px;
-    font-size: 3em;
-  }
+	& > * {
+		margin-bottom: 30px;
+	}
+	h1 {
+		font-size: 30px;
+		font-size: 3em;
+	}
 }
 
 /*************************************************/
@@ -2410,44 +2418,44 @@ nav {
 
 
 @keyframes menu-button {
-  0% {
-    background-color: nth($menuButtonColors, 1);
-  }
-  25% {
-    background-color: nth($menuButtonColors, 2);
-  }
-  50% {
-    background-color: nth($menuButtonColors, 3);
-  }
-  75% {
-    background-color: nth($menuButtonColors, 4);
-  }
-  100% {
-    background-color: nth($menuButtonColors, 1);
-  }
+	0% {
+		background-color: nth($menuButtonColors, 1);
+	}
+	25% {
+		background-color: nth($menuButtonColors, 2);
+	}
+	50% {
+		background-color: nth($menuButtonColors, 3);
+	}
+	75% {
+		background-color: nth($menuButtonColors, 4);
+	}
+	100% {
+		background-color: nth($menuButtonColors, 1);
+	}
 }
 
 @keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  5% {
-    transform: translateX(100%);
-  }
+	0% {
+		transform: translateX(100%);
+	}
+	5% {
+		transform: translateX(100%);
+	}
 
-  95% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+	95% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
 }
