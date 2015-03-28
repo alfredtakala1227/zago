@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/favicon.ico">
     <!-- ******************************************* -->
-    <title>Zago | Under Construction</title>
+    <title>Zago</title>
     <!-- ******************************************* -->
     <!-- css files -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -56,7 +56,7 @@
 
         <div id="pageContent" class="{{pageView}}" ui-view autoscroll="true"><!-- Angular Partials go here --></div>
 
-        <footer id="footer" ng-class="{homePage: pageView == 'homePage'}">
+        <footer id="footer" ng-class="{homePage: pageView == 'homePage', pageLoading: pageLoading}">
             <section class="collaboration">
                 <p>Let's work together.</p>
                 <p>Come have coffee & say ciao.</p>

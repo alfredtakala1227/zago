@@ -119,7 +119,7 @@
 		display: block;
 
 		margin-right: 0;
-		margin-bottom: 40px;
+		margin-bottom: 30px;
 
 		cursor: pointer;
 
@@ -144,8 +144,6 @@
 	}
 	@include breakpoint(smallTablet) {
 		margin-left: 100px;
-	}
-	@include breakpoint(smallTablet) {
 		section {
 			display: inline-block;
 			float: left;
@@ -532,7 +530,7 @@ footer {
 				ul {
 					float: none;
 
-					width: 100px;
+					width: 10em;
 
 					border: 0;
 					li {
@@ -772,8 +770,8 @@ footer {
 	top: 50%;
 	left: 50%;
 
-	width: 25px;
-	height: 25px;
+	width: 2.5rem;
+	height: 2.5rem;
 
 	transform: translate(-50%, -50%);
 	.loader {
@@ -821,7 +819,7 @@ img.siteID {
 	right: 50%;
 
 	width: 41vh;
-	min-width: 230px;
+	min-width: 23em;
 	max-width: 70vw;
 
 	transform: translateX(50%);
@@ -1516,14 +1514,6 @@ nav {
 			left: 100px;
 		}
 	}
-	@include breakpoint(superwide) {
-		h1 {
-			font-size: 7.2em;
-		}
-		p {
-			font-size: 10.8em;
-		}
-	}
 }
 
 #homeBlurb {
@@ -1531,7 +1521,7 @@ nav {
 
 	padding: 50px 15px;
 	p {
-		max-width: 900px;
+		max-width: 75em;
 		padding: 0;
 
 		text-align: left;
@@ -1635,7 +1625,7 @@ nav {
 			}
 		}
 		.sectionWrapper {
-			max-width: 1400px;
+			max-width: 140em;
 			padding: 50px 15px 20px;
 
 			@include clearfix;
@@ -2135,7 +2125,7 @@ nav {
 			}
 		}
 		.projectBody {
-			max-width: 900px;
+			max-width: 90em;
 			padding: 0 30px;
 
 			letter-spacing: .02em;
@@ -2250,6 +2240,7 @@ nav {
 			height: 80px;
 			padding-right: 20px;
 
+			transform: rotate(270deg) translate(-100%);
 			transform-origin: 0 0;
 			letter-spacing: .02em;
 
