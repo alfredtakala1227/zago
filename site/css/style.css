@@ -573,6 +573,19 @@ footer .officeListing section {
 footer .officeListing section:last-of-type {
   float: left;
 }
+@media (min-width: 640px) {
+  footer {
+    margin-left: 100px;
+  }
+  footer .officeListing section {
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  footer section {
+    font-size: 1.4em;
+  }
+}
 footer.homePage {
   margin-left: 0;
   padding: 60px 0 20px;
@@ -669,19 +682,6 @@ footer.homePage section.social p {
   }
   footer.homePage section.social {
     margin-bottom: 0;
-  }
-}
-@media (min-width: 640px) {
-  footer {
-    margin-left: 100px;
-  }
-  footer .officeListing section {
-    float: left;
-  }
-}
-@media (min-width: 992px) {
-  footer section {
-    font-size: 1.4em;
   }
 }
 footer.pageLoading {
@@ -1403,6 +1403,14 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     left: 100px;
   }
 }
+@media (min-width: 1800px) {
+  #heroBanner h1 {
+    font-size: 7.2em;
+  }
+  #heroBanner p {
+    font-size: 10.8em;
+  }
+}
 
 #homeBlurb {
   position: relative;
@@ -1511,7 +1519,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
 }
 #homeSections section .sectionWrapper {
-  max-width: 140em;
+  max-width: 1400px;
   padding: 50px 15px 20px;
   overflow: hidden;
   *zoom: 1;
@@ -1552,9 +1560,6 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 50%;
     vertical-align: top;
   }
-  #homeSections section .sectionWrapper .padder.left {
-    text-align: right;
-  }
   #homeSections section .sectionWrapper h1 {
     width: 72%;
     padding: 0 100px;
@@ -1568,6 +1573,12 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 992px) and (min-width: 1800px) {
   #homeSections section .sectionWrapper {
     padding: 150px 0;
+  }
+}
+
+@media (min-width: 2200px) {
+  #homeSections section .sectionWrapper {
+    max-width: 1800px;
   }
 }
 

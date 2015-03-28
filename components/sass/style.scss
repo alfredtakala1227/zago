@@ -579,6 +579,19 @@ footer {
 			}
 		}
 	}
+	@include breakpoint(smallTablet) {
+		margin-left: 100px;
+		.officeListing {
+			section {
+				float: left;
+			}
+		}
+	}
+	@include breakpoint(desktop) {
+		section {
+			font-size: 1.4em;
+		}
+	}
 	&.homePage {
 		margin-left: 0;
 		padding: 60px 0 20px;
@@ -695,19 +708,6 @@ footer {
 				&.intern {
 				}
 			}
-		}
-	}
-	@include breakpoint(smallTablet) {
-		margin-left: 100px;
-		.officeListing {
-			section {
-				float: left;
-			}
-		}
-	}
-	@include breakpoint(desktop) {
-		section {
-			font-size: 1.4em;
 		}
 	}
 	&.pageLoading {
@@ -1514,6 +1514,15 @@ nav {
 			left: 100px;
 		}
 	}
+
+	@include breakpoint(superwide) {
+		h1 {
+			font-size: 7.2em;
+		}
+		p {
+			font-size: 10.8em;
+		}
+	}
 }
 
 #homeBlurb {
@@ -1625,7 +1634,7 @@ nav {
 			}
 		}
 		.sectionWrapper {
-			max-width: 140em;
+			max-width: 1400px;
 			padding: 50px 15px 20px;
 
 			@include clearfix;
@@ -1672,9 +1681,6 @@ nav {
 					width: 50%;
 
 					vertical-align: top;
-					&.left {
-						text-align: right;
-					}
 				}
 				h1 {
 					width: 72%;
@@ -1690,6 +1696,10 @@ nav {
 				@include breakpoint(superwide) {
 					padding: 150px 0;
 				}
+			}
+
+			@include breakpoint(oversize) {
+				max-width: 1800px;
 			}
 		}
 	}
