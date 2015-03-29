@@ -211,7 +211,7 @@ u {
 
 a {
 	cursor: pointer;
-	transition: all $fastSpeed $primaryEase;
+	transition: color $fastSpeed $primaryEase;
 	text-decoration: none;
 
 	color: white;
@@ -336,9 +336,7 @@ button {
 		overflow: hidden;
 
 		width: 100%;
-		height: 6vh;
 		min-height: 30px;
-		max-height: 9vw;
 		padding: 0;
 
 		transition: opacity $normalSpeed $primaryEase;
@@ -347,7 +345,9 @@ button {
 		opacity: .5;
 		border: 0;
 
-		@include buggyfill("height: 6vh; max-height: 9vw;");
+		@include viewport(height, 6vh);
+		@include viewport(max-height, 9vw);
+
 		span#menuPrompt {
 			display: none;
 
@@ -543,7 +543,7 @@ footer {
 				ul {
 					float: none;
 
-					width: 10em;
+					width: 110px;
 
 					border: 0;
 					li {
@@ -738,14 +738,11 @@ footer {
 	z-index: 100;
 
 	width: 100%;
-	min-height: 100vh;
-
-	transition: all $normalSpeed $primaryEase;
 
 	opacity: 1;
 	background-color: white;
 
-	@include buggyfill("min-height: 100vh;");
+	@include viewport(min-height, 100vh);
 	&.pageLoading {
 		transform: translateX(100%);
 		/*opacity: 0;*/
@@ -758,15 +755,11 @@ footer {
 	overflow: auto;
 
 	width: 100%;
-	min-height: 100vh;
 
-	@include buggyfill("min-height: 100vh;");
-	&.menu-open {
-		overflow: hidden;
-	}
-	&.pageLoading {
-		display: none;
-	}
+	@include viewport(min-height, 100vh);
+
+	&.menu-open { overflow: hidden; }
+	&.pageLoading { display: none; }
 }
 
 .loaderWrapper {
@@ -831,15 +824,15 @@ img.siteID {
 	top: 78%;
 	right: 50%;
 
-	width: 41vh;
 	min-width: 23em;
-	max-width: 70vw;
 
 	transform: translateX(50%);
 	text-align: center;
 
 	backface-visibility: hidden;
-	@include buggyfill("width: 41vh; max-width: 70vw;");
+
+	@include viewport(width, 41vh);
+	@include viewport(max-width, 70vw);
 }
 
 nav {
@@ -851,7 +844,6 @@ nav {
 
 		width: 100%;
 		height: 100%;
-		min-height: 100vh;
 
 		transition: all $normalSpeed $primaryEase;
 		transform: translateX(0);
@@ -859,7 +851,8 @@ nav {
 		background: black;
 
 		backface-visibility: hidden;
-		@include buggyfill("min-height: 100vh;");
+		@include viewport(min-height, 100vh);
+
 		&.menu-open {
 			transform: translateX(-100%);
 
@@ -872,10 +865,11 @@ nav {
 			z-index: 800;
 
 			margin: 0 auto;
-			padding: 20vmin 0 25vmin;
+			padding: 0;
 
 			@include clearfix;
-			@include buggyfill("padding: 20vmin 0 25vmin;");
+			@include viewport(padding-top, 20vmin);
+			@include viewport(padding-bottom, 25vmin);
 			#menu {
 				display: inline-block;
 
@@ -893,7 +887,6 @@ nav {
 						}
 						a {
 							font-family: "Black";
-							font-size: 12vmin;
 
 							position: relative;
 
@@ -901,7 +894,7 @@ nav {
 							letter-spacing: .075em;
 							text-transform: uppercase;
 
-							@include buggyfill("font-size: 12vmin;");
+							@include viewport(font-size, 12vmin);
 							&.active {
 								text-decoration: underline;
 							}
@@ -913,15 +906,13 @@ nav {
 							}
 						}
 						@include breakpoint(wide) {
-							margin-bottom: 1.8vw;
 
-							@include buggyfill("margin-bottom: 1.8vw;");
+							@include viewport(margin-bottom, 1.8vw);
 							a {
-								font-size: 3.25vw;
 
 								margin-bottom: 3em;
 
-								@include buggyfill("font-size: 3.25vw;");
+								@include viewport(font-size, 3.25vw);
 							}
 						}
 					}
@@ -944,21 +935,18 @@ nav {
 				}
 			}
 			@include breakheight(tiny) {
-				padding-bottom: 30vh;
-
-				@include buggyfill("padding-bottom: 30vh;");
+				@include viewport(padding-bottom, 30vh);
 			}
+
 			@include breakpoint(smallTablet) {
-				padding-top: 20vh;
-
-				@include buggyfill("padding-top: 20vh;");
+				@include viewport(padding-top, 20vh);
 			}
+
 			@include breakpoint(desktop) {
-				padding-top: 25vh;
 				padding-bottom: 50px !important;
-
-				@include buggyfill("padding-top: 25vh;");
+				@include viewport(padding-top, 25vh);
 			}
+
 		    // Landscape Styling for mobile
 		    @include breakpoint(639px, true){
 		    	@include breakpoint(landscape){
@@ -969,21 +957,14 @@ nav {
 				      			float: left;
 
 				      			width: 50%;
-				      			margin: 0 0 20vmin !important;
+				      			margin: 0;
 
-				      			@include buggyfill("margin: 0 0 20vmin !important;");
-				      			a {
-				      				font-size: 9vmax !important;
+				      			@include viewport(margin-bottom, 20vmin);
 
-				      				@include buggyfill("font-size: 9vmax !important;");
-				      			}
+				      			a { @include viewport(font-size, 9vmax); }
 				      		}
 				      	}
 			      	}
-		      	}
-
-		      	@include breakheight(tiny){
-
 		      	}
 	        }
     	}
@@ -1264,12 +1245,12 @@ nav {
 	left: 0;
 
 	width: 100%;
-	min-height: 100vh;
 
 	color: white;
 	background: black;
 
-	@include buggyfill("min-height: 100vh;");
+	@include viewport(min-height, 100vh);
+
 	img.siteID {
 		position: relative;
 
@@ -1416,9 +1397,8 @@ nav {
 	overflow: hidden;
 
 	width: 100%;
-	height: 100vh;
 
-	@include buggyfill("height: 100vh;");
+	@include viewport(height, 100vh);
 
 	img {
 		z-index: 150;
@@ -1498,51 +1478,29 @@ nav {
 		}
 	}
 	@include breakpoint(mobile) {
-		h1 {
-			font-size: 3.6em;
-		}
-		p {
-			font-size: 4.8em;
-		}
+		h1 { font-size: 3.6em; }
+		p { font-size: 4.8em; }
 	}
+
 	@include breakpoint(smallTablet) {
-		h1 {
-			font-size: 4vw;
-
-			@include buggyfill("font-size: 4vw");
-		}
-		p {
-			font-size: 6vw;
-
-			@include buggyfill("font-size: 6vw");
-		}
+		h1 { @include viewport(font-size, 4vw); }
+		p { @include viewport(font-size, 6vw); }
 	}
+
 	@include breakpoint(tablet) {
-		h1 {
-			left: 60px;
-		}
-		p {
-			left: 60px;
-		}
+		h1, p { left: 60px; }
 	}
+
 	@include breakpoint(desktop) {
-		h1 {
-			top: 20%;
-			left: 100px;
-		}
-		p {
-			top: 43%;
-			left: 100px;
-		}
+		h1, p { left: 100px; }
+
+		h1 { top: 20%; }
+		p { top: 43%; }
 	}
 
 	@include breakpoint(superwide) {
-		h1 {
-			font-size: 7.2em;
-		}
-		p {
-			font-size: 10.8em;
-		}
+		h1 { font-size: 7.2em; }
+		p { font-size: 10.8em; }
 	}
 }
 
@@ -1580,10 +1538,9 @@ nav {
 		.bannerWrapper {
 			position: relative;
 
-			height: 40vh;
 			margin-bottom: 25px;
 
-			@include buggyfill("height: 40vh;");
+			@include viewport(height, 40vh);
 			.imgWrapper {
 				position: relative;
 
@@ -1627,7 +1584,7 @@ nav {
 					@include breakpoint(smallTablet) {
 						font-size: 7.5em;
 					}
-					@include buggyfill("font-size: 12vw;");
+					@include viewport(font-size, 12vw);
 				}
 
 				@include breakpoint(tablet) {
@@ -1644,9 +1601,8 @@ nav {
 				}
 			}
 			@include breakpoint(smallTablet) {
-				height: 50vh;
+				@include viewport(height, 50vh);
 
-				@include buggyfill("height: 50vh;");
 				.imgWrapper {
 					img {
 						height: auto;
@@ -1762,14 +1718,12 @@ nav {
 
 				overflow: hidden;
 
-				height: 57vw;
+				@include viewport(height, 57vw);
 
-				@include buggyfill("height: 57vw;");
 				@include breakpoint(smallTablet) {
-					height: 50vw;
-
-					@include buggyfill("height: 50vw;");
+					@include viewport(height, 50vw);
 				}
+
 				img {
 					@extend %absoluteCenter;
 				}
@@ -1828,12 +1782,8 @@ nav {
 				&:nth-of-type(3) {
 					width: 49%;
 					.imgWrapper {
-						height: 30vw;
-
-						@include buggyfill("height: 30vw;");
-						img {
-							height: 100%;
-						}
+						@include viewport(height, 30vw);
+						img { height: 100%; }
 					}
 				}
 				&:nth-of-type(2) {
@@ -1847,24 +1797,16 @@ nav {
 				&:nth-of-type(1) {
 					width: 49%;
 					.imgWrapper {
-						height: 30vw;
-
-						@include buggyfill("height: 30vw;");
-						img {
-							height: 100%;
-						}
+						@include viewport(height, 30vw);
+						img { height: 100%; }
 					}
 				}
 				&:nth-of-type(2),
 				&:nth-of-type(3) {
 					width: 23.5%;
 					.imgWrapper {
-						height: 14vw;
-
-						@include buggyfill("height: 14vw;");
-						img {
-							height: 100%;
-						}
+						@include viewport(height, 14vw);
+						img { height: 100%; }
 					}
 				}
 				&:nth-of-type(3) {
@@ -1904,9 +1846,7 @@ nav {
 				.imgWrapper {
 					position: relative;
 
-					height: 90vw;
-
-					@include buggyfill("height: 90vw;");
+					@include viewport(height, 90vw);
 					img {
 						width: auto;
 						height: 100%;
@@ -1933,19 +1873,17 @@ nav {
 							border-right: 0;
 
 							@include breakpoint(desktop) {
-								width: 2.25vw;
-								height: 2.25vw;
 
-								@include buggyfill("width: 2.25vw; height: 2.25vw;");
+								@include viewport(width, 2.25vw);
+								@include viewport(height, 2.25vw);
+
 								&:nth-of-type(2) {
-									right: 2.25vw;
 
-									@include buggyfill("right: 2.25vw;");
+									@include viewport(right, 2.25vw);
 								}
 								&:nth-of-type(3) {
-									right: 4.5vw;
 
-									@include buggyfill("right: 4.5vw;");
+									@include viewport(right, 4.5vw);
 								}
 							}
 							&:nth-of-type(1) {
@@ -1973,12 +1911,8 @@ nav {
 				section {
 					width: 49%;
 					.imgWrapper {
-						height: 45vw;
-
-						@include buggyfill("height: 45vw;");
-						img {
-							height: 100%;
-						}
+						@include viewport(height, 45vw);
+						img { height: 100%; }
 					}
 					&:nth-of-type(1) {
 						margin-right: 2%;
@@ -2010,12 +1944,8 @@ nav {
 				section {
 					&:nth-of-type(1) {
 						.imgWrapper {
-							height: 30vw;
-
-							@include buggyfill("height: 30vw;");
-							img {
-								height: 100%;
-							}
+							@include viewport(height, 30vw);
+							img { height: 100%; }
 						}
 					}
 					&:nth-of-type(2) {
@@ -2028,12 +1958,8 @@ nav {
 					&:nth-of-type(3) {
 						width: 23.5%;
 						.imgWrapper {
-							height: 22.5vw;
-
-							@include buggyfill("height: 22.5vw;");
-							img {
-								height: 100%;
-							}
+							@include viewport(height, 22.5vw);
+							img { height: 100%; }
 						}
 					}
 				}
@@ -2066,10 +1992,10 @@ nav {
 		height: 100vh;
 		max-height: 100vh;
 
-		@include buggyfill("height: 100vh; max-height: 100vh;");
-		img {
-			@extend %absoluteCenter;
-		}
+		@include viewport(height, 100vh);
+		@include viewport(max-height, 100vh);
+
+		img { @extend %absoluteCenter; }
 	}
 	.projectContent {
 		font-size: 1.6em;
@@ -2200,15 +2126,13 @@ nav {
 	}
 	&.caseStudy {
 		.featuredImage {
-			height: 40vw;
 			min-height: initial;
 			max-height: initial;
 
-			@include buggyfill("height: 40vw;");
-			@include breakpoint(smallTablet) {
-				height: 35vw;
+			@include viewport(height, 40vw);
 
-				@include buggyfill("height: 35vw;");
+			@include breakpoint(smallTablet) {
+				@include viewport(height, 35vw);
 			}
 		}
 		.projectContent {
@@ -2296,9 +2220,9 @@ nav {
 				overflow: hidden;
 
 				width: 100%;
-				height: 40vw;
 
-				@include buggyfill("height: 40vw;");
+				@include viewport(height, 40vw);
+
 				&.halfImage {
 					width: 100%;
 
@@ -2317,11 +2241,10 @@ nav {
 #readAbout {
 	@extend %flexBox4;
 	section {
-		height: 40vw;
 
 		background-color: $grey;
+		@include viewport(height, 40vw);
 
-		@include buggyfill("height: 40vw;");
 		a {
 			display: inline-block;
 
@@ -2347,15 +2270,13 @@ nav {
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
 		}
+
 		@include breakpoint(smallTablet) {
-			height: 18vw;
-
-			@include buggyfill("height: 18vw;");
+			@include viewport(height, 18vw);
 		}
-		@include breakpoint(desktop) {
-			height: 14vw;
 
-			@include buggyfill("height: 14vw;");
+		@include breakpoint(desktop) {
+			@include viewport(height, 14vw);
 		}
 	}
 }
@@ -2383,23 +2304,17 @@ nav {
 			overflow: hidden;
 
 			width: 100%;
-			height: 40vw;
 
-			@include buggyfill("height: 40vw;");
+			@include viewport(height, 40vw);
 			
-			img {
-				@extend %absoluteCenter;
-			}
+			img { @extend %absoluteCenter; }
 
 			@include breakpoint(smallTablet) {
-				height: 18vw;
-
-				@include buggyfill("height: 18vw;");
+				@include viewport(height, 18vw);
 			}
-			@include breakpoint(desktop) {
-				height: 14vw;
 
-				@include buggyfill("height: 14vw;");
+			@include breakpoint(desktop) {
+				@include viewport(height, 14vw);
 			}
 		}
 		@include breakpoint(smallTablet) {

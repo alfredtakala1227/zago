@@ -27,6 +27,40 @@ $fastSpeed: .3s;
 
 $primaryEase: ease-out;
 
+
+/*************************************************/
+/* Functions
+/*************************************************/
+
+@function vunit($input, $width, $height){
+  @if unit($width) != px or unit($height) != px {
+    @error "@function vunit() dimensions should contain a px unit."
+  }
+  
+  // Store $input unit
+  $unit: unit($input);
+  // Remove unit from $input and convert to ratio
+  $ratio: $input / ($input * 0 + 1) / 100;
+  // Calc and store return values
+  $widthVal: floor($width * $ratio);
+  $heightVal: floor($height * $ratio);
+  
+  $isPortrait: $width < $height;
+  
+  @if $unit == vw { @return $widthVal; }
+  @else if $unit == vh { @return $heightVal; }
+  
+  @else if $unit == vmax {
+    @if $isPortrait { @return $heightVal; }
+    @else { @return $widthVal; }
+  }
+  
+  @else if $unit == vmin {
+    @if $isPortrait { @return $widthVal; }
+    @else { @return $heightVal; }
+  }
+}
+
 /*************************************************/
 /* Mixins
 /*************************************************/
@@ -64,5 +98,51 @@ $primaryEase: ease-out;
 @mixin buggyfill($values) {
   content: 'viewport-units-buggyfill; ' + $values;
 }
+
+@mixin viewport($property, $value){
+  
+  // Check that the $value has a unit
+  @if unitless($value){
+    // Throw error if the $value is unitless
+    @error "Viewport values include a specified unit. Please check your input [" + $value + "]";
+  } @else {
+    
+    $unit : unit($value);
+    $units: (vw, vh, vmin, vmax);
+    
+    // Check that the unit is a V-unit
+    @if index($units, $unit) == null {
+      // Throw error if a V-unit was not used
+      @error "Viewport values include a specified V-unit. Please check your input [" + $value + "]";
+    
+    // V-Unit to PX logic
+    } @else {
+  
+      // iPad with landscape orientation.
+      @media all and (device-width: 768px) and
+        (device-height: 1024px) and (orientation:portrait){
+          #{$property}: vunit($value, 768px, 1024px);
+      }
+       
+      // iPad with landscape orientation.
+      @media all and (device-width: 768px) and
+        (device-height: 1024px) and (orientation:landscape){
+        #{$property}: vunit($value, 1024px, 768px);
+      }
+      
+      // Set Base Value
+      #{$property}: $value;
+
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 /*************************************************/

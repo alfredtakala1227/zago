@@ -61,6 +61,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* Speeds
 /*************************************************/
 /*************************************************/
+/* Functions
+/*************************************************/
+/*************************************************/
 /* Mixins
 /*************************************************/
 /*************************************************/
@@ -247,8 +250,8 @@ u.z {
 
 a {
   cursor: pointer;
-  -webkit-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
+  -webkit-transition: color 0.3s ease-out;
+          transition: color 0.3s ease-out;
   text-decoration: none;
   color: white;
 }
@@ -351,9 +354,7 @@ button {
 button#menuButton {
   overflow: hidden;
   width: 100%;
-  height: 6vh;
   min-height: 30px;
-  max-height: 9vw;
   padding: 0;
   -webkit-transition: opacity 0.5s ease-out;
           transition: opacity 0.5s ease-out;
@@ -361,7 +362,28 @@ button#menuButton {
           animation: menu-button 8s infinite;
   opacity: .5;
   border: 0;
-  content: "viewport-units-buggyfill; height: 6vh; max-height: 9vw;";
+  height: 6vh;
+  max-height: 9vw;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  button#menuButton {
+    height: 61px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  button#menuButton {
+    height: 46px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  button#menuButton {
+    max-height: 69px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  button#menuButton {
+    max-height: 92px;
+  }
 }
 button#menuButton span#menuPrompt {
   display: none;
@@ -555,7 +577,7 @@ footer section.social {
   }
   footer section.social ul {
     float: none;
-    width: 10em;
+    width: 110px;
     border: 0;
   }
   footer section.social ul li {
@@ -716,12 +738,19 @@ footer.pageLoading {
   position: relative;
   z-index: 100;
   width: 100%;
-  min-height: 100vh;
-  -webkit-transition: all 0.5s ease-out;
-          transition: all 0.5s ease-out;
   opacity: 1;
   background-color: white;
-  content: "viewport-units-buggyfill; min-height: 100vh;";
+  min-height: 100vh;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #container {
+    min-height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #container {
+    min-height: 768px;
+  }
 }
 #container.pageLoading {
   -webkit-transform: translateX(100%);
@@ -735,7 +764,16 @@ footer.pageLoading {
   overflow: auto;
   width: 100%;
   min-height: 100vh;
-  content: "viewport-units-buggyfill; min-height: 100vh;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #pageContent {
+    min-height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #pageContent {
+    min-height: 768px;
+  }
 }
 #pageContent.menu-open {
   overflow: hidden;
@@ -798,16 +836,35 @@ img.siteID {
   z-index: 1000;
   top: 78%;
   right: 50%;
-  width: 41vh;
   min-width: 23em;
-  max-width: 70vw;
   -webkit-transform: translateX(50%);
       -ms-transform: translateX(50%);
           transform: translateX(50%);
   text-align: center;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  content: "viewport-units-buggyfill; width: 41vh; max-width: 70vw;";
+  width: 41vh;
+  max-width: 70vw;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .buttonWrapper {
+    width: 419px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .buttonWrapper {
+    width: 314px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .buttonWrapper {
+    max-width: 537px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .buttonWrapper {
+    max-width: 716px;
+  }
 }
 
 nav#mainNav {
@@ -817,7 +874,6 @@ nav#mainNav {
   right: -100%;
   width: 100%;
   height: 100%;
-  min-height: 100vh;
   -webkit-transition: all 0.5s ease-out;
           transition: all 0.5s ease-out;
   -webkit-transform: translateX(0);
@@ -826,7 +882,17 @@ nav#mainNav {
   background: black;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  content: "viewport-units-buggyfill; min-height: 100vh;";
+  min-height: 100vh;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav {
+    min-height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav {
+    min-height: 768px;
+  }
 }
 nav#mainNav.menu-open {
   -webkit-transform: translateX(-100%);
@@ -844,10 +910,31 @@ nav#mainNav #menuWrapper {
   position: relative;
   z-index: 800;
   margin: 0 auto;
-  padding: 20vmin 0 25vmin;
+  padding: 0;
   overflow: hidden;
   *zoom: 1;
-  content: "viewport-units-buggyfill; padding: 20vmin 0 25vmin;";
+  padding-top: 20vmin;
+  padding-bottom: 25vmin;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 153px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 153px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 192px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 192px;
+  }
 }
 nav#mainNav #menuWrapper #menu {
   display: inline-block;
@@ -866,12 +953,21 @@ nav#mainNav #menuWrapper #menu ul li:last-of-type {
 }
 nav#mainNav #menuWrapper #menu ul li a {
   font-family: "Black";
-  font-size: 12vmin;
   position: relative;
   text-decoration: none;
   letter-spacing: .075em;
   text-transform: uppercase;
-  content: "viewport-units-buggyfill; font-size: 12vmin;";
+  font-size: 12vmin;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 92px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 92px;
+  }
 }
 nav#mainNav #menuWrapper #menu ul li a.active {
   text-decoration: underline;
@@ -884,14 +980,35 @@ nav#mainNav #menuWrapper #menu ul li a.active {
 @media (min-width: 1400px) {
   nav#mainNav #menuWrapper #menu ul li {
     margin-bottom: 1.8vw;
-    content: "viewport-units-buggyfill; margin-bottom: 1.8vw;";
-  }
-  nav#mainNav #menuWrapper #menu ul li a {
-    font-size: 3.25vw;
-    margin-bottom: 3em;
-    content: "viewport-units-buggyfill; font-size: 3.25vw;";
   }
 }
+@media all and (min-width: 1400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li {
+    margin-bottom: 13px;
+  }
+}
+@media all and (min-width: 1400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li {
+    margin-bottom: 18px;
+  }
+}
+@media (min-width: 1400px) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    margin-bottom: 3em;
+    font-size: 3.25vw;
+  }
+}
+@media all and (min-width: 1400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 24px;
+  }
+}
+@media all and (min-width: 1400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 33px;
+  }
+}
+
 @media (min-width: 480px) {
   nav#mainNav #menuWrapper #menu {
     margin: 0 70px;
@@ -906,28 +1023,68 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
 @media (max-height: 400px) {
   nav#mainNav #menuWrapper {
     padding-bottom: 30vh;
-    content: "viewport-units-buggyfill; padding-bottom: 30vh;";
   }
 }
+@media all and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 307px;
+  }
+}
+@media all and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 230px;
+  }
+}
+
 @media (max-height: tiny) {
   nav#mainNav #menuWrapper {
     padding-bottom: 30vh;
-    content: "viewport-units-buggyfill; padding-bottom: 30vh;";
   }
 }
+@media all and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 307px;
+  }
+}
+@media all and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 230px;
+  }
+}
+
 @media (min-width: 640px) {
   nav#mainNav #menuWrapper {
     padding-top: 20vh;
-    content: "viewport-units-buggyfill; padding-top: 20vh;";
   }
 }
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 204px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 153px;
+  }
+}
+
 @media (min-width: 992px) {
   nav#mainNav #menuWrapper {
-    padding-top: 25vh;
     padding-bottom: 50px !important;
-    content: "viewport-units-buggyfill; padding-top: 25vh;";
+    padding-top: 25vh;
   }
 }
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 256px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 192px;
+  }
+}
+
 @media (max-width: 639px) and (orientation: landscape) and (max-height: 400px) {
   nav#mainNav #menuWrapper {
     display: block;
@@ -935,14 +1092,36 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
   nav#mainNav #menuWrapper ul li {
     float: left;
     width: 50%;
-    margin: 0 0 20vmin !important;
-    content: "viewport-units-buggyfill; margin: 0 0 20vmin !important;";
-  }
-  nav#mainNav #menuWrapper ul li a {
-    font-size: 9vmax !important;
-    content: "viewport-units-buggyfill; font-size: 9vmax !important;";
+    margin: 0;
+    margin-bottom: 20vmin;
   }
 }
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 153px;
+  }
+}
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 153px;
+  }
+}
+@media (max-width: 639px) and (orientation: landscape) and (max-height: 400px) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 9vmax;
+  }
+}
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 92px;
+  }
+}
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 92px;
+  }
+}
+
 @media (max-width: 639px) and (orientation: landscape) and (max-height: tiny) {
   nav#mainNav #menuWrapper {
     display: block;
@@ -950,12 +1129,35 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
   nav#mainNav #menuWrapper ul li {
     float: left;
     width: 50%;
-    margin: 0 0 20vmin !important;
-    content: "viewport-units-buggyfill; margin: 0 0 20vmin !important;";
+    margin: 0;
+    margin-bottom: 20vmin;
   }
+}
+
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 153px;
+  }
+}
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 153px;
+  }
+}
+@media (max-width: 639px) and (orientation: landscape) and (max-height: tiny) {
   nav#mainNav #menuWrapper ul li a {
-    font-size: 9vmax !important;
-    content: "viewport-units-buggyfill; font-size: 9vmax !important;";
+    font-size: 9vmax;
+  }
+}
+
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 92px;
+  }
+}
+@media all and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 92px;
   }
 }
 
@@ -1207,10 +1409,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
   color: white;
   background: black;
-  content: "viewport-units-buggyfill; min-height: 100vh;";
+  min-height: 100vh;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #splash {
+    min-height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #splash {
+    min-height: 768px;
+  }
 }
 #splash img.siteID {
   position: relative;
@@ -1336,7 +1547,16 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  content: "viewport-units-buggyfill; height: 100vh;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #heroBanner {
+    height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #heroBanner {
+    height: 768px;
+  }
 }
 #heroBanner img {
   z-index: 150;
@@ -1414,29 +1634,48 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 640px) {
   #heroBanner h1 {
     font-size: 4vw;
-    content: "viewport-units-buggyfill; font-size: 4vw";
-  }
-  #heroBanner p {
-    font-size: 6vw;
-    content: "viewport-units-buggyfill; font-size: 6vw";
   }
 }
-@media (min-width: 768px) {
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   #heroBanner h1 {
-    left: 60px;
+    font-size: 30px;
   }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #heroBanner h1 {
+    font-size: 40px;
+  }
+}
+@media (min-width: 640px) {
   #heroBanner p {
+    font-size: 6vw;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #heroBanner p {
+    font-size: 46px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #heroBanner p {
+    font-size: 61px;
+  }
+}
+
+@media (min-width: 768px) {
+  #heroBanner h1, #heroBanner p {
     left: 60px;
   }
 }
 @media (min-width: 992px) {
+  #heroBanner h1, #heroBanner p {
+    left: 100px;
+  }
   #heroBanner h1 {
     top: 20%;
-    left: 100px;
   }
   #heroBanner p {
     top: 43%;
-    left: 100px;
   }
 }
 @media (min-width: 1800px) {
@@ -1480,9 +1719,18 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 #homeSections section .bannerWrapper {
   position: relative;
-  height: 40vh;
   margin-bottom: 25px;
-  content: "viewport-units-buggyfill; height: 40vh;";
+  height: 40vh;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #homeSections section .bannerWrapper {
+    height: 409px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #homeSections section .bannerWrapper {
+    height: 307px;
+  }
 }
 #homeSections section .bannerWrapper .imgWrapper {
   position: relative;
@@ -1512,7 +1760,7 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   text-transform: uppercase;
   color: black;
   /* Cascade fallback for vw units */
-  content: "viewport-units-buggyfill; font-size: 12vw;";
+  font-size: 12vw;
 }
 @media (min-width: 320px) {
   #homeSections section .bannerWrapper .captionWrapper p {
@@ -1527,6 +1775,16 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 640px) {
   #homeSections section .bannerWrapper .captionWrapper p {
     font-size: 7.5em;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #homeSections section .bannerWrapper .captionWrapper p {
+    font-size: 92px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #homeSections section .bannerWrapper .captionWrapper p {
+    font-size: 122px;
   }
 }
 @media (min-width: 768px) {
@@ -1548,8 +1806,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 640px) {
   #homeSections section .bannerWrapper {
     height: 50vh;
-    content: "viewport-units-buggyfill; height: 50vh;";
   }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #homeSections section .bannerWrapper {
+    height: 512px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #homeSections section .bannerWrapper {
+    height: 384px;
+  }
+}
+@media (min-width: 640px) {
   #homeSections section .bannerWrapper .imgWrapper img {
     height: auto;
   }
@@ -1655,14 +1924,33 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   position: relative;
   overflow: hidden;
   height: 57vw;
-  content: "viewport-units-buggyfill; height: 57vw;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 437px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 583px;
+  }
 }
 @media (min-width: 640px) {
   .gridWrapper .grid section .imgWrapper {
     height: 50vw;
-    content: "viewport-units-buggyfill; height: 50vw;";
   }
 }
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 384px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 512px;
+  }
+}
+
 .gridWrapper .grid section .imgWrapper .overlay {
   position: absolute;
   z-index: 10;
@@ -1708,8 +1996,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 30vw;
-    content: "viewport-units-buggyfill; height: 30vw;";
   }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 230px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 307px;
+  }
+}
+@media (min-width: 640px) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
     height: 100%;
   }
@@ -1726,8 +2025,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
     height: 30vw;
-    content: "viewport-units-buggyfill; height: 30vw;";
   }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 230px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 307px;
+  }
+}
+@media (min-width: 992px) {
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper img {
     height: 100%;
   }
@@ -1736,8 +2046,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 14vw;
-    content: "viewport-units-buggyfill; height: 14vw;";
   }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 107px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 143px;
+  }
+}
+@media (min-width: 992px) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper .grid section:nth-of-type(3) .imgWrapper img {
     height: 100%;
   }
@@ -1764,7 +2085,16 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 .gridWrapper.teamWrapper .grid section .imgWrapper {
   position: relative;
   height: 90vw;
-  content: "viewport-units-buggyfill; height: 90vw;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 691px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 921px;
+  }
 }
 .gridWrapper.teamWrapper .grid section .imgWrapper img {
   width: auto;
@@ -1794,17 +2124,59 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
     width: 2.25vw;
     height: 2.25vw;
-    content: "viewport-units-buggyfill; width: 2.25vw; height: 2.25vw;";
-  }
-  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
-    right: 2.25vw;
-    content: "viewport-units-buggyfill; right: 2.25vw;";
-  }
-  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
-    right: 4.5vw;
-    content: "viewport-units-buggyfill; right: 4.5vw;";
   }
 }
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    width: 17px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    width: 23px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    height: 17px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    height: 23px;
+  }
+}
+@media (min-width: 992px) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
+    right: 2.25vw;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
+    right: 17px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
+    right: 23px;
+  }
+}
+@media (min-width: 992px) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
+    right: 4.5vw;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
+    right: 34px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
+    right: 46px;
+  }
+}
+
 .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(1) {
   right: 0;
 }
@@ -1825,8 +2197,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
   .gridWrapper.teamWrapper .grid section .imgWrapper {
     height: 45vw;
-    content: "viewport-units-buggyfill; height: 45vw;";
   }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 345px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 460px;
+  }
+}
+@media (min-width: 640px) {
   .gridWrapper.teamWrapper .grid section .imgWrapper img {
     height: 100%;
   }
@@ -1852,8 +2235,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 992px) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
     height: 30vw;
-    content: "viewport-units-buggyfill; height: 30vw;";
   }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 230px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 307px;
+  }
+}
+@media (min-width: 992px) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper img {
     height: 100%;
   }
@@ -1868,8 +2262,19 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 22.5vw;
-    content: "viewport-units-buggyfill; height: 22.5vw;";
   }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 172px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 230px;
+  }
+}
+@media (min-width: 992px) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper img, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper img {
     height: 100%;
   }
@@ -1892,7 +2297,28 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   width: 100%;
   height: 100vh;
   max-height: 100vh;
-  content: "viewport-units-buggyfill; height: 100vh; max-height: 100vh;";
+  height: 100vh;
+  max-height: 100vh;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #projectLayout .featuredImage {
+    height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #projectLayout .featuredImage {
+    height: 768px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #projectLayout .featuredImage {
+    max-height: 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #projectLayout .featuredImage {
+    max-height: 768px;
+  }
 }
 #projectLayout .projectContent {
   font-size: 1.6em;
@@ -2035,17 +2461,36 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   }
 }
 #projectLayout.caseStudy .featuredImage {
-  height: 40vw;
   min-height: initial;
   max-height: initial;
-  content: "viewport-units-buggyfill; height: 40vw;";
+  height: 40vw;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 307px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 409px;
+  }
 }
 @media (min-width: 640px) {
   #projectLayout.caseStudy .featuredImage {
     height: 35vw;
-    content: "viewport-units-buggyfill; height: 35vw;";
   }
 }
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 268px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 358px;
+  }
+}
+
 #projectLayout.caseStudy .projectContent {
   margin: 50px 0;
 }
@@ -2120,7 +2565,16 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
   width: 100%;
   height: 40vw;
-  content: "viewport-units-buggyfill; height: 40vw;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #projectImages section .imageWrapper .imageBox {
+    height: 307px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #projectImages section .imageWrapper .imageBox {
+    height: 409px;
+  }
 }
 #projectImages section .imageWrapper .imageBox.halfImage {
   width: 100%;
@@ -2132,9 +2586,18 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 }
 
 #readAbout section {
-  height: 40vw;
   background-color: #e6e6e6;
-  content: "viewport-units-buggyfill; height: 40vw;";
+  height: 40vw;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #readAbout section {
+    height: 307px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #readAbout section {
+    height: 409px;
+  }
 }
 #readAbout section a {
   display: inline-block;
@@ -2158,13 +2621,32 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
 @media (min-width: 640px) {
   #readAbout section {
     height: 18vw;
-    content: "viewport-units-buggyfill; height: 18vw;";
   }
 }
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #readAbout section {
+    height: 138px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #readAbout section {
+    height: 184px;
+  }
+}
+
 @media (min-width: 992px) {
   #readAbout section {
     height: 14vw;
-    content: "viewport-units-buggyfill; height: 14vw;";
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #readAbout section {
+    height: 107px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #readAbout section {
+    height: 143px;
   }
 }
 
@@ -2191,20 +2673,49 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
   overflow: hidden;
   width: 100%;
   height: 40vw;
-  content: "viewport-units-buggyfill; height: 40vw;";
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 307px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 409px;
+  }
 }
 @media (min-width: 640px) {
   #relatedProjects section .imgWrapper {
     height: 18vw;
-    content: "viewport-units-buggyfill; height: 18vw;";
   }
 }
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 138px;
+  }
+}
+@media all and (min-width: 640px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 184px;
+  }
+}
+
 @media (min-width: 992px) {
   #relatedProjects section .imgWrapper {
     height: 14vw;
-    content: "viewport-units-buggyfill; height: 14vw;";
   }
 }
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 107px;
+  }
+}
+@media all and (min-width: 992px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 143px;
+  }
+}
+
 @media (min-width: 640px) {
   #relatedProjects section {
     margin-right: 0;
