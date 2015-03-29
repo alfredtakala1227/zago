@@ -358,8 +358,17 @@ button {
 			color: white;
 			&.marquee {
 				display: block;
-
+				font-size: 1.4em;
+				color: black;
 				animation: marquee 7.5s infinite;
+
+				@include breakpoint(639px, true) {
+					font-size: 1.2em;
+				}
+
+				@include breakheight(small){
+					font-size: 1em;
+				}
 			}
 			&.hiding {
 				opacity: 0;

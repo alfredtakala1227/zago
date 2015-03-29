@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     // Simulate click action on touch screen tap (hopefully)
     // @BUG not sure if this is really working or not
-    $('*').on('tap', function(){ $(this).click(); });
+    $('*').on('touchend', function(){ $(this).blur(); });
 
     // function to display Modernizr classes (append to end of DOM)    
     function cssTester(){

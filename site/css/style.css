@@ -372,8 +372,25 @@ button#menuButton span#menuPrompt {
 }
 button#menuButton span#menuPrompt.marquee {
   display: block;
+  font-size: 1.4em;
+  color: black;
   -webkit-animation: marquee 7.5s infinite;
           animation: marquee 7.5s infinite;
+}
+@media (max-width: 639px) {
+  button#menuButton span#menuPrompt.marquee {
+    font-size: 1.2em;
+  }
+}
+@media (max-height: 640px) {
+  button#menuButton span#menuPrompt.marquee {
+    font-size: 1em;
+  }
+}
+@media (max-height: small) {
+  button#menuButton span#menuPrompt.marquee {
+    font-size: 1em;
+  }
 }
 button#menuButton span#menuPrompt.hiding {
   opacity: 0;

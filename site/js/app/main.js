@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $("*").on("tap", function() {
-        $(this).click();
+    $("*").on("touchend", function() {
+        $(this).blur();
     });
     function cssTester() {
         var HTMLclasses = $("html")[0].classList;
