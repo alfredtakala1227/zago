@@ -895,7 +895,6 @@ app.directive("newWindowLinks", function($location, $timeout) {
     var linker = function($scope, element, attrs) {
         $timeout(function() {
             var links = element.find("a");
-            console.log($location.host());
             for (var i = 0; links.length > i; i++) {
                 if (links[i]) {
                     $(links[i]).attr("target", "_blank");
@@ -927,10 +926,10 @@ var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, F
 
 AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
     var defer = $q.defer();
-    var newTimestamp = new Date().getTime();
-    Storage.dailyTimestamp = Storage.dailyTimestamp && Storage.dailyTimestamp > newTimestamp - 864e5 ? Storage.dailyTimestamp : newTimestamp;
-    if (!Storage.site || !Storage.dataTimestamp || Storage.dataTimestamp < newTimestamp - 36e5) {
+    var newTimestamp = new Date().getTime(), refreshRate = 1e3 * 60 * 60;
+    if (!Storage.site || !Storage.dataTimestamp || Storage.dataTimestamp < newTimestamp - refreshRate) {
         SiteLoader.getRawData().then(function(data) {
+            Storage.dataTimestamp = newTimestamp;
             var site, posts;
             site = data.responseText || data.data;
             if (typeof site == "string") {
@@ -938,7 +937,6 @@ AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
             }
             posts = SiteLoader.getPosts(site);
             Storage.site = JSON.stringify(posts);
-            Storage.dataTimestamp = newTimestamp;
             $rootScope.site = posts;
             defer.resolve();
         });
