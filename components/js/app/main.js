@@ -1010,51 +1010,6 @@ app.directive('grid', function($compile) {
         };
 });
 
-// app.directive('newGrid', function($compile, $http, Functions){
-
-//     var templateTree = {
-//         'project-section' : 'project_section.html',
-//         'team-section' : 'team_section.html'
-//     };
-
-            
-
-//     var linker = function($scope, element, attrs){
-
-//         Functions.getTemplate(templateTree, attrs.type).then(function(data){
-//             var template = data.data;
-//             $scope.sections = $scope.$parent.sections; 
-
-//             function newWrapper(){
-//                 var newWrapper = $(document.createElement(el));
-
-//             }
-
-//             function newSection(el){
-//                 var newEl = $(document.createElement(el));
-//                 newEl.html(template);
-//                 $compile(newEl.contents());
-
-//                 return newEl[0];
-//             }
-
-//             for (var i = 0; $scope.sections.length > i; i++) {
-//                 var section = newSection('div', template);
-//                 element[0].appendChild(section);
-//                 $compile($(element[0]).contents())($scope);
-//             };
-//         });
-
-//     };
-
-//     return {
-//         restrict: "E",
-//         link: linker,
-//         scope: true
-
-//     };
-// });
-
 app.directive('officeList', function() {
     
     // Just an abstratced piece of re-used code
@@ -1194,7 +1149,7 @@ app.directive('projectNav', function(){
 
     return {
         restrict: 'A',
-        templateUrl: '../pieces/project_nav.html',
+        templateUrl: 'pieces/project_nav.html',
         replace: true,
         link : linker
     }
