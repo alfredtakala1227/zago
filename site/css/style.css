@@ -165,6 +165,7 @@ footer.homePage section, #homeSections section .sectionWrapper .sectionText p {
   font-size: 2em;
   margin-bottom: 40px;
   letter-spacing: .075em;
+  text-transform: uppercase;
 }
 #readAbout section, #relatedProjects section {
   display: block;
