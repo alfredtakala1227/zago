@@ -1330,7 +1330,7 @@ AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage){
     // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
     //////////////////////////////////////////////////////////////////////////
     var newTimestamp = new Date().getTime(),
-        refreshRate = (1000*60*60);
+        refreshRate = (1000*60*60*24);
     // If the Storage Site object is empty or older than X, reload Wordpress data tree
     if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - refreshRate)) {
         SiteLoader.getRawData().then(function(data){
