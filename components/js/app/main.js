@@ -83,7 +83,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         $locationProvider.html5Mode(true);
 }]);
 
-app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
+app.run(function($rootScope, $location, $state, $analytics, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on('$stateChangeStart', function(event, to, toParams, from, fromParams){
         $rootScope.pageLoading = true;
@@ -108,7 +108,7 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
         $rootScope.pageLoading = false;
-        console.log($state);
+        $analytics.pageTrack($location.$$path);
 
     });
 });
