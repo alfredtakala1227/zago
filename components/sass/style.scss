@@ -359,8 +359,12 @@ button {
 			&.marquee {
 				display: block;
 				font-size: 1.4em;
-				color: black;
+				font-family: "Black",
+	  			color: black;
 				animation: marquee 7.5s infinite;
+				height: 100%;
+				padding: 5% 0;
+
 
 				@include breakpoint(639px, true) {
 					font-size: 1.2em;
