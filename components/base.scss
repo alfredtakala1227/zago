@@ -119,8 +119,8 @@ $primaryEase: ease-out;
 
       // iPhone3-4(s) with portrait orientation
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 480px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
         and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
         and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
         and (orientation: portrait) {
@@ -129,8 +129,8 @@ $primaryEase: ease-out;
 
       // iPhone3-4(s) with landscape orientation
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 480px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
         and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
         and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
         and (orientation: landscape) {
@@ -139,8 +139,8 @@ $primaryEase: ease-out;
 
       // iPhone5(s) with portrait orientation
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 568px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: portrait) {
           #{$property}: vunit($value, 320px, 568px);
@@ -148,8 +148,8 @@ $primaryEase: ease-out;
 
       // iPhone5(s) with landscape orientation
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 568px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: landscape) {
           #{$property}: vunit($value, 568px, 320px);
@@ -158,8 +158,8 @@ $primaryEase: ease-out;
   
       // iPads with landscape orientation (1-2 + mini).
       @media only screen
-        and (device-width: 768px)
-        and (device-height: 1024px)
+        and (min-device-width: 768px)
+        and (max-device-width: 1024px)
         and (orientation:portrait)
         and (-webkit-min-device-pixel-ratio: 1) {
           #{$property}: vunit($value, 768px, 1024px);
@@ -167,8 +167,8 @@ $primaryEase: ease-out;
        
       // iPads with landscape orientation (1-2 + mini).
       @media only screen
-        and (device-width: 768px)
-        and (device-height: 1024px)
+        and (min-device-width: 768px)
+        and (max-device-width: 1024px)
         and (orientation:landscape)
         and (-webkit-min-device-pixel-ratio: 1) {
           #{$property}: vunit($value, 1024px, 768px);
@@ -180,8 +180,8 @@ $primaryEase: ease-out;
       // Older Generic devices with portrait orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 533px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 533px)
         and (-webkit-min-device-pixel-ratio: 1)
         and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: portrait) {
@@ -191,8 +191,8 @@ $primaryEase: ease-out;
       // Older Generic devices with landscape orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 320px) 
-        and (device-height: 533px)
+        and (min-device-width: 320px) 
+        and (max-device-width: 533px)
         and (-webkit-min-device-pixel-ratio: 1)
         and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: landscape) {
@@ -202,8 +202,8 @@ $primaryEase: ease-out;
       // Newer Generic devices with portrait orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 360px) 
-        and (device-height: 640px)
+        and (min-device-width: 360px) 
+        and (max-device-width: 640px)
         and (-webkit-min-device-pixel-ratio: 1)
         and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: portrait) {
@@ -213,8 +213,8 @@ $primaryEase: ease-out;
       // Newer Generic devices with landscape orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 360px) 
-        and (device-height: 640px)
+        and (min-device-width: 360px) 
+        and (max-device-width: 640px)
         and (-webkit-min-device-pixel-ratio: 1)
         and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: landscape) {
@@ -223,8 +223,8 @@ $primaryEase: ease-out;
 
       // Asus Nexus 7 with portrait orientation
       @media screen 
-        and (device-width: 601px) 
-        and (device-height: 906px) 
+        and (min-device-width: 601px) 
+        and (max-device-width: 906px) 
         and (-webkit-min-device-pixel-ratio: 1.331) 
         and (-webkit-max-device-pixel-ratio: 1.332) 
         and (orientation: portrait) {
@@ -233,8 +233,8 @@ $primaryEase: ease-out;
 
       // Asus Nexus 7 with landscape orientation
       @media screen 
-        and (device-width: 601px) 
-        and (device-height: 906px) 
+        and (min-device-width: 601px) 
+        and (max-device-width: 906px) 
         and (-webkit-min-device-pixel-ratio: 1.331) 
         and (-webkit-max-device-pixel-ratio: 1.332) 
         and (orientation: landscape) {
@@ -244,8 +244,8 @@ $primaryEase: ease-out;
       // Kindle Fire HD 7" with portrait orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 800px) 
-        and (device-height: 1280px) 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
         and (-webkit-min-device-pixel-ratio: 1) 
         and (-webkit-max-device-pixel-ratio: 2) 
         and (orientation: portrait) {
@@ -254,8 +254,8 @@ $primaryEase: ease-out;
       // Kindle Fire HD 7" with landscape orientation
       // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
-        and (device-width: 800px) 
-        and (device-height: 1280px) 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
         and (-webkit-min-device-pixel-ratio: 1) 
         and (-webkit-max-device-pixel-ratio: 2) 
         and (orientation: landscape) {
