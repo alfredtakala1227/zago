@@ -395,14 +395,24 @@ button#menuButton {
     height: 46px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  button#menuButton {
+    height: 31px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  button#menuButton {
+    height: 19px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   button#menuButton {
     height: 38px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   button#menuButton {
-    height: 19px;
+    height: 21px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -445,14 +455,24 @@ button#menuButton {
     max-height: 92px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   button#menuButton {
     max-height: 28px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   button#menuButton {
-    max-height: 576px;
+    max-height: 47px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  button#menuButton {
+    max-height: 32px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  button#menuButton {
+    max-height: 57px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -852,14 +872,24 @@ footer.pageLoading {
     min-height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #container {
+    min-height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #container {
+    min-height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #container {
     min-height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #container {
-    min-height: 320px;
+    min-height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -915,14 +945,24 @@ footer.pageLoading {
     min-height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #pageContent {
+    min-height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #pageContent {
+    min-height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #pageContent {
     min-height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #pageContent {
-    min-height: 320px;
+    min-height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1036,14 +1076,24 @@ img.siteID {
     width: 314px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .buttonWrapper {
+    width: 218px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .buttonWrapper {
+    width: 131px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .buttonWrapper {
     width: 262px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .buttonWrapper {
-    width: 131px;
+    width: 147px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1086,14 +1136,24 @@ img.siteID {
     max-width: 716px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .buttonWrapper {
     max-width: 224px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .buttonWrapper {
-    max-width: 4480px;
+    max-width: 373px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .buttonWrapper {
+    max-width: 251px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .buttonWrapper {
+    max-width: 448px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1154,14 +1214,24 @@ nav#mainNav {
     min-height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav {
+    min-height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav {
+    min-height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav {
     min-height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav {
-    min-height: 320px;
+    min-height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1226,14 +1296,24 @@ nav#mainNav #menuWrapper {
     padding-top: 153px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-top: 64px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
     padding-top: 64px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 72px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 72px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1276,14 +1356,24 @@ nav#mainNav #menuWrapper {
     padding-bottom: 192px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-bottom: 80px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
     padding-bottom: 80px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 90px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 90px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1349,14 +1439,24 @@ nav#mainNav #menuWrapper #menu ul li a {
     font-size: 92px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper #menu ul li a {
     font-size: 38px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper #menu ul li a {
     font-size: 38px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 43px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 43px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1412,14 +1512,24 @@ nav#mainNav #menuWrapper #menu ul li a.active {
     margin-bottom: 18px;
   }
 }
-@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper #menu ul li {
     margin-bottom: 5px;
   }
 }
-@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper #menu ul li {
-    margin-bottom: 115px;
+    margin-bottom: 9px;
+  }
+}
+@media only screen and (min-width: 1400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li {
+    margin-bottom: 6px;
+  }
+}
+@media only screen and (min-width: 1400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li {
+    margin-bottom: 11px;
   }
 }
 @media screen and (min-width: 1400px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1468,14 +1578,24 @@ nav#mainNav #menuWrapper #menu ul li a.active {
     font-size: 33px;
   }
 }
-@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper #menu ul li a {
     font-size: 10px;
   }
 }
-@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 1400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper #menu ul li a {
-    font-size: 208px;
+    font-size: 17px;
+  }
+}
+@media only screen and (min-width: 1400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 11px;
+  }
+}
+@media only screen and (min-width: 1400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper #menu ul li a {
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 1400px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1534,14 +1654,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     padding-bottom: 230px;
   }
 }
-@media only screen and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 159px;
+  }
+}
+@media only screen and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 96px;
+  }
+}
+@media only screen and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-bottom: 192px;
   }
 }
-@media only screen and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
-    padding-bottom: 96px;
+    padding-bottom: 108px;
   }
 }
 @media screen and (max-height: 400px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1589,14 +1719,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     padding-bottom: 230px;
   }
 }
-@media only screen and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 159px;
+  }
+}
+@media only screen and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-bottom: 96px;
+  }
+}
+@media only screen and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-bottom: 192px;
   }
 }
-@media only screen and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
-    padding-bottom: 96px;
+    padding-bottom: 108px;
   }
 }
 @media screen and (max-height: tiny) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1644,14 +1784,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     padding-top: 153px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 106px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 64px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-top: 128px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
-    padding-top: 64px;
+    padding-top: 72px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1700,14 +1850,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     padding-top: 192px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper {
+    padding-top: 133px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper {
+    padding-top: 80px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper {
     padding-top: 160px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper {
-    padding-top: 80px;
+    padding-top: 90px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1761,14 +1921,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     margin-bottom: 153px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper ul li {
     margin-bottom: 64px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper ul li {
     margin-bottom: 64px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 72px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 72px;
   }
 }
 @media screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1816,14 +1986,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     font-size: 92px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 47px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 47px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper ul li a {
     font-size: 57px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper ul li a {
-    font-size: 576px;
+    font-size: 57px;
   }
 }
 @media screen and (max-width: 639px) and (orientation: landscape) and (max-height: 400px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1878,14 +2058,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     margin-bottom: 153px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper ul li {
     margin-bottom: 64px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper ul li {
     margin-bottom: 64px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 72px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li {
+    margin-bottom: 72px;
   }
 }
 @media screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -1934,14 +2124,24 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     font-size: 92px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 47px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 47px;
+  }
+}
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   nav#mainNav #menuWrapper ul li a {
     font-size: 57px;
   }
 }
-@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   nav#mainNav #menuWrapper ul li a {
-    font-size: 576px;
+    font-size: 57px;
   }
 }
 @media screen and (max-width: 639px) and (orientation: landscape) and (max-height: tiny) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2236,14 +2436,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     min-height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #splash {
+    min-height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #splash {
+    min-height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #splash {
     min-height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #splash {
-    min-height: 320px;
+    min-height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2411,14 +2621,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #heroBanner {
+    height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #heroBanner {
+    height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #heroBanner {
     height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #heroBanner {
-    height: 320px;
+    height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2539,14 +2759,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     font-size: 40px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #heroBanner h1 {
     font-size: 12px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #heroBanner h1 {
-    font-size: 256px;
+    font-size: 21px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #heroBanner h1 {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #heroBanner h1 {
+    font-size: 25px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2594,14 +2824,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     font-size: 61px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #heroBanner p {
     font-size: 19px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #heroBanner p {
-    font-size: 384px;
+    font-size: 31px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #heroBanner p {
+    font-size: 21px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #heroBanner p {
+    font-size: 38px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2704,14 +2944,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 307px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #homeSections section .bannerWrapper {
+    height: 213px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #homeSections section .bannerWrapper {
+    height: 128px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #homeSections section .bannerWrapper {
     height: 256px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #homeSections section .bannerWrapper {
-    height: 128px;
+    height: 144px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2799,14 +3049,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     font-size: 122px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #homeSections section .bannerWrapper .captionWrapper p {
     font-size: 38px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #homeSections section .bannerWrapper .captionWrapper p {
-    font-size: 768px;
+    font-size: 63px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #homeSections section .bannerWrapper .captionWrapper p {
+    font-size: 43px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #homeSections section .bannerWrapper .captionWrapper p {
+    font-size: 76px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -2870,14 +3130,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 384px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #homeSections section .bannerWrapper {
+    height: 266px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #homeSections section .bannerWrapper {
+    height: 160px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #homeSections section .bannerWrapper {
     height: 320px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #homeSections section .bannerWrapper {
-    height: 160px;
+    height: 180px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3027,14 +3297,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 583px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper .grid section .imgWrapper {
     height: 182px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper .grid section .imgWrapper {
-    height: 3647px;
+    height: 303px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 205px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 364px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3082,14 +3362,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 512px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper .grid section .imgWrapper {
     height: 160px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper .grid section .imgWrapper {
-    height: 3200px;
+    height: 266px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 180px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper .grid section .imgWrapper {
+    height: 320px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3179,14 +3469,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 307px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 96px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 1920px;
+    height: 159px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 108px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 192px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3248,14 +3548,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 307px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
     height: 96px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
-    height: 1920px;
+    height: 159px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 108px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 192px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3309,14 +3619,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 143px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 44px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 896px;
+    height: 74px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 50px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 89px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3387,14 +3707,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 921px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper {
     height: 288px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper {
-    height: 5760px;
+    height: 479px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 324px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 576px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3467,14 +3797,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     width: 23px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
     width: 7px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
-    width: 144px;
+    width: 11px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    width: 8px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    width: 14px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3517,14 +3857,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 23px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
     height: 7px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
-    height: 144px;
+    height: 11px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    height: 8px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper {
+    height: 14px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3572,14 +3922,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     right: 23px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
     right: 7px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
-    right: 144px;
+    right: 11px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
+    right: 8px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(2) {
+    right: 14px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3627,14 +3987,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     right: 46px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
     right: 14px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
-    right: 288px;
+    right: 23px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
+    right: 16px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper ul.socialButtons li.anchorWrapper:nth-of-type(3) {
+    right: 28px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3699,14 +4069,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 460px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section .imgWrapper {
     height: 144px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section .imgWrapper {
-    height: 2880px;
+    height: 239px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 162px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section .imgWrapper {
+    height: 288px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3777,14 +4157,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 307px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
     height: 96px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
-    height: 1920px;
+    height: 159px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 108px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(1) .imgWrapper {
+    height: 192px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3844,14 +4234,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 230px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
     height: 72px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
-    height: 1440px;
+    height: 119px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 81px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  .gridWrapper.teamWrapper .grid section:nth-of-type(2) .imgWrapper, .gridWrapper.teamWrapper .grid section:nth-of-type(3) .imgWrapper {
+    height: 144px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3920,14 +4320,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #projectLayout .featuredImage {
+    height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #projectLayout .featuredImage {
+    height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #projectLayout .featuredImage {
     height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #projectLayout .featuredImage {
-    height: 320px;
+    height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -3970,14 +4380,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     max-height: 768px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #projectLayout .featuredImage {
+    max-height: 533px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #projectLayout .featuredImage {
+    max-height: 320px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #projectLayout .featuredImage {
     max-height: 640px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #projectLayout .featuredImage {
-    max-height: 320px;
+    max-height: 360px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4165,14 +4585,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 409px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #projectLayout.caseStudy .featuredImage {
     height: 128px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #projectLayout.caseStudy .featuredImage {
-    height: 2560px;
+    height: 213px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 144px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 256px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4220,14 +4650,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 358px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #projectLayout.caseStudy .featuredImage {
     height: 112px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #projectLayout.caseStudy .featuredImage {
-    height: 2240px;
+    height: 186px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 125px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #projectLayout.caseStudy .featuredImage {
+    height: 224px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4345,14 +4785,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 409px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #projectImages section .imageWrapper .imageBox {
     height: 128px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #projectImages section .imageWrapper .imageBox {
-    height: 2560px;
+    height: 213px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #projectImages section .imageWrapper .imageBox {
+    height: 144px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #projectImages section .imageWrapper .imageBox {
+    height: 256px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4408,14 +4858,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 409px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #readAbout section {
     height: 128px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #readAbout section {
-    height: 2560px;
+    height: 213px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #readAbout section {
+    height: 144px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #readAbout section {
+    height: 256px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4482,14 +4942,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 184px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #readAbout section {
     height: 57px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #readAbout section {
-    height: 1152px;
+    height: 95px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #readAbout section {
+    height: 64px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #readAbout section {
+    height: 115px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4537,14 +5007,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 143px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #readAbout section {
     height: 44px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #readAbout section {
-    height: 896px;
+    height: 74px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #readAbout section {
+    height: 50px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #readAbout section {
+    height: 89px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4612,14 +5092,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 409px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #relatedProjects section .imgWrapper {
     height: 128px;
   }
 }
-@media only screen and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #relatedProjects section .imgWrapper {
-    height: 2560px;
+    height: 213px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 144px;
+  }
+}
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 256px;
   }
 }
 @media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4667,14 +5157,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 184px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #relatedProjects section .imgWrapper {
     height: 57px;
   }
 }
-@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 640px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #relatedProjects section .imgWrapper {
-    height: 1152px;
+    height: 95px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 64px;
+  }
+}
+@media only screen and (min-width: 640px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 115px;
   }
 }
 @media screen and (min-width: 640px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
@@ -4722,14 +5222,24 @@ nav#sectionNav ul li:nth-of-type(4):hover, nav#sectionNav ul li:nth-of-type(4).a
     height: 143px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
   #relatedProjects section .imgWrapper {
     height: 44px;
   }
 }
-@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 6400px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: landscape) {
+@media only screen and (min-width: 992px) and (device-width: 320px) and (device-height: 533px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
   #relatedProjects section .imgWrapper {
-    height: 896px;
+    height: 74px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: portrait) {
+  #relatedProjects section .imgWrapper {
+    height: 50px;
+  }
+}
+@media only screen and (min-width: 992px) and (device-width: 360px) and (device-height: 640px) and (-webkit-min-device-pixel-ratio: 1) and (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+  #relatedProjects section .imgWrapper {
+    height: 89px;
   }
 }
 @media screen and (min-width: 992px) and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {

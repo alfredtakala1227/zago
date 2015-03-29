@@ -175,22 +175,48 @@ $primaryEase: ease-out;
       // Android Devices
       ///////////////////////////////////////////////////
 
-      // Generic devices with portrait orientation
+      // Older Generic devices with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
         and (device-width: 320px) 
-        and (device-height: 6400px)
+        and (device-height: 533px)
         and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: portrait) {
-          #{$property}: vunit($value, 320px, 640px);
+          #{$property}: vunit($value, 320px, 533px);
       }
 
-      // Generic devices with landscape orientation
+      // Older Generic devices with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
         and (device-width: 320px) 
-        and (device-height: 6400px)
+        and (device-height: 533px)
         and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
         and (orientation: landscape) {
-          #{$property}: vunit($value, 6400px, 320px);
+          #{$property}: vunit($value, 533px, 320px);
+      }
+
+      // Newer Generic devices with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (device-width: 360px) 
+        and (device-height: 640px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 360px, 640px);
+      }
+
+      // Newer Generic devices with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (device-width: 360px) 
+        and (device-height: 640px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 640px, 360px);
       }
 
       // Asus Nexus 7 with portrait orientation
@@ -214,18 +240,22 @@ $primaryEase: ease-out;
       }
 
       // Kindle Fire HD 7" with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
         and (device-width: 800px) 
         and (device-height: 1280px) 
-        and (-webkit-min-device-pixel-ratio: 1.5) 
+        and (-webkit-min-device-pixel-ratio: 1) 
+        and (-webkit-max-device-pixel-ratio: 2) 
         and (orientation: portrait) {
       }
 
       // Kindle Fire HD 7" with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
       @media only screen 
         and (device-width: 800px) 
         and (device-height: 1280px) 
-        and (-webkit-min-device-pixel-ratio: 1.5) 
+        and (-webkit-min-device-pixel-ratio: 1) 
+        and (-webkit-max-device-pixel-ratio: 2) 
         and (orientation: landscape) {
 
       }
