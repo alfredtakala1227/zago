@@ -117,20 +117,22 @@ $primaryEase: ease-out;
       // iOS Devices
       ///////////////////////////////////////////////////
 
-      // iPhone4(s) with portrait orientation
+      // iPhone3-4(s) with portrait orientation
       @media only screen 
         and (device-width: 320px) 
         and (device-height: 480px)
-        and (-webkit-min-device-pixel-ratio: 2)
+        and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
+        and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
         and (orientation: portrait) {
           #{$property}: vunit($value, 320px, 480px);
       }
 
-      // iPhone4(s) with landscape orientation
+      // iPhone3-4(s) with landscape orientation
       @media only screen 
         and (device-width: 320px) 
         and (device-height: 480px)
-        and (-webkit-min-device-pixel-ratio: 2)
+        and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
+        and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
         and (orientation: landscape) {
           #{$property}: vunit($value, 480px, 320px);
       }
@@ -263,8 +265,9 @@ $primaryEase: ease-out;
 
       
       // Set Base value
+      // (wrap in media query to force placement at end of cascade for devices that support v-units)
       ///////////////////////////////////////////////////
-      #{$property}: $value;
+      @media all { #{$property}: $value; }
 
     }
   }
