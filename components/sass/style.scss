@@ -887,7 +887,7 @@ nav {
 					li {
 						display: block;
 
-						margin: 0 0 25px;
+						margin: 0 0 40px;
 						&:last-of-type {
 							margin-bottom: 0;
 						}
@@ -960,22 +960,30 @@ nav {
 				@include buggyfill("padding-top: 25vh;");
 			}
 		    // Landscape Styling for mobile
-		    @media(max-width: 639px) and (orientation : landscape) {
-		      	display: block;
-		      	ul {
-		      		li {
-		      			float: left;
+		    @include breakpoint(639px, true){
+		    	@include breakpoint(landscape){
+			    	@include breakheight(tiny){
+				      	display: block;
+				      	ul {
+				      		li {
+				      			float: left;
 
-		      			width: 50%;
-		      			margin: 0 0 20vmin !important;
+				      			width: 50%;
+				      			margin: 0 0 20vmin !important;
 
-		      			@include buggyfill("margin: 0 0 20vmin !important;");
-		      			a {
-		      				font-size: 9vmax !important;
+				      			@include buggyfill("margin: 0 0 20vmin !important;");
+				      			a {
+				      				font-size: 9vmax !important;
 
-		      				@include buggyfill("font-size: 9vmax !important;");
-		      			}
-		      		}
+				      				@include buggyfill("font-size: 9vmax !important;");
+				      			}
+				      		}
+				      	}
+			      	}
+		      	}
+
+		      	@include breakheight(tiny){
+
 		      	}
 	        }
     	}

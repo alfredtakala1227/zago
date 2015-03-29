@@ -859,7 +859,7 @@ nav#mainNav #menuWrapper #menu ul {
 }
 nav#mainNav #menuWrapper #menu ul li {
   display: block;
-  margin: 0 0 25px;
+  margin: 0 0 40px;
 }
 nav#mainNav #menuWrapper #menu ul li:last-of-type {
   margin-bottom: 0;
@@ -928,7 +928,7 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     content: "viewport-units-buggyfill; padding-top: 25vh;";
   }
 }
-@media (max-width: 639px) and (orientation: landscape) {
+@media (max-width: 639px) and (orientation: landscape) and (max-height: 400px) {
   nav#mainNav #menuWrapper {
     display: block;
   }
@@ -943,6 +943,22 @@ nav#mainNav #menuWrapper .menuContacts section.info a:hover {
     content: "viewport-units-buggyfill; font-size: 9vmax !important;";
   }
 }
+@media (max-width: 639px) and (orientation: landscape) and (max-height: tiny) {
+  nav#mainNav #menuWrapper {
+    display: block;
+  }
+  nav#mainNav #menuWrapper ul li {
+    float: left;
+    width: 50%;
+    margin: 0 0 20vmin !important;
+    content: "viewport-units-buggyfill; margin: 0 0 20vmin !important;";
+  }
+  nav#mainNav #menuWrapper ul li a {
+    font-size: 9vmax !important;
+    content: "viewport-units-buggyfill; font-size: 9vmax !important;";
+  }
+}
+
 nav#projectNav {
   position: fixed;
   z-index: 700;
