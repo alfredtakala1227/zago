@@ -117,37 +117,37 @@ $primaryEase: ease-out;
       // iOS Devices
       ///////////////////////////////////////////////////
 
-      // iPhone4(s) with portrait orientation.
+      // iPhone4(s) with portrait orientation
       @media only screen 
-        and (min-device-width: 320px) 
-        and (max-device-width: 480px)
+        and (device-width: 320px) 
+        and (device-height: 480px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: portrait) {
           #{$property}: vunit($value, 320px, 480px);
       }
 
-      // iPhone4(s) with landscape orientation.
+      // iPhone4(s) with landscape orientation
       @media only screen 
-        and (min-device-width: 320px) 
-        and (max-device-width: 480px)
+        and (device-width: 320px) 
+        and (device-height: 480px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: landscape) {
           #{$property}: vunit($value, 480px, 320px);
       }
 
-      // iPhone5(s) with portrait orientation.
+      // iPhone5(s) with portrait orientation
       @media only screen 
-        and (min-device-width: 320px) 
-        and (max-device-width: 568px)
+        and (device-width: 320px) 
+        and (device-height: 568px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: portrait) {
           #{$property}: vunit($value, 320px, 568px);
       }
 
-      // iPhone5(s) with landscape orientation.
+      // iPhone5(s) with landscape orientation
       @media only screen 
-        and (min-device-width: 320px) 
-        and (max-device-width: 568px)
+        and (device-width: 320px) 
+        and (device-height: 568px)
         and (-webkit-min-device-pixel-ratio: 2)
         and (orientation: landscape) {
           #{$property}: vunit($value, 568px, 320px);
@@ -175,6 +175,24 @@ $primaryEase: ease-out;
       // Android Devices
       ///////////////////////////////////////////////////
 
+      // Generic devices with portrait orientation
+      @media only screen 
+        and (device-width: 320px) 
+        and (device-height: 6400px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 640px);
+      }
+
+      // Generic devices with landscape orientation
+      @media only screen 
+        and (device-width: 320px) 
+        and (device-height: 6400px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 6400px, 320px);
+      }
+
       // Asus Nexus 7 with portrait orientation
       @media screen 
         and (device-width: 601px) 
@@ -197,16 +215,16 @@ $primaryEase: ease-out;
 
       // Kindle Fire HD 7" with portrait orientation
       @media only screen 
-        and (min-device-width: 800px) 
-        and (max-device-width: 1280px) 
+        and (device-width: 800px) 
+        and (device-height: 1280px) 
         and (-webkit-min-device-pixel-ratio: 1.5) 
         and (orientation: portrait) {
       }
 
       // Kindle Fire HD 7" with landscape orientation
       @media only screen 
-        and (min-device-width: 800px) 
-        and (max-device-width: 1280px) 
+        and (device-width: 800px) 
+        and (device-height: 1280px) 
         and (-webkit-min-device-pixel-ratio: 1.5) 
         and (orientation: landscape) {
 
