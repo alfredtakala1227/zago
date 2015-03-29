@@ -166,7 +166,7 @@ footer.homePage section, #homeSections section .sectionWrapper .sectionText p {
 #readAbout section, #relatedProjects section {
   display: block;
   margin-right: 0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   cursor: pointer;
   color: black;
 }
