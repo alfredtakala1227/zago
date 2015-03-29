@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var app = angular.module('app', ['ui.router', 'ngSanitize', 'duScroll']);
+var app = angular.module('app', ['ui.router', 'ngSanitize', 'duScroll', "angulartics", "angulartics.google.analytics"]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider , $urlRouterProvider, $locationProvider) {
