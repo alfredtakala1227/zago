@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     // Simulate click action on touch screen tap (hopefully)
     // @BUG not sure if this is really working or not
-    $('*').on('tap', function(){ $(this).click(); });
+    $('*').on('touchend', function(){ $(this).blur(); });
 
     // function to display Modernizr classes (append to end of DOM)    
     function cssTester(){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var app = angular.module('app', ['ui.router', 'ngSanitize', 'duScroll']);
+var app = angular.module('app', ['ui.router', 'ngSanitize', 'duScroll', "angulartics", "angulartics.google.analytics"]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider , $urlRouterProvider, $locationProvider) {
@@ -83,9 +83,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         $locationProvider.html5Mode(true);
 }]);
 
-app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
+app.run(function($rootScope, $location, $state, $analytics, SiteLoader, Storage, Functions, $window) {
 
     $rootScope.$on('$stateChangeStart', function(event, to, toParams, from, fromParams){
+        $rootScope.pageLoading = true;
 
         // Remove page-specific event listeners
         Functions.removeListeners();
@@ -106,7 +107,8 @@ app.run(function($rootScope, $state, SiteLoader, Storage, Functions, $window) {
     });
 
     $rootScope.$on( "$stateChangeSuccess", function(event, to, toParams, from, fromParams) {
-        console.log($state);
+        $rootScope.pageLoading = false;
+        $analytics.pageTrack($location.$$path);
 
     });
 });
@@ -361,8 +363,8 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
                                 'featured_image' : (post.acf.profile_picture && post.acf.profile_picture.url) ? post.acf.profile_picture.url : null,
                                 'funny_picture' : (post.acf.funny_picture && post.acf.funny_picture.url) ? post.acf.funny_picture.url : null,
                                 'images' : {
-                                    'featured' : post.acf.profile_picture,
-                                    'funny'    : post.acf.funny_picture
+                                    'featured' : ternValue(post.acf.profile_picture),
+                                    'funny'    : ternValue(post.acf.funny_picture)
                                 }
                             };
 
@@ -390,7 +392,8 @@ app.factory('SiteLoader', function($http, $q, $rootScope){
                                     'id' : projects[r].id,
                                     'title' : projects[r].title,
                                     'client' : projects[r].content.client,
-                                    'image' : projects[r].content.featured_image
+                                    'image' : projects[r].content.featured_image,
+                                    'slug' : projects[r].content.slug
                                 };
                                 details.push(obj);
                                 projects[o].content.images.push(obj.image.url);
@@ -581,7 +584,7 @@ app.factory("Functions", function( $q, $http, $rootScope, $templateCache, $state
         'setPageTitle' : function(str) {
                 var headTitle = document.getElementsByTagName('title')[0];
                 str = str ? (' | ' + str) : '';
-                str = ' | Under Construction';
+                // str = ' | Under Construction';
                 headTitle.innerHTML = 'Zago' + str;
             },
 
@@ -809,7 +812,6 @@ app.directive('grid', function($compile) {
             element.html(getTemplate(data));
             // Compile for Angular functionality
             $compile(element.contents())(scope);
-            addEventListeners(scope);
         }
 
         var getTemplate = function(data){
@@ -840,52 +842,69 @@ app.directive('grid', function($compile) {
             }
 
             var newSection = function(data){
-                // Create Section element
-                var sec = document.createElement('section');
-                sec.setAttribute('data-slug', data.content.slug || '');
-                // Create wrapper element for img & overlay
-                var imgWrap = document.createElement('div');
+
+                // Create Section elements
+                var section = document.createElement('section'),
+                    image   = document.createElement('img'),
+                    h2      = document.createElement('h2'),
+                    h3      = document.createElement('h3'),
+
+                    imgWrap = document.createElement('div'),
+                    wrapper; // <= Will be set as [section] or section-wrapped anchor to hold rest of elements
+
+                // Set Common Element Attributes
+                image.setAttribute('precision-image', true);
+                imgWrap.setAttribute('image-loader', true);
+                h2.innerHTML = data.title;
+
+                // Set Common Element Classes
                 imgWrap.setAttribute('class', 'imgWrapper');
-                // Create Img Element
-                var img = document.createElement('img');
 
                 if (data.content.featured_image) {
-                    img.setAttribute('ng-src', (data.content.featured_image.url || data.content.featured_image)); // @todo fix projects bug
-                    // Check and Add class for portrait images
-                    img.setAttribute('precision-image', true);
-                    if (data.content.featured_image.aspectRatio) { img.setAttribute('aspect-ratio', data.content.featured_image.aspectRatio); }
-                    if (data.content.featured_image.position) { 
-                        var classes = data.content.featured_image.position;
-                        for (var pos = 0; classes.length > pos; pos++) {
-                            img.classList.add(classes[pos]);
+
+                    var featured = data.content.images.featured || data.content.images[0] || {};
+
+                    image.setAttribute('ng-src', featured.url);
+                    image.setAttribute('aspect-ratio', (featured.aspectRatio || 0) );
+
+                    // User-Set Precision Positioning
+                    if (featured.position) { 
+                        // Assign Absolute left/right/top/bottom position
+                        for (var pos = 0; featured.position.length > pos; pos++) {
+                            image.classList.add(featured.position[pos]);
                         };
                     }
-                }
 
-                imgWrap.appendChild(img);
-                imgWrap.setAttribute('image-loader', true);
-                if (data.content.funny_picture) {
-                    var img2 = document.createElement('img');
-                    img2.setAttribute('ng-src', data.content.funny_picture);
-                    img.setAttribute('precision-image', true);
-                    imgWrap.appendChild(img2);
+                    imgWrap.appendChild(image);
                 }
-                // Create Overlay
-                var ovrly = document.createElement('div');
-                ovrly.setAttribute('class', 'overlay');
-                // Create Title Elements
-                var h2 = document.createElement('h2');
-                var h3 = document.createElement('h3');
-                var h3Text;
+                
+                if (data.content.funny_picture) {
+                    var funny = data.content.images.funny || {},
+                        image2 = document.createElement('img');
+
+                    image2.setAttribute('ng-src', funny.url);
+                    image2.setAttribute('precision-image', true);
+
+                    imgWrap.appendChild(image2);
+                }
 
                 if (view === 'projects') {
-                    h2.innerHTML = data.title;
-                    h3Text = data.content.name;
-                    imgWrap.appendChild(ovrly); }
-                else if (view === 'team') {
-                    h2.innerHTML = data.title;
-                    h3Text =  data.content.position;
+                    wrapper = document.createElement('a');
+                    wrapper.setAttribute('href', '/projects/' + data.content.slug);
+                    section.appendChild(wrapper);
 
+                    h3.innerHTML = data.content.name;
+                    var overlay = document.createElement('div');
+                    overlay.setAttribute('class', 'overlay');
+
+                    imgWrap.appendChild(overlay);
+
+                } else if (view === 'team') {
+                    wrapper = section;
+
+                    h3.innerHTML =  data.content.position;
+
+                    // Add Social Media Account Buttons
                     if (data.content.accounts && data.content.accounts.length) {
 
                         var account, anchor;
@@ -938,14 +957,12 @@ app.directive('grid', function($compile) {
                     }
                 }
 
-                h3.innerHTML = h3Text;
-
                 // Append Section Elements together
-                sec.appendChild(imgWrap);
-                sec.appendChild(h2);
-                sec.appendChild(h3);
+                wrapper.appendChild(imgWrap);
+                wrapper.appendChild(h2);
+                wrapper.appendChild(h3);
 
-                return sec;
+                return section;
             }
 
 
@@ -984,25 +1001,6 @@ app.directive('grid', function($compile) {
             return allProjects;
         }
 
-        function addEventListeners(scope){
-            // Add a hover effect for the image overlay when img or headers are hovered over
-            $('.projectWrapper .grid section > *').click(function(){
-                var project;
-                try {
-                    project = this.parentNode.dataset.slug;
-                } catch(e) {
-                    for (var i = 0; this.parentNode.attributes.length > i; i++) {
-                        if (this.parentNode.attributes[i].nodeName == "data-slug") {
-                            project = this.parentNode.attributes[i].nodeValue;
-                            break;
-                        }
-                    };
-                }
-                scope.$parent.viewProject(project);
-            });
-            
-        };
-
         return {
             restrict: "E",
             link: linker,
@@ -1011,51 +1009,6 @@ app.directive('grid', function($compile) {
             }
         };
 });
-
-// app.directive('newGrid', function($compile, $http, Functions){
-
-//     var templateTree = {
-//         'project-section' : 'project_section.html',
-//         'team-section' : 'team_section.html'
-//     };
-
-            
-
-//     var linker = function($scope, element, attrs){
-
-//         Functions.getTemplate(templateTree, attrs.type).then(function(data){
-//             var template = data.data;
-//             $scope.sections = $scope.$parent.sections; 
-
-//             function newWrapper(){
-//                 var newWrapper = $(document.createElement(el));
-
-//             }
-
-//             function newSection(el){
-//                 var newEl = $(document.createElement(el));
-//                 newEl.html(template);
-//                 $compile(newEl.contents());
-
-//                 return newEl[0];
-//             }
-
-//             for (var i = 0; $scope.sections.length > i; i++) {
-//                 var section = newSection('div', template);
-//                 element[0].appendChild(section);
-//                 $compile($(element[0]).contents())($scope);
-//             };
-//         });
-
-//     };
-
-//     return {
-//         restrict: "E",
-//         link: linker,
-//         scope: true
-
-//     };
-// });
 
 app.directive('officeList', function() {
     
@@ -1066,10 +1019,10 @@ app.directive('officeList', function() {
 
         scope.offices = [
             {
-                'location': 'Rio de Janeiro',
-                'address'    : 'R Benjamim Batista, 153',
-                'region'  : 'Rio de Janeiro, RJ 22461-120',
-                'phone'   : '+55 21 3627 7529'
+                'location': 'Geneva',
+                'address'    : '37 rue Eug&egrave;ne-Marziano',
+                'region'  : 'CH-1227 Gen&egrave;ve',
+                'phone'   : '+41 22 548 0480'
             },
             {
                 'location': 'New York',
@@ -1078,10 +1031,10 @@ app.directive('officeList', function() {
                 'phone'   : '+1 212 219 1606'
             },
             {
-                'location': 'Geneva',
-                'address'    : '37 rue Eug&egrave;ne-Marziano',
-                'region'  : 'CH-1227 Gen&egrave;ve',
-                'phone'   : '+41 22 548 0480'
+                'location': 'Rio de Janeiro',
+                'address'    : 'R Benjamim Batista, 153',
+                'region'  : 'Rio de Janeiro, RJ 22461-120',
+                'phone'   : '+55 21 3627 7529'
             }
         ];
     }
@@ -1196,7 +1149,7 @@ app.directive('projectNav', function(){
 
     return {
         restrict: 'A',
-        templateUrl: '../pieces/project_nav.html',
+        templateUrl: 'pieces/project_nav.html',
         replace: true,
         link : linker
     }
@@ -1316,7 +1269,6 @@ app.directive('newWindowLinks', function($location, $timeout){
     var linker = function($scope, element, attrs) {
         $timeout(function(){
             var links = element.find('a');
-            console.log($location.host());
             for (var i = 0; links.length > i; i++) {
                 if (links[i]) {
                     $(links[i]).attr('target', '_blank');
@@ -1377,20 +1329,21 @@ AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage){
     // If the Site Data is missing, stop navigation and retreive data
     // Cache timer for Storage (24hrs: 86400000 1hr: 3600000 1min: 60000)
     //////////////////////////////////////////////////////////////////////////
-    var newTimestamp = new Date().getTime();
-    // Set Time of User Entry (default to 24hr reset)
-    Storage.dailyTimestamp = (Storage.dailyTimestamp && Storage.dailyTimestamp > (newTimestamp - 86400000)) ? Storage.dailyTimestamp : newTimestamp;
-    // If the Storage Site object is empty or older than X, reload Wordpress data tree (default to 1hr reset)
-    if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - 3600000)) {
+    var newTimestamp = new Date().getTime(),
+        refreshRate = (1000*60*60);
+    // If the Storage Site object is empty or older than X, reload Wordpress data tree
+    if (!Storage.site || !Storage.dataTimestamp || (Storage.dataTimestamp < newTimestamp - refreshRate)) {
         SiteLoader.getRawData().then(function(data){
+            Storage.dataTimestamp = newTimestamp;
+
             var site, posts;
             // If object returned is some fucked up IE shit (ie String), parse it
             site = data.responseText || data.data;
             if (typeof site == 'string') { site = JSON.parse(site); }
+
             // Get & Store Posts Tree
             posts = SiteLoader.getPosts(site);
             Storage.site = JSON.stringify(posts);
-            Storage.dataTimestamp = newTimestamp;
             $rootScope.site = posts;
             defer.resolve();
         });

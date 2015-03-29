@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/favicon.ico">
     <!-- ******************************************* -->
-    <title>Zago | Under Construction</title>
+    <title>Zago</title>
     <!-- ******************************************* -->
     <!-- css files -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -49,14 +49,14 @@
         </nav>
 
         <div class="buttonWrapper">
-            <button id="menuButton" type="button" ng-click="toggleMenu()"><span id="menuPrompt">Click for Menu</span></button>
+            <button id="menuButton" type="button" ng-click="toggleMenu()"><span id="menuPrompt">CLICK HERE FOR MENU</span></button>
         </div>
 
         <button id="scrollTop" type="button" ng-click="scrollTop()"></button>
 
         <div id="pageContent" class="{{pageView}}" ui-view autoscroll="true"><!-- Angular Partials go here --></div>
 
-        <footer id="footer" ng-class="{homePage: pageView == 'homePage'}">
+        <footer id="footer" ng-class="{homePage: pageView == 'homePage', pageLoading: pageLoading}">
             <section class="collaboration">
                 <p>Let's work together.</p>
                 <p>Come have coffee & say ciao.</p>
@@ -79,5 +79,12 @@
     <script type="text/javascript" src="js/lib/end_scripts.js"></script>
     <!-- /closing files -->
     <!-- ******************************************* -->
-</body>
+    <!-- <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-24454515-1', 'auto');
+    </script> -->
 </html>
