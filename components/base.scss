@@ -34,7 +34,7 @@ $primaryEase: ease-out;
 
 @function vunit($input, $width, $height){
   @if unit($width) != px or unit($height) != px {
-    @error "@function vunit() dimensions should contain a px unit."
+    @error "@function vunit() dimensions should contain a px unit. +[" + $width + ', ' + $height +']';
   }
   
   // Store $input unit
@@ -95,10 +95,6 @@ $primaryEase: ease-out;
   column-rule: $rule;
 }
 
-@mixin buggyfill($values) {
-  content: 'viewport-units-buggyfill; ' + $values;
-}
-
 @mixin viewport($property, $value){
   
   // Check that the $value has a unit
@@ -117,20 +113,109 @@ $primaryEase: ease-out;
     
     // V-Unit to PX logic
     } @else {
+
+      // iOS Devices
+      ///////////////////////////////////////////////////
+
+      // iPhone4(s) with portrait orientation.
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 480px);
+      }
+
+      // iPhone4(s) with landscape orientation.
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 480px, 320px);
+      }
+
+      // iPhone5(s) with portrait orientation.
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 568px);
+      }
+
+      // iPhone5(s) with landscape orientation.
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 568px, 320px);
+
+      }
   
-      // iPad with landscape orientation.
-      @media all and (device-width: 768px) and
-        (device-height: 1024px) and (orientation:portrait){
+      // iPads with landscape orientation (1-2 + mini).
+      @media only screen
+        and (device-width: 768px)
+        and (device-height: 1024px)
+        and (orientation:portrait)
+        and (-webkit-min-device-pixel-ratio: 1) {
           #{$property}: vunit($value, 768px, 1024px);
       }
        
-      // iPad with landscape orientation.
-      @media all and (device-width: 768px) and
-        (device-height: 1024px) and (orientation:landscape){
-        #{$property}: vunit($value, 1024px, 768px);
+      // iPads with landscape orientation (1-2 + mini).
+      @media only screen
+        and (device-width: 768px)
+        and (device-height: 1024px)
+        and (orientation:landscape)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          #{$property}: vunit($value, 1024px, 768px);
       }
+
+      // Android Devices
+      ///////////////////////////////////////////////////
+
+      // Asus Nexus 7 with portrait orientation
+      @media screen 
+        and (device-width: 601px) 
+        and (device-height: 906px) 
+        and (-webkit-min-device-pixel-ratio: 1.331) 
+        and (-webkit-max-device-pixel-ratio: 1.332) 
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 601px, 906px);
+      }
+
+      // Asus Nexus 7 with landscape orientation
+      @media screen 
+        and (device-width: 601px) 
+        and (device-height: 906px) 
+        and (-webkit-min-device-pixel-ratio: 1.331) 
+        and (-webkit-max-device-pixel-ratio: 1.332) 
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 906px, 601px);
+      }
+
+      // Kindle Fire HD 7" with portrait orientation
+      @media only screen 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
+        and (-webkit-min-device-pixel-ratio: 1.5) 
+        and (orientation: portrait) {
+      }
+
+      // Kindle Fire HD 7" with landscape orientation
+      @media only screen 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
+        and (-webkit-min-device-pixel-ratio: 1.5) 
+        and (orientation: landscape) {
+
+      }
+
+
       
-      // Set Base Value
+      // Set Base value
+      ///////////////////////////////////////////////////
       #{$property}: $value;
 
     }
