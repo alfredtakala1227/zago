@@ -65,7 +65,7 @@ app.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider", functi
     $locationProvider.html5Mode(true);
 } ]);
 
-app.run(function($rootScope, $location, $state, $analytics, SiteLoader, Storage, Functions, $window) {
+app.run(function($rootScope, $location, $state, $analytics, Storage, Functions, $window) {
     $rootScope.$on("$stateChangeStart", function(event, to, toParams, from, fromParams) {
         $rootScope.pageLoading = true;
         Functions.removeListeners();
@@ -97,227 +97,240 @@ app.factory("Storage", function() {
     }
 });
 
-app.factory("SiteLoader", function($http, $q, $rootScope) {
-    var reqUrl = "http://admin.zagollc.com/wp-json/posts?filter[posts_per_page]=1000";
+app.factory("SiteLoader", function($http, $q, $rootScope, $analytics, Storage) {
+    var defer = $q.defer(), reqUrl = "http://admin.zagollc.com/wp-json/posts?filter[posts_per_page]=1000", newTimestamp, site, posts;
     function sorter(a, b) {
         var first = parseInt(a.order), second = parseInt(b.order);
         if (first < second) return -1;
         if (first > second) return 1;
         return 0;
     }
-    return {
-        getRawData: function() {
-            var deferred = $q.defer();
-            if (window.XDomainRequest) {
-                var xdr = new XDomainRequest();
-                xdr.open("get", reqUrl);
-                xdr.onprogress = function() {};
-                xdr.ontimeout = function() {};
-                xdr.onerror = function() {};
-                xdr.onload = function() {
-                    deferred.resolve(xdr);
-                };
-                setTimeout(function() {
-                    xdr.send();
-                }, 0);
-            } else {
-                deferred.resolve($http.get(reqUrl));
-            }
-            return deferred.promise;
-        },
-        getPosts: function(rawData) {
-            console.log(rawData);
-            function ternValue(object, i) {
-                if (i) {
-                    var index = i || 0;
-                    return object ? object[index] : null;
-                } else {
-                    return object ? object : null;
-                }
-            }
-            function splitCSV(str) {
-                var arr = str.replace(/, /g, ",").split(",");
-                for (var i = arr.length; i >= 0; i--) {
-                    if (arr[i] === "") {
-                        arr.splice(i, 1);
-                    }
-                }
-                return arr;
-            }
-            function aspectRatio(width, height) {
-                return height / width;
-            }
-            function postTree(Site) {
-                var tree = {
-                    home: {
-                        blurb: [],
-                        banners: [],
-                        sections: [],
-                        images: [],
-                        preloaded: false
-                    },
-                    project: {
-                        blurb: [],
-                        projects: [],
-                        images: [],
-                        preloaded: false
-                    },
-                    team: {
-                        blurb: [],
-                        members: [],
-                        images: [],
-                        preloaded: false
-                    }
-                };
-                for (var i = 0; Site.length > i; i++) {
-                    var post = Site[i];
-                    if (post.terms.category.length == 1 && post.status == "publish") {
-                        var temp = {
-                            id: post.ID,
-                            title: ternValue(post.title),
-                            order: ternValue(post.acf.arrangement),
-                            body: post.acf.content ? post.acf.content : post.content,
-                            content: {}
-                        };
-                        var images = [];
-                        if (post.terms.category[0].slug == "home-hero-banner") {
-                            temp.content = {
-                                banner_caption: ternValue(post.acf.banner_caption),
-                                images: []
-                            };
-                            for (var h = 0; post.acf.banner_images.length > h; h++) {
-                                var obj = {
-                                    url: post.acf.banner_images[h].image.url,
-                                    alt: ternValue(post.acf.banner_images[h].alt),
-                                    order: ternValue(post.acf.banner_images[h].arrangement),
-                                    position: ternValue(post.acf.banner_images[h].positioning),
-                                    aspectRatio: aspectRatio(post.acf.banner_images[h].image.width, post.acf.banner_images[h].image.height)
-                                };
-                                temp.content.images.push(obj);
-                                tree.home.images.push(obj.url);
-                            }
-                            tree.home.banners.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "home-section" && tree.home.sections.length < 4) {
-                            temp.content = {
-                                id: ternValue(post.acf.banner_image.id),
-                                alt: ternValue(post.acf.banner_image.alt),
-                                url: ternValue(post.acf.banner_image.url),
-                                caption: ternValue(post.acf.banner_caption),
-                                position: ternValue(post.acf.positioning),
-                                aspectRatio: aspectRatio(post.acf.banner_image.width, post.acf.banner_image.height)
-                            };
-                            tree.home.images.push(temp.content.image_url);
-                            tree.home.sections.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "home-blurb") {
-                            temp.body = ternValue(post.content);
-                            tree.home.blurb.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "projects-blurb") {
-                            temp.body = ternValue(post.content);
-                            tree.project.blurb.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "project") {
-                            temp.title = ternValue(post.acf.title);
-                            temp.content = {
-                                name: ternValue(post.title),
-                                slug: post.slug,
-                                case_study: post.acf.case_study,
-                                client: ternValue(post.acf.client),
-                                services: ternValue(splitCSV(post.acf.services)),
-                                project: ternValue(splitCSV(post.acf.project)),
-                                other_details: ternValue(post.acf.other_details),
-                                project_url: ternValue(post.acf.project_url),
-                                social_media: ternValue(post.acf.social_media),
-                                read_about: ternValue(post.acf.read_about),
-                                related_projects: ternValue(post.acf.related_projects),
-                                featured_image: {},
-                                image_sections: [],
-                                images: []
-                            };
-                            for (var q = 0; temp.content.other_details.length > q; q++) {
-                                temp.content.other_details[q].details = splitCSV(temp.content.other_details[q].details);
-                            }
-                            if (post.acf.images && post.acf.images.length) {
-                                for (var d = 0; post.acf.images.length > d; d++) {
-                                    var obj = {
-                                        url: post.acf.images[d].image.url,
-                                        alt: post.acf.images[d].image.alt,
-                                        label: post.acf.images[d].label,
-                                        order: post.acf.images[d].arrangement,
-                                        half: post.acf.images[d].half,
-                                        position: ternValue(post.acf.images[d].positioning),
-                                        aspectRatio: aspectRatio(post.acf.images[d].image.width, post.acf.images[d].image.height)
-                                    };
-                                    if (d > 0) {
-                                        temp.content.image_sections.push(obj);
-                                    } else {
-                                        temp.content.featured_image = obj;
-                                    }
-                                    temp.content.images.push(obj);
-                                }
-                            }
-                            tree.project.images.push(temp.content.featured_image.url);
-                            tree.project.projects.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "team-blurb") {
-                            temp.body = ternValue(post.content);
-                            tree.team.blurb.push(temp);
-                            continue;
-                        }
-                        if (post.terms.category[0].slug == "team-member") {
-                            temp.content = {
-                                position: ternValue(post.acf.position),
-                                accounts: ternValue(post.acf.accounts),
-                                featured_image: post.acf.profile_picture && post.acf.profile_picture.url ? post.acf.profile_picture.url : null,
-                                funny_picture: post.acf.funny_picture && post.acf.funny_picture.url ? post.acf.funny_picture.url : null,
-                                images: {
-                                    featured: ternValue(post.acf.profile_picture),
-                                    funny: ternValue(post.acf.funny_picture)
-                                }
-                            };
-                            tree.team.images.push(temp.content.featured_image);
-                            temp.content.funny_picture ? tree.team.images.push(temp.content.funny_picture) : "";
-                            tree.team.members.push(temp);
-                            continue;
-                        }
-                    }
-                }
-                var projects = tree.project.projects;
-                for (var o = 0; projects.length > o; o++) {
-                    var related = projects[o].content.related_projects || [];
-                    var details = [];
-                    for (var p = 0; related.length > p; p++) {
-                        for (var r = 0; projects.length > r; r++) {
-                            if (related[p] == projects[r].id) {
-                                var obj = {
-                                    id: projects[r].id,
-                                    title: projects[r].title,
-                                    client: projects[r].content.client,
-                                    image: projects[r].content.featured_image,
-                                    slug: projects[r].content.slug
-                                };
-                                details.push(obj);
-                                projects[o].content.images.push(obj.image.url);
-                                break;
-                            }
-                        }
-                    }
-                    projects[o].content.related_projects = details;
-                }
-                tree.project.projects.sort(sorter);
-                console.log(tree);
-                return tree;
-            }
-            $rootScope.isLoading = false;
-            return postTree(rawData);
+    function getRawData() {
+        var deferred = $q.defer();
+        if (window.XDomainRequest) {
+            var xdr = new XDomainRequest();
+            xdr.open("get", reqUrl);
+            xdr.onprogress = function() {};
+            xdr.ontimeout = function() {};
+            xdr.onerror = function() {};
+            xdr.onload = function() {
+                deferred.resolve(xdr);
+            };
+            setTimeout(function() {
+                xdr.send();
+            }, 0);
+        } else {
+            deferred.resolve($http.get(reqUrl));
         }
+        return deferred.promise;
+    }
+    function getPosts(rawData) {
+        console.log(rawData);
+        function ternValue(object, i) {
+            if (i) {
+                var index = i || 0;
+                return object ? object[index] : null;
+            } else {
+                return object ? object : null;
+            }
+        }
+        function splitCSV(str) {
+            var arr = str.replace(/, /g, ",").split(",");
+            for (var i = arr.length; i >= 0; i--) {
+                if (arr[i] === "") {
+                    arr.splice(i, 1);
+                }
+            }
+            return arr;
+        }
+        function aspectRatio(width, height) {
+            return height / width;
+        }
+        function postTree(Site) {
+            var tree = {
+                home: {
+                    blurb: [],
+                    banners: [],
+                    sections: [],
+                    images: [],
+                    preloaded: false
+                },
+                project: {
+                    blurb: [],
+                    projects: [],
+                    images: [],
+                    preloaded: false
+                },
+                team: {
+                    blurb: [],
+                    members: [],
+                    images: [],
+                    preloaded: false
+                }
+            };
+            for (var i = 0; Site.length > i; i++) {
+                var post = Site[i];
+                if (post.terms.category.length == 1 && post.status == "publish") {
+                    var temp = {
+                        id: post.ID,
+                        title: ternValue(post.title),
+                        order: ternValue(post.acf.arrangement),
+                        body: post.acf.content ? post.acf.content : post.content,
+                        content: {}
+                    };
+                    var images = [];
+                    if (post.terms.category[0].slug == "home-hero-banner") {
+                        temp.content = {
+                            banner_caption: ternValue(post.acf.banner_caption),
+                            images: []
+                        };
+                        for (var h = 0; post.acf.banner_images.length > h; h++) {
+                            var obj = {
+                                url: post.acf.banner_images[h].image.url,
+                                alt: ternValue(post.acf.banner_images[h].alt),
+                                order: ternValue(post.acf.banner_images[h].arrangement),
+                                position: ternValue(post.acf.banner_images[h].positioning),
+                                aspectRatio: aspectRatio(post.acf.banner_images[h].image.width, post.acf.banner_images[h].image.height)
+                            };
+                            temp.content.images.push(obj);
+                            tree.home.images.push(obj.url);
+                        }
+                        tree.home.banners.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "home-section" && tree.home.sections.length < 4) {
+                        temp.content = {
+                            id: ternValue(post.acf.banner_image.id),
+                            alt: ternValue(post.acf.banner_image.alt),
+                            url: ternValue(post.acf.banner_image.url),
+                            caption: ternValue(post.acf.banner_caption),
+                            position: ternValue(post.acf.positioning),
+                            aspectRatio: aspectRatio(post.acf.banner_image.width, post.acf.banner_image.height)
+                        };
+                        tree.home.images.push(temp.content.image_url);
+                        tree.home.sections.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "home-blurb") {
+                        temp.body = ternValue(post.content);
+                        tree.home.blurb.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "projects-blurb") {
+                        temp.body = ternValue(post.content);
+                        tree.project.blurb.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "project") {
+                        temp.title = ternValue(post.acf.title);
+                        temp.content = {
+                            name: ternValue(post.title),
+                            slug: post.slug,
+                            case_study: post.acf.case_study,
+                            client: ternValue(post.acf.client),
+                            services: ternValue(splitCSV(post.acf.services)),
+                            project: ternValue(splitCSV(post.acf.project)),
+                            other_details: ternValue(post.acf.other_details),
+                            project_url: ternValue(post.acf.project_url),
+                            social_media: ternValue(post.acf.social_media),
+                            read_about: ternValue(post.acf.read_about),
+                            related_projects: ternValue(post.acf.related_projects),
+                            featured_image: {},
+                            image_sections: [],
+                            images: []
+                        };
+                        for (var q = 0; temp.content.other_details.length > q; q++) {
+                            temp.content.other_details[q].details = splitCSV(temp.content.other_details[q].details);
+                        }
+                        if (post.acf.images && post.acf.images.length) {
+                            for (var d = 0; post.acf.images.length > d; d++) {
+                                var obj = {
+                                    url: post.acf.images[d].image.url,
+                                    alt: post.acf.images[d].image.alt,
+                                    label: post.acf.images[d].label,
+                                    order: post.acf.images[d].arrangement,
+                                    half: post.acf.images[d].half,
+                                    position: ternValue(post.acf.images[d].positioning),
+                                    aspectRatio: aspectRatio(post.acf.images[d].image.width, post.acf.images[d].image.height)
+                                };
+                                if (d > 0) {
+                                    temp.content.image_sections.push(obj);
+                                } else {
+                                    temp.content.featured_image = obj;
+                                }
+                                temp.content.images.push(obj);
+                            }
+                        }
+                        tree.project.images.push(temp.content.featured_image.url);
+                        tree.project.projects.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "team-blurb") {
+                        temp.body = ternValue(post.content);
+                        tree.team.blurb.push(temp);
+                        continue;
+                    }
+                    if (post.terms.category[0].slug == "team-member") {
+                        temp.content = {
+                            position: ternValue(post.acf.position),
+                            accounts: ternValue(post.acf.accounts),
+                            featured_image: post.acf.profile_picture && post.acf.profile_picture.url ? post.acf.profile_picture.url : null,
+                            funny_picture: post.acf.funny_picture && post.acf.funny_picture.url ? post.acf.funny_picture.url : null,
+                            images: {
+                                featured: ternValue(post.acf.profile_picture),
+                                funny: ternValue(post.acf.funny_picture)
+                            }
+                        };
+                        tree.team.images.push(temp.content.featured_image);
+                        temp.content.funny_picture ? tree.team.images.push(temp.content.funny_picture) : "";
+                        tree.team.members.push(temp);
+                        continue;
+                    }
+                }
+            }
+            var projects = tree.project.projects;
+            for (var o = 0; projects.length > o; o++) {
+                var related = projects[o].content.related_projects || [];
+                var details = [];
+                for (var p = 0; related.length > p; p++) {
+                    for (var r = 0; projects.length > r; r++) {
+                        if (related[p] == projects[r].id) {
+                            var obj = {
+                                id: projects[r].id,
+                                title: projects[r].title,
+                                client: projects[r].content.client,
+                                image: projects[r].content.featured_image,
+                                slug: projects[r].content.slug
+                            };
+                            details.push(obj);
+                            projects[o].content.images.push(obj.image.url);
+                            break;
+                        }
+                    }
+                }
+                projects[o].content.related_projects = details;
+            }
+            tree.project.projects.sort(sorter);
+            console.log(tree);
+            return tree;
+        }
+        $rootScope.isLoading = false;
+        return postTree(rawData);
+    }
+    return function() {
+        getRawData().then(function(data) {
+            $analytics.pageTrack("/SiteLoader");
+            site = data.responseText || data.data;
+            if (typeof site == "string") {
+                site = JSON.parse(site);
+            }
+            posts = getPosts(site);
+            $rootScope.site = posts;
+            Storage.site = JSON.stringify(posts);
+            Storage.dataTimestamp = new Date().getTime();
+            defer.resolve();
+        });
+        return defer.promise;
     };
 });
 
@@ -922,7 +935,7 @@ app.directive("newWindowLinks", function($location, $timeout) {
     };
 });
 
-var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, Functions, Storage) {
+var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, SiteLoader, Functions, Storage) {
     $scope.route = Functions.route;
     $scope.toggleMenu = Functions.toggleMenu;
     $scope.viewProject = Functions.viewProject;
@@ -940,25 +953,35 @@ var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, F
 
 AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
     var defer = $q.defer();
-    var newTimestamp = new Date().getTime(), refreshRate = 1e3 * 60 * 60 * 24;
-    if (!Storage.site || !Storage.dataTimestamp || Storage.dataTimestamp < newTimestamp - refreshRate) {
-        SiteLoader.getRawData().then(function(data) {
-            Storage.dataTimestamp = newTimestamp;
-            var site, posts;
-            site = data.responseText || data.data;
-            if (typeof site == "string") {
-                site = JSON.parse(site);
-            }
-            posts = SiteLoader.getPosts(site);
-            Storage.site = JSON.stringify(posts);
-            $rootScope.site = posts;
+    function refreshSiteData() {
+        var refreshRate = 1e3 * 10 * 1, refreshTime = new Date().getTime() - refreshRate, oldData = Storage.dataTimestamp, defer = $q.defer();
+        if (!oldData || oldData < refreshTime) {
+            SiteLoader().then(function() {
+                console.log("refresh site");
+                defer.resolve();
+            });
+        } else {
+            defer.resolve();
+        }
+        defer.promise.then(function() {
+            setTimeout(function() {
+                refreshSiteData();
+            }, refreshRate + 5e3);
+        });
+    }
+    if (!Storage.site) {
+        console.log("intial site load");
+        SiteLoader().then(function() {
             defer.resolve();
         });
     } else {
         $rootScope.site = JSON.parse(Storage.site);
         defer.resolve();
     }
-    return defer.promise;
+    return defer.promise.then(function() {
+        console.log("resolved");
+        refreshSiteData();
+    });
 };
 
 app.controller("HomeCtrl", function($scope, $rootScope, $timeout, $interval, $document, Functions, Storage) {
