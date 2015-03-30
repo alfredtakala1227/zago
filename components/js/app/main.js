@@ -850,8 +850,8 @@ app.directive("imageLoader", function() {
         jQuery(function(){
             jQuery(element[0]).find("img").on('load', function(){
                 nImage++;
+                element[0].classList.remove("loading");
                 if ( nImage == jQuery(element[0]).find("img").length) {
-                    element[0].classList.remove("loading");
                     element[0].removeChild(loader);
                 }
             });
