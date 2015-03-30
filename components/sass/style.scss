@@ -766,14 +766,19 @@ footer {
 .loaderWrapper {
 	position: relative !important;
 	z-index: 1 !important;
+	&.loading img {
+		opacity: 0;
+	}
 	img {
+		opacity: 1;
+		transition: all $normalSpeed $primaryEase;
 		z-index: 5;
 	}
 }
 
 .loaderBox {
 	position: absolute;
-	z-index: 0;
+	z-index: 9999;
 	top: 50%;
 	left: 50%;
 

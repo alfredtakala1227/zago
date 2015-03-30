@@ -1003,13 +1003,19 @@ footer.pageLoading {
   position: relative !important;
   z-index: 1 !important;
 }
+.loaderWrapper.loading img {
+  opacity: 0;
+}
 .loaderWrapper img {
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-out;
+          transition: all 0.5s ease-out;
   z-index: 5;
 }
 
 .loaderBox {
   position: absolute;
-  z-index: 0;
+  z-index: 9999;
   top: 50%;
   left: 50%;
   width: 2.5rem;
