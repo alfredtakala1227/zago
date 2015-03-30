@@ -885,17 +885,18 @@ app.directive("rotateImages", function($interval) {
             $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
         }
         var timer;
-        var waitTiming = 5e3;
+        var waitTiming = 5000;
+
         $scope.setTimer = function() {
             $scope.activeBanner = -1;
             $scope.lastBanner;
             timer = $interval(rotateImages, waitTiming);
         };
-        $scope.$watch(function() {
-            return element;
-        }, function() {
+
+        $scope.$watch(function() { return element; }, function() {
             $scope.setTimer();
         });
+
         $scope.$on("$destroy", function() {
             $interval.cancel(timer);
             $scope.timer = undefined;
@@ -942,7 +943,7 @@ var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, F
 
 AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
     var defer = $q.defer();
-    var newTimestamp = new Date().getTime(), refreshRate = 1e3 * 60 * 60 * 24;
+    var newTimestamp = new Date().getTime(), refreshRate = 1000 * 60 * 60 * 24;
     if (!Storage.site || !Storage.dataTimestamp || Storage.dataTimestamp < newTimestamp - refreshRate) {
         SiteLoader.getRawData().then(function(data) {
             Storage.dataTimestamp = newTimestamp;

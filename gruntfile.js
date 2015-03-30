@@ -75,7 +75,7 @@ module.exports = function(grunt) {
                     openTag: '<!-- css files -->',
                     closeTag: '<!-- /css files -->'
                 },
-                src: ['site/css/style.css'],
+                src: ['site/css/styles.css'],
                 dest: 'site/index.html'
             },
 
