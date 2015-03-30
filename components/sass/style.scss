@@ -114,6 +114,8 @@
 		margin-bottom: 40px;
 
 		letter-spacing: .075em;
+
+		text-transform: uppercase;
 	}
 	section {
 		display: block;
@@ -129,7 +131,6 @@
 		}
 		p {
 			font-size: 2.4em;
-
 			text-transform: capitalize;
 		}
 		h4 {
@@ -2254,7 +2255,7 @@ nav {
 		a {
 			display: inline-block;
 
-			padding: 30px;
+			padding: 15px;
 
 			color: black;
 		}
@@ -2268,12 +2269,30 @@ nav {
 			display: -webkit-box;
 			overflow: hidden;
 
-			height: 48px;
+			height: 4.6em;
+			font-size: 2em;
 
 			text-overflow: ellipsis;
 			/* non-webkit fallback */
 
-			-webkit-line-clamp: 2;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+
+			@include breakpoint(smallTablet){
+				font-size: 1.6em;
+			}
+
+			@include breakpoint(tablet){
+				font-size: 2em;
+			}
+		}
+
+		h4 {
+			display: -webkit-box;
+			overflow: hidden;
+			height: 1em;
+			text-overflow: ellipsis;
+			-webkit-line-clamp: 1;
 			-webkit-box-orient: vertical;
 		}
 

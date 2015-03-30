@@ -941,7 +941,7 @@ var AppCtrl = app.controller("AppCtrl", function($scope, $rootScope, $timeout, F
 
 AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
     var defer = $q.defer();
-    var newTimestamp = new Date().getTime(), refreshRate = 1e3 * 60 * 60;
+    var newTimestamp = new Date().getTime(), refreshRate = 1e3 * 60 * 60 * 24;
     if (!Storage.site || !Storage.dataTimestamp || Storage.dataTimestamp < newTimestamp - refreshRate) {
         SiteLoader.getRawData().then(function(data) {
             Storage.dataTimestamp = newTimestamp;

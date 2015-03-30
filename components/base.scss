@@ -34,7 +34,7 @@ $primaryEase: ease-out;
 
 @function vunit($input, $width, $height){
   @if unit($width) != px or unit($height) != px {
-    @error "@function vunit() dimensions should contain a px unit."
+    @error "@function vunit() dimensions should contain a px unit. +[" + $width + ', ' + $height +']';
   }
   
   // Store $input unit
@@ -95,10 +95,6 @@ $primaryEase: ease-out;
   column-rule: $rule;
 }
 
-@mixin buggyfill($values) {
-  content: 'viewport-units-buggyfill; ' + $values;
-}
-
 @mixin viewport($property, $value){
   
   // Check that the $value has a unit
@@ -117,21 +113,161 @@ $primaryEase: ease-out;
     
     // V-Unit to PX logic
     } @else {
+
+      // iOS Devices
+      ///////////////////////////////////////////////////
+
+      // iPhone3-4(s) with portrait orientation
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
+        and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 480px);
+      }
+
+      // iPhone3-4(s) with landscape orientation
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 1) // iPhone 3
+        and (-webkit-max-device-pixel-ratio: 2) // iPhone 4
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 480px, 320px);
+      }
+
+      // iPhone5(s) with portrait orientation
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 568px);
+      }
+
+      // iPhone5(s) with landscape orientation
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 568px, 320px);
+
+      }
   
-      // iPad with landscape orientation.
-      @media all and (device-width: 768px) and
-        (device-height: 1024px) and (orientation:portrait){
+      // iPads with landscape orientation (1-2 + mini).
+      @media only screen
+        and (min-device-width: 768px)
+        and (max-device-width: 1024px)
+        and (orientation:portrait)
+        and (-webkit-min-device-pixel-ratio: 1) {
           #{$property}: vunit($value, 768px, 1024px);
       }
        
-      // iPad with landscape orientation.
-      @media all and (device-width: 768px) and
-        (device-height: 1024px) and (orientation:landscape){
-        #{$property}: vunit($value, 1024px, 768px);
+      // iPads with landscape orientation (1-2 + mini).
+      @media only screen
+        and (min-device-width: 768px)
+        and (max-device-width: 1024px)
+        and (orientation:landscape)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          #{$property}: vunit($value, 1024px, 768px);
       }
+
+      // Android Devices
+      ///////////////////////////////////////////////////
+
+      // Older Generic devices with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 533px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 320px, 533px);
+      }
+
+      // Older Generic devices with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 533px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 533px, 320px);
+      }
+
+      // Newer Generic devices with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 360px) 
+        and (max-device-width: 640px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 360px, 640px);
+      }
+
+      // Newer Generic devices with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 360px) 
+        and (max-device-width: 640px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (-webkit-max-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 640px, 360px);
+      }
+
+      // Asus Nexus 7 with portrait orientation
+      @media screen 
+        and (min-device-width: 601px) 
+        and (max-device-width: 906px) 
+        and (-webkit-min-device-pixel-ratio: 1.331) 
+        and (-webkit-max-device-pixel-ratio: 1.332) 
+        and (orientation: portrait) {
+          #{$property}: vunit($value, 601px, 906px);
+      }
+
+      // Asus Nexus 7 with landscape orientation
+      @media screen 
+        and (min-device-width: 601px) 
+        and (max-device-width: 906px) 
+        and (-webkit-min-device-pixel-ratio: 1.331) 
+        and (-webkit-max-device-pixel-ratio: 1.332) 
+        and (orientation: landscape) {
+          #{$property}: vunit($value, 906px, 601px);
+      }
+
+      // Kindle Fire HD 7" with portrait orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
+        and (-webkit-min-device-pixel-ratio: 1) 
+        and (-webkit-max-device-pixel-ratio: 2) 
+        and (orientation: portrait) {
+      }
+
+      // Kindle Fire HD 7" with landscape orientation
+      // (heigher gen devices seem tend take have px ratio 3)
+      @media only screen 
+        and (min-device-width: 800px) 
+        and (max-device-width: 1280px) 
+        and (-webkit-min-device-pixel-ratio: 1) 
+        and (-webkit-max-device-pixel-ratio: 2) 
+        and (orientation: landscape) {
+
+      }
+
+
       
-      // Set Base Value
-      #{$property}: $value;
+      // Set Base value
+      // (wrap in media query to force placement at end of cascade for devices that support v-units)
+      ///////////////////////////////////////////////////
+      @media all { #{$property}: $value; }
 
     }
   }
