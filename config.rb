@@ -1,4 +1,4 @@
-css_dir = 'site/css'
+css_dir = 'components/css'
 sass_dir = 'components/sass'
 javascripts_dir = 'site/js'
 output_style = :expanded

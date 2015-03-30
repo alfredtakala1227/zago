@@ -2,15 +2,14 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-script-link-tags');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-angular-templates');
 	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-usemin');
 
 	grunt.initConfig({
-
-		compPath: 'components',
 
 		uglify: {
 
@@ -130,9 +129,23 @@ module.exports = function(grunt) {
 		    },
 
 		    dist: {
-		      	src: 'site/css/*.css'
+		      	src: 'components/css/**/*.css'
 		    },
 		},
+
+        cssmin: {
+             options: {
+                advanced: false,
+                shorthandCompacting: false,
+                roundingPrecision: -1,
+                maxLineLength: 12000
+              },
+              main: {
+                files: {
+                  'site/css/styles.css': ['components/css/**/*.css']
+                }
+              }
+        },
 
 		ngtemplates:  {
 			app:        {
@@ -168,7 +181,7 @@ module.exports = function(grunt) {
 			},
 			sass: {
 				files: ['components/base.scss', 'components/sass/**/*.scss'],
-				tasks: ['compass:dev', 'autoprefixer', 'tags:css']
+				tasks: ['cssStack', 'tags:css']
 			},
 			html: {
 				files: ['site/partials/*.html', 'site/pieces/*.html'],
@@ -178,7 +191,10 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.registerTask('stack', ['compass', 'autoprefixer', 'ngtemplates', 'uglify:dependencies']);
+    
+    grunt.registerTask('min', ['cssmin']);  
+    grunt.registerTask('cssStack', ['compass', 'autoprefixer', 'cssmin']);
+	grunt.registerTask('stack', ['cssStack', 'ngtemplates', 'uglify:dependencies']);
 
 	grunt.registerTask('default', ['stack', 'uglify:dev', 'tags', 'watch']);
 	grunt.registerTask('build', ['stack', 'uglify:pro', 'tags']);
