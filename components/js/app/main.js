@@ -863,24 +863,33 @@ app.directive("precisionImage", function($timeout, Functions) {
 
 app.directive("imageLoader", [ "$timeout", function($timeout) {
     var linker = function(scope, element, attrs) {
+        var $wrapper = $(element[0]);
         var loader = document.createElement("div");
         var wheel = document.createElement("div");
         loader.setAttribute("class", "loaderBox");
         wheel.setAttribute("class", "loader");
         loader.appendChild(wheel);
-        element[0].appendChild(loader);
-        element[0].classList.add("loaderWrapper");
-        element[0].classList.add("loading");
-        var nImage = 0;
+
+        $wrapper[0].appendChild(loader);
+        $wrapper.addClass("loaderWrapper");
+        $wrapper.addClass("loading");
+
+        var $element = $(element),
+            images = $element.find("img"),
+            nImage = 0;
+            console.log(images);
 
         $timeout(function() {
-            jQuery(element[0]).find("img").on("load", function() {
-                element[0].classList.remove("loading");
+            images.load(function() {
+                $wrapper.removeClass("loading");
                 nImage++;
-                if (nImage == jQuery(element[0]).find("img").length) {
-                    element[0].removeChild(loader);
+                if (nImage == images.length) {
+                    $wrapper[0].removeChild(loader);
                 }
+            }).each(function() {
+                if(this.complete){ console.log(this); $(this).trigger('load'); }
             });
+
         }, 50);
     };
     return {
@@ -891,36 +900,27 @@ app.directive("imageLoader", [ "$timeout", function($timeout) {
 
 app.directive("rotateImages", function($interval) {
     var linker = function($scope, element, attrs) {
-        function getImages() {
-            var elems = element[0].children;
-            var images = [];
-            for (var r = 0; elems.length > r; r++) {
-                if (elems[r].tagName == "IMG") {
-                    images.push(elems[r]);
-                }
-            }
-            return images;
-        }
+
+        var images = $(element).find("img");
+
         function rotateImages() {
+            console.log('rotateImages');
             if (element.hasClass("loading")) {
                 return;
             }
-            var images = getImages();
+
             $scope.lastBanner = $scope.activeBanner;
             $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
         }
+
         var timer;
         var waitTiming = 5000;
 
-        $scope.setTimer = function() {
+        (function setTimer() {
             $scope.activeBanner = -1;
             $scope.lastBanner;
             timer = $interval(rotateImages, waitTiming);
-        };
-
-        $scope.$watch(function() { return element; }, function() {
-            $scope.setTimer();
-        });
+        })();
 
         $scope.$on("$destroy", function() {
             $interval.cancel(timer);
@@ -974,7 +974,7 @@ AppCtrl.SiteLoader = function($q, $rootScope, SiteLoader, Storage) {
     var defer = $q.defer();
 
     function refreshSiteData(){
-        var refreshRate  = (1000 * 10 * 1),
+        var refreshRate  = (1000 * 60 * 5),
             refreshTime = new Date().getTime() - refreshRate,
             oldData = Storage.dataTimestamp,
             defer = $q.defer();
