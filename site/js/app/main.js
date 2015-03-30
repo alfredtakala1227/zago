@@ -835,7 +835,7 @@ app.directive("precisionImage", function($timeout, Functions) {
     };
 });
 
-app.directive("imageLoader", function() {
+app.directive("imageLoader", [ "$timeout", function($timeout) {
     var linker = function(scope, element, attrs) {
         var loader = document.createElement("div");
         var wheel = document.createElement("div");
@@ -846,21 +846,22 @@ app.directive("imageLoader", function() {
         element[0].classList.add("loaderWrapper");
         element[0].classList.add("loading");
         var nImage = 0;
-        jQuery(function() {
+
+        $timeout(function() {
             jQuery(element[0]).find("img").on("load", function() {
-                nImage++;
                 element[0].classList.remove("loading");
+                nImage++;
                 if (nImage == jQuery(element[0]).find("img").length) {
                     element[0].removeChild(loader);
                 }
             });
-        });
+        }, 50);
     };
     return {
         restrict: "AE",
         link: linker
     };
-});
+} ]);
 
 app.directive("rotateImages", function($interval) {
     var linker = function($scope, element, attrs) {
