@@ -874,23 +874,26 @@ app.directive("imageLoader", [ "$timeout", function($timeout) {
         $wrapper.addClass("loaderWrapper");
         $wrapper.addClass("loading");
 
-        var $element = $(element),
-            images = $element.find("img"),
-            nImage = 0;
-            console.log(images);
+        element.ready(function() {
+            $timeout(function() {
+                var $element = $(element),
+                    images = $element.find("img"),
+                    nImage = 0;
 
-        $timeout(function() {
-            images.load(function() {
-                $wrapper.removeClass("loading");
-                nImage++;
-                if (nImage == images.length) {
-                    $wrapper[0].removeChild(loader);
-                }
-            }).each(function() {
-                if(this.complete){ console.log(this); $(this).trigger('load'); }
-            });
-
-        }, 50);
+                images.one("load", function() {
+                    $wrapper.removeClass("loading");
+                    nImage++;
+                    console.log(nImage, images.length);
+                    if (nImage == images.length) {
+                        $wrapper[0].removeChild(loader);
+                    }
+                }).each(function() {
+                    if (this.complete) {
+                        $(this).trigger("load");
+                    }
+                });
+            }, 1);
+        });
     };
     return {
         restrict: "AE",
@@ -898,34 +901,35 @@ app.directive("imageLoader", [ "$timeout", function($timeout) {
     };
 } ]);
 
-app.directive("rotateImages", function($interval) {
+app.directive("rotateImages", function($interval, $timeout) {
     var linker = function($scope, element, attrs) {
+        element.ready(function() {
+            $timeout(function() {
+                var images = $(element).find("img");
+                function rotateImages() {
+                    if (element.hasClass("loading")) {
+                        return;
+                    }
 
-        var images = $(element).find("img");
+                    $scope.lastBanner = $scope.activeBanner;
+                    $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
+                }
 
-        function rotateImages() {
-            console.log('rotateImages');
-            if (element.hasClass("loading")) {
-                return;
-            }
+                var timer;
+                var waitTiming = 5000;
 
-            $scope.lastBanner = $scope.activeBanner;
-            $scope.activeBanner = ($scope.activeBanner + 1) % images.length;
-        }
+                (function setTimer() {
+                    $scope.activeBanner = -1;
+                    $scope.lastBanner;
+                    timer = $interval(rotateImages, waitTiming);
+                })();
 
-        var timer;
-        var waitTiming = 5000;
-
-        (function setTimer() {
-            $scope.activeBanner = -1;
-            $scope.lastBanner;
-            timer = $interval(rotateImages, waitTiming);
-        })();
-
-        $scope.$on("$destroy", function() {
-            $interval.cancel(timer);
-            $scope.timer = undefined;
-        });
+                $scope.$on("$destroy", function() {
+                    $interval.cancel(timer);
+                    $scope.timer = undefined;
+                });
+            }, 1);
+        })
     };
     return {
         restrict: "A",
