@@ -766,13 +766,12 @@ footer {
 .loaderWrapper {
 	position: relative !important;
 	z-index: 1 !important;
-	&#heroBanner.loading img {
+	&.loading img {
 		opacity: 0;
 	}
-	&#heroBanner img {
+	img {
 		opacity: 1;
-		transition: all 3s;
-		-webkit-transition: all 3s;
+		transition: all $normalSpeed $primaryEase;
 		z-index: 5;
 	}
 }
