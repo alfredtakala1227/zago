@@ -845,11 +845,18 @@ app.directive("imageLoader", function() {
         element[0].appendChild(loader);
         element[0].classList.add("loaderWrapper");
         element[0].classList.add("loading");
+        var nImage = 0;
 
-        jQuery(element[0]).find("img").on('load', function() {
-            element[0].classList.remove("loading");            
-            element[0].removeChild(loader);
+        jQuery(function(){
+            jQuery(element[0]).find("img").on('load', function(){
+                nImage++;
+                if ( nImage == jQuery(element[0]).find("img").length) {
+                    element[0].classList.remove("loading");
+                    element[0].removeChild(loader);
+                }
+            });
         });
+
     };
     return {
         restrict: "AE",
@@ -877,14 +884,16 @@ app.directive("rotateImages", function($interval) {
         var timer;
         var waitTiming = 5e3;
         $scope.setTimer = function() {
-            $scope.activeBanner = 0;
+            $scope.activeBanner = -1;
             $scope.lastBanner;
             timer = $interval(rotateImages, waitTiming);
         };
         $scope.$watch(function() {
             return element;
         }, function() {
-            $scope.setTimer();
+			if (element.hasClass('loading')) {
+				$scope.setTimer();
+			}
         });
         $scope.$on("$destroy", function() {
             $interval.cancel(timer);
